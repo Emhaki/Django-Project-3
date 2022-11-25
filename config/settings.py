@@ -31,10 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PJT_APPS = [
-    "apps.main",
-    "apps.hompi",
-    "apps.accounts",
-    "apps.articles",
+    "main",
+    "hompi",
+    "accounts",
+    "articles",
 ]
 
 LIBRARY_APPS = [
