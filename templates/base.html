@@ -7,13 +7,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% block css %}{% endblock css %}
-  {% bootstrap_css %}{% bootstrap_javascript %}
+  {% block css %}
+  {% endblock css %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
   <title>Naver ending story</title>
 </head>
 
 <body>
-
+  {% block content %}
+  {% endblock content %}
 </body>
 
 </html>
