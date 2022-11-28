@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 PJT_APPS = [
     "main",
-    "hompi",
     "accounts",
     "articles",
 ]
