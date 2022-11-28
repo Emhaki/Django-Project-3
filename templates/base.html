@@ -1,4 +1,4 @@
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,6 +11,7 @@
   {% endblock css %}
   {% bootstrap_css %}
   {% bootstrap_javascript %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   <title>Never ending story</title>
 </head>
 
