@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+{% if request.resolver_match.url_name == 'create' %}
+<div class='container m-5'>
+    <h1 class='fw-blod'> 새로운 작품 등록 </h1>
+    {% else %}
+    <h1> 작품 수정 </h1>
+    {% endif %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form art_form %}
+    {% bootstrap_button button_type="submit" content="SUBMIT" %}
+    </form>
+</div>
+{% endblock %}
