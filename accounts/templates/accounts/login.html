@@ -8,7 +8,9 @@
         <img class="login-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
         <input class="login-frame__form__id" type="text" placeholder="아이디를 입력해주세요.">
         <input class="login-frame__form__password" type="text" placeholder="비밀번호를 입력해주세요.">
-        <button class="login-frame__form__logbtn">로그인</button>
+        <a href="{% url 'accounts:kakao' %}">
+          <button class="login-frame__form__logbtn">로그인</button>
+         </a>
         <button class="login-frame__form__googlebtn">🍳 CONTINUE WITH GOOGLE</button>
         <div class="login-frame__form__detail">
             <div class="login-frame_-form__detail__find">
@@ -23,3 +25,4 @@
     </div>
 </div>
 {% endblock content %}
+
