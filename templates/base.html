@@ -1,24 +1,23 @@
+{% load static %}
 {% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="ko">
-  
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-{% block css %}
-{% endblock css %}
-{% load static %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-<title>Never ending story</title>
-</head>
 
-<body>
-  {% block content %}
-  {% endblock content %}
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+    {% bootstrap_css %}
+    {% block css %}{% endblock css %}
+    <title>Never ending story</title>
+  </head>
+
+  <body>
+    {% block content %}{% endblock content %}
+    {% bootstrap_javascript %}
+    {% block js %}{% endblock js %}
+  </body>
 
 </html>
