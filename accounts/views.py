@@ -5,16 +5,15 @@ from django.http import JsonResponse
 
 # Create your views here.
 
+
 def index(request):
-  return render(request, "accounts/index.html")
+    return render(request, "accounts/index.html")
+
 
 def signup(request):
 
-  return render(request, "accounts/signup.html")
+    return render(request, "accounts/signup.html")
 
-def login(request):
-
-  return render(request, "accounts/login.html")
 
 import secrets, os
 state_token = secrets.token_urlsafe(16)
@@ -93,5 +92,7 @@ def kakao_callback(request):
     
     return redirect("accounts:index")
     
-    
+
+def login(request):
+    return render(request, "accounts/login.html")
 
