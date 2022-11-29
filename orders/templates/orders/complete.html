@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/complete.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container">
+  <h1>구매 완료</h1>
+  <div class="row">
+    <div class="col-7">
+      <div class="text-center">
+        사진
+      </div>
+      <div class="text-center">
+        결제 수단
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="text-center">
+        작품 이름
+      </div>
+      <div class="text-center">
+        작품 설명
+      </div>
+      <hr>
+      <div>
+        작가 프로필
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between">
+        <h3>가격</h3>
+        <h3>102,500 Won</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

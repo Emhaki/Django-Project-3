@@ -1,0 +1,24 @@
+@import url(./base.css);
+
+body {
+  background-color: var(--highlight);
+}
+
+
+.info__container {
+  margin: 5rem 9rem;
+}
+
+
+.info__photo {
+  border-style: dotted;
+}
+
+
+.info__detail {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin-left: 10rem;
+  border-style: dotted;
+}
