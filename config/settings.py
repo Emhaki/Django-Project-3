@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,7 +43,7 @@ LIBRARY_APPS = [
     "django_extensions",
     # 페이지에서 이미지를 삭제했을 때 서버에 남는 파일을 자동으로 지워주는 앱
     # https://pypi.org/project/django-cleanup/
-    "django_cleanup.apps.CleanupConfig",
+    # "django_cleanup.apps.CleanupConfig",
 ]
 
 DEFAULT_APPS = [
@@ -133,8 +134,8 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = "/static/"
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
