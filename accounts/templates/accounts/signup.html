@@ -6,57 +6,60 @@
   <div class="signup-frame">
     <div class="signup-frame__form">
       <img class="signup-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
-      <div class="signup-frame__form__container">
-        <div class="signup-frame__form__container__login">
-          <p>아이디
-          </p>
-          <div class="signup-frame__form__container__login__check">
-            <input type="text" placeholder="아이디를 입력해주세요">
-            <button>중복확인</button>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="signup-frame__form__container">
+          <div class="signup-frame__form__container__login">
+            <p>아이디
+            </p>
+            <div class="signup-frame__form__container__login__check">
+              <input type="text" name="username" placeholder="아이디를 입력해주세요">
+              <button>중복확인</button>
+            </div>
           </div>
-        </div>
-        <div class="signup-frame__form__container__password">
-          <p>비밀번호
-          </p>
-          <input type="password" placeholder="비밀번호를 입력해주세요">
-        </div>
-        <div class="signup-frame__form__container__check">
-          <p>비밀번호 확인
-          </p>
-          <input type="password" placeholder="비밀번호를 한번 더 입력해주세요">
-        </div>
-        <div class="signup-frame__form__container__name">
-          <p>이름
-          </p>
-          <input type="password" placeholder="이름을 입력해주세요">
-        </div>
-        <div class="signup-frame__form__container__email">
-          <p>이메일
-          </p>
-          <div class="signup-frame__form__container__email__check">
-            <input type="password" placeholder="예:nes@gmail.com">
-            <button>이메일 인증</button>
+          <div class="signup-frame__form__container__password">
+            <p>비밀번호
+            </p>
+            <input type="password" name="password1" placeholder="비밀번호를 입력해주세요">
           </div>
-        </div>
-        <div class="signup-frame__form__container__address">
-          <p>주소
-          </p>
-          <div class="signup-frame__form__container__address__search">
-            <input type="password" placeholder="주소검색">
-            <a href="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
+          <div class="signup-frame__form__container__check">
+            <p>비밀번호 확인
+            </p>
+            <input type="password" name="password2" placeholder="비밀번호를 한번 더 입력해주세요">
+          </div>
+          <div class="signup-frame__form__container__name">
+            <p>이름
+            </p>
+            <input type="text" name="nickname" placeholder="이름을 입력해주세요">
+          </div>
+          <div class="signup-frame__form__container__email">
+            <p>이메일
+            </p>
+            <div class="signup-frame__form__container__email__check">
+              <input type="text" name="email" placeholder="예:nes@gmail.com">
+              <button>이메일 인증</button>
+            </div>
+          </div>
+          <div class="signup-frame__form__container__address">
+            <p>주소
+            </p>
+            <div class="signup-frame__form__container__address__search">
+              <input type="text" name="address" placeholder="주소검색">
+              <a href="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="signup-frame__form__container__submit">
+            <a href="{% url 'accounts:login' %}">
+              <button class="signup-frame__form__container__submit__back">뒤로가기</button>
             </a>
+            <button class="signup-frame__form__container__submit__go">가입하기</button>
           </div>
         </div>
-        <div class="signup-frame__form__container__submit">
-          <a href="{% url 'accounts:login' %}">
-            <button class="signup-frame__form__container__submit__back">뒤로가기</button>
-          </a>
-          <button class="signup-frame__form__container__submit__go">가입하기</button>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 {% endblock content %}
