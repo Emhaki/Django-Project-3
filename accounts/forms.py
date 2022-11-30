@@ -7,5 +7,13 @@ class SignupForm(UserCreationForm):
         fields = (
             "username",
             "email",
+            "nickname",
+            "location",
         )
+        labels = {
+            "username": "아이디",
+            "email": "이메일",
+            "nickname": "이름",
+            "location": "주소"
+        }
         model = get_user_model()

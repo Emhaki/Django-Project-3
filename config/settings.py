@@ -36,6 +36,7 @@ PJT_APPS = [
     "orders",
     "accounts",
     "articles",
+    "notes",
 ]
 
 LIBRARY_APPS = [

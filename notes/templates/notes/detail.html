@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load django_bootstrap5 %}
+{% block content %}
+
+<h1>쪽지 디테일</h1>
+<img src="{{note.from_user.profileimage }}" alt="" style="width:100px; height:100px;">
+{{note.from_user.nickname }}
+{{note.title}} |
+{{note.content}}
+{% endblock content %}
