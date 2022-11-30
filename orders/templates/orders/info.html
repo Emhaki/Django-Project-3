@@ -11,29 +11,25 @@
 <div class="info__container">
   <div class="row">
     <div class="info__photo col-5">
-      <img src="{% static 'photos/pic_1.png' %}">
+      {% comment %} <img src="{% static 'photos/pic_1.png' %}"> {% endcomment %}
+      <img src="{{ art.image.url }}" alt="{{ art.image }}">
     </div>
     <div class="info__detail col-5">
       <div>
-        <h1>제목 Heimat</h1>
-        <p>
-          작품 상세 설명
-          The project title Heimat (which translates as ‘homeland’) is a politically charged term. Delali took her stay
-          in Germany as an opportunity to research the complexities of calling this country home, while people of colour
-          continue to be subject to exclusion and racism.
-        </p>
+        <h1>{{ art.title }}</h1>
+        <p>{{ art.content }}</p>
         <h4>
-          제작 년도 2022
+          {{ art.painted_year }}
         </h4>
         <h4>
-          그린 방법 캔버스 어쩌구
+          {{ art.painted_way }}
         </h4>
         <h4>
-          작품 크기 가로 x 세로
+          {{ art.art_size }}
         </h4>
       </div>
       <div class="d-flex">
-        <h1 class="ms-auto">작가 이름</h1>
+        <h1 class="ms-auto">{{ art.artist.username }}</h1>
       </div>
       <div class="d-flex">
         <a class="ms-auto" href="">
@@ -47,10 +43,19 @@
       </div>
       <hr>
       <h1>가격</h1>
-      <h2>200,000 Won</h2>
+      <h2>{{ art.price }} Won</h2>
       <div class="d-flex">
-        <a href="" class="btn btn-lg ms-auto">구매 리스트 추가</a>
-        <a href="" class="btn btn-lg">바로 구매하기</a>
+        <!-- 장바구니 추가 -->
+        {% if art.soldout == False %}
+          <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
+            {% csrf_token %}
+            {% bootstrap_form cart_form %}
+
+            <button type="submit" class="btn">장바구니에 담기</button>
+          </form>
+            <a href="{% url 'orders:create_order' %}" class="btn btn-lg">바로 구매하기</a>
+
+        {% endif %}
       </div>
     </div>
   </div>

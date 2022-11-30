@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/info.css' %}">
+{% endblock css %}
+
+{% block content %}
+<h1>장바구니</h1>
+{% comment %} {% for item in cart_items %}
+    <p>{{ request.user.username }}</p>
+    <p>{{ art.title }}</p>
+    <p>{{ art.painted_year }}</p>
+{% endfor %}  {% endcomment %}
+{% endblock content %}
