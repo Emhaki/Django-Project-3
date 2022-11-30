@@ -3,3 +3,165 @@
 body {
   background-color: var(--highlight);
 }
+
+
+.container {
+  margin-top: 8rem;
+}
+
+
+.complete__pagetitle {
+  margin: 5rem 2rem;
+  font-weight: bold;
+}
+
+
+.complete__container {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.complete__photo-section {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  border-color: var(--white);
+  border-style: solid;
+  max-height: 506px;
+  max-width: 500px;
+}
+
+
+.complete__art-size {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+
+.complete__payment {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.6em;
+  margin-top: 3rem;
+}
+
+
+.complete__photo {
+  max-height: 500px;
+  max-width: 500px;
+}
+
+
+.complete__receipt {
+  max-width: 21rem;
+  background-color: var(--white);
+  margin-left: 5rem;
+}
+
+
+.receipt__topline {
+  background-color: var(--main);
+  height: 0.5rem;
+}
+
+
+.receipt__orange {
+
+  border-radius: 50%;
+  position: relative;
+  background-color: var(--highlight);
+  height: 3rem;
+  width: 3rem;
+}
+
+
+.orange-1 {
+  top: 3rem;
+  right: 1.5rem;
+}
+
+
+.orange-2 {
+  top: 3rem;
+  left: 16.5rem;
+}
+
+
+.receipt__title {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 0rem;
+}
+
+
+.receipt__description {
+  font-size: 13px;
+  color: rgb(110, 110, 110);
+  text-align: center;
+  margin: 2rem 5rem;
+}
+
+
+.receipt__profile {
+  text-align: center;
+}
+
+
+.receipt__artist-name {
+  font-weight: bold;
+}
+
+
+.receipt__picture-link {
+  margin-bottom: -1rem;
+}
+
+
+.receipt__artist-picture {
+  border-style: dotted;
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+}
+
+
+.receipt__dm-link {
+  position: relative;
+  left: 11.1rem;
+  bottom: 2.4rem;
+}
+
+
+.receipt__gray-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--line);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
+
+.receipt__dm-img {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  right: 2px;
+  top: 2px;
+}
+
+
+.receipt__footer {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+.receipt__price {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
