@@ -1,0 +1,180 @@
+@import url(./base.css);
+
+.articles__bg {
+  background-color: var(--main);
+  width: 100%;
+  height: 100vh;
+}
+
+/* off canvas */
+.offcanvas__btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__btn:hover {
+  background-color: transparent;
+}
+
+.offcanvas__logo {
+  width: 6em;
+  height: 3em;
+}
+
+.offcanvas__header--btn {
+  padding: 0.1rem;
+}
+
+.bi-person-x,
+.bi-person {
+  cursor: pointer;
+}
+
+.offcanvas__close--btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__ul {
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.offcanvas__ul > li {
+  margin-bottom: 1rem;
+}
+
+.offcanvas__logout,
+.offcanvas__profile {
+  padding: 0.1rem;
+}
+
+.offcanvas__about--logo {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+/* nav */
+.articles__nav {
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  z-index: 200;
+}
+
+.nav__logo {
+  margin-top: 2rem;
+  width: 5rem;
+  height: 3rem;
+  transform: rotate(90deg);
+}
+
+.nav__logo:hover {
+  transform: rotate(90deg) scale(1.2);
+  transition: all 200ms ease;
+}
+
+/* article */
+.article__container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 62.5%;
+}
+
+.article__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  max-height: calc(100% - 5vh);
+  align-items: center;
+  content-visibility: auto;
+}
+
+.article__items {
+  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  transition: all 0.2s;
+  transform: scale(0.98);
+  -ms-overflow-style: none;
+}
+
+.article__img {
+  cursor: pointer;
+  max-width: calc(100% - 60vw);
+  height: auto;
+  object-fit: contain;
+}
+
+.article__img:hover {
+  transform: scale(1.1);
+  transition: all 500ms ease-in-out;
+}
+
+/* 스크롤 숨김 */
+.article__items::-webkit-scrollbar {
+  display: none;
+  width: 0 !important;
+}
+
+/* 이미지 소개 */
+.image__info {
+  display: inline-block;
+  width: 20%;
+  height: 15em;
+  line-height: 15em;
+  background-color: var(--highlight);
+  border: 2px solid black;
+}
+
+.info__title {
+  color: var(--main-sub);
+  text-align: center;
+  font-size: 2.7em;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* 각 info 추후 사진에 따라 위치 조정*/
+.info {
+  opacity: 0;
+  position: relative;
+  top: 15vh;
+  left: -3rem;
+}
+
+.article__img:hover + .info {
+  opacity: 1;
+  transition: all 200ms ease-in;
+}
+
+/* 화살표 */
+.arrow__btn {
+  position: fixed;
+  transform: scaleX(-1);
+  color: var(--bg);
+  width: 150px;
+  height: 150px;
+  right: 50px;
+  bottom: -5rem;
+  z-index: 99;
+  font-size: 2rem;
+  color: var(--high-sub);
+}
+
+@media (max-width: 1070px) {
+  .info {
+    font-size: 0.5em;
+  }
+}
+
+@media (max-width: 750px) {
+  .article__img:hover + .info {
+    opacity: 0;
+    transition: all 200ms ease-in;
+  }
+}
