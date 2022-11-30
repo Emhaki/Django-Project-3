@@ -13,12 +13,6 @@ from django.contrib.auth import logout as auth_logout
 def index(request):
     return render(request, "accounts/index.html")
 
-
-def signup(request):
-
-    return render(request, "accounts/signup.html")
-
-
 import secrets, os
 state_token = secrets.token_urlsafe(16)
 client_id = "064334979be24e5b57f6869948851f37"
@@ -96,17 +90,13 @@ def kakao_callback(request):
 
 def signup(request):
   if request.method == "POST":
-    form = SignupForm(request.POST, request.FILES)
+    form = SignupForm(request.POST)
     if form.is_valid():
       forms = form.save(commit=False)
       forms.save()
-      return redirect("accounts:index")
+      return redirect("accounts:login")
   else:
-    form = SignupForm()
-  context = {
-    "form": form,
-  }  
-  return render(request, "accounts/signup.html", context)
+    return render(request, "accounts/signup.html")
 
 def login(request):
     if request.method == "POST":

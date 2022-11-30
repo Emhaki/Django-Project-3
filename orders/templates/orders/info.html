@@ -8,43 +8,52 @@
 
 {% block content %}
 
-<div class="info__container">
-  <div class="row">
-    <div class="info__photo col-5">
-      {% comment %} <img src="{% static 'photos/pic_1.png' %}"> {% endcomment %}
-      <img src="{{ art.image.url }}" alt="{{ art.image }}">
+
+
+<div class="container">
+  <div class="info__container">
+    <div class="info__photo-section">
+      <img class="info__photo"  src="{{ art.image.url }}" alt="{{ art.image }}">
     </div>
-    <div class="info__detail col-5">
+    <div class="info__detail-section">
       <div>
-        <h1>{{ art.title }}</h1>
-        <p>{{ art.content }}</p>
-        <h4>
-          {{ art.painted_year }}
-        </h4>
-        <h4>
-          {{ art.painted_way }}
-        </h4>
-        <h4>
-          {{ art.art_size }}
-        </h4>
+        <h1 class="info__title">{{ art.title }}</h1>
+        <p class="info__description">
+          {{ art.content }
+        </p>
+        <div class="info__detail">
+          <h4 class="my-2">
+            {{ art.painted_year }}
+          </h4>
+          <h4 class="my-2">
+            {{ art.painted_way }}
+          </h4>
+          <h4 class="mt-5 mb-3">
+            {{ art.art_size }}
+          </h4>
+        </div>
       </div>
-      <div class="d-flex">
-        <h1 class="ms-auto">{{ art.artist.username }}</h1>
-      </div>
-      <div class="d-flex">
-        <a class="ms-auto" href="">
-          작가에게 문의하기
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-              d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-          </svg>
-        </a>
+      <div>
+        <div class="info__artist-name">
+          <h1 class="ms-auto">{{ art.artist.username }}</h1>
+        </div>
+        <div class="info__inquire">
+          <a class="ms-auto" href="">
+            작가에게 문의하기
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+            </svg>
+          </a>
+        </div>
       </div>
       <hr>
-      <h1>가격</h1>
-      <h2>{{ art.price }} Won</h2>
-      <div class="d-flex">
+      <div class="info__price-section">
+        <h1>가격</h1>
+        <h2 class="info__price">{{ art.price }} Won</h2>
+      </div>
+      <div class="info__order">
         <!-- 장바구니 추가 -->
         {% if art.soldout == False %}
           <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
@@ -54,7 +63,6 @@
             <button type="submit" class="btn">장바구니에 담기</button>
           </form>
             <a href="{% url 'orders:create_order' %}" class="btn btn-lg">바로 구매하기</a>
-
         {% endif %}
       </div>
     </div>

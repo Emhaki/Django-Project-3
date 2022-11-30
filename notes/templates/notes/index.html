@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load django_bootstrap5 %}
+{% block content %}
+
+<h1>notes index</h1>
+{% for note in notes %}
+  <a href="{% url 'notes:detail' note.pk %}">
+  {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
+  {{ note.title }} |
+  {{ note.content }} |
+  {{ note.created_at }}
+  </a>
+{% endfor %}
+
+{% endblock content %}

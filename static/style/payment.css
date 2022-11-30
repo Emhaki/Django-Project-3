@@ -1,0 +1,10 @@
+@import url(./base.css);
+
+body {
+  background-color: var(--highlight);
+}
+
+
+.container {
+  margin-top: 8rem;
+}
