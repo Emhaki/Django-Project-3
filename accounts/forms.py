@@ -4,6 +4,7 @@ from django import forms
 
 class SignupForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
+        model = get_user_model()
         fields = (
             "username",
             "email",
@@ -16,4 +17,3 @@ class SignupForm(UserCreationForm):
             "nickname": "이름",
             "location": "주소"
         }
-        model = get_user_model()

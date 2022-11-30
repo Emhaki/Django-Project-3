@@ -6,8 +6,8 @@ body {
 }
 
 
-.basket__container {
-  margin: 5rem 9rem;
+.container {
+  margin-top: 8rem;
 }
 
 
@@ -24,7 +24,6 @@ body {
   padding: 0 3rem;
   background-color: var(--main);
   height: 40rem;
-  width: 100rem;
   font-weight: bolder;
 }
 
@@ -32,23 +31,26 @@ body {
 .basket__object {
   display: flex;
   background-color: var(--white);
-  height: 12rem;
-  width: 92rem;
+  height: 15rem;
+  width: 74rem;
   margin: 2rem 0;
   padding: 0.5rem;
 }
 
 
 .basket__photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--white);
-  border-style: solid;
-  height: 11rem;
-  width: 11rem;
+  border-style: dotted;
+  height: 14rem;
+  width: 14rem;
 }
 
 
 .basket__info {
-  margin-left: 3rem;
+  margin-left: 5rem;
   display: flex;
   flex-flow: column;
   justify-content: center;
