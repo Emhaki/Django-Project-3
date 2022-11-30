@@ -9,5 +9,11 @@ class SignupForm(UserCreationForm):
             "username",
             "email",
             "nickname",
-            "address",
+            "location",
         )
+        labels = {
+            "username": "아이디",
+            "email": "이메일",
+            "nickname": "이름",
+            "location": "주소"
+        }
