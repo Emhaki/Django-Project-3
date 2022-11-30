@@ -3,23 +3,32 @@
 
 {% load django_bootstrap5 %}
 {% block content %}
+
 <div class="login-frame">
     <div class="login-frame__form">
         <img class="login-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
-        <input class="login-frame__form__id" type="text" placeholder="아이디를 입력해주세요.">
-        <input class="login-frame__form__password" type="password" placeholder="비밀번호를 입력해주세요.">
-        <button class="login-frame__form__logbtn">로그인</button>
-        <button class="login-frame__form__googlebtn">🍳 CONTINUE WITH GOOGLE</button>
+        <form action="{% url 'accounts:login' %}" method='POST'>
+          {% csrf_token %}
+          <input class="login-frame__form__id" type="text" placeholder="아이디를 입력해주세요.">
+          <input class="login-frame__form__password" type="password" placeholder="비밀번호를 입력해주세요.">
+          <button class="login-frame__form__logbtn">로그인</button>
+        </form>
+        <a href="{% url 'accounts:kakao' %}">
+          <button class="login-frame__form__googlebtn">🍳 CONTINUE WITH KAKAO</button>
+        </a>
         <div class="login-frame__form__detail">
             <div class="login-frame_-form__detail__find">
             <a href="">아이디 찾기</a>
-             | 
+             |
             <a href="">비밀번호 찾기</a>
         </div>
         <div class="login-frame__form__detail__signup">
-            <a href="">회원가입</a>
+            <a href="{% url 'accounts:signup'%}">회원가입
         </div>
         </div>
     </div>
 </div>
+
+
 {% endblock content %}
+

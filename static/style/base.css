@@ -4,6 +4,10 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   --main: #203e96;
   --main-sub: #122d4e;
