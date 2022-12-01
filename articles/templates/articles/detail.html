@@ -68,7 +68,7 @@
     {% for comment in comments %}
         <p>{{ comment.content }}</p> 
         <hr>    
-         {% if request.user == comment.user %}
+        {% if request.user == comment.user %}
             <form action="{% url 'articles:comment_delete' comment.art.pk comment.pk %}" method="POST">
             {% csrf_token %}
             <button class="btn btn-dark">삭제</button>           

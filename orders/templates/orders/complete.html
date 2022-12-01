@@ -9,7 +9,9 @@
 {% block content %}
 
 <div class="container">
-  <h1 class="complete__pagetitle">구매 완료</h1>
+  <!-- <div class="d-flex">
+    <h1 class="complete__pagetitle ms-auto">구매 완료</h1>
+  </div> -->
   <div class="complete__container">
     <div>
       <div class="complete__photo-section">
@@ -22,40 +24,52 @@
         신용카드 결제
       </p>
     </div>
-    <div class="complete__receipt">
-      <div class="receipt__topline"></div>
-      <div class="d-flex">
-        <div class="receipt__orange orange-1"></div>
-        <div class="receipt__orange orange-2"></div>
-      </div>
-      <h2 class="receipt__title">
-        Heimat
-      </h2>
-      <p class="receipt__description">
-        The project title Heimat (which translates as ‘homeland’) is a politically charged term....
-      </p>
-      <hr>
-      <div class="receipt__profile">
-        <h4 class="receipt__artist-name">작가 이름</h4>
-        <div class="receipt__picture-link">
-          <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
-          <a class="receipt__dm-link" href="">
-            <div class="receipt__gray-circle">
-              <img class="receipt__dm-img" src="{% static 'img/vector.png' %}">
-            </div>
+    <div>
+      <h1 class="complete__pagetitle">구매 완료</h1>
+      <div class="complete__receipt">
+        <div class="receipt__topline"></div>
+        <div class="d-flex">
+          <div class="receipt__orange orange-1"></div>
+          <div class="receipt__orange orange-2"></div>
+        </div>
+        <h2 class="receipt__title">
+          Heimat
+        </h2>
+        <p class="receipt__description">
+          The project title Heimat (which translates as ‘homeland’) is a politically charged term....
+        </p>
+        <hr>
+        <div class="receipt__profile">
+          <h4 class="receipt__artist-name">작가 이름</h4>
+          <div class="receipt__picture-link">
+            <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
+            <a class="receipt__dm-link" href="">
+              <div class="receipt__gray-circle">
+                <img class="receipt__dm-img" src="{% static 'img/vector.png' %}">
+              </div>
+            </a>
+          </div>
+          <a href="">
+            <img class="receipt__insta-img" src="{% static 'img/instagram.png' %}">
+          </a>
+          <a href="">
+            <img class="receipt__link-img" src="{% static 'img/link.png' %}">
           </a>
         </div>
-        <a href="">
-          <img class="receipt__insta-img" src="{% static 'img/instagram.png' %}">
-        </a>
-        <a href="">
-          <img class="receipt__link-img" src="{% static 'img/link.png' %}">
-        </a>
+        <hr>
+        <div class="receipt__footer">
+          <p class="receipt__price">가격</p>
+          <p class="receipt__price">102,500 Won</p>
+        </div>
       </div>
-      <hr>
-      <div class="receipt__footer">
-        <p class="receipt__price">가격</p>
-        <p class="receipt__price">102,500 Won</p>
+      <div class="receipt__btn">
+        <a href="" class="btn btn-lg receipt__btn-link">메인으로
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
+          </svg>
+        </a>
       </div>
     </div>
   </div>
