@@ -36,20 +36,23 @@
             <p>이메일
             </p>
             <div class="signup-frame__form__container__email__check">
-              <input type="text" name="email" placeholder="예:nes@gmail.com">
-              <button>이메일 인증</button>
+              <input id="id_email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
+              <button type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
             </div>
           </div>
           <div class="signup-frame__form__container__address">
             <p>주소
             </p>
             <div class="signup-frame__form__container__address__search">
-              <input type="text" name="address" placeholder="주소검색">
-              <a href="">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-              </a>
+              <input type="text" id="sample5_address" placeholder="주소">
+            <a type="button" value="주소 검색">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewbox="0 0 16 16" onclick="DaumPostcode()">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
+            </a>
+            {% comment %} 지도 안사용할거같아서 0으로처리함 {% endcomment %}
+            <div id="map" style="width:0px;height:0px;margin-top:0px;display:none"></div>
+            {% comment %}  {% endcomment %}
             </div>
           </div>
           <div class="signup-frame__form__container__submit">
@@ -62,6 +65,141 @@
       </form>
     </div>
   </div>
+
+
+<!--이메일 인증 모달-->
+<div class="modal fade" id="emailCheckModal" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-content" style="width:330px;height:240px;">
+      <div class="modal-body" id="modal-body-email" style="padding: 50px 40px 30px; font-size: 16px; text-align: center; letter-spacing: -0.5px;">
+        <div id="email-check-1">
+          이메일 인증을 해주세요.
+          <br>
+          <button id="sendEmail" type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">인증번호 보내기</button>
+        </div>
+        <div id="email-check-2" class="display-none">
+          <input id="input-number" type="text" class="form-control" placeholder="인증번호를 입력해주세요.">
+          <button type="button" class="mt-3 btn btn-green" onclick="checkEmail()">인증 확인</button>
+          <button type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">다시 보내기</button>
+        </div>
+        <div id="valid-number" class="display-none"></div>
+        <div id="email-result"></div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center p-0">
+        <button type="button" data-bs-dismiss="modal" class="btn text-green">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} axious {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% comment %} 주소검색 api {% endcomment %}
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b86257fe02047393d0fd3f879088463&libraries=services"></script>
+
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            level: 5 // 지도의 확대 레벨
+        };
+
+    //지도를 미리 생성
+    var map = new daum.maps.Map(mapContainer, mapOption);
+    //주소-좌표 변환 객체를 생성
+    var geocoder = new daum.maps.services.Geocoder();
+    //마커를 미리 생성
+    var marker = new daum.maps.Marker({
+        position: new daum.maps.LatLng(37.537187, 127.005476),
+        map: map
+    });
+
+
+    function DaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
+                    }
+                });
+            }
+        }).open();
+    }
+
+    const sendEmail = function () {
+      const userEmail = document.querySelector('#id_email').value
+      
+      const check1 = document.querySelector('#email-check-1')
+      const check2 = document.querySelector('#email-check-2')
+      const success = document.querySelector("#sendEmail")
+      if (userEmail.length == 0){
+        alert("이메일을 입력해주세요!")
+        return
+      }
+      check1.classList.add('display-none')
+      check2.classList.remove('display-none')
+      success.innerText = "인증번호 전송완료"
+      success.classList = "btn btn-success"
+      axios({
+              method: 'post',
+              url: `/accounts/send_valid_number/`,
+              headers: {'X-CSRFToken': '{{ csrf_token }}'},
+              data: {'user_email': userEmail }
+            })
+            .then(response => {
+              const validNumber = document.querySelector('#valid-number')
+              validNumber.innerText = response.data.validnumber
+            });
+    }
+
+
+    const checkEmail = function () {
+      const userEmail = document.querySelector('#id_email').value
+      const validNumber = document.querySelector('#valid-number').innerText
+      const inputNumber = document.querySelector('#input-number').value
+      console.log(validNumber)
+      console.log(inputNumber)
+
+      axios({
+              method: 'post',
+              url: `/accounts/check_valid_number/`,
+              headers: {'X-CSRFToken': '{{ csrf_token }}'},
+              data: {
+                'valid_number':validNumber,
+                'input_number':inputNumber,
+            }
+            })
+            .then(response =>{
+              const emailResult = document.querySelector('#email-result')
+              if (response.data.check==true) {
+                emailResult.innerText = "확인되었습니다. 가입을 진행해주세요."
+                check2.classList.add('display-none')
+                emailChecked = 1;
+              }else{
+                emailResult.innerText = "번호가 틀렸습니다. 다시 입력해주세요."
+              }
+            })
+    }
+</script>
 
 {% endblock content %}
 

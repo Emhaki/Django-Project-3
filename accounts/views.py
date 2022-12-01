@@ -2,8 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 import requests
+from random import random
 from .forms import *
 from django.http import JsonResponse
+
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+import json
+from django.core.mail import EmailMessage
+
+
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
@@ -67,7 +77,7 @@ def kakao_callback(request):
     # 'profile': {'nickname': '이명학', 'thumbnail_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_110x110.jpg', 'profile_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_640x640.jpg',
     # 'is_default_image': False}, 'has_email': True, 'email_needs_agreement': False, 'is_email_valid': True, 'is_email_verified': True, 'email': 'mhmh779@naver.com'}
     # }
-
+    
     kakao_id = user_info_response["id"]
     kakao_nickname = user_info_response["properties"]["nickname"]
     kakao_email = (
@@ -75,6 +85,7 @@ def kakao_callback(request):
         if "email" in user_info_response["kakao_account"]
         else ""
     )
+    # 이메일 동의 안할시 공백을 주었음
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(username=kakao_id).exists():
@@ -125,5 +136,49 @@ def login(request):
 
 
 def logout(request):
-    auth_logout(request)
-    return redirect("accounts:index")
+  auth_logout(request)
+  return redirect("accounts:index")
+
+# 이메일 인증
+def send_valid_number(request):
+    validnumber = round(random() * 10000)
+    print("여기찍혀?")
+    print(validnumber)
+    current_site = get_current_site(request)
+    message = render_to_string(
+        "accounts/send_valid_number.html",
+        {
+            "user": request.user,
+            "domain": current_site.domain,
+            "uid": urlsafe_base64_encode(force_bytes(request.user.pk))
+            .encode()
+            .decode(),
+            "validnumber": validnumber,
+        },
+    )
+
+    mail_subject = "[NES]이메일 인증번호입니다."
+    user_email = json.loads(request.body)["user_email"]
+    email = EmailMessage(mail_subject, message, to=[user_email])
+    email.send()
+
+    context = {
+        "validnumber": validnumber,
+        "user": request.user,
+    }
+    return JsonResponse(context)
+
+
+def check_valid_number(request):
+    valid_number = json.loads(request.body)["valid_number"]
+    input_number = json.loads(request.body)["input_number"]
+    print(json.loads(request.body))
+    print(valid_number, input_number)
+    if valid_number == input_number:
+        check = True
+    else:
+        check = False
+    context = {
+        "check": check,
+    }
+    return JsonResponse(context)
