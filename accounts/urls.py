@@ -13,4 +13,6 @@ urlpatterns = [
     path("kakao/login/callback/", views.kakao_callback, name="kakao_callback"),
     path("send_valid_number/", views.send_valid_number, name="send_valid_number"),
     path("check_valid_number/", views.check_valid_number, name="check_valid_number"),
+    path("check_artist/", views.check_artist, name="check_artist"),
+    path("check_artist_number/", views.check_artist_number, name="check_artist_number"),
 ]
