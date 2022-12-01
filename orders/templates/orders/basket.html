@@ -8,8 +8,8 @@
 
 {% block content %}
 
-<div class="basket__container">
-  <h3 class="basket__title">장바구니</h3>
+<div class="container">
+  <h1 class="basket__title">장바구니</h1>
   <div class="basket__content">
     {% for i in content %}
     <div class="basket__object">
@@ -25,14 +25,14 @@
         </p>
       </div>
       <div class="basket__price ms-auto">
-        <h5 class="my-0 mx-3">가치</h5>
-        <a href="" class="basket__button btn mx-3">삭제하기</a>
+        <h5 class="my-0 mx-3">3,000,000 Won</h5>
+        <a href="" class="basket__button btn mx-5">삭제하기</a>
       </div>
     </div>
     {% endfor %}
   </div>
   <div class="basket__footer">
-    <h2 class="ms-auto my-0 mx-5">전체 작품들의 가치</h2>
+    <h2 class="ms-auto my-0 mx-5">50,000,000 Won</h2>
     <a href="" class="basket__footerbtn">
       <p class="basket__footerfont">주문하기</p>
     </a>

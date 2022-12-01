@@ -64,7 +64,7 @@ def update(request, pk):
 # @artist_required
 def delete(request, pk):
     Art.objects.get(pk=pk).delete()
-    return redirect("articles:main")
+    return redirect("articles:main", pk)
 
 # @artist_required
 def comment_create(request, pk):
@@ -80,17 +80,20 @@ def comment_create(request, pk):
     return redirect('articles:detail', art.pk)
 
 # @artist_required
-def comments_delete(request, article_pk, comment_pk):
-     Comment.objects.get(pk=comment_pk).delete()
-     return redirect('articles:detail', article_pk)
+def comment_delete(request, pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+
+    if comment.user == request.user:
+        comment.delete()     
+    return redirect('articles:detail', pk)
  
 # @login_required
 def like(request, pk):
     article = Art.objects.get(pk=pk)
 
-    if request.user in article.like_users.all():
-        article.like_users.remove(request.user)
+    if request.user in article.likes.all():
+        article.likes.remove(request.user)
     else:
-        article.like_users.add(request.user)
+        article.likes.add(request.user)
         
     return redirect('articles:detail', pk)

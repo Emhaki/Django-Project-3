@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PJT_APPS = [
-    "main",
     "orders",
     "accounts",
     "articles",
@@ -149,3 +148,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # User model
 AUTH_USER_MODEL = "accounts.User"
+
+# Email valid
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "nesmailtest347@gmail.com"
+EMAIL_HOST_PASSWORD = "qrioqzlkbpiwhqlt"
+EMAIL_USE_TLS = True

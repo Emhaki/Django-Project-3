@@ -18,20 +18,23 @@ class Art(models.Model):
     title = models.CharField(max_length=200)
     content = models.CharField(max_length=500)
     art_category = models.CharField(max_length=10, choices=category_choices)
+    painted_year = models.IntegerField()
+    painted_way = models.CharField(max_length=50, null=True)
+    art_size = models.CharField(max_length=20, null=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     image = ProcessedImageField(upload_to='images/', blank=True,
-                                processors=[ResizeToFill(1200, 800)],
                                 format='JPEG',
                                 options={'quality': 100},
                                 null=True)
-    artist = models.ForeignKey(
-        AUTH_USER_MODEL,
+    artist = models.ForeignKey(AUTH_USER_MODEL,
         verbose_name="작가",
         on_delete=models.CASCADE,
         blank=True,
         null=True,
     )
     likes = models.ManyToManyField(AUTH_USER_MODEL, related_name='like_arts')
+    soldout = models.BooleanField(default=False)
+    # user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     content = models.TextField()

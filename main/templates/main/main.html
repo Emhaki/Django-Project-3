@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <p>
+    이 페이지는 임시 페이지 입니다.
+  </p>
+  <p>
+    현재 로그인한 사람 : {{ request.user }}
+  </p>
+  <div>
+    작업중인 페이지로 가기 :
+    <hr>
+    <p><a href="{% url 'accounts:index' %}">계정 관련</a></p>
+    <p><a href="{% url 'articles:main' %}">게시글 관련</a></p>
+    <p><a href="{% url 'notes:index' %}">노트</a></p>
+  </div>
+</div>
+
+{% endblock content %}
