@@ -3,22 +3,46 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'style/login.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'style/signup.css' %}">
-    {% bootstrap_css %}
-    {% block css %}{% endblock css %}
-    <title>Never ending story</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/login.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/signup.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+  {% bootstrap_css %}
+  {% block css %}{% endblock css %}
+  <title>Never ending story</title>
+  <style>
+    .simplebar-scrollbar::before {
+      background-color: var(--white);
+    }
+  </style>
+</head>
 
 <body>
-  {% block content %}{% endblock content %}
+  <div id="main">
+    {% block content %}{% endblock content %}
+  </div>
   {% bootstrap_javascript %}
   {% block js %}{% endblock js %}
+  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+  <script>
+    const simpleBar = new SimpleBar(document.getElementById('main'));
+
+    let main = document.getElementById("main");
+
+    function setScreenSize() {
+      let IntNowScreenHeight = window.innerHeight
+      // 본문영역에 높이가 있는 div 추가되면 다시 계산하여 적용해야함
+      // footer 는 fixed 처럼 움직임
+      let StrNowScreenHeight = String(IntNowScreenHeight);
+      main.style.height = StrNowScreenHeight + "px";
+    };
+    window.addEventListener("load", setScreenSize);
+    window.addEventListener("resize", setScreenSize);
+  </script>
 </body>
 
 </html>

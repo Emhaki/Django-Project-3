@@ -4,13 +4,19 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'style/basket.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+<style>
+  .simplebar-scrollbar::before {
+    background-color: var(--white);
+  }
+</style>
 {% endblock css %}
 
 {% block content %}
 
 <div class="container">
   <h1 class="basket__title">장바구니</h1>
-  <div class="basket__content">
+  <div id="basket__simplebar" class="basket__content">
     {% for i in content %}
     <div class="basket__object">
       <div class="basket__photo">
@@ -38,5 +44,10 @@
     </a>
   </div>
 </div>
-
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+<script>
+  new SimpleBar(document.getElementById('basket__simplebar'));
+</script>
+{% endblock js %}
 {% endblock content %}
