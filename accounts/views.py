@@ -109,7 +109,6 @@ def kakao_callback(request):
 
 def signup(request):
   if request.method == "POST":
-    print(request.POST)
     form = SignupForm(request.POST)
     if form.is_valid():
       forms = form.save(commit=False)
@@ -118,7 +117,6 @@ def signup(request):
   else:
     if request.GET:
       names = get_user_model().objects.filter(username=request.GET.get("username"))
-      print(names)
       if names:
         context = {
           'check' : "True",
