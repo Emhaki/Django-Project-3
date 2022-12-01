@@ -21,9 +21,12 @@ def basket(request):
 def info(request, art_pk):
     art = Art.objects.get(pk=art_pk)
     cart_form = CartForm()
+    cart = CartItem.objects.all()
+    print(cart)
     context = {
         "art": art,
         "cart_form": cart_form,
+        "cart": cart,
         "content": "결제 정보 페이지",
     }
     return render(request, "orders/info.html", context)
@@ -42,48 +45,40 @@ def complete(request):
     }
     return render(request, "orders/complete.html", context)
 
+# 장바구니
+def mycart(request):
+    cart_items = CartItem.objects.all()
+    print(cart_items)
+    context = {
+        "cart_items": cart_items,
+    }
+
+    return render(request, "orders/mycart.html", context)
+
+# 장바구니 추가
 def add_cart(request, art_pk):
     # 장바구니 담기
     art = Art.objects.get(pk=art_pk)
-    
-    if art.soldout == False:
-        # cart = CartItem.objects.get(art_pk=art.pk, user_pk=request.user.pk)
-        cart.quantity += 1
-        cart.save()
-        return redirect('orders:mycart')
-    
-    # 장바구니에 작품이 있다면 장바구니 가져오기
+
     try:
-        cart = CartItem.objects.get(art__id=art.pk, user_id=request.user.pk)
-    
-    # 장바구니에 작품이 없다면 새롭게 저장
+        cart = CartItem.objects.get(art__pk=art.pk, user__id=request.user.pk)
+        
+        # 장바구니에 해당 작품이 있으면 삭제
+        if cart:
+            if cart.art.title == art.title:
+                cart.delete()
+                in_cart = False
+                
     except CartItem.DoesNotExist:
         user = User.objects.get(pk=request.user.pk)
         cart = CartItem(
             user = user,
             art = art,
-            quantity = int(request.POST['quantity'])
         )
         cart.save()
     
     return redirect('orders:mycart')
 
-def mycart(request):
-    # 장바구니 가져오기
-    cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    total_price = 0
-    
-    for each_total in cart_items:
-        total_price += each_total.art.price
-    
-    if cart_items is not None:
-        context = {
-            'cart_items':cart_items,
-            'total_price':total_price,
-        }
-        return render(request, 'orders/mycart.html', context)
-
-# 장바구니 삭제
 
 # 주문 생성
 def create_order(request):
