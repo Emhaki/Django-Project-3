@@ -44,6 +44,22 @@
     window.addEventListener("load", setScreenSize);
     window.addEventListener("resize", setScreenSize);
   </script>
+  <script>
+    const modalset = document.querySelectorAll(".modal");
+    let i = 0;
+    for (i; i < modalset.length; i++) {
+      let modalBtn = document.querySelector(`#modal-btn${i}`);
+      const modalDict = {}
+      modalDict[`modal${i}`] = [modalset[i], modalBtn];
+      modalDict[`modal${i}`][1].addEventListener("click", function () {
+        if (document.querySelector(".modal-backdrop") !== null) {
+          const modalBack = document.querySelector("#modal-back-div");
+          modalBack.appendChild(Object.values(modalDict)[0][0]);
+        };
+      });
+    };
+  </script>
+  <div id="modal-back-div"></div>
 </body>
 
 </html>
