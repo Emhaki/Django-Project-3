@@ -19,7 +19,7 @@
       <div>
         <h1 class="info__title">{{ art.title }}</h1>
         <p class="info__description">
-          {{ art.content }
+          {{ art.content }}
         </p>
         <div class="info__detail">
           <h4 class="my-2">
@@ -35,7 +35,7 @@
       </div>
       <div>
         <div class="info__artist-name">
-          <h1 class="ms-auto">{{ art.artist.username }}</h1>
+          <h1 class="ms-auto">{{ art.artist.nickname }}</h1>
         </div>
         <div class="info__inquire">
           <a class="ms-auto" href="">
@@ -60,13 +60,21 @@
             {% csrf_token %}
             {% bootstrap_form cart_form %}
 
-            <button type="submit" class="btn">장바구니에 담기</button>
+            {% comment %} {% if product not in request.user.carts.all %}  
+            {% if request.user in art.likes.all %} {% endcomment %}
+          
+            {% if art.pk in cart.all %}
+              <button type="submit" class="btn">장바구니 빼기</button>
+            {% else %}
+              <button type="submit" class="btn">장바구니 담기</button>
+            {% endif %}
           </form>
             <a href="{% url 'orders:create_order' %}" class="btn btn-lg">바로 구매하기</a>
+            <p>{{ art.title }}</p>
+            <p>{{ cart.art.all }}</p>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-
 {% endblock content %}

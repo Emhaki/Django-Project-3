@@ -20,6 +20,7 @@ def create(request):
         art_form = ArtForm(request.POST, request.FILES)
         if art_form.is_valid():
             art = art_form.save(commit=False)
+            art.artist = request.user 
             art.save()
             return redirect('articles:main')
     

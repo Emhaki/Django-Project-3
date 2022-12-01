@@ -5,6 +5,6 @@ class CartForm(forms.ModelForm):
 
     class Meta:
         model = CartItem
-        fields = ['quantity',]
+        fields = []
 
-        labels = {'quantity': '주문수량',}
+        labels = {}
