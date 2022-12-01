@@ -75,7 +75,11 @@ def kakao_callback(request):
     # 이메일 동의 안할시 널값 주기
     kakao_id = user_info_response['id']
     kakao_nickname = user_info_response['properties']['nickname']
-    kakao_email = user_info_response['kakao_account'].get("email")
+    kakao_email = (
+        user_info_response["kakao_account"].get("email")
+        if "email" in user_info_response["kakao_account"]
+        else ""
+    )
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(username=kakao_id).exists():
@@ -126,11 +130,18 @@ def logout(request):
   auth_logout(request)
   return redirect("accounts:index")
 
+def profile(request, user_pk):
+  profiles = get_user_model().objects.filter(pk=user_pk)
+  print(profiles)
+  context = {
+    "profiles" : profiles
+  }
+  return render(request, "accounts/profile.html", context)
+
 # 이메일 인증
 def send_valid_number(request):
     validnumber = round(random() * 10000)
-    print("여기찍혀?")
-    print(validnumber)
+    print(f"{validnumber} 유효성 번호")
     current_site = get_current_site(request)
     message = render_to_string(
         "accounts/send_valid_number.html",
@@ -149,11 +160,7 @@ def send_valid_number(request):
     email = EmailMessage(mail_subject, message, to=[user_email])
     email.send()
 
-    context = {
-        "validnumber": validnumber,
-        "user": request.user,
-    }
-    return JsonResponse(context)
+    return JsonResponse({"validnumber": validnumber})
 
 
 def check_valid_number(request):
@@ -165,7 +172,4 @@ def check_valid_number(request):
         check = True
     else:
         check = False
-    context = {
-        "check": check,
-    }
-    return JsonResponse(context)
+    return JsonResponse({"check": check})

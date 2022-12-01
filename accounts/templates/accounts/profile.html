@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>프로필 페이지</h1>
+{% for profile in profiles %}
+<div>{{profile.nickname}}</div>
+
+<a href="{% url 'notes:send' profile.pk %}">DM</a>
+{% endfor %}
+
+{% endblock content %}

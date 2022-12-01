@@ -37,6 +37,7 @@ PJT_APPS = [
     "accounts",
     "articles",
     "notes",
+    "questions"
 ]
 
 LIBRARY_APPS = [
@@ -153,6 +154,6 @@ AUTH_USER_MODEL = "accounts.User"
 # Email valid
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "nesmailtest347@gmail.com"
-EMAIL_HOST_PASSWORD = "qrioqzlkbpiwhqlt"
+EMAIL_HOST_USER = "nesofficial475@gmail.com"
+EMAIL_HOST_PASSWORD = "tltkvqodqjbtivuw"
 EMAIL_USE_TLS = True
