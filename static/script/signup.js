@@ -13,13 +13,11 @@ idCheck.addEventListener('click', () => {
             alertContent.prepend(p);
             loginCheck.value = 0;
             toast.style.setProperty('display', "flex");
-            const allChild = toast.childNodes;
         } else {
             p.innerText = "아이디는 4~20자 영어 소문자, 숫자를 사용하세요."
             alertContent.prepend(p);
             loginCheck.value = 0;
             toast.style.setProperty('display', "flex");
-            const allChild = toast.childNodes; x
         }
     } else {
         // 비동기 처리로 idName 값을 DB에 있는지 확인하는 부분
@@ -48,10 +46,10 @@ idCheck.addEventListener('click', () => {
     }
 })
 
-const CloseBtn = document.querySelector("#closebtn");
-CloseBtn.addEventListener("click", () => {
-    toast.style.setProperty('display', "none");
-})
+// const CloseBtn = document.querySelector("#closebtn");
+// CloseBtn.addEventListener("click", () => {
+//     toast.style.setProperty('display', "none");
+// })
 
 window.addEventListener('click', (e) => {
     if ((e.target !== toast) && (e.target !== idCheck)) {
