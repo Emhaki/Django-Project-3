@@ -96,6 +96,19 @@ def signup(request):
       forms.save()
       return redirect("accounts:login")
   else:
+    if request.GET:
+      names = get_user_model().objects.filter(username=request.GET.get("username"))
+      print(names)
+      if names:
+        context = {
+          'check' : "True",
+        }
+        return JsonResponse(context)
+      else:
+        context = {
+          'check' : "False",
+        }
+        return JsonResponse(context)
     return render(request, "accounts/signup.html")
 
 def login(request):
@@ -105,12 +118,8 @@ def login(request):
         auth_login(request, form.get_user())
         return redirect("accounts:index")
     else:
-      form = AuthenticationForm()
       
-    context = {
-      "form": form,
-    }
-    return render(request, "accounts/login.html", context)
+      return render(request, "accounts/login.html")
 
 def logout(request):
   auth_logout(request)

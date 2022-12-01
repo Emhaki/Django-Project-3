@@ -15,10 +15,11 @@
     <title>Never ending story</title>
   </head>
 
-<body>
-  {% block content %}{% endblock content %}
-  {% bootstrap_javascript %}
-  {% block js %}{% endblock js %}
-</body>
+  <body>
+    {% block content %}{% endblock content %}
+    {% bootstrap_javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    {% block js %}{% endblock js %}
+  </body>
 
 </html>
