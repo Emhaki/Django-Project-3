@@ -21,7 +21,7 @@ def basket(request):
 def info(request, art_pk):
     art = Art.objects.get(pk=art_pk)
     cart_form = CartForm()
-    cart = CartItem.objects.all()
+    cart = CartItem.objects.filter(user_id=request.user.pk).filter(art_id=art_pk)
     print(cart)
     context = {
         "art": art,

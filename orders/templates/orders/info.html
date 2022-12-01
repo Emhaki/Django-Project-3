@@ -60,18 +60,20 @@
             {% csrf_token %}
             {% bootstrap_form cart_form %}
 
-            {% comment %} {% if product not in request.user.carts.all %}  
-            {% if request.user in art.likes.all %} {% endcomment %}
-          
-            {% if art.pk in cart.all %}
-              <button type="submit" class="btn">장바구니 빼기</button>
+            {% if cart %}
+              {% for i in cart %}
+                {% if art.pk == i.art_id %}
+                  <button type="submit" class="btn">장바구니 빼기</button>
+                {% endif %}
+              {% endfor %}
             {% else %}
               <button type="submit" class="btn">장바구니 담기</button>
             {% endif %}
           </form>
+
             <a href="{% url 'orders:create_order' %}" class="btn btn-lg">바로 구매하기</a>
-            <p>{{ art.title }}</p>
-            <p>{{ cart.art.all }}</p>
+            <p>{{ art.pk }}</p>
+            <p>{{ cart }}</p>
         {% endif %}
       </div>
     </div>
