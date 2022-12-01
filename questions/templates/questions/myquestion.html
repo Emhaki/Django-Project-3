@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+
+<h1>내 문의</h1>
+{% for question in questions %}
+  <div>title: {{ question.title }}</div>
+  <div>content: {{ question.content }}</div>
+  {% if question.image %}
+    <div>이미지:
+      <img src="{{ question.image.url }}" alt="" style="width:300px; height:300px;">
+    </div>
+  {% else %}
+    <div>
+
+    </div>
+  {% endif %}
+{% endfor %}
+
+{% endblock content %}

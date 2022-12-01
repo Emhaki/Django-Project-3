@@ -3,6 +3,33 @@
 {% load django_bootstrap5 %}
 {% block content %}
 
-<h1>문의하기</h1>
+
+
+<div class="container">
+  <h1>문의하기</h1>
+  <div class="row justify-content-center">
+    <div>이름</div>
+    <fieldset disabled>
+      <div>
+        {% comment %} 카카오 유저라면 nickname / 카카오 유저아닐시 username {% endcomment %}
+        <input type="text" class="form-control" placeholder="{{request.user.nickname}}">
+      </div>
+    </fieldset>
+    <div>이메일</div>
+    <fieldset disabled>
+      <div>
+        <input type="text" class="form-control" placeholder="{{request.user.email}}">
+      </div>
+    </fieldset>
+    <div>
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button button_type='submit' content='문의 작성' button_class='btn btn-primary' %}
+      </form>
+      <div id="form-message-warning mt-4"></div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

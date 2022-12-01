@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 import requests
+from django.contrib import messages
 from random import random
 from .forms import *
 from django.http import JsonResponse
@@ -19,7 +20,6 @@ from django.contrib.auth import logout as auth_logout
 
 def index(request):
     return render(request, "accounts/index.html")
-
 
 import secrets, os
 
@@ -109,10 +109,10 @@ def kakao_callback(request):
 
 def signup(request):
   if request.method == "POST":
-    print(request.POST)
     form = SignupForm(request.POST)
     if form.is_valid():
       forms = form.save(commit=False)
+      forms.email = request.POST.get('email')
       forms.save()
       return redirect("accounts:login")
   else:
@@ -147,7 +147,6 @@ def logout(request):
 
 def profile(request, user_pk):
   profiles = get_user_model().objects.filter(pk=user_pk)
-  print(profiles)
   context = {
     "profiles" : profiles
   }
@@ -188,3 +187,42 @@ def check_valid_number(request):
         check = False
     return JsonResponse({"check": check})
 
+# 작가 인증
+def check_artist(request):
+    validnumber = round(random() * 10000)
+    print(f"{validnumber} 유효성 번호")
+    current_site = get_current_site(request)
+    message = render_to_string(
+        "accounts/check_artist.html",
+        {
+            "user": request.user,
+            "domain": current_site.domain,
+            "uid": urlsafe_base64_encode(force_bytes(request.user.pk))
+            .encode()
+            .decode(),
+            "validnumber": validnumber,
+        },
+    )
+
+    mail_subject = "[NES]이메일 인증번호입니다."
+    user_email = json.loads(request.body)["user_email"]
+    if "ac.kr" in user_email[:] or "edu" in user_email[-4:]:
+      email = EmailMessage(mail_subject, message, to=[user_email])
+      email.send()
+      return JsonResponse({"validnumber": validnumber})
+    else:
+        messages(request, "학교 이메일이 아니에요.")
+        return redirect("profile")
+
+def check_artist_number(request):
+    user = get_object_or_404(get_user_model(), pk=request.user.pk)
+    valid_number = json.loads(request.body)["valid_number"]
+    input_number = json.loads(request.body)["input_number"]
+    print(user)
+    if valid_number == input_number:
+        check = True
+        user.is_creater = True
+        user.save()
+    else:
+        check = False
+    return JsonResponse({"check": check})
