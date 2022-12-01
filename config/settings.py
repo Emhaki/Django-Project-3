@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PJT_APPS = [
-    "main",
     "orders",
     "accounts",
     "articles",
