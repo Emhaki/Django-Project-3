@@ -4,17 +4,22 @@
 {% load django_bootstrap5 %}
 {% block content %}
   <div class="signup-frame">
+    <div role="alert" aria-live="assertive" aria-atomic="true" id="toast_signup" class="toast_1">
+      <div class="toast-body" id="toast_context">
+        {% comment %} <button type="button" class="btn-close" id="closebtn" aria-label="Close"></button> {% endcomment %}
+      </div>
+    </div>
     <div class="signup-frame__form">
       <img class="signup-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
       <form action="" method="POST">
         {% csrf_token %}
         <div class="signup-frame__form__container">
-          <div class="signup-frame__form__container__login">
+          <div class="signup-frame__form__container__login" id="login__check">
             <p>아이디
             </p>
             <div class="signup-frame__form__container__login__check">
-              <input type="text" name="username" placeholder="아이디를 입력해주세요">
-              <button>중복확인</button>
+              <input class="signup-frame__form__container__login__check__input" required="required" type="text" id="idname" name="username" placeholder="아이디를 입력해주세요">
+              <input class="signup-frame__form__container__login__check__button" type="button" id="idcheck" value="중복확인">
             </div>
           </div>
           <div class="signup-frame__form__container__password">
@@ -57,7 +62,7 @@
           </div>
           <div class="signup-frame__form__container__submit">
             <a href="{% url 'accounts:login' %}">
-              <button class="signup-frame__form__container__submit__back">뒤로가기</button>
+              <input type="button" class="signup-frame__form__container__submit__back" value="뒤로가기">
             </a>
             <button class="signup-frame__form__container__submit__go">가입하기</button>
           </div>
@@ -65,8 +70,6 @@
       </form>
     </div>
   </div>
-
-
 <!--이메일 인증 모달-->
 <div class="modal fade" id="emailCheckModal" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
@@ -97,7 +100,7 @@
 {% comment %} 주소검색 api {% endcomment %}
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b86257fe02047393d0fd3f879088463&libraries=services"></script>
-
+<script src="{% static 'script/signup.js' %}"></script>
 <script>
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
@@ -200,6 +203,4 @@
             })
     }
 </script>
-
 {% endblock content %}
-
