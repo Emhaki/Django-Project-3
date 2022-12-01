@@ -111,8 +111,8 @@ def kakao_callback(request):
 
 
 def signup(request):
-
   if request.method == "POST":
+    print(request.POST)
     form = SignupForm(request.POST)
     if form.is_valid():
       forms = form.save(commit=False)
