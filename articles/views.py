@@ -76,10 +76,8 @@ def comment_create(request, pk):
         comment.art = art
         comment.user = request.user
         comment.save()
-        context = {
-            "comment": comment
-        }
-    return redirect('articles:detail', context)
+
+    return redirect('articles:detail', art.pk)
 
 # @artist_required
 def comment_delete(request, pk, comment_pk):

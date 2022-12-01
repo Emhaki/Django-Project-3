@@ -12,7 +12,7 @@
 {% if request.user.is_authenticated %}
   <a href="{% url 'accounts:logout' %}">로그아웃</a>
 {% else %}
-  <a href="{% url 'accounts:kakao' %}">
+  <a href="{% url 'accounts:login' %}">
     <button class="login-frame__form__logbtn">로그인</button>
   </a>
 {% endif %} 

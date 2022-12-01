@@ -26,8 +26,7 @@ class Art(models.Model):
                                 format='JPEG',
                                 options={'quality': 100},
                                 null=True)
-    artist = models.ForeignKey(
-        AUTH_USER_MODEL,
+    artist = models.ForeignKey(AUTH_USER_MODEL,
         verbose_name="작가",
         on_delete=models.CASCADE,
         blank=True,
@@ -35,7 +34,7 @@ class Art(models.Model):
     )
     likes = models.ManyToManyField(AUTH_USER_MODEL, related_name='like_arts')
     soldout = models.BooleanField(default=False)
-
+    # user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     content = models.TextField()

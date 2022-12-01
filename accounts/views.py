@@ -5,15 +5,12 @@ import requests
 from random import random
 from .forms import *
 from django.http import JsonResponse
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 import json
 from django.core.mail import EmailMessage
-
-
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
@@ -77,9 +74,10 @@ def kakao_callback(request):
     # 'profile': {'nickname': '이명학', 'thumbnail_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_110x110.jpg', 'profile_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_640x640.jpg',
     # 'is_default_image': False}, 'has_email': True, 'email_needs_agreement': False, 'is_email_valid': True, 'is_email_verified': True, 'email': 'mhmh779@naver.com'}
     # }
-    
-    kakao_id = user_info_response["id"]
-    kakao_nickname = user_info_response["properties"]["nickname"]
+
+    # 이메일 동의 안할시 널값 주기
+    kakao_id = user_info_response['id']
+    kakao_nickname = user_info_response['properties']['nickname']
     kakao_email = (
         user_info_response["kakao_account"].get("email")
         if "email" in user_info_response["kakao_account"]
@@ -110,14 +108,26 @@ def kakao_callback(request):
 
 
 def signup(request):
-    if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            forms = form.save(commit=False)
-            forms.save()
-            return redirect("accounts:login")
-    else:
-        return render(request, "accounts/signup.html")
+  if request.method == "POST":
+    form = SignupForm(request.POST)
+    if form.is_valid():
+      forms = form.save(commit=False)
+      forms.save()
+      return redirect("accounts:login")
+  else:
+    if request.GET:
+      names = get_user_model().objects.filter(username=request.GET.get("username"))
+      if names:
+        context = {
+          'check' : "True",
+        }
+        return JsonResponse(context)
+      else:
+        context = {
+          'check' : "False",
+        }
+        return JsonResponse(context)
+  return render(request, "accounts/signup.html")
 
 
 def login(request):
@@ -127,23 +137,24 @@ def login(request):
             auth_login(request, form.get_user())
             return redirect("accounts:index")
     else:
-        form = AuthenticationForm()
-
-    context = {
-        "form": form,
-    }
-    return render(request, "accounts/login.html", context)
-
+      return render(request, "accounts/login.html")
 
 def logout(request):
   auth_logout(request)
   return redirect("accounts:index")
 
+def profile(request, user_pk):
+  profiles = get_user_model().objects.filter(pk=user_pk)
+  print(profiles)
+  context = {
+    "profiles" : profiles
+  }
+  return render(request, "accounts/profile.html", context)
+
 # 이메일 인증
 def send_valid_number(request):
     validnumber = round(random() * 10000)
-    print("여기찍혀?")
-    print(validnumber)
+    print(f"{validnumber} 유효성 번호")
     current_site = get_current_site(request)
     message = render_to_string(
         "accounts/send_valid_number.html",
@@ -162,12 +173,7 @@ def send_valid_number(request):
     email = EmailMessage(mail_subject, message, to=[user_email])
     email.send()
 
-    context = {
-        "validnumber": validnumber,
-        "user": request.user,
-    }
-    return JsonResponse(context)
-
+    return JsonResponse({"validnumber": validnumber})
 
 def check_valid_number(request):
     valid_number = json.loads(request.body)["valid_number"]
@@ -178,7 +184,5 @@ def check_valid_number(request):
         check = True
     else:
         check = False
-    context = {
-        "check": check,
-    }
-    return JsonResponse(context)
+    return JsonResponse({"check": check})
+
