@@ -5,15 +5,12 @@ import requests
 from random import random
 from .forms import *
 from django.http import JsonResponse
-
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 import json
 from django.core.mail import EmailMessage
-
-
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 
@@ -132,7 +129,7 @@ def signup(request):
           'check' : "False",
         }
         return JsonResponse(context)
-    return render(request, "accounts/signup.html")
+  return render(request, "accounts/signup.html")
 
 
 def login(request):
@@ -143,8 +140,6 @@ def login(request):
             return redirect("accounts:index")
     else:
       return render(request, "accounts/login.html")
-
-
 
 def logout(request):
   auth_logout(request)
@@ -181,7 +176,6 @@ def send_valid_number(request):
     email.send()
 
     return JsonResponse({"validnumber": validnumber})
-
 
 def check_valid_number(request):
     valid_number = json.loads(request.body)["valid_number"]
