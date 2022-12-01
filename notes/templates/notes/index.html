@@ -6,12 +6,15 @@
 
 <h1>notes index</h1>
 {% for note in notes %}
-  <a href="{% url 'notes:detail' note.pk %}">
+<a href="{% url 'notes:detail' note.pk %}">
+  <div>
   {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
   {{ note.title }} |
   {{ note.content }} |
-  {{ note.created_at }}
-  </a>
+  {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
+  읽음여부: {{ note.read }}
+  </div>
+</a>
 {% endfor %}
 
 {% endblock content %}

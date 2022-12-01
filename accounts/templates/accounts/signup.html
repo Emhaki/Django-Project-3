@@ -11,7 +11,7 @@
     </div>
     <div class="signup-frame__form">
       <img class="signup-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
-      <form action="" method="POST">
+      <form id="form-signup" action="" method="POST">
         {% csrf_token %}
         <div class="signup-frame__form__container">
           <div class="signup-frame__form__container__login" id="login__check">
@@ -64,7 +64,7 @@
             <a href="{% url 'accounts:login' %}">
               <input type="button" class="signup-frame__form__container__submit__back" value="뒤로가기">
             </a>
-            <button class="signup-frame__form__container__submit__go">가입하기</button>
+            <button class="signup-frame__form__container__submit__go" onclick="checkSignup()">가입하기</button>
           </div>
         </div>
       </form>
@@ -80,12 +80,12 @@
           <br>
           <button id="sendEmail" type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">인증번호 보내기</button>
         </div>
-        <div id="email-check-2" class="display-none">
+        <div id="email-check-2" class="d-none">
           <input id="input-number" type="text" class="form-control" placeholder="인증번호를 입력해주세요.">
           <button type="button" class="mt-3 btn btn-green" onclick="checkEmail()">인증 확인</button>
           <button type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">다시 보내기</button>
         </div>
-        <div id="valid-number" class="display-none"></div>
+        <div id="valid-number" class="d-none"></div>
         <div id="email-result"></div>
       </div>
       <div class="modal-footer d-flex justify-content-center p-0">
@@ -158,8 +158,8 @@
         alert("이메일을 입력해주세요!")
         return
       }
-      check1.classList.add('display-none')
-      check2.classList.remove('display-none')
+      check1.classList.add('d-none')
+      check2.classList.remove('d-none')
       success.innerText = "인증번호 전송완료"
       success.classList = "btn btn-success"
       axios({
@@ -174,11 +174,14 @@
             });
     }
 
+    {% comment %} 이메일 인증여부 {% endcomment %}
+    let emailChecked = 0;
 
     const checkEmail = function () {
       const userEmail = document.querySelector('#id_email').value
       const validNumber = document.querySelector('#valid-number').innerText
       const inputNumber = document.querySelector('#input-number').value
+      const check2 = document.querySelector('#email-check-2')
       console.log(validNumber)
       console.log(inputNumber)
 
@@ -195,12 +198,24 @@
               const emailResult = document.querySelector('#email-result')
               if (response.data.check==true) {
                 emailResult.innerText = "확인되었습니다. 가입을 진행해주세요."
-                check2.classList.add('display-none')
+                check2.classList.add('d-none')
                 emailChecked = 1;
               }else{
                 emailResult.innerText = "번호가 틀렸습니다. 다시 입력해주세요."
               }
             })
     }
+
+    const checkSignup = function (e) {
+      event.preventDefault();
+      const formSignup = document.querySelector('#form-signup')
+    
+    console.log(emailChecked)
+    if(emailChecked === 1){
+      formSignup.submit();
+    }else if(emailChecked === 0){
+      alert("이메일 인증을 진행해주세요!")
+    }
+  }
 </script>
 {% endblock content %}

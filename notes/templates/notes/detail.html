@@ -6,7 +6,8 @@
 
 <h1>쪽지 디테일</h1>
 <img src="{{note.from_user.profileimage }}" alt="" style="width:100px; height:100px;">
-{{note.from_user.nickname }}
-{{note.title}} |
-{{note.content}}
+<div>{{note.from_user.nickname }}</div>
+<div>{{note.title}}</div>
+<div>{{note.content}}</div>
+<div>읽음 여부: {{note.read }}</div>
 {% endblock content %}
