@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% load django_bootstrap5 %}
 {% block content %}
 
@@ -16,5 +15,90 @@
   </div>
 </a>
 {% endfor %}
+
+{% comment %} 받은 편지 페이지네이션 {% endcomment %}
+  <div class="paginagtion">
+    <span class="step-links">
+    <ul class="pagination justify-content-center">
+      <!-- 이전페이지 -->
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+          <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+      </li>
+      {% endif %}
+
+      {% for page_number in page_obj.paginator.page_range %}
+          {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+            {% if page_number == page_obj.number %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                  <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% endif %}
+          {% endif %}
+      {% endfor %}
+      
+      {% if page_obj.has_next %}
+      <li class="page-item">
+          <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+      </li>
+      {% endif %}
+    </ul>
+    </span>
+  </div>
+
+
+{% comment %} 보낸 편지 페이지네이션 {% endcomment %}
+  <div class="paginagtion">
+    <span class="step-links">
+    <ul class="pagination justify-content-center">
+      <!-- 이전페이지 -->
+      {% if to_page_obj.has_previous %}
+      <li class="page-item">
+          <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+      </li>
+      {% endif %}
+
+      {% for page_number in to_page_obj.paginator.page_range %}
+          {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
+            {% if page_number == to_page_obj.number %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                  <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+              </li>
+            {% endif %}
+          {% endif %}
+      {% endfor %}
+      
+      {% if to_page_obj.has_next %}
+      <li class="page-item">
+          <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+      </li>
+      {% endif %}
+    </ul>
+    </span>
+  </div>
 
 {% endblock content %}

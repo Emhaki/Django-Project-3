@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator
 from .forms import *
 from django.contrib import messages
 from django.http import JsonResponse
@@ -8,10 +9,27 @@ from django.http import JsonResponse
 # Create your views here.
 # @login_required
 def index(request):
-    notes = request.user.user_to.order_by("-created_at")
-    to_notes = request.user.user_from.order_by("-created_at")
+    notes = request.user.user_to.order_by("-created_at") # 받은거
+    to_notes = request.user.user_from.order_by("-created_at") # 보낸거
+    
+    # 받은 편지 페이지네이션
+    paginator = Paginator(notes, 10)
+    page_number = request.GET.get("note")
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, "notes/index.html", {"notes":notes, "to_notes": to_notes})
+    # 보낸 편지 페이지네이션
+    to_paginator = Paginator(to_notes, 10)
+    to_page_number = request.GET.get("note")
+    to_page_obj = to_paginator.get_page(to_page_number)
+
+    context = {
+        "notes":notes, 
+        "to_notes": to_notes,
+        "page_obj": page_obj,
+        "to_page_obj": to_page_obj,
+    }
+
+    return render(request, "notes/index.html", context)
 
 # @login_required
 def send(request, user_pk):
