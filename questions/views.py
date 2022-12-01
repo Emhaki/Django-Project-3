@@ -20,8 +20,7 @@ def create(request):
     return render(request, "questions/create.html", context)
 
 def myquestion(request):
-  user = request.user
-  questions = Question.objects.filter(user=user.pk)
+  questions = Question.objects.filter(user=request.user.pk)
 
   context = {
     "questions": questions,
