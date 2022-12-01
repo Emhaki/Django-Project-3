@@ -11,7 +11,7 @@ def index(request):
     return render(request, "notes/index.html", {"notes":notes, "to_notes": to_notes})
 
 def send(request, user_pk):
-  
+
     notes = request.user.user_to.order_by("-created_at")
     to_user = get_object_or_404(get_user_model(), pk=user_pk)
     form = NotesForm(request.POST or None)
