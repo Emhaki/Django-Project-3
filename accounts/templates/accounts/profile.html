@@ -204,8 +204,108 @@
       </div>
     </section>
   </section>
+<h1>프로필 페이지</h1>
+{% for profile in profiles %}
+<div>{{profile.nickname}}</div>
+{% if profile.is_creater == True %}
+  <div>작가인가요? {{profile.is_creater}}</div>
+{% else %}
+  <div>작가인가요? {{profile.is_creater}}</div>
+{% endif %}
+<a href="{% url 'notes:send' profile.pk %}">DM</a>
+{% endfor %}
 
-  {% block js %}
-    <script src="{% static 'script/profile.js' %}"></script>
-  {% endblock js %}
+
+<div>작가인증하기</div>
+<p>이메일(대학교 이메일로 입력해야합니다.)
+</p>
+
+  <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
+  <button type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
+
+<!--이메일 인증 모달-->
+<div class="modal fade" id="emailCheckModal" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-content" style="width:330px;height:240px;">
+      <div class="modal-body" id="modal-body-email" style="padding: 50px 40px 30px; font-size: 16px; text-align: center; letter-spacing: -0.5px;">
+        <div id="email-check-1">
+          이메일 인증을 해주세요.
+          <br>
+          <button id="sendEmail" type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">인증번호 보내기</button>
+        </div>
+        <div id="email-check-2" class="d-none">
+          <input id="input-number" type="text" class="form-control" placeholder="인증번호를 입력해주세요.">
+          <button type="button" class="mt-3 btn btn-green" onclick="checkEmail()">인증 확인</button>
+          <button type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">다시 보내기</button>
+        </div>
+        <div id="valid-number" class="d-none"></div>
+        <div id="email-result"></div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center p-0">
+        <button type="button" data-bs-dismiss="modal" class="btn text-green">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} axious {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{% static 'script/profile.js' %}"></script>
+<script>
+  const sendEmail = function () {
+        const userEmail = document.querySelector('#id_email').value
+        
+        const check1 = document.querySelector('#email-check-1')
+        const check2 = document.querySelector('#email-check-2')
+        const success = document.querySelector("#sendEmail")
+        if (userEmail.length == 0){
+          alert("이메일을 입력해주세요!")
+          return
+        }
+        check1.classList.add('d-none')
+        check2.classList.remove('d-none')
+        success.innerText = "인증번호 전송완료"
+        success.classList = "btn btn-success"
+        axios({
+                method: 'post',
+                url: `/accounts/check_artist/`,
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                data: {'user_email': userEmail }
+              })
+              .then(response => {
+                const validNumber = document.querySelector('#valid-number')
+                validNumber.innerText = response.data.validnumber
+              });
+      }
+
+      {% comment %} 이메일 인증여부 {% endcomment %}
+      const checkEmail = function () {
+        const userEmail = document.querySelector('#id_email').value
+        const validNumber = document.querySelector('#valid-number').innerText
+        const inputNumber = document.querySelector('#input-number').value
+        const check2 = document.querySelector('#email-check-2')
+        console.log(validNumber)
+        console.log(inputNumber)
+
+        axios({
+                method: 'post',
+                url: `/accounts/check_artist_number/`,
+                headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                data: {
+                  'valid_number':validNumber,
+                  'input_number':inputNumber,
+              }
+              })
+              .then(response =>{
+                const emailResult = document.querySelector('#email-result')
+                if (response.data.check==true) {
+                  emailResult.innerText = "작가 인증이 확인되었습니다."
+                  check2.classList.add('d-none')
+                }else{
+                  emailResult.innerText = "번호가 틀렸습니다. 다시 입력해주세요."
+                }
+              })
+      }
+
+</script>
 {% endblock content %}

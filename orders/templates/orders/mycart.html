@@ -7,10 +7,12 @@
 {% endblock css %}
 
 {% block content %}
-<h1>장바구니</h1>
-{% comment %} {% for item in cart_items %}
-    <p>{{ request.user.username }}</p>
-    <p>{{ art.title }}</p>
-    <p>{{ art.painted_year }}</p>
-{% endfor %}  {% endcomment %}
+<h1>{{ request.user.nickname }} 님의 장바구니</h1>
+{% for item in cart_items %}
+    <img src="{{ item.art.image.url }}" alt="{{ item.art.image }}" width="115" height="108">
+    <p>{{ item.art.title }}</p>
+    <p>{{ item.art.artist.nickname }}</p>
+    <p>{{ item.art.price }}</p>
+
+{% endfor %} 
 {% endblock content %}

@@ -11,14 +11,20 @@ body {
 
 
 .complete__pagetitle {
-  margin: 5rem 2rem;
+  color: var(--main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  margin-left: 8rem;
+  margin-bottom: 5rem;
   font-weight: bold;
 }
 
 
 .complete__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
 }
 
 
@@ -28,12 +34,13 @@ body {
   align-items: center; */
   border-color: var(--white);
   border-style: solid;
-  max-height: 506px;
-  max-width: 500px;
+  max-height: 1006px;
+  max-width: 1000px;
 }
 
 
 .complete__art-size {
+  color: var(--white);
   font-weight: bold;
   font-size: 1.2rem;
   text-align: center;
@@ -41,23 +48,27 @@ body {
 
 
 .complete__payment {
+  color: var(--main);
   font-weight: bold;
   text-align: center;
-  font-size: 1.6em;
-  margin-top: 3rem;
+  font-size: 1.8rem;
+  margin-top: 1rem;
 }
 
 
 .complete__photo {
-  max-height: 500px;
-  max-width: 500px;
+  max-height: 1000px;
+  max-width: 1000px;
 }
 
 
 .complete__receipt {
+  justify-content: center;
+  align-items: center;
   max-width: 21rem;
   background-color: var(--white);
-  margin-left: 5rem;
+  margin-left: 8rem;
+  height: auto;
 }
 
 
@@ -68,7 +79,6 @@ body {
 
 
 .receipt__orange {
-
   border-radius: 50%;
   position: relative;
   background-color: var(--highlight);
@@ -76,6 +86,20 @@ body {
   width: 3rem;
 }
 
+/* 태블릿 */
+@media screen and (max-width: 992px) {}
+
+/* 태블릿 */
+@media screen and (min-width: 769px) {}
+
+/* 작은 태블릿 */
+@media screen and (max-width: 768px) {}
+
+/* 큰 스마트폰 */
+@media screen and (min-width: 577px) {}
+
+/* 스마트폰 */
+@media screen and (max-width: 576px) {}
 
 .orange-1 {
   top: 3rem;
@@ -90,6 +114,7 @@ body {
 
 
 .receipt__title {
+  color: var(--main);
   text-align: center;
   font-weight: bold;
   margin-top: 0rem;
@@ -99,8 +124,7 @@ body {
 .receipt__description {
   font-size: 13px;
   color: rgb(110, 110, 110);
-  text-align: center;
-  margin: 2rem 5rem;
+  margin: 2rem 4rem;
 }
 
 
@@ -164,4 +188,29 @@ body {
 .receipt__price {
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+
+.receipt__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  margin-left: 15rem;
+  color: var(--white);
+}
+
+
+.receipt__btn-link {
+  background-color: var(--main);
+}
+
+
+.receipt__btn a {
+  color: var(--white);
+}
+
+.receipt__btn a:hover {
+  background-color: var(--main);
+  color: var(--white);
 }

@@ -12,6 +12,32 @@ delivery_choices = (
 )
 
 # Create your models here.
+class CartItem(models.Model):
+    # carts = models.ManyToManyField(Art, related_name = 'carts_user')
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    art = models.ForeignKey(Art, on_delete=models.CASCADE)
+    # active = models.BooleanField(default=False)
+    # 장바구니에 담을 양
+    # quantity = models.PositiveIntegerField(default=0)
+    class Meta:
+        verbose_name = '장바구니'
+        verbose_name_plural = f'{verbose_name} 목록'
+        ordering = ['-pk']
+    
+    # 장바구니 총 결제 금액
+    def total(self):
+        total = 0
+        for art in self.art:
+            total += art
+        return total
+    
+    # def __init__(self, price):
+    #     self.art.price = price
+        
+    # def __str__(self):
+    #     return (self.art)
+    
+    
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)    
@@ -23,15 +49,4 @@ class Order(models.Model):
     contact_number = models.CharField(max_length=250, null=True)
     delivery_option = models.CharField(max_length=50, choices=delivery_choices)
     
-class CartItem(models.Model):
-    user = models.ForeignKey(AUTH_USER_MODEL, related_name='user_cart', on_delete=models.CASCADE)
-    art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    # 장바구니에 담을 양
-    quantity = models.PositiveIntegerField(default=0)
-    # 장바구니 총 결제 금액
-    def total(self):
-        total = 0
-        for art in self.art:
-            total += art
-        return total
     

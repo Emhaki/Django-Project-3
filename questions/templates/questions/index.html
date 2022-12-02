@@ -4,6 +4,9 @@
 {% block content %}
 
 <h1>Q&A</h1>
-
+<div>
+  <a href="{% url 'questions:myquestion'%}">내 문의보기</a>
+</div>
+<a href="{% url 'questions:create' %}">문의하기</a>
 
 {% endblock content %}
