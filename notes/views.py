@@ -26,6 +26,7 @@ dic = {
 def index(request):
     notes = request.user.user_to.order_by("-created_at") # 받은거
     to_notes = request.user.user_from.order_by("-created_at") # 보낸거
+
     
     # 받은 편지 페이지네이션
     paginator = Paginator(notes, 10)
@@ -76,7 +77,6 @@ def send(request, user_pk):
 # @login_required
 def detail(request, note_pk):
     note = get_object_or_404(Notes, pk=note_pk)
-
     if request.user == note.to_user:
         if not note.read:
             note.read = True

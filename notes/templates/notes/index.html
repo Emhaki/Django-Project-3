@@ -10,13 +10,13 @@
   <div class="container">
     {% comment %} 받은 DM {% endcomment %}
     {% for note in notes %}
-    <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}">
-      <div>
-      {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
-      {{ note.title }} |
-      {{ note.content }} |
-      {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
-      읽음여부: {{ note.read }}
+    <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+      <div data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+        {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
+        {{ note.title }} |
+        {{ note.content }} |
+        {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
+        <div id="readbool">읽음여부: {{ note.read }}</div>
       </div>
     </button>
     {% comment %} 받은 DM 끝 {% endcomment %}
@@ -92,7 +92,7 @@
     {% for to_note in to_notes %}
     <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
       <div>
-      {{ to_note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
+      {{ to_note.to_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
       {{ to_note.title }} |
       {{ to_note.content }} |
       {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
@@ -169,4 +169,20 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  function read(event) {
+    axios({
+      method: 'get',
+      url: `/notes/${event.target.dataset.noteId}/detail/`,
+      data: {'note_pk': event.target.dataset.noteId},
+    })
+    .then(response => {
+      const div = document.querySelector("#readbool")
+      div.innerText = "읽음여부: True"
+    })
+  }
+  </script>
+
 {% endblock content %}
+
