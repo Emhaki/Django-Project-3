@@ -87,7 +87,7 @@ def comment_delete(request, pk, comment_pk):
     if comment.user == request.user:
         comment.delete()     
     return redirect('articles:detail', pk)
- 
+
 # @login_required
 def like(request, pk):
     article = Art.objects.get(pk=pk)

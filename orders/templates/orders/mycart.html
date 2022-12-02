@@ -3,16 +3,57 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'style/info.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style/cart.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+<style>
+  .simplebar-scrollbar::before {
+    background-color: var(--white);
+  }
+</style>
 {% endblock css %}
 
 {% block content %}
-<h1>{{ request.user.nickname }} 님의 장바구니</h1>
-{% for item in cart_items %}
-    <img src="{{ item.art.image.url }}" alt="{{ item.art.image }}" width="115" height="108">
-    <p>{{ item.art.title }}</p>
-    <p>{{ item.art.artist.nickname }}</p>
-    <p>{{ item.art.price }}</p>
+<div class="container">
+  <h1 class="basket__title">{{ request.user.nickname }} 님의 장바구니</h1>
+  <div id="basket__simplebar" class="basket__content">
+    {% for item in cart_items %}
+    <div class="d-flex">
+      <div class="basket__photo">
+        <img class="basket__photo-object" src="{{ item.art.image.url }}" alt="{{ item.art_image }}">
+      </div>
+      <div class="basket__object">
+        <div class="basket__info">
+          <h2 class="my-2">
+            {{ item.art.title }}
+          </h2>
+          <p class="my-2">
+            {{ item.art.artist.nickname }}
+          </p>
+        </div>
+        <div class="basket__price ms-auto">
+          <h5 class="my-0 mx-3">{{ item.art.price }} Won</h5>
+          <a href="" class="basket__button btn mx-5">삭제하기</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="basket__footer">
+    <a href="{% url 'articles:main' %}" class="basket__footerbtn btn">
+      <p class="basket__footerfont">작품 목록으로</p>
+    </a>
+    <h2 class="ms-auto my-0 mx-5">{{ total }} Won</h2>
+    <a href="" class="basket__footerbtn btn">
+      <p class="basket__footerfont">주문하기</p>
+    </a>
+  </div>
+</div>
 
-{% endfor %} 
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+<script>
+  new SimpleBar(document.getElementById('basket__simplebar'));
+</script>
+{% endblock js %}
+
 {% endblock content %}
