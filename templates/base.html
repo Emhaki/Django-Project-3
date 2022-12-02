@@ -52,8 +52,6 @@
       // let modalBtn = document.querySelector(`#modal-btn${i}`);
       const modalDict = {}
       modalDict[`modal${i}`] = [modalSet[i], modalBtnSet[i]];
-      console.log(modalDict)
-      console.log(modalDict[`modal${i}`][1])
       modalDict[`modal${i}`][1].addEventListener("click", function () {
         if (document.querySelector(".modal-backdrop") !== null) {
           const modalBack = document.querySelector("#modal-back-div");
