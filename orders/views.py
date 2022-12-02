@@ -48,7 +48,7 @@ def complete(request):
 # 장바구니
 def mycart(request):
     cart_items = CartItem.objects.all()
-    print(cart_items)
+
     context = {
         "cart_items": cart_items,
     }
@@ -83,7 +83,7 @@ def add_cart(request, art_pk):
 # 주문 생성
 def create_order(request):
     shipping_name = request.user.username
-    shipping_email = request.user.email
+    # shipping_email = request.user.email
     # shipping_zipcode = request.user.zipcode
     # shipping_address = request.user.address
     
@@ -93,7 +93,7 @@ def create_order(request):
     # 장바구니 총 금액 
     total_price = 0
     for item in cart_items:
-        total_price += item
+        total_price += item.art.price
     
     # 배송비
     if total_price >= 300000:
@@ -110,11 +110,11 @@ def create_order(request):
             "total_price": total_price,
             # "shipping_address": shipping_address,
             "shipping_name": shipping_name,
-            "shipping_email": shipping_email,
+            # "shipping_email": shipping_email,
             "delivery_fee": delivery_fee,
             "billing_amount": billing_amount,
         }
-        return render(request, "orders/order.html", context)
+        return render(request, "orders/create_order.html", context)
     else:
         return redirect("/")
 
