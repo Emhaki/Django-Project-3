@@ -4,21 +4,43 @@
   <link rel="stylesheet" type="text/css" href="{% static 'style/profile.css' %}">
 {% endblock css %}
 {% block content %}
+
+{% for profile in profiles %}
   <section class="profile">
     <section class="profile__container">
       <div class="profile__container__info">
         <div class="profile__container__info__img">
           <div class="profile__container__info__img__back">
+            {% comment %} 프로필 이미지 {% endcomment %}
+            {% if profile.profileimage %}
+            <img src="{{profile.profileimage}}" alt="">
+            {% else %}
             <img src="{% static 'img/luna2.jpeg' %}" alt="">
+            {% endif %}
+            {% comment %}  {% endcomment %}
             <div class="profile__container__info__img__dm">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewbox="0 0 16 16">
-                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-              </svg>
+              {% comment %} DM 링크 {% endcomment %}
+              <a href="{% url 'notes:send' profile.pk %}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewbox="0 0 16 16">
+                  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                </svg>
+              </a>
+              {% comment %}  {% endcomment %}
             </div>
           </div>
           <div class="profile__container__info__text">
-            <p class="profile__container__info__text__name">JangManWall</p>
-            <a href="#" class="profile__container__info__text__email">OOOOOOO@naver.com</a>
+            <p class="profile__container__info__text__name">
+            {% comment %} 작가 인증표시 {% endcomment %}
+            {% if profile.is_creater == True %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg> {{profile.nickname}}
+            {% else %}
+              {{profile.nickname}}
+            {% endif %}
+            {% comment %}  {% endcomment %}
+            </p>
+            <div class="profile__container__info__text__email">{{ profile.email }}</div>
           </div>
         </div>
         <div class="profile__container__info__detail">
@@ -204,24 +226,11 @@
       </div>
     </section>
   </section>
-<h1>프로필 페이지</h1>
-{% for profile in profiles %}
-<div>{{profile.nickname}}</div>
-{% if profile.is_creater == True %}
-  <div>작가인가요? {{profile.is_creater}}</div>
-{% else %}
-  <div>작가인가요? {{profile.is_creater}}</div>
-{% endif %}
-<a href="{% url 'notes:send' profile.pk %}">DM</a>
 {% endfor %}
-
-
-<div>작가인증하기</div>
-<p>이메일(대학교 이메일로 입력해야합니다.)
-</p>
-
+{% comment %} 추후에 버튼 클릭시 비동기로 보여주게끔 구현 request.user랑 user_pk와 같아야 보이게끔 {% endcomment %}
   <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
   <button type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
+{% comment %}  {% endcomment %}
 
 <!--이메일 인증 모달-->
 <div class="modal fade" id="emailCheckModal" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
