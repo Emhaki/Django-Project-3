@@ -3,102 +3,186 @@
 {% load django_bootstrap5 %}
 {% block content %}
 
-<h1>notes index</h1>
-{% for note in notes %}
-<a href="{% url 'notes:detail' note.pk %}">
-  <div>
-  {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
-  {{ note.title }} |
-  {{ note.content }} |
-  {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
-  읽음여부: {{ note.read }}
-  </div>
-</a>
-{% endfor %}
+<div class="container">
+    <h1>DM 페이지</h1>
+</div>
+<div class="container d-flex">
+  <div class="container">
+    {% comment %} 받은 DM {% endcomment %}
+    {% for note in notes %}
+    <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+      <div data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+        {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
+        {{ note.title }} |
+        {{ note.content }} |
+        {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
+        <div id="readbool">읽음여부: {{ note.read }}</div>
+      </div>
+    </button>
+    {% comment %} 받은 DM 끝 {% endcomment %}
+    <!-- Modal -->
+    <div class="modal fade" id="modal{{note.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ note.title }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ note.content }}
+            {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            <a href="{% url 'notes:send' note.from_user.pk %}">
+              <button type="button" class="btn btn-primary">답장하기</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 끝 -->
+    {% endfor %}
+    {% comment %} 받은 DM 페이지네이션 {% endcomment %}
+    <div class="paginagtion">
+      <span class="step-links">
+      <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
 
-{% comment %} 받은 편지 페이지네이션 {% endcomment %}
-  <div class="paginagtion">
-    <span class="step-links">
-    <ul class="pagination justify-content-center">
-      <!-- 이전페이지 -->
-      {% if page_obj.has_previous %}
-      <li class="page-item">
-          <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-      </li>
-      {% endif %}
-
-      {% for page_number in page_obj.paginator.page_range %}
-          {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
-            {% if page_number == page_obj.number %}
-              <li class="page-item active" aria-current="page">
-                <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                  <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
-              </li>
+        {% for page_number in page_obj.paginator.page_range %}
+            {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
+              {% if page_number == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                    <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                </li>
+              {% endif %}
             {% endif %}
-          {% endif %}
-      {% endfor %}
-      
-      {% if page_obj.has_next %}
-      <li class="page-item">
-          <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-      </li>
-      {% endif %}
-    </ul>
-    </span>
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+      </ul>
+      </span>
+    </div>
+    {% comment %} 받은 DM 페이지네이션 끝 {% endcomment %}
   </div>
 
+  <div class="container">
+    {% comment %} 보낸 DM {% endcomment %}
+    {% for to_note in to_notes %}
+    <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
+      <div>
+      {{ to_note.to_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
+      {{ to_note.title }} |
+      {{ to_note.content }} |
+      {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
+      읽음여부: {{ to_note.read }}
+      </div>
+    </button>
+    {% comment %} 보낸 DM 끝 {% endcomment %}
+    <!-- Modal -->
+    <div class="modal fade" id="modal{{to_note.text}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ to_note.title }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ to_note.content }}
+            {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+            <a href="{% url 'notes:send' to_note.from_user.pk %}">
+              <button type="button" class="btn btn-primary">답장하기
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal 끝-->
+    {% endfor %}
+    {% comment %} 보낸 DM 페이지네이션 {% endcomment %}
+    <div class="paginagtion">
+      <span class="step-links">
+      <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if to_page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
 
-{% comment %} 보낸 편지 페이지네이션 {% endcomment %}
-  <div class="paginagtion">
-    <span class="step-links">
-    <ul class="pagination justify-content-center">
-      <!-- 이전페이지 -->
-      {% if to_page_obj.has_previous %}
-      <li class="page-item">
-          <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-      </li>
-      {% endif %}
-
-      {% for page_number in to_page_obj.paginator.page_range %}
-          {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
-            {% if page_number == to_page_obj.number %}
-              <li class="page-item active" aria-current="page">
-                <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                  <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
-              </li>
+        {% for page_number in to_page_obj.paginator.page_range %}
+            {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
+              {% if page_number == to_page_obj.number %}
+                <li class="page-item active" aria-current="page">
+                  <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                </li>
+              {% else %}
+                <li class="page-item">
+                    <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                </li>
+              {% endif %}
             {% endif %}
-          {% endif %}
-      {% endfor %}
-      
-      {% if to_page_obj.has_next %}
-      <li class="page-item">
-          <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-      </li>
-      {% endif %}
-    </ul>
-    </span>
+        {% endfor %}
+        
+        {% if to_page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+      </ul>
+      </span>
+    </div>
+    {% comment %} 보낸 DM 페이지네이션 끝 {% endcomment %}
   </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  function read(event) {
+    axios({
+      method: 'get',
+      url: `/notes/${event.target.dataset.noteId}/detail/`,
+      data: {'note_pk': event.target.dataset.noteId},
+    })
+    .then(response => {
+      const div = document.querySelector("#readbool")
+      div.innerText = "읽음여부: True"
+    })
+  }
+  </script>
 
 {% endblock content %}
+
