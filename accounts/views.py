@@ -104,8 +104,30 @@ def kakao_callback(request):
         kakao_user = get_user_model().objects.get(username=kakao_id)
 
     auth_login(request, kakao_user)
-    return redirect("accounts:index")
+    return redirect("accounts:kakao_signup")
 
+def kakao_signup(request):
+  if request.method == "POST":
+    form = SignupForm(request.POST)
+    if form.is_valid():
+      forms = form.save(commit=False)
+      forms.email = request.POST.get('email')
+      forms.save()
+      return redirect("accounts:login")
+  else:
+    if request.GET:
+      names = get_user_model().objects.filter(username=request.GET.get("username"))
+      if names:
+        context = {
+          'check' : "True",
+        }
+        return JsonResponse(context)
+      else:
+        context = {
+          'check' : "False",
+        }
+        return JsonResponse(context)
+  return render(request, "accounts/kakao_signup.html")
 
 def signup(request):
   if request.method == "POST":
