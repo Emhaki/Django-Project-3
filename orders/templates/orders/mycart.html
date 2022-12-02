@@ -9,7 +9,7 @@
 {% block content %}
 <h1>{{ request.user.nickname }} 님의 장바구니</h1>
 {% for item in cart_items %}
-    <img src="{{ item.art.art_image.url }}" alt="{{ item.art_image }}">
+    <img src="{{ item.art.image.url }}" alt="{{ item.art.image }}" width="115" height="108">
     <p>{{ item.art.title }}</p>
     <p>{{ item.art.artist.nickname }}</p>
     <p>{{ item.art.price }}</p>
