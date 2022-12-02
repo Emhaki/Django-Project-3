@@ -45,12 +45,15 @@
     window.addEventListener("resize", setScreenSize);
   </script>
   <script>
-    const modalset = document.querySelectorAll(".modal");
+    const modalSet = document.querySelectorAll(".modal");
+    const modalBtnSet = document.querySelectorAll(".modal-btn");
     let i = 0;
-    for (i; i < modalset.length; i++) {
-      let modalBtn = document.querySelector(`#modal-btn${i}`);
+    for (i; i < modalSet.length; i++) {
+      // let modalBtn = document.querySelector(`#modal-btn${i}`);
       const modalDict = {}
-      modalDict[`modal${i}`] = [modalset[i], modalBtn];
+      modalDict[`modal${i}`] = [modalSet[i], modalBtnSet[i]];
+      console.log(modalDict)
+      console.log(modalDict[`modal${i}`][1])
       modalDict[`modal${i}`][1].addEventListener("click", function () {
         if (document.querySelector(".modal-backdrop") !== null) {
           const modalBack = document.querySelector("#modal-back-div");
