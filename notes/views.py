@@ -6,7 +6,22 @@ from .forms import *
 from django.contrib import messages
 from django.http import JsonResponse
 
+
 # Create your views here.
+# 보낸 DM과 받은 DM의 모달id값을 일치시키기 위해 pk값과 text값을 분리
+dic = {
+    "0": "zero",
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
+    "6": "six",
+    "7": "seven",
+    "8": "eight",
+    "9": "nine",
+}
+
 # @login_required
 def index(request):
     notes = request.user.user_to.order_by("-created_at") # 받은거
@@ -41,6 +56,12 @@ def send(request, user_pk):
         temp.from_user = request.user
         temp.to_user = to_user
         temp.save()
+
+        text = ""
+        for i in str(temp.pk):
+            text += dic[i]
+        temp.text = text
+        temp.save()
         messages.success(request, "DM 전송 완료.😀")
         return redirect("notes:index")
     
@@ -51,6 +72,7 @@ def send(request, user_pk):
     }
     return render(request, "notes/send.html", context)
 
+# 버튼에 onclick을 걸어서 index에 보내고 index에서 데이터 받아올때 로직실행
 # @login_required
 def detail(request, note_pk):
     note = get_object_or_404(Notes, pk=note_pk)
@@ -62,7 +84,7 @@ def detail(request, note_pk):
         if not request.user.user_to.filter(read=False).exists():
             request.user.save()
         return render(request, "notes/detail.html", {"note":note})
-    elif request.user == note.from_user:
+    elif request.user == note.from_user: # 보낸 사람일때는 내용은 보이고 읽음처리 x
         return render(request, "notes/detail.html", {"note": note})
     else:
         messages.error(request, "잘못된 접근입니다.😅")

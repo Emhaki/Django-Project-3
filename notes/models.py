@@ -13,3 +13,4 @@ class Notes(models.Model):
   content = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   read = models.BooleanField(default=False) # 읽었는지 여부
+  text = models.TextField(blank=True) # 모달 일치 여부
