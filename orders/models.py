@@ -20,27 +20,27 @@ class CartItem(models.Model):
     # 장바구니에 담을 양
     # quantity = models.PositiveIntegerField(default=0)
     class Meta:
-        verbose_name = '장바구니'
-        verbose_name_plural = f'{verbose_name} 목록'
-        ordering = ['-pk']
-    
+        verbose_name = "장바구니"
+        verbose_name_plural = f"{verbose_name} 목록"
+        ordering = ["-pk"]
+
     # 장바구니 총 결제 금액
     def total(self):
         total = 0
         for art in self.art:
             total += art
         return total
-    
+
     # def __init__(self, price):
     #     self.art.price = price
-        
+
     # def __str__(self):
     #     return (self.art)
-    
-    
+
+
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    art = models.ForeignKey(Art, on_delete=models.CASCADE)    
+    art = models.ForeignKey(Art, on_delete=models.CASCADE)
     shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -48,5 +48,3 @@ class Order(models.Model):
     order_status = models.CharField(max_length=250, default="결제완료")
     contact_number = models.CharField(max_length=250, null=True)
     delivery_option = models.CharField(max_length=50, choices=delivery_choices)
-    
-    

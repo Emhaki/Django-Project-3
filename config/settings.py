@@ -32,10 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 PJT_APPS = [
+    "notes",
     "orders",
     "accounts",
     "articles",
-    "notes",
     "questions"
 ]
 

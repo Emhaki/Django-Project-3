@@ -27,7 +27,6 @@ class Art(models.Model):
                                 options={'quality': 100},
                                 null=True)
     artist = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-
     likes = models.ManyToManyField(AUTH_USER_MODEL, related_name='like_arts')
     soldout = models.BooleanField(default=False)
 

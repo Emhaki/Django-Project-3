@@ -8,6 +8,7 @@ body {
 hr {
   color: var(--white);
   margin-bottom: 3rem;
+  border-width: 3px;
 }
 
 
@@ -25,15 +26,15 @@ hr {
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  border-color: var(--white);
-  border-style: solid;
-  max-height: 706px;
-  max-width: 500px;
+  max-height: 506px;
+  max-width: 506px;
 }
 
 .info__photo {
-  max-height: 700px;
-  max-width: 500px;
+  border-color: var(--white);
+  border-style: solid;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 
@@ -54,7 +55,7 @@ hr {
 
 .info__description {
   color: var(--white);
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 
@@ -75,7 +76,7 @@ hr {
 .info__inquire {
   display: flex;
   margin: 0;
-  padding: 1rem 2rem 3rem 0;
+  padding: 1rem 2rem 1rem 0;
 }
 
 
@@ -98,6 +99,18 @@ hr {
   display: flex;
   margin: 0 2rem 5rem 0;
   color: var(--white);
+}
+
+
+.info__order button {
+  color: var(--white);
+  background-color: var(--main);
+}
+
+
+.info__order button:hover {
+  color: var(--white);
+  background-color: var(--main);
 }
 
 

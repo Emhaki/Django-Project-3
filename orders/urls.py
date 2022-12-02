@@ -6,7 +6,6 @@ app_name = "orders"
 urlpatterns = [
     # 주문 전 작품 상세 정보
     path("<int:art_pk>/info/", views.info, name="info"),
-    path("basket/", views.basket, name="basket"),
     path("payment/", views.payment, name="payment"),
     path("complete/", views.complete, name="complete"),
     # 장바구니
