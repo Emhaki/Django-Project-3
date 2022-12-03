@@ -51,6 +51,9 @@
         <button class="btn btn-danger m-2" type="button" onclick="location.href='{% url 'articles:delete' art.pk %}'">
             DELETE
         </button>
+        <button class="btn btn-outline-success m-2" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
+            Go to order
+        </button>
     </div>
     <hr>
     <button class="btn btn-primary" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">

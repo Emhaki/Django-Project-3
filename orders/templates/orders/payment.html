@@ -54,7 +54,33 @@
     const orderBtn = document.getElementById('order_btn')
     orderBtn.addEventListener('click', function (event) {
       event.preventDefault();
+      
+      var IMP = window.IMP;
+      IMP.init('imp12672042'); // 가맹점 식별코드
+      
+      // 결제요청
+      IMP.request_pay({
+        pg: 'inicis', // pg사 == 이니시스
+        pay_method: 'card',
+        merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호
+        name: '주문명:결제테스트',
+        amount: '{{ billing_amount }}',
+        buyer_name: '{{ request.user.nickname }}',
+        buyer_email: '{{ request.user.email }}',
 
-    }
+      }, function (rsp) {
+        if ( rsp.success ) {
+          var msg = '결제가 완료되었습니다.';
+          msg += '결제 금액 : ' + rsp.paid_amount +'원';
+          // location.href = "/orders/order/?shipping_address=" + shipping_address.value + "&contact_number=" + shipping_phoneNum.value;
+
+        }
+        else {
+          var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg;
+
+        }
+        alert(msg);
+      });
+    });
   </script>
 {% endblock content %}

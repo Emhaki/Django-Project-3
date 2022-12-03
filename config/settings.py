@@ -156,3 +156,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "nesofficial475@gmail.com"
 EMAIL_HOST_PASSWORD = "tltkvqodqjbtivuw"
 EMAIL_USE_TLS = True
+
+# 결제 API 
+IAMPORT_KEY = '0244750058780438'  # rest api key 
+IAMPORT_SECRET = 'O9wYYY9OPXDtBRiVEFQxc4xwN8Ykg5KqXTPnekY2WurIT7AM0v30fusOAvfVy4q1pfSt7TzGK6ewedjE'  # rest api secret

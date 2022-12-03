@@ -33,10 +33,41 @@ def info(request, art_pk):
 
 
 def payment(request):
-    context = {
-        "content": "결제 페이지",
-    }
-    return render(request, "orders/payment.html", context)
+    shipping_name = request.user.username
+    # shipping_email = request.user.email
+    # shipping_zipcode = request.user.zipcode
+    # shipping_address = request.user.address
+    
+    # 장바구니 가져오기
+    cart_items = CartItem.objects.filter(user_id=request.user.pk)
+    
+    # 장바구니 총 금액 
+    total_price = 0
+    for item in cart_items:
+        total_price += item.art.price
+    
+    # 배송비
+    if total_price >= 300000:
+        delivery_fee = 0
+    else:
+         delivery_fee = 30000
+    
+    billing_amount = total_price + delivery_fee
+    
+    # 주문서
+    if cart_items is not None:
+        context = {
+            "cart_items": cart_items,
+            "total_price": total_price,
+            # "shipping_address": shipping_address,
+            "shipping_name": shipping_name,
+            # "shipping_email": shipping_email,
+            "delivery_fee": delivery_fee,
+            "billing_amount": billing_amount,
+        }
+        return render(request, "orders/payment.html", context)
+    else:
+        return redirect("/")
 
 
 def complete(request):
@@ -114,7 +145,7 @@ def create_order(request):
             "delivery_fee": delivery_fee,
             "billing_amount": billing_amount,
         }
-        return render(request, "orders/create_order.html", context)
+        return render(request, "orders/payment.html", context)
     else:
         return redirect("/")
 

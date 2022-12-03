@@ -48,5 +48,24 @@ class Order(models.Model):
     order_status = models.CharField(max_length=250, default="결제완료")
     contact_number = models.CharField(max_length=250, null=True)
     delivery_option = models.CharField(max_length=50, choices=delivery_choices)
+    # 사용자 주문 정보 (for 카카오 로그인)
+    email = models.EmailField()
+    address = models.CharField(max_length=250)
+    zip_code = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f'Order {self.id}'
+    
+    def get_total_product(self):
+        return sum(item.get_item_price() for item in self.item.all())
+
+    def get_total_price(self):
+        total_product = self.get_total_product()
+        return total_product
+
     
     
