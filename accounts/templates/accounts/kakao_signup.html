@@ -23,29 +23,14 @@
             <input class="signup-frame__form__container__login__check__button" type="button" id="idcheck" value="중복확인">
           </div>
         </div>
-        <div class="signup-frame__form__container__password">
-          <p>비밀번호
-          </p>
-          <input type="password" name="password1" placeholder="비밀번호를 입력해주세요">
-        </div>
-        <div class="signup-frame__form__container__check">
-          <p>비밀번호 확인
-          </p>
-          <input type="password" name="password2" placeholder="비밀번호를 한번 더 입력해주세요">
-        </div>
-        <div class="signup-frame__form__container__name">
-          <p>이름
-          </p>
-          <input type="text" name="nickname" placeholder="이름을 입력해주세요">
-        </div>
         <div class="signup-frame__form__container__email">
           <p>이메일
           </p>
           <div class="signup-frame__form__container__email__check">
             <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com">
             <!--전달할 value값-->
-            <!-- 현동 : 모달 버튼 클래스 추가 modal-btn -->
-            <button class="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal0">이메일 인증</button>
+            <!-- 현동 : 모달 버튼 아이디 추가 modal-btn0 -->
+            <button id="modal-btn0" type="button" data-bs-toggle="modal" data-bs-target="#modal0">이메일 인증</button>
           </div>
         </div>
         <div class="signup-frame__form__container__address">
@@ -76,6 +61,7 @@
   </div>
 </div>
 <!--이메일 인증 모달-->
+<!-- 현동 : 모달 아이디 바꿈 emailCheckModal >>> modal0 -->
 <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
     <div class="modal-content" style="width:330px;height:240px;">

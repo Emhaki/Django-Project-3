@@ -25,6 +25,7 @@ body {
   background-color: var(--main);
   height: 40rem;
   font-weight: bolder;
+  border-radius: 0.5rem;
 }
 
 
@@ -33,8 +34,9 @@ body {
   background-color: var(--white);
   height: 15rem;
   width: 74rem;
-  margin: 2rem 0;
+  margin: 2rem 0 2rem 3rem;
   padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 
@@ -42,15 +44,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--white);
-  border-style: dotted;
+  margin: 2.5rem 0;
   height: 14rem;
   width: 14rem;
 }
 
 
+.basket__photo-object {
+  border-color: var(--white);
+  border-style: solid;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
 .basket__info {
-  margin-left: 5rem;
+  margin-left: 3rem;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -86,15 +95,20 @@ body {
 }
 
 
-.basket__footerbtn {
-  border-radius: 0.4rem;
-  height: 3rem;
-  width: 15rem;
+.basket__footer a {
   color: var(--white);
   background-color: var(--main);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+
+.basket__footer a:hover {
+  color: var(--white);
+  background-color: var(--main);
+}
+
+
+.basket__footerbtn {
+  width: 15rem;
 }
 
 

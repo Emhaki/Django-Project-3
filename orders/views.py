@@ -10,12 +10,6 @@ User = get_user_model()
 
 
 # Create your views here.
-def basket(request):
-    test = [1, 2, 3, 4, 5]
-    context = {
-        "content": test,
-    }
-    return render(request, "orders/basket.html", context)
 
 
 def info(request, art_pk):
@@ -76,15 +70,18 @@ def complete(request):
     }
     return render(request, "orders/complete.html", context)
 
+
 # 장바구니
 def mycart(request):
-    cart_items = CartItem.objects.all()
+    cart_items = CartItem.objects.order_by("-id")
 
     context = {
         "cart_items": cart_items,
+        "total": total,
     }
 
     return render(request, "orders/mycart.html", context)
+
 
 # 장바구니 추가
 def add_cart(request, art_pk):
@@ -93,22 +90,22 @@ def add_cart(request, art_pk):
 
     try:
         cart = CartItem.objects.get(art__pk=art.pk, user__id=request.user.pk)
-        
+
         # 장바구니에 해당 작품이 있으면 삭제
         if cart:
             if cart.art.title == art.title:
                 cart.delete()
                 in_cart = False
-                
+
     except CartItem.DoesNotExist:
         user = User.objects.get(pk=request.user.pk)
         cart = CartItem(
-            user = user,
-            art = art,
+            user=user,
+            art=art,
         )
         cart.save()
-    
-    return redirect('orders:mycart')
+
+    return redirect("orders:mycart")
 
 
 # 주문 생성
@@ -117,11 +114,11 @@ def create_order(request):
     # shipping_email = request.user.email
     # shipping_zipcode = request.user.zipcode
     # shipping_address = request.user.address
-    
+
     # 장바구니 가져오기
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    
-    # 장바구니 총 금액 
+
+    # 장바구니 총 금액
     total_price = 0
     for item in cart_items:
         total_price += item.art.price
@@ -130,10 +127,10 @@ def create_order(request):
     if total_price >= 300000:
         delivery_fee = 0
     else:
-         delivery_fee = 30000
-    
+        delivery_fee = 30000
+
     billing_amount = total_price + delivery_fee
-    
+
     # 주문서
     if cart_items is not None:
         context = {
@@ -149,7 +146,8 @@ def create_order(request):
     else:
         return redirect("/")
 
-# 주문 완료  
+
+# 주문 완료
 def complete_order(request):
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
     shipping_address = request.GET.get("shipping_address")
@@ -157,7 +155,7 @@ def complete_order(request):
 
     for cart_item in cart_items:
         art = cart_item.art
-                
+
         with transaction.atomic():
             order = Order(
                 user=request.user,
@@ -166,12 +164,13 @@ def complete_order(request):
                 shipping_email=shipping_email,
             )
             order.save()
-            
+
             art.soldout = True
             art.save()
-            
+
     cart_items.delete()
     return render(request, "orders/complete_order.html")
+
 
 # 주문 상세
 # def detail(request):
@@ -185,12 +184,14 @@ def delivery(request, order_pk):
     order.save()
     return redirect("orders:order_list")
 
+
 def delivery_complete(request, order_pk):
     order = Order.objects.get(pk=order_pk)
     order.created_at = timezone.now()
     order.order_status = "배송완료"
     order.save()
     return redirect("orders:order_list")
+
 
 # 주문 취소
 def order_delete(request, order_pk):
@@ -204,12 +205,13 @@ def order_delete(request, order_pk):
         # soldout 표시 제거
         art.soldout = False
         art.save()
-        
+
         # 배송상태 변경
         order.order_status = "취소주문"
         order.save()
-        
+
         return redirect("accounts:index", request.user.pk)
+
 
 # 주문 내역 리스트
 def order_list(request):
@@ -218,10 +220,14 @@ def order_list(request):
     # 취소한 주문
     cancel_orders = Order.objects.filter(order_status="취소주문").order_by("-created_at")
     # 배송 준비중
-    delivery_orders = Order.objects.filter(order_status="배송 준비중").order_by("-created_at")
+    delivery_orders = Order.objects.filter(order_status="배송 준비중").order_by(
+        "-created_at"
+    )
     # 배송 완료
-    delivery_complete_orders = Order.objects.filter(order_status="배송완료").order_by("-created_at")
-    
+    delivery_complete_orders = Order.objects.filter(order_status="배송완료").order_by(
+        "-created_at"
+    )
+
     context = {
         "complete_orders": complete_orders,
         "cancel_orders": cancel_orders,
@@ -229,4 +235,3 @@ def order_list(request):
         "delivery_complete_orders": delivery_complete_orders,
     }
     return render(request, "orders/order_list.html", context)
-

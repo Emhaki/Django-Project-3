@@ -13,7 +13,7 @@
 <div class="container">
   <div class="info__container">
     <div class="info__photo-section">
-      <img class="info__photo"  src="{{ art.image.url }}" alt="{{ art.image }}">
+      <img class="info__photo" src="{{ art.image.url }}" alt="{{ art.image }}">
     </div>
     <div class="info__detail-section">
       <div>
@@ -40,26 +40,25 @@
         <div class="info__inquire">
           <a class="ms-auto" href="">
             작가에게 문의하기
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+              class="bi bi-arrow-right-short" viewBox="0 0 18 18">
               <path fill-rule="evenodd"
                 d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
             </svg>
           </a>
         </div>
       </div>
-      <hr>
+      <hr class="info__hr m-0">
       <div class="info__price-section">
-        <h1>가격</h1>
+        <h1 class="mt-3">가격</h1>
         <h2 class="info__price">{{ art.price }} Won</h2>
       </div>
       <div class="info__order">
         <!-- 장바구니 추가 -->
         {% if art.soldout == False %}
-          <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
-            {% csrf_token %}
-            {% bootstrap_form cart_form %}
-
+        <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
+          {% csrf_token %}
+          {% bootstrap_form cart_form %}
             {% if cart %}
               {% for i in cart %}
                 {% if art.pk == i.art_id %}
