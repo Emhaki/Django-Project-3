@@ -81,14 +81,14 @@
 .post__cover__main__box__list a {
     width: 10%;
     text-decoration: none;
-    color:black;
+    color: black;
     display: flex;
     justify-content: center;
     margin: .5rem 0;
 }
 
 .post__cover__main__box__list a:hover {
-    color:white
+    color: white
 }
 
 .post__cover__main__box__list a svg {
@@ -103,4 +103,3 @@
 .post__cover__main__box__modal p {
     margin: 0;
 }
-
