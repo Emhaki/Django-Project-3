@@ -45,6 +45,7 @@ def payment(request):
         delivery_fee = 0
     else:
          delivery_fee = 30000
+
     
     billing_amount = total_price + delivery_fee
     
@@ -62,13 +63,6 @@ def payment(request):
         return render(request, "orders/payment.html", context)
     else:
         return redirect("/")
-
-
-def complete(request):
-    context = {
-        "content": "결제완료 페이지",
-    }
-    return render(request, "orders/complete.html", context)
 
 
 # 장바구니
@@ -129,6 +123,7 @@ def create_order(request):
     else:
         delivery_fee = 30000
 
+
     billing_amount = total_price + delivery_fee
 
     # 주문서
@@ -148,10 +143,10 @@ def create_order(request):
 
 
 # 주문 완료
-def complete_order(request):
+def complete(request, user_pk):
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    shipping_address = request.GET.get("shipping_address")
-    shipping_email = request.GET.get("shipping_email")
+    # shipping_address = request.GET.get("shipping_address")
+    # shipping_email = request.GET.get("shipping_email")
 
     for cart_item in cart_items:
         art = cart_item.art
@@ -160,8 +155,8 @@ def complete_order(request):
             order = Order(
                 user=request.user,
                 art=art,
-                shipping_address=shipping_address,
-                shipping_email=shipping_email,
+                # shipping_address=shipping_address,
+                # shipping_email=shipping_email,
             )
             order.save()
 
@@ -169,12 +164,63 @@ def complete_order(request):
             art.save()
 
     cart_items.delete()
-    return render(request, "orders/complete_order.html")
+
+    # 결제 목록 출력
+    # 결제 완료된 주문들
+    user_orders = (
+        Order.objects.filter(user__id=user_pk, order_status="결제완료")
+        | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
+        | Order.objects.filter(user__id=user_pk, order_status="배송완료")
+    ).order_by("-created_at")
+
+    # 취소된 주문들
+    cancel_orders = Order.objects.filter(
+        user__id=user_pk, order_status="취소주문"
+    ).order_by("-created_at")
+
+    # 누적 주문금액
+    accumulated_amount = 0
+    orders = Order.objects.filter(user__id=user_pk)
+    for order in orders:
+        if order.order_status == "결제완료":
+            accumulated_amount += int(order.art.price)
+
+    context = {
+        "user_orders": user_orders,
+        "cancel_orders": cancel_orders,
+        "accumulated_amount": accumulated_amount,
+    }
+    return render(request, "orders/complete.html", context)
 
 
 # 주문 상세
 # def detail(request):
-#     return render(request, "orders/detail.html")
+    # 결제 목록 출력
+    # 결제 완료된 주문들
+    # user_orders = (
+    #     Order.objects.filter(user__id=user_pk, order_status="결제완료")
+    #     | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
+    #     | Order.objects.filter(user__id=user_pk, order_status="배송완료")
+    # ).order_by("-register_data")
+
+    # # 취소된 주문들
+    # cancel_orders = Order.objects.filter(
+    #     user__id=user_pk, order_status="취소주문"
+    # ).order_by("-register_data")
+
+    # # 누적 주문금액
+    # accumulated_amount = 0
+    # orders = Order.objects.filter(user__id=user_pk)
+    # for order in orders:
+    #     if order.order_status == "결제완료":
+    #         accumulated_amount += int(order.art.price)
+
+    # context = {
+    #     "user_orders": user_orders,
+    #     "cancel_orders": cancel_orders,
+    #     "accumulated_amount": accumulated_amount,
+    # }
+#     return render(request, "orders/detail.html", context)
 
 # 배송상태
 def delivery(request, order_pk):
