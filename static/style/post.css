@@ -1,0 +1,106 @@
+/* 배경화면 CSS */
+
+.post_back {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/back_post_3.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+/* 전체 영역 넓이 CSS */
+
+.post__cover__main__box {
+    width: 35%;
+    height: 80%;
+    /* background-color: rgba(32, 62, 150, .7); */
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 전체 영역설정 CSS */
+
+.post__cover {
+    width: 80%;
+    height: 100%;
+}
+
+/* 제목 CSS */
+
+.post__cover__h1 {
+    margin-top: 3rem;
+    height: 10%;
+    color: white;
+}
+
+/* 받은 편지함 보낸 편지함 감싸는 CSS */
+
+.post__cover__main {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* main box CSS */
+
+.post__cover__main__box__header {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* main box header */
+
+.post__cover__main__box__header h1 {
+    font-weight: bold;
+}
+
+/* 박스내 내용물 CSS */
+
+.post__cover__main__box__list {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 내용물 게시글 클릭버튼 CSS */
+
+.post__cover__main__box .modal-btn {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5rem 0;
+}
+
+/* 게시글의 쓰레기통 CSS */
+
+.post__cover__main__box__list a {
+    width: 10%;
+    text-decoration: none;
+    color:black;
+    display: flex;
+    justify-content: center;
+    margin: .5rem 0;
+}
+
+.post__cover__main__box__list a:hover {
+    color:white
+}
+
+.post__cover__main__box__list a svg {
+    width: 45%;
+    height: 45%;
+}
+
+.post__cover__main__box__modal {
+    display: flex;
+}
+
+.post__cover__main__box__modal p {
+    margin: 0;
+}
+
