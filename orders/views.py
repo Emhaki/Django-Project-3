@@ -77,7 +77,7 @@ def mycart(request):
 
     context = {
         "cart_items": cart_items,
-        "total": total,
+        # "total": total,
     }
 
     return render(request, "orders/mycart.html", context)
