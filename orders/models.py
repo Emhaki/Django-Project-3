@@ -44,7 +44,7 @@ class Order(models.Model):
     shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     order_status = models.CharField(max_length=250, default="결제완료")
     contact_number = models.CharField(max_length=250, null=True)
     delivery_option = models.CharField(max_length=50, choices=delivery_choices)
@@ -67,27 +67,3 @@ class Order(models.Model):
     def get_total_price(self):
         total_product = self.get_total_product()
         return total_product
-
-# class OrderItem(models.Model):
-#     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
-#     art = models.ForeignKey(Art, on_delete=models.PROTECT, related_name='order_products')
-#     price = models.DecimalField(max_digits=10, decimal_places=2)
-    
-#     def __str__(self):
-#         return str(self.id)
-    
-#     def get_item_price(self):
-#         return self.price
-
-# import hashlib
-# from .iamport import payments_prepare, find_transaction   
-# class OrderTransactionManager(models.Manager):
-#     def create_new(self, order, amount, succeess=None, transaction_status=None):
-#         if not order:
-#             raise ValueError("주문 정보 오류")
-#         order_hash = hashlib.sha1(str(order.id).encode('utf-8')).hexdigest()
-#         email_hash = str(order.email)
-
-
-# class OrderTransaction(models.Model):
-#     pass
