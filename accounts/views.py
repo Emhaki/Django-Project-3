@@ -91,6 +91,8 @@ def kakao_callback(request):
         kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
+        auth_login(request, kakao_user)
+        return redirect("accounts:profile", request.user.pk)
     else:
         kakao_login_user = get_user_model().objects.create(
             username=kakao_id,
@@ -102,9 +104,8 @@ def kakao_callback(request):
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(username=kakao_id)
+        return redirect("accounts:kakao_signup")
 
-    auth_login(request, kakao_user)
-    return redirect("accounts:kakao_signup")
 
 def kakao_signup(request):
   if request.method == "POST":
