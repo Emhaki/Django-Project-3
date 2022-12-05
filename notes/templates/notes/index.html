@@ -9,14 +9,14 @@
 <div class="container d-flex">
   <div class="container">
     {% comment %} 받은 DM {% endcomment %}
-    {% for note in notes %}
+    {% for note in page_obj %}
     <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
       <div data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
         {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
         {{ note.title }} |
         {{ note.content }} |
         {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
-        <div id="readbool">읽음여부: {{ note.read }}</div>
+        <div id="readbool" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">읽음여부: {{ note.read }}</div>
       </div>
     </button>
     {% comment %} 받은 DM 끝 {% endcomment %}
@@ -29,7 +29,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            {{ note.content }}
+            {{ note.content }} |
             {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
           </div>
           <div class="modal-footer">
@@ -50,7 +50,7 @@
         <!-- 이전페이지 -->
         {% if page_obj.has_previous %}
         <li class="page-item">
-            <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
+            <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.previous_page_number }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -62,11 +62,11 @@
             {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
               {% if page_number == page_obj.number %}
                 <li class="page-item active" aria-current="page">
-                  <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                  <a class="page-link text-bg-danger border-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                 </li>
               {% else %}
                 <li class="page-item">
-                    <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link text-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                 </li>
               {% endif %}
             {% endif %}
@@ -74,7 +74,7 @@
         
         {% if page_obj.has_next %}
         <li class="page-item">
-            <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+            <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -89,7 +89,7 @@
 
   <div class="container">
     {% comment %} 보낸 DM {% endcomment %}
-    {% for to_note in to_notes %}
+    {% for to_note in to_page_obj %}
     <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
       <div>
       {{ to_note.to_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
@@ -109,7 +109,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            {{ to_note.content }}
+            {{ to_note.content }} |
             {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
           </div>
           <div class="modal-footer">
@@ -131,7 +131,7 @@
         <!-- 이전페이지 -->
         {% if to_page_obj.has_previous %}
         <li class="page-item">
-            <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
+            <a class="page-link text-danger" href="?note={{to_name}}{{ to_page_obj.previous_page_number }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -143,11 +143,11 @@
             {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
               {% if page_number == to_page_obj.number %}
                 <li class="page-item active" aria-current="page">
-                  <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                  <a class="page-link text-bg-danger border-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                 </li>
               {% else %}
                 <li class="page-item">
-                    <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link text-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                 </li>
               {% endif %}
             {% endif %}
@@ -155,7 +155,7 @@
         
         {% if to_page_obj.has_next %}
         <li class="page-item">
-            <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+            <a class="page-link text-danger" href="?note={{to_name}}{{ page_obj.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -181,6 +181,26 @@
       const div = document.querySelector("#readbool")
       div.innerText = "읽음여부: True"
     })
+  }
+
+  function remove(event) {
+    console.log(event.target.dataset.noteId)
+    var delete_warngin = confirm("편지를 삭제하시겠습니까?")
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    if (delete_warngin == true) {
+      axios({
+        method: 'post',
+        url: `/notes/${event.target.dataset.noteId}/delete/`,
+        headers: {'X-CSRFToken': csrftoken},
+        data: {'note_pk': event.target.dataset.noteId},
+      })
+      .then(res => {
+        const resdata = res.data.pk
+        const div = document.getElementById(resdata)
+        console.log(div)
+        div.remove()
+      })
+    }
   }
   </script>
 
