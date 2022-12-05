@@ -169,8 +169,10 @@ def logout(request):
 
 def profile(request, user_pk):
   profiles = get_user_model().objects.filter(pk=user_pk)
+  creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
   context = {
-    "profiles" : profiles
+    "profiles" : profiles,
+    "creater": creater,
   }
   return render(request, "accounts/profile.html", context)
 

@@ -52,6 +52,10 @@
           {% if request.user in profiles %}
           <button class="profile__container__info__writer modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal"> 작가 인증 </button>
           {% endif %}
+        {% elif request.user in profiles and creater %}
+        <a href="{% url 'articles:create' %}">
+          <button class="profile__container__info__writer modal-btn" type="button"> 작품 등록 </button>
+        </a>
         {% endif %}
         <hr class="profile__container__info__hr">
         <div class="profile__container__info__social">
