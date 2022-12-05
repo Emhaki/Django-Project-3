@@ -20,10 +20,10 @@
         <div class="post__cover__main__box__list" id="{{note.pk}}">
         <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
           <div class="post__cover__main__box__modal" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
-            <div>{{ note.from_user.username }}</div>  {% comment %} 보낸사람 {% endcomment %}
-            <div>{{ note.title }}</div>
-            <div>{{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }}</div>
-            <div>
+            <div style="width:80px;">{{ note.from_user.username }}</div>  {% comment %} 보낸사람 {% endcomment %}
+            <div style="width:120px;">{{ note.title }}</div>
+            <div style="width:150px;">{{ note.created_at|date:'o.m.d' }}</div>
+            <div style="width:30px;">
               {% if note.read == 0 %}
               <i id="readbool" class="bi bi-check"></i>
               {% else %}
@@ -43,18 +43,15 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ note.title }}</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ note.from_user.username }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                {{ note.title }}
                 {{ note.content }}
-                {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <a href="{% url 'notes:send' note.from_user.pk %}">
-                  <button type="button" class="btn btn-primary">답장하기</button>
-                </a>
               </div>
             </div>
           </div>
@@ -115,16 +112,17 @@
         {% for to_note in to_page_obj %}
         <div class="post__cover__main__box__list">
         <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
-          <div>
-          {{ to_note.to_user.username }} | {% comment %} 보낸사람 {% endcomment %}
-          {{ to_note.title }} |
-          {{ to_note.content }} |
-          {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
-          {% if note.read == 0 %}
-            <i id="readbool" class="bi bi-check"></i>
-            {% else %}
-            <i id="readbool" class="bi bi-check-all"></i>
-          {% endif %}
+          <div class="post__cover__main__box__modal" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+            <div style="width:80px;">{{ to_note.from_user.username }}</div>  {% comment %} 보낸사람 {% endcomment %}
+            <div style="width:120px;">{{ to_note.title }}</div>
+            <div style="width:150px;">{{ to_note.created_at|date:'o.m.d' }}</div>
+            <div style="width:30px;">
+              {% if note.read == 0 %}
+              <i id="readbool" class="bi bi-check"></i>
+              {% else %}
+              <i id="readbool" class="bi bi-check-all"></i>
+              {% endif %}
+            </div>
           </div>
         </button>
       </div>
@@ -134,12 +132,12 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ to_note.title }}</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ to_note.from_user.username }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                {{ to_note.title }}
                 {{ to_note.content }}
-                {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
