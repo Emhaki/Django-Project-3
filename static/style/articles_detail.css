@@ -223,3 +223,22 @@
 .comment__content {
   color: var(--txt);
 }
+
+@media (max-width: 1000px) {
+  .detail__bg {
+    height: auto;
+  }
+
+  .detail__box {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .article__detail {
+    width: 100%;
+  }
+
+  .detail__img {
+    /* margin-top: rem; */
+  }
+}
