@@ -1,0 +1,250 @@
+@import url(./base.css);
+
+.question-back {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--highlight);
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    overflow: auto;
+}
+
+.question__container {
+    width: 80%;
+    height: 90%;
+}
+
+/* QNA 타이틀이랑 내 문의하기 */
+
+.question__container__header {
+    width: 100%;
+    height: 10%;
+    position: relative;
+}
+
+.question__container__title {
+    width: 100%;
+    height: 100%;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    color: var(--main);
+    font-weight: bold;
+}
+
+.question__container__header a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.question__container__header button {
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    width: 10%;
+    height: 60%;
+    color: var(--white);
+    font-size: 1.5rem;
+    background-color: var(--main);
+    border-radius: 10px;
+    border: none;
+    transition: all .3s;
+}
+
+/* 메인 박스 부분 */
+
+.question__container__main {
+    width: 100%;
+    height: auto;
+    background-color: var(--main);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 2rem 3rem;
+    overflow: hidden;
+}
+
+.question__container__main__box {
+    width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all .3s;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    position: relative;
+}
+
+.question__container__main__box__title {
+    font-size: 1.5vw;
+    transition: all .3s;
+}
+
+.question__container__main__box__answer {
+    display: none;
+    margin: 35px 0 0;
+    font-size: 1.2vw;
+    transition: all .3s;
+    word-break: break-all;
+}
+
+/* active 되었을 경우 */
+
+.active {
+    background-color: var(--white);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.question__container__main .active .question__container__main__box__answer {
+    display: block;
+}
+
+/* 메인 버튼아이콘 부분 */
+
+.question__container__main__box__button {
+    background-color: transparent;
+    position: absolute;
+    border-radius: 50%;
+    right: 5%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question__container__main__box__button:focus {
+    outline: 0;
+}
+
+.question__container__main__box__button__down {
+    width: 2rem;
+    height: 2rem;
+}
+
+.question__container__main__box__button__cancle {
+    display: none;
+    width: 2rem;
+    height: 2rem;
+}
+
+.question__container__main .active .question__container__main__box__button .question__container__main__box__button__cancle {
+    display: block;
+}
+
+.question__container__main .active .question__container__main__box__button .question__container__main__box__button__down {
+    display: none;
+}
+
+/* 문의하기 부분 */
+
+.question__container__footer {
+    width: 100%;
+    height: 10%;
+    position: relative;
+}
+
+.question__container__footer a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.question__container__footer button {
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    width: 10%;
+    height: 60%;
+    color: var(--white);
+    font-size: 1.5rem;
+    background-color: var(--main);
+    border-radius: 10px;
+    border: none;
+    transition: all .3s;
+}
+
+@media (max-width: 1700px) {
+
+    .question__container__footer button,
+    .question__container__header button {
+        width: 14%;
+        font-size: 1.5rem;
+        transition: all .3s;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .question__container__footer button,
+    .question__container__header button {
+        width: 16%;
+        font-size: 1.4rem;
+        transition: all .3s;
+    }
+
+    .question__container__main__box__title {
+        font-size: 1.8vw;
+        transition: all .3s;
+    }
+
+    .question__container__main__box__answer {
+        font-size: 1.4vw;
+        transition: all .3s;
+    }
+
+}
+
+@media (max-width: 950px) {
+
+    .question__container__header {
+        width: 100%;
+        height: 20%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .question__container__footer button,
+    .question__container__header button {
+        width: 100%;
+        font-size: 1.3rem;
+        height: 50%;
+        transition: all .3s;
+        right: 0%;
+        top: 0%;
+    }
+
+    .question__container__title {
+        font-size: 4rem;
+        justify-content: center;
+    }
+
+    .question__container__header a {
+        justify-content: end;
+        height: 50%;
+    }
+
+    .question__container__header button {
+        position: relative;
+        height: 85%;
+        transition: all .3s;
+    }
+
+    .question__container__main__box__title {
+        font-size: 3vw;
+    }
+
+    .question__container__main__box__answer {
+        font-size: 2.5vw;
+    }
+}

@@ -1,12 +1,99 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style/questions.css' %}">
+{% endblock css %}
 {% block content %}
+  <div class="question-back">
+    <div class="question__container">
+      <div class="question__container__header">
+        <h1 class="question__container__title">Q&A</h1>
+        <a href="{% url 'questions:myquestion'%}">
+          <button>내 문의보기</button>
+        </a>
+      </div>
+      <div class="question__container__main">
+        <div class="question__container__main__box">
+          <h3 class="question__container__main__box__title">자주 묻는 질문1</h3>
+          <p class="question__container__main__box__answer">어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 어디까지 가능한걸까 </p>
+          <button class="question__container__main__box__button">
+            <svg class="question__container__main__box__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg class="question__container__main__box__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="question__container__main__box">
+          <h3 class="question__container__main__box__title">자주 묻는 질문1</h3>
+          <p class="question__container__main__box__answer">ㄴㄴ</p>
+          <button class="question__container__main__box__button">
+            <svg class="question__container__main__box__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg class="question__container__main__box__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="question__container__main__box">
+          <h3 class="question__container__main__box__title">자주 묻는 질문1</h3>
+          <p class="question__container__main__box__answer">자</p>
+          <button class="question__container__main__box__button">
+            <svg class="question__container__main__box__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg class="question__container__main__box__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="question__container__main__box">
+          <h3 class="question__container__main__box__title">자주 묻는 질문1</h3>
+          <p class="question__container__main__box__answer">ㅇㅇㅇ</p>
+          <button class="question__container__main__box__button">
+            <svg class="question__container__main__box__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg class="question__container__main__box__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="question__container__main__box">
+          <h3 class="question__container__main__box__title">자주 묻는 질문1</h3>
+          <p class="question__container__main__box__answer">ㅇㅇㅇ</p>
+          <button class="question__container__main__box__button">
+            <svg class="question__container__main__box__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>
+            <svg class="question__container__main__box__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="question__container__footer">
+        <a href="{% url 'questions:create' %}">
+          <button>문의하기</button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const toggles = document.querySelectorAll(".question__container__main__box__button");
 
-<h1>Q&A</h1>
-<div>
-  <a href="{% url 'questions:myquestion'%}">내 문의보기</a>
-</div>
-<a href="{% url 'questions:create' %}">문의하기</a>
-
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        toggle.parentNode.classList.toggle("active");
+      });
+    });
+  </script>
 {% endblock content %}
