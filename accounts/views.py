@@ -109,28 +109,28 @@ def kakao_callback(request):
 
 def kakao_signup(request):
   if request.method == "POST":
-    form = SignupForm(request.POST)
-    if form.is_valid():
-      forms = form.save(commit=False)
-      forms.email = request.POST.get('email')
-      forms.save()
-      return redirect("accounts:login")
+      form = UpdateForm(request.POST, instance=request.user)
+      if form.is_valid():
+            forms = form.save(commit=False)
+            forms.save()
+            return redirect("accounts:login")
   else:
-    if request.GET:
-      names = get_user_model().objects.filter(username=request.GET.get("username"))
-      if names:
-        context = {
-          'check' : "True",
-        }
-        return JsonResponse(context)
-      else:
-        context = {
-          'check' : "False",
-        }
-        return JsonResponse(context)
+      if request.GET:
+        names = get_user_model().objects.filter(username=request.GET.get("username"))
+        if names:
+          context = {
+            'check' : "True",
+          }
+          return JsonResponse(context)
+        else:
+          context = {
+            'check' : "False",
+          }
+          return JsonResponse(context)
   return render(request, "accounts/kakao_signup.html")
 
 def signup(request):
+
   if request.method == "POST":
     form = SignupForm(request.POST)
     if form.is_valid():
