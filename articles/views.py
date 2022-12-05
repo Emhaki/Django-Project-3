@@ -11,7 +11,7 @@ def main(request):
     # 작품 카테고리
     category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
     art_type_all = "모든 작품"
-    art_type = re.sub(r"[0-9]", "", request.GET.get("type"))
+    # art_type = re.sub(r"[0-9]", "", request.GET.get("type"))
 
     # 페이지네이션
     paginator = Paginator(arts, 8)
@@ -28,7 +28,6 @@ def main(request):
             'name': name,
             'page_obj': page_obj,
             'category': category, 
-            'art_type': art_type,
             'art_type_all': art_type_all,
         }
         return render(request, "articles/main.html", context)
