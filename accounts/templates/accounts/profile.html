@@ -34,9 +34,9 @@
             {% if profile.is_creater == True %}
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-            </svg> {{profile.nickname}}
+            </svg> {{profile.username}}
             {% else %}
-              {{profile.nickname}}
+              {{profile.username}}
             {% endif %}
             {% comment %}  {% endcomment %}
             </p>
@@ -47,7 +47,12 @@
           <p>안녕하세요, 저는 뉴욕과 서울을 기반으로 활동하는 일러스트레이터 노희원 입니다. 저는 현재 School of Visual Arts에서 일러스트 전공으로 재학중이며 주로 회화, 디지털 및 전통 일러스트에 중점을 두고 작품활동을 하고 있습니다.
           </p>
         </div>
-        <button class="profile__container__info__writer"> 작가 인증 </button>
+        {% if not profile.is_creater %}
+          {% comment %} request유저가 프로필주인이면 {% endcomment %}
+          {% if request.user in profiles %}
+          <button class="profile__container__info__writer modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal"> 작가 인증 </button>
+          {% endif %}
+        {% endif %}
         <hr class="profile__container__info__hr">
         <div class="profile__container__info__social">
           <p>소셜계정</p>
@@ -240,18 +245,17 @@
     </section>
   </section>
 {% endfor %}
-{% comment %} 추후에 버튼 클릭시 비동기로 보여주게끔 구현 request.user랑 user_pk와 같아야 보이게끔 {% endcomment %}
-  <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
-  <button class="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
 {% comment %}  {% endcomment %}
 
 <!--이메일 인증 모달-->
 <div class="modal fade" id="emailCheckModal" tabindex="-1" aria-labelledby="emailCheckModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
-    <div class="modal-content" style="width:330px;height:240px;">
+    <div class="modal-content" style="width:330px;height:270px;">
       <div class="modal-body" id="modal-body-email" style="padding: 50px 40px 30px; font-size: 16px; text-align: center; letter-spacing: -0.5px;">
         <div id="email-check-1">
-          이메일 인증을 해주세요.
+          <div>작가 인증은 대학교 이메일로</div>
+          <div>인증이 가능합니다.</div>
+          <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
           <br>
           <button id="sendEmail" type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">인증번호 보내기</button>
         </div>
