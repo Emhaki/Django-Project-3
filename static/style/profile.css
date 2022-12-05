@@ -14,6 +14,7 @@
     width: 80%;
     height: 80%;
     display: flex;
+    align-items: center;
 }
 
 .profile__container__info {
@@ -38,6 +39,7 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .profile__container__info__img__back {
@@ -95,6 +97,17 @@
     font-size: 1vw;
     color: white;
     transition: all .3s;
+}
+
+/* writer check */
+.profile__container__info__writer {
+    width: 100%;
+    height: 7%;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    background-color: var(--main);
+    font-size: 1.2vw;
+    color: var(--white)
 }
 
 /* hr */
@@ -246,6 +259,12 @@
 /* 1500px 일때 프로필, 글자 조정 */
 
 @media (max-width: 1500px) {
+    .profile__container__info {
+        width: 25%;
+        height: 90%;
+        transition: all .3s;
+    }
+
     .profile__container__info__img__back {
         width: 90%;
         height: 60%;
@@ -263,6 +282,16 @@
         color: white;
         transform: translateY(-20%);
         transition: all .3s;
+    }
+
+    .profile__container__info__writer {
+        width: 100%;
+        height: 6%;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        background-color: var(--main);
+        font-size: 1.2vw;
+        color: var(--white)
     }
 
     .profile__container__info__hr {
@@ -285,6 +314,12 @@
 }
 
 @media (max-width: 1300px) {
+    .profile__container__info {
+        width: 25%;
+        height: 80%;
+        transition: all .3s;
+    }
+
     .profile__container__tabs__box__grid {
         margin-top: 5rem;
         width: 100%;
@@ -306,6 +341,12 @@
 }
 
 @media (max-width: 1100px) {
+
+    .profile__container__info {
+        width: 25%;
+        height: 60%;
+    }
+
     .profile__container__info__img__back {
         width: 90%;
         height: 60%;
@@ -427,10 +468,20 @@
         padding: 0;
         display: flex;
         align-items: center;
-        font-size: .9rem;
+        font-size: 1.5rem;
         margin-top: 1.5rem;
         color: white;
         transform: translateY(0);
+    }
+
+    .profile__container__info__writer {
+        width: 100%;
+        height: 10%;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        background-color: var(--main);
+        font-size: 2rem;
+        color: var(--white)
     }
 
     .profile__container__info__social {
@@ -500,5 +551,61 @@
         font-size: 4vw;
         margin-right: 1rem;
         margin-bottom: 1rem;
+    }
+}
+
+@media (max-height: 1100px) {
+    .profile__container__info__detail {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        align-items: center;
+        font-size: 1.8vh;
+        color: white;
+        transition: all .3s;
+    }
+
+    .profile__container__tabs__box__grid__card__main_title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 2vh;
+    }
+
+    .profile__container__tabs__box__grid__card__main_price {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        font-size: 1.5vh;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-height: 1100px) and (max-width: 1500px) {
+    .profile__container__info__detail {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        align-items: center;
+        font-size: 1.5vh;
+        color: white;
+        transition: all .3s;
+    }
+
+    .profile__container__info__detail {
+        transform: translateY(0%);
+    }
+}
+
+@media (max-height: 1100px) and (max-width: 1100px) {
+    .profile__container__info__detail {
+        font-size: 1vh;
+    }
+}
+
+@media (max-height: 1100px) and (max-width: 900px) {
+    .profile__container__info__detail {
+        font-size: 2vh;
     }
 }
