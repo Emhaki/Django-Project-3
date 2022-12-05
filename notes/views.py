@@ -24,12 +24,13 @@ dic = {
 
 # @login_required
 def index(request):
+
     notes = request.user.user_to.order_by("-created_at") # 받은거
     to_notes = request.user.user_from.order_by("-created_at") # 보낸거
     from_name = "from"
     to_name = "to_notes"
-
     print(request.GET.get("note"))
+
 
     # 받은 편지 페이지네이션
     paginator = Paginator(notes, 2)
@@ -61,6 +62,7 @@ def index(request):
 
     return render(request, "notes/index.html", context)
 
+
 # @login_required
 def send(request, user_pk):
     notes = request.user.user_to.order_by("-created_at")
@@ -79,13 +81,14 @@ def send(request, user_pk):
         temp.save()
         messages.success(request, "DM 전송 완료.😀")
         return redirect("notes:index")
-    
+
     context = {
         "notes": notes,
         "to_user": to_user,
         "form": form,
     }
     return render(request, "notes/send.html", context)
+
 
 # 버튼에 onclick을 걸어서 index에 보내고 index에서 데이터 받아올때 로직실행
 # @login_required
@@ -97,12 +100,13 @@ def detail(request, note_pk):
             note.save()
         if not request.user.user_to.filter(read=False).exists():
             request.user.save()
-        return render(request, "notes/detail.html", {"note":note})
-    elif request.user == note.from_user: # 보낸 사람일때는 내용은 보이고 읽음처리 x
+        return render(request, "notes/detail.html", {"note": note})
+    elif request.user == note.from_user:  # 보낸 사람일때는 내용은 보이고 읽음처리 x
         return render(request, "notes/detail.html", {"note": note})
     else:
         messages.error(request, "잘못된 접근입니다.😅")
         return redirect("notes:index")
+
 
 # @login_required
 def delete(request, note_pk):

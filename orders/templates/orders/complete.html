@@ -13,9 +13,11 @@
     <h1 class="complete__pagetitle ms-auto">구매 완료</h1>
   </div> -->
   <div class="complete__container">
+    {% for order in user_orders %}
     <div>
       <div class="complete__photo-section">
-        <img class="complete__photo" src="{% static 'photos/pic_1.png' %}" alt="작품">
+        <!-- <img class="complete__photo" src="{% static 'photos/pic_1.png' %}" alt="작품"> -->
+        <img class="complete__photo" src="{{ order.art.image.url }}" alt="{{ order.art.image }}">
       </div>
       <p class="complete__art-size">
         1220 x 1000
@@ -33,14 +35,14 @@
           <div class="receipt__orange orange-2"></div>
         </div>
         <h2 class="receipt__title">
-          Heimat
+          {{ order.art.title }}
         </h2>
         <p class="receipt__description">
-          The project title Heimat (which translates as ‘homeland’) is a politically charged term....
+          {{ order.art.content }}
         </p>
         <hr>
         <div class="receipt__profile">
-          <h4 class="receipt__artist-name">작가 이름</h4>
+          <h4 class="receipt__artist-name">{{ order.art.artist.nickname }}</h4>
           <div class="receipt__picture-link">
             <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
             <a class="receipt__dm-link" href="">
@@ -59,9 +61,10 @@
         <hr>
         <div class="receipt__footer">
           <p class="receipt__price">가격</p>
-          <p class="receipt__price">102,500 Won</p>
+          <p class="receipt__price">{{ order.accumulated_amount }} Won</p>
         </div>
       </div>
+      {% endfor %}
       <div class="receipt__btn">
         <a href="" class="btn btn-lg receipt__btn-link">메인으로
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"

@@ -90,24 +90,24 @@
 .profile__container__info__detail {
     width: 100%;
     height: 20%;
-    padding: 0 3rem;
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1vw;
     color: white;
+    transition: all .3s;
 }
 
 /* hr */
 
 .profile__container__info__hr {
-    margin: 1rem 3rem;
+    margin: 1rem 0;
     color: white;
     opacity: 1;
 }
 
 /* social */
 .profile__container__info__social {
-    padding: 0 3rem;
+    padding: 0;
     flex-direction: column;
 }
 
@@ -126,11 +126,11 @@
     margin-top: 2rem;
     width: 2rem;
     height: 2rem;
-    color:white;
+    color: white;
 }
 
 .profile__container__info__social div svg:hover {
-    color:black;
+    color: black;
     cursor: pointer;
 }
 
@@ -164,7 +164,7 @@
     height: 1.4vw;
 }
 
-.profile__container__tabs input[type="radio"]:checked + label {
+.profile__container__tabs input[type="radio"]:checked+label {
     background-color: white;
     color: black;
 }
@@ -191,6 +191,7 @@
     grid-template-rows: repeat(2, 50%);
     justify-content: center;
 }
+
 .profile__container__tabs__box__grid__card {
     width: 90%;
     height: 90%;
@@ -251,17 +252,19 @@
         position: relative;
         transition: all .3s;
     }
-    
+
     .profile__container__info__detail {
         width: 100%;
         height: 20%;
         padding: 0;
         display: flex;
         align-items: center;
-        font-size: .9rem;
+        font-size: 1.1vw;
         color: white;
-        transform: translateY(-15%);
+        transform: translateY(-20%);
+        transition: all .3s;
     }
+
     .profile__container__info__hr {
         margin: 1rem 0 1rem 0;
         color: white;
@@ -274,6 +277,7 @@
         padding: 0 1rem;
         transition: all .3s;
     }
+
     .profile__container__info__social {
         padding: 0;
         flex-direction: column;
@@ -292,11 +296,12 @@
         overflow-x: hidden;
         overflow-y: scroll;
     }
+
     .profile__container__tabs__box__grid__card {
         width: 90%;
         height: 90%;
         padding: 0 1rem;
-        
+
     }
 }
 
@@ -305,7 +310,7 @@
         width: 90%;
         height: 60%;
         position: relative;
-        
+
     }
 
     .profile__container__info__detail {
@@ -317,6 +322,7 @@
         font-size: 1.1vw;
         color: white;
     }
+
     .profile__container__info__hr {
         margin: 1rem 0 1rem 0;
         color: white;
@@ -327,12 +333,14 @@
         width: 100%;
         height: 90%;
         padding: 0 1rem;
-        
+
     }
+
     .profile__container__info__social {
         padding: 0;
         flex-direction: column;
     }
+
     .profile__container__info__social p {
         font-size: 1.8rem;
         font-weight: bold;
@@ -375,6 +383,7 @@
         align-items: center;
         transition: all .3s;
     }
+
     .profile__container__info__img__back {
         width: 90%;
         height: 60%;
@@ -423,7 +432,7 @@
         color: white;
         transform: translateY(0);
     }
-    
+
     .profile__container__info__social {
         padding: 0;
         flex-direction: column;
@@ -435,6 +444,7 @@
         width: 90%;
         height: 100%;
     }
+
     .profile__container__tabs__box__grid {
         margin-top: 2rem;
         width: 100%;
@@ -445,11 +455,13 @@
         justify-content: center;
         overflow: auto;
     }
+
     .profile__container__tabs__box__grid__card {
         width: 100%;
         height: 100%;
         padding: 0 1rem;
     }
+
     .profile__container__tabs label {
         width: 22.5%;
         font-size: 2.5vw;
@@ -459,10 +471,12 @@
         cursor: pointer;
         padding: 1rem;
     }
+
     .profile__container__tabs label[id="tab05"] svg {
         width: 4vw;
         height: 4vw;
     }
+
     .profile__container__tabs__box__grid__card__imgbox__icon {
         position: absolute;
         width: 6vw;
@@ -471,12 +485,14 @@
         color: gray;
         transition: all .3s;
     }
+
     .profile__container__tabs__box__grid__card__main_title {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
         font-size: 5vw;
     }
+
     .profile__container__tabs__box__grid__card__main_price {
         position: absolute;
         right: 0;
