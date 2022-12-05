@@ -229,7 +229,7 @@
 {% endfor %}
 {% comment %} 추후에 버튼 클릭시 비동기로 보여주게끔 구현 request.user랑 user_pk와 같아야 보이게끔 {% endcomment %}
   <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
-  <button type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
+  <button class="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal">이메일 인증</button>
 {% comment %}  {% endcomment %}
 
 <!--이메일 인증 모달-->

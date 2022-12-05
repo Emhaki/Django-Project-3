@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'style/post.css' %}">
 {% endblock css %}
 {% block content %}
+
 <section class="post_back">
   <section class="post__cover">
     <h1 class="post__cover__h1">DM 페이지</h1>
@@ -206,6 +207,26 @@
       const div = document.querySelector("#readbool")
       div.innerText = "읽음여부: True"
     })
+  }
+
+  function remove(event) {
+    console.log(event.target.dataset.noteId)
+    var delete_warngin = confirm("편지를 삭제하시겠습니까?")
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    if (delete_warngin == true) {
+      axios({
+        method: 'post',
+        url: `/notes/${event.target.dataset.noteId}/delete/`,
+        headers: {'X-CSRFToken': csrftoken},
+        data: {'note_pk': event.target.dataset.noteId},
+      })
+      .then(res => {
+        const resdata = res.data.pk
+        const div = document.getElementById(resdata)
+        console.log(div)
+        div.remove()
+      })
+    }
   }
   </script>
 
