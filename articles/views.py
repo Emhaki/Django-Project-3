@@ -3,14 +3,42 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .models import Art, Comment
 from .forms import ArtForm, CommentForm
-
+from django.core.paginator import Paginator
+import re
 
 def main(request):
     arts = Art.objects.order_by('pk')
+    # 작품 카테고리
+    category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
+    art_type_all = "모든 작품"
+    art_type = re.sub(r"[0-9]", "", request.GET.get("type"))
 
-    context = {
-        'arts': arts
-    }
+    # 페이지네이션
+    paginator = Paginator(arts, 8)
+    page_number = request.GET.get("type")
+
+    if request.GET.get("type"):
+        name = re.sub(r"[0-9]", "", request.GET.get("type"))
+        arts = Art.objects.filter(art_category__contains=name)
+        paginator = Paginator(arts, 8)
+        page_number = re.sub(r"[^0-9]", "", request.GET.get("type")) 
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'arts': arts,
+            'name': name,
+            'page_obj': page_obj,
+            'category': category, 
+            'art_type': art_type,
+            'art_type_all': art_type_all,
+        }
+        return render(request, "articles/main.html", context)
+    
+    else:
+       context = {
+        'arts': arts,
+        'category': category,
+        'art_type_all': art_type_all,
+        }
     return render(request, "articles/main.html", context)
 
 # @artist_required
