@@ -64,7 +64,7 @@
             <!-- 이전페이지 -->
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
+                <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.previous_page_number }}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -76,11 +76,11 @@
                 {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
                   {% if page_number == page_obj.number %}
                     <li class="page-item active" aria-current="page">
-                      <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                      <a class="page-link text-bg-danger border-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% else %}
                     <li class="page-item">
-                        <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                        <a class="page-link text-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -88,7 +88,7 @@
             
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+                <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.next_page_number }}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -156,7 +156,7 @@
             <!-- 이전페이지 -->
             {% if to_page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
+                <a class="page-link text-danger" href="?note={{to_name}}{{ to_page_obj.previous_page_number }}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -168,11 +168,11 @@
                 {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
                   {% if page_number == to_page_obj.number %}
                     <li class="page-item active" aria-current="page">
-                      <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                      <a class="page-link text-bg-danger border-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% else %}
                     <li class="page-item">
-                        <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                        <a class="page-link text-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -180,7 +180,7 @@
             
             {% if to_page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+                <a class="page-link text-danger" href="?note={{to_name}}{{ page_obj.next_page_number }}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
