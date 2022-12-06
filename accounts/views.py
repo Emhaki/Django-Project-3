@@ -5,6 +5,8 @@ import requests
 from django.contrib import messages
 from random import random
 from .forms import *
+from articles .models import *
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -86,16 +88,16 @@ def kakao_callback(request):
     # 이메일 동의 안할시 공백을 주었음
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
-    if get_user_model().objects.filter(username=kakao_id).exists():
-        kakao_user = get_user_model().objects.get(username=kakao_id)
+    if get_user_model().objects.filter(test=kakao_id).exists():
+        kakao_user = get_user_model().objects.get(test=kakao_id)
         kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
-        auth_login(request, kakao_user)
+        auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect("accounts:profile", request.user.pk)
     else:
         kakao_login_user = get_user_model().objects.create(
-            username=kakao_id,
+            test=kakao_id,
             nickname=kakao_nickname,
             profileimage=kakao_profile_image,
             email=kakao_email,
@@ -103,8 +105,8 @@ def kakao_callback(request):
         )
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
-        kakao_user = get_user_model().objects.get(username=kakao_id)
-        auth_login(request, kakao_user)
+        kakao_user = get_user_model().objects.get(test=kakao_id)
+        auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect("accounts:kakao_signup")
 
 
@@ -167,12 +169,23 @@ def logout(request):
   auth_logout(request)
   return redirect("accounts:index")
 
+# 
+# 
 def profile(request, user_pk):
   profiles = get_user_model().objects.filter(pk=user_pk)
   creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
+  # 작가가 등록한 작품들
+  arts = Art.objects.filter(artist=user_pk).order_by("-pk")
+
+  paginator = Paginator(arts, 6)
+  page_number = request.GET.get("page")
+  page_obj = paginator.get_page(page_number)
+
   context = {
     "profiles" : profiles,
     "creater": creater,
+    "arts" : arts,
+    "page_obj": page_obj,
   }
   return render(request, "accounts/profile.html", context)
 
