@@ -32,7 +32,7 @@
         </div>
         <div class="basket__price ms-auto">
           <h5 class="my-0 mx-3">{{ item.art.price }} Won</h5>
-          <a href="" class="basket__button btn mx-5">삭제하기</a>
+          <a href="{% url 'articles:delete' art.pk cartitem_pk %}" class="basket__button btn mx-5">삭제하기</a>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
     <a href="{% url 'articles:main' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">작품 목록으로</p>
     </a>
-    <h2 class="ms-auto my-0 mx-5">{{ total }} Won</h2>
+    <h2 class="ms-auto my-0 mx-5">{{ total_price }} Won</h2>
     <a href="" class="basket__footerbtn btn">
       <p class="basket__footerfont">주문하기</p>
     </a>
