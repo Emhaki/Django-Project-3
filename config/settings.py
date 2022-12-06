@@ -31,13 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-PJT_APPS = [
-    "notes",
-    "orders",
-    "accounts",
-    "articles",
-    "questions"
-]
+PJT_APPS = ["notes", "orders", "accounts", "articles", "questions"]
 
 LIBRARY_APPS = [
     "imagekit",
@@ -159,3 +153,11 @@ EMAIL_HOST_PASSWORD = "tltkvqodqjbtivuw"
 EMAIL_USE_TLS = True
 
 
+BOOTSTRAP5 = {
+    # Label class to use in horizontal forms.
+    "horizontal_label_class": "col-sm-3",
+    # Field class to use in horizontal forms.
+    "horizontal_field_class": "col-sm-9",
+    # Field class used for horizontal fields withut a label.
+    "horizontal_field_offset_class": "offset-sm-2",
+}

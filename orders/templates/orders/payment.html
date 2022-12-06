@@ -4,82 +4,232 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'style/payment.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
 {% endblock css %}
 
 {% block content %}
 
 <div class="container">
-    <div class="row">
-      <div class="col-7">
-        <h3>결제</h3>
-        <p>본인 정보가 정확한지 확인해주세요.</p>
-        <div>
-          <form id="payment-form" action="" method="POST" class="form">
-            {% csrf_token %}
-          </form>
+  <div class="d-flex justify-content-start">
+    <div class="payment__user-section">
+      <h3 class="payment__title">결제</h3>
+      <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
+      <form id="payment-form" action="" method="POST" class="form">
+        {% csrf_token %}
+        {% bootstrap_form payment_form layout='horizontal' %}
+        <!-- Button trigger modal -->
+        <div class="d-flex mt-5">
+          <button type="button" class="modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+            전자상거래 표준 약관 확인
+          </button>
+          <button type="button" class="modal-btn ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+            택배 이용 약관 확인
+          </button>
         </div>
-      </div>
-      <div class="col-5">
-        {% for item in cart_items %}
-        <div>
-          <img src="{{ item.art.image.url }}" alt="{{ item.art.image }}" width="280" height="350">
+        <!-- Modal -->
+        <div class="modal fade m-0" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog d-flex justify-content-center">
+            <div class="modal-content" style="width:50rem; height: 50rem;">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">표준약관</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body payment__modal-1">
+                <iframe id="term1" src="{% static 'docs/term1.htm' %}" style="width:100%; height:39rem;"></iframe>
+              </div>
+              <div class="modal-footer">
+                <div class="ms-2">
+                  <form id="terms-agree-form-1">
+                    <input id="terms-check-1" class="mx-2" type="checkbox" name="terms1">
+                    <label for="terms-check-1">동의합니다.</label>
+                  </form>
+                </div>
+                <div>
+                  <button form="terms-agree-form-1" id="OK-1" name="OK1" type="submit" class="btn btn-primary" disabled
+                    data-bs-dismiss="modal">확인</button>
+                  <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4>{{ item.art.title }}</h4>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog d-flex justify-content-center">
+            <div class="modal-content" style="width:50rem; height: 50rem;">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">택배약관</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body payment__modal-2">
+                <iframe id="term2" src="{% static 'docs/term2.htm' %}" style="width:100%; height:39rem;"></iframe>
+              </div>
+              <div class="modal-footer">
+                <div class="ms-2">
+                  <form id="terms-agree-form-2">
+                    <input id="terms-check-2" class="mx-2" type="checkbox" name="terms2">
+                    <label for="terms-check-2">동의합니다.</label>
+                  </form>
+                </div>
+                <div>
+                  <button form="terms-agree-form-2" id="OK-2" name="OK2" type="submit" class="btn btn-primary" disabled
+                    data-bs-dismiss="modal">확인</button>
+                  <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <p>상품가격 {{ item.art.price }}</p>
-        </div>
-        {% endfor %}
-        <hr>
-        <div>
-          <p>총 상품가격 {{ total_price }}</p>
-          <p>배송요금 {{ delivery_fee }}</p>
-          <p class="text-muted">총 상품가격이 300000원 이상일 경우 배송요금은 0원 입니다.</p>
-          <hr>
-          <h3>총가격</h3>
-          <h3>{{ billing_amount }}</h3>
-        </div>
-      </div>
+      </form>
     </div>
-    <div class="d-flex justify-content-center">
-      {% bootstrap_button id="order_btn" form="payment-form" button_type="submit" button_class="btn btn-lg" content="결제하기" style="width: 10rem;" %}
+    <div class="payment__art-section">
+      <div id="simplebar__art-section">
+        {% for item in cart_items %}
+        <div class="art__photo-section">
+          <img class="art__photo" src="{{ item.art.image.url }}" alt="{{ item.art.image }}">
+        </div>
+        <div class="payment__art-description-1">
+          <p class="art__title">{{ item.art.title }}</p>
+          <p class="art__artist">{{ item.art.artist }}</p>
+        </div>
+        <div class="payment__art-description-2">
+          <p class="art__year">{{ item.art.painted_year }}</p>
+          <p class="art__way">{{ item.art.painted_way }}</p>
+          <p class="art__size">{{ item.art.art_size }}</p>
+        </div>
+        <div class="payment__art-description-3">
+          <p class="art__howmuch">작품 가격</p>
+          <p class="art__price">₩ {{ item.art.price }}</p>
+        </div>
+        <hr>
+        {% endfor %}
+      </div>
+      <hr>
+      <div class="payment__total-price-1">
+        <p class="total-1">작품 총 가격</p>
+        <p class="total-2">₩ {{ total_price }}</p>
+      </div>
+      <div class="payment__total-price-2">
+        <p class="fee-1">배송료</p>
+        <p class="fee-2">₩ {{ delivery_fee }}</p>
+      </div>
+      <p class="fee-3">₩ 300,000 이상일 경우 배송료 무료입니다.</p>
+      <div class="payment__total-price-3">
+        <h3 class="total-3">총 가격</h3>
+        <h3 class="total-4">₩ {{ billing_amount }}</h3>
+      </div>
     </div>
   </div>
+  <div class="payment__execute-btn">
+    <button id="order_btn" form="payment-form" type="submit" class="payment__execute btn btn-lg">결제하기</button>
+  </div>
+</div>
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+<script>
+  const simpleBar2 = new SimpleBar(document.getElementById('simplebar__art-section'));
 
-  <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-  <script>
-    const orderBtn = document.getElementById('order_btn')
-    orderBtn.addEventListener('click', function (event) {
-      event.preventDefault();
-      
-      var IMP = window.IMP;
-      IMP.init('imp12672042'); // 가맹점 식별코드
-      console.log(IMP)
-      // 결제요청
-      IMP.request_pay({
-        pg: 'html5_inicis', // pg사 == 이니시스
-        pay_method: 'card',
-        merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호
-        name: '주문명:결제테스트',
-        amount: '{{ billing_amount }}',
-        buyer_name: '{{ request.user.nickname }}',
-        buyer_email: '{{ request.user.email }}',
+  const orderBtn = document.getElementById('order_btn')
+  orderBtn.addEventListener('click', function (event) {
+    event.preventDefault();
 
-      }, function (rsp) {
-        if ( rsp.success ) {
-          var msg = '결제가 완료되었습니다.';
-          msg += '결제 금액 : ' + rsp.paid_amount +'원';
-          // location.href = "/orders/order/?shipping_address=" + shipping_address.value + "&contact_number=" + shipping_phoneNum.value;
+    var IMP = window.IMP;
+    IMP.init('imp12672042'); // 가맹점 식별코드
+    console.log(IMP)
+    // 결제요청
+    IMP.request_pay({
+      pg: 'html5_inicis', // pg사 == 이니시스
+      pay_method: 'card',
+      merchant_uid: 'merchant_' + new Date().getTime(), // 주문번호
+      name: '주문명: 결제테스트',
+      amount: '{{ billing_amount }}',
+      buyer_name: '{{ request.user.nickname }}',
+      buyer_email: '{{ request.user.email }}',
 
-        }
-        else {
-          var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg;
+    }, function (rsp) {
+      if (rsp.success) {
+        var msg = '결제가 완료되었습니다.';
+        msg += '결제 금액 : ' + rsp.paid_amount + '원';
+        // location.href = "/orders/order/?shipping_address=" + shipping_address.value + "&contact_number=" + shipping_phoneNum.value;
 
-        }
-        alert(msg);
-      });
+      }
+      else {
+        var msg = rsp.error_msg;
+
+      }
+      alert(msg);
     });
-  </script>
+  });
+</script>
+<script>
+  const modalSet = document.querySelectorAll(".modal-dialog");
+  for (i = 0; i < modalSet.length; i++) {
+    modalSet[i].style.setProperty("max-width", "none");
+  }
+</script>
+<script>
+  const OKbtn1 = document.querySelector("#OK-1");
+  const OKbtn2 = document.querySelector("#OK-2");
+  const check1 = document.querySelector("#terms-check-1");
+  const check2 = document.querySelector("#terms-check-2");
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+  check1.addEventListener("click", function () {
+    const check1_is_checked = document.querySelector("#terms-check-1").checked;
+    if (check1_is_checked) {
+      OKbtn1.disabled = false;
+    } else {
+      OKbtn1.disabled = true;
+    };
+  });
+
+  check2.addEventListener("click", function () {
+    const check2_is_checked = document.querySelector("#terms-check-2").checked;
+    if (check2_is_checked) {
+      OKbtn2.disabled = false;
+    } else {
+      OKbtn2.disabled = true;
+    };
+  });
+
+  OKbtn1.addEventListener("click", function () {
+    event.preventDefault();
+    const check1_is_checked = document.querySelector("#terms-check-1").checked;
+    const formData = new FormData();
+    formData.append("is_checked", check1_is_checked);
+    axios({
+      method: 'post',
+      url: `/orders/agree/`,
+      headers: { 'X-CSRFToken': csrftoken },
+      data: formData,
+    })
+      .then(response => {
+        if (response.data.is_agreed) {
+          console.log(response.data.is_agreed);
+        }
+      });
+  });
+
+  OKbtn2.addEventListener("click", function () {
+    event.preventDefault();
+    const check2_is_checked = document.querySelector("#terms-check-2").checked;
+    const formData = new FormData();
+    formData.append("is_checked", check2_is_checked);
+    axios({
+      method: 'post',
+      url: `/orders/agree/`,
+      headers: { 'X-CSRFToken': csrftoken },
+      data: formData,
+    })
+      .then(response => {
+        if (response.data.is_agreed) {
+          console.log(response.data.is_agreed);
+        }
+      });
+  });
+</script>
 {% endblock content %}

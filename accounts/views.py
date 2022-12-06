@@ -23,6 +23,7 @@ from django.contrib.auth import logout as auth_logout
 def index(request):
     return render(request, "accounts/index.html")
 
+
 import secrets, os
 
 state_token = secrets.token_urlsafe(16)
@@ -77,15 +78,14 @@ def kakao_callback(request):
     # 'is_default_image': False}, 'has_email': True, 'email_needs_agreement': False, 'is_email_valid': True, 'is_email_verified': True, 'email': 'mhmh779@naver.com'}
     # }
 
-    # 이메일 동의 안할시 널값 주기
-    kakao_id = user_info_response['id']
-    kakao_nickname = user_info_response['properties']['nickname']
+    # 이메일 동의 안할시 공백을 주었음
+    kakao_id = user_info_response["id"]
+    kakao_nickname = user_info_response["properties"]["nickname"]
     kakao_email = (
         user_info_response["kakao_account"].get("email")
         if "email" in user_info_response["kakao_account"]
         else ""
     )
-    # 이메일 동의 안할시 공백을 주었음
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(test=kakao_id).exists():
@@ -163,11 +163,13 @@ def login(request):
             auth_login(request, form.get_user())
             return redirect("accounts:index")
     else:
-      return render(request, "accounts/login.html")
+        return render(request, "accounts/login.html")
+
 
 def logout(request):
-  auth_logout(request)
-  return redirect("accounts:index")
+    auth_logout(request)
+    return redirect("accounts:index")
+
 
 # 
 # 
@@ -188,6 +190,7 @@ def profile(request, user_pk):
     "page_obj": page_obj,
   }
   return render(request, "accounts/profile.html", context)
+
 
 # 이메일 인증
 def send_valid_number(request):
@@ -213,6 +216,7 @@ def send_valid_number(request):
 
     return JsonResponse({"validnumber": validnumber})
 
+
 def check_valid_number(request):
     valid_number = json.loads(request.body)["valid_number"]
     input_number = json.loads(request.body)["input_number"]
@@ -223,6 +227,7 @@ def check_valid_number(request):
     else:
         check = False
     return JsonResponse({"check": check})
+
 
 # 작가 인증
 def check_artist(request):
@@ -244,12 +249,13 @@ def check_artist(request):
     mail_subject = "[NES]이메일 인증번호입니다."
     user_email = json.loads(request.body)["user_email"]
     if "ac.kr" in user_email[:] or "edu" in user_email[-4:]:
-      email = EmailMessage(mail_subject, message, to=[user_email])
-      email.send()
-      return JsonResponse({"validnumber": validnumber})
+        email = EmailMessage(mail_subject, message, to=[user_email])
+        email.send()
+        return JsonResponse({"validnumber": validnumber})
     else:
         messages(request, "학교 이메일이 아니에요.")
         return redirect("profile")
+
 
 def check_artist_number(request):
     user = get_object_or_404(get_user_model(), pk=request.user.pk)

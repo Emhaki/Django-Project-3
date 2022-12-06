@@ -20,6 +20,8 @@ class Migration(migrations.Migration):
             name='Order',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('username', models.CharField(max_length=10)),
+                ('requests', models.CharField(max_length=100)),
                 ('shipping_price', models.IntegerField()),
                 ('total_price', models.IntegerField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

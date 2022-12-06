@@ -3,7 +3,7 @@ from config.settings import AUTH_USER_MODEL
 from articles.models import Art
 
 delivery_choices = (
-    ("부재시 문 앞에 놓아주세요.", "부재시 문앞에 놓아주세요."),
+    ("부재시 문 앞에 놓아주세요.", "부재시 문 앞에 놓아주세요."),
     ("부재시 경비실에 맡겨주세요.", "부재시 경비실에 맡겨주세요."),
     ("부재시 전화 또는 문자주세요.", "부재시 전화 또는 문자 주세요."),
     ("택배함에 넣어주세요.", "택배함에 넣어주세요."),
@@ -41,26 +41,28 @@ class CartItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
+    username = models.CharField(max_length=10)
+    requests = models.TextField(max_length=100)
     shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     order_status = models.CharField(max_length=250, default="결제완료")
     contact_number = models.CharField(max_length=250, null=True)
-    delivery_option = models.CharField(max_length=50, choices=delivery_choices)
+    delivery_option = models.CharField(
+        max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
+    )
 
     # 사용자 주문 정보 (for 카카오 로그인)
     email = models.EmailField()
     address = models.CharField(max_length=250)
-    zip_code = models.CharField(max_length=20)
-    city = models.CharField(max_length=20)
 
     class Meta:
-        ordering = ['-created_at']
-    
+        ordering = ["-created_at"]
+
     def __str__(self):
-        return f'Order {self.id}'
-    
+        return f"Order {self.id}"
+
     def get_total_product(self):
         return sum(item.get_item_price() for item in self.item.all())
 
