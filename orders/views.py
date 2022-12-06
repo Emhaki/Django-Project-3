@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from articles.models import Art
 from .models import Order, CartItem
 from .forms import CartForm
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils import timezone
+from django.http import JsonResponse
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -103,16 +105,26 @@ def add_cart(request, art_pk):
             art=art,
         )
         cart.save()
+        in_cart = True
 
-    return redirect("orders:mycart")
+    context = {
+        "in_cart": in_cart,
+        "cart_length": cart.count(),
+    }
+
+    return redirect("orders:mycart", context)
 
 # 장바구니 삭제
-def delete_cart(request, pk, cartitem_pk):
-    cartitem = CartItem.objects.get(pk=cartitem_pk)
+def delete_cart(request, cartitem_pk):
+    cartitem = get_object_or_404(CartItem, pk=cartitem_pk)
     
-    if cartitem.user == request.user:
+    if cartitem.user == request.user and request.method == "POST":
         cartitem.delete()
-    return redirect("orders:mycart", pk)
+        return JsonResponse({"pk": cartitem_pk})
+    else:
+        messages.error(request, "남의 장바구니를 지울 수 없어요!")
+    return redirect("orders:mycart")
+
 
 # 주문 생성
 def create_order(request):
