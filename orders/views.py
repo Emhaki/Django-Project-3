@@ -67,11 +67,16 @@ def payment(request):
 
 # 장바구니
 def mycart(request):
-    cart_items = CartItem.objects.order_by("-id")
-
+    cart_items = CartItem.objects.filter(user_id=request.user.pk)
+    
+    # 장바구니 총 금액 
+    total_price = 0
+    for item in cart_items:
+        total_price += item.art.price
+        
     context = {
         "cart_items": cart_items,
-        # "total": total,
+        "total_price": total_price,
     }
 
     return render(request, "orders/mycart.html", context)
@@ -101,6 +106,13 @@ def add_cart(request, art_pk):
 
     return redirect("orders:mycart")
 
+# 장바구니 삭제
+def delete_cart(request, pk, cartitem_pk):
+    cartitem = CartItem.objects.get(pk=cartitem_pk)
+    
+    if cartitem.user == request.user:
+        cartitem.delete()
+    return redirect("orders:mycart", pk)
 
 # 주문 생성
 def create_order(request):
