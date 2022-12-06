@@ -46,8 +46,6 @@ def main(request):
 # 작가만 작품 등록할 수 있도록
 def create(request):
     if request.method == "POST":
-        print(request.POST)
-        print(request.FILES)
         art_form = ArtForm(request.POST, request.FILES)
         if art_form.is_valid():
             art = art_form.save(commit=False)
