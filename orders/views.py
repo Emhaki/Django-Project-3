@@ -72,8 +72,8 @@ def payment(request):
 # 장바구니
 def mycart(request):
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    
-    # 장바구니 총 금액 
+
+    # 장바구니 총 금액
     total_price = 0
     for item in cart_items:
         total_price += item.art.price
@@ -89,43 +89,42 @@ def mycart(request):
 # 장바구니 추가
 def add_cart(request, art_pk):
     # 장바구니 담기
-    art = Art.objects.get(pk=art_pk)
+    my_pick = Art.objects.get(pk=art_pk)
+    my_cart = CartItem.objects.filter(user__id=request.user.pk)
 
-    try:
-        cart = CartItem.objects.get(art__pk=art.pk, user__id=request.user.pk)
-
-        # 장바구니에 해당 작품이 있으면 삭제
-        if cart:
-            if cart.art.title == art.title:
-                cart.delete()
-                in_cart = False
-
-    except CartItem.DoesNotExist:
+    if my_cart.filter(art__pk=my_pick.pk).exists():
+        already = my_cart.get(art__pk=my_pick.pk)
+        already.delete()
+        in_cart = False
+    else:
         user = User.objects.get(pk=request.user.pk)
         cart = CartItem(
             user=user,
-            art=art,
+            art=my_pick,
         )
         cart.save()
         in_cart = True
 
-    context = {
-        "in_cart": in_cart,
-        "cart_length": cart.count(),
-    }
+    # context = {
+    #     "in_cart": in_cart,
+    # }
+    return redirect("orders:mycart")
 
-    return redirect("orders:mycart", context)
 
 # 장바구니 삭제
-def delete_cart(request, cartitem_pk):
-    cartitem = get_object_or_404(CartItem, pk=cartitem_pk)
-    
-    if cartitem.user == request.user and request.method == "POST":
-        cartitem.delete()
-        return JsonResponse({"pk": cartitem_pk})
+def delete_cart(request, art_pk):
+    my_pick = Art.objects.get(pk=art_pk)
+    my_cart = CartItem.objects.filter(user__id=request.user.pk)
+    if request.method == "POST":
+        target = my_cart.get(art__pk=my_pick.pk)
+        target.delete()
+        context = {
+            "artPk": art_pk,
+        }
+        return JsonResponse(context)
     else:
-        messages.error(request, "남의 장바구니를 지울 수 없어요!")
-    return redirect("orders:mycart")
+        messages.error(request.user.nickname, "님의 장바구니를 지울 수 없어요!")
+        return redirect("orders:mycart")
 
 
 # 주문 완료
