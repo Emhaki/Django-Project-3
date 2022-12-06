@@ -141,44 +141,53 @@
                     />
                   </svg>
                 </button>
+              </form>
             </div>
-          </form>
+
           {% for type in category %}
           <ul class="menu__list">
-            <li><a href="?type={{ type }}">{{ type }}</a></li>
+            <li>
+              <form action="{% url 'articles:main' %}">
+              <button type="submit" name="type" value="{{type}}">{{ type }}</button>      
+              </form>        
+            </li>
           </ul>
           {% endfor %}
         </div>
       </div>
 
-      <!-- image -->
+      <!-- 검색결과 -->
       <div class="main__view">
         <header>
-          <p class="view__title">{{ name }}</p>
-          <p class="view__subtitle">
-            중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온
-            그림(수정)
-          </p>
+        {% if not question_list  %}
+        <p class="view__title">{{ search }}에 대한 검색 결과가 없습니다.</p>
+        {% else %}
+          <p>메롱</p>
+          {% if search == None %}
+          <p class="view__title">검색 결과가 없습니다.</p>
+          {% else %}
+          <p class="view__title">{{ search }}에 대한 검색 결과</p>
+          <p class="view__subtitle"></p>
+          {% endif %}
+        {% endif %}
         </header>
-
         <!-- image -->
-        {% for type in page_obj %}        
+        {% for art in question_list %}        
         <div class="view__images">
-          <a href={% url 'articles:detail' type.pk %}>
-          <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
+          <a href={% url 'articles:detail' art.pk %}>
+          <img src="{{ art.image.url }}" alt="{{ art.image }}" class="">
           </a>
         </div>
         {% endfor %}
-
-
+        
         <!--페이지네이션-->
         {% comment %} <div class="view__pagination">페이지네이션 자리</div> {% endcomment %}
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
-            {% if page_obj.has_previous %}
+            {% if question_list.has_previous %}
             <li class="page-item disabled">
-              <a class="page-link" href="?type={{name}}{{ page_obj.previous_page_number }}">Previous</a>
+              <a class="page-link" href="?search ={{search }}&page={{ question_list.previous_page_number }}">Previous</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -187,24 +196,24 @@
             {% endif %}
 
             <!-- 현재페이지 -->
-            {% for page_number in page_obj.paginator.page_range %}
-              {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
-                {% if page_number == page_obj.number %}
+            {% for page_number  in question_list.paginator.page_range %}
+              {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+                {% if page_number == question_list.number %}
                   <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?type={{name}}{{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
                   </li>
                 {% else %}
                 <li class="page-item">
-                  <a class="page-link" href="?type={{name}}{{ page_number }}">{{ page_number }}</a>
-                </li>
+                  <a class="page-link" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
+                </li> 
                 {% endif %}
               {% endif %}
             {% endfor %}
 
             <!-- 다음페이지 -->
-            {% if page_obj.has_next %}
+            {% if question_list.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?type={{name}}{{ page_obj.next_page_number }}">Next</a>
+              <a class="page-link" href="?search={{search}}&page={{ question_list.next_page_number }}">Next</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -216,4 +225,19 @@
       </div>
     </section>
   </section>
+  {% comment %} <script type='text/javascript'>
+    const page_elements = document.getElementsByClassName("page-link");
+    Array.from(page_elements).forEach(function(element) {
+        element.addEventListener('click', function() {
+            document.getElementById('page').value = this.dataset.page;
+            document.getElementById('searchForm').submit();
+        });
+    });
+    const btn_search = document.getElementById("btn_search");
+    btn_search.addEventListener('click', function() {
+        document.getElementById('q').value = document.getElementById('q').value;
+        document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+        document.getElementById('searchForm').submit();
+    });
+  </script> {% endcomment %}
 {% endblock content %}
