@@ -16,38 +16,38 @@
 <div class="container">
   <h1 class="basket__title">{{ request.user.nickname }} 님의 장바구니</h1>
   <div id="basket__simplebar" class="basket__content">
-    {% for item in cart_items %}
-    <div class="d-flex">
-      <div class="basket__photo">
-        <img class="basket__photo-object" src="{{ item.art.image.url }}" alt="{{ item.art_image }}">
-      </div>
-      <div class="basket__object">
-        <div class="basket__info">
-          <h2 class="my-2">
-            {{ item.art.title }}
-          </h2>
-          <p class="my-2">
-            {{ item.art.artist.nickname }}
-          </p>
+    <form id="basket-form">
+      {% csrf_token %}
+      {% for item in cart_items %}
+      <div id="art-{{ item.art.pk }}" class="d-flex">
+        <div class="basket__photo">
+          <img class="basket__photo-object" src="{{ item.art.image.url }}" alt="{{ item.art_image }}">
         </div>
-        <div class="basket__price ms-auto">
-          <h5 class="my-0 mx-3">{{ item.art.price }} Won</h5>
-          <!-- 장바구니에서 삭제 -->
-          <button data-note-id="{{cartitem.pk}}" value="{{cartitem.pk}}" onclick="remove(event)" class="basket__button btn mx-5">
-            {% csrf_token %}
-            삭제하기
-          </button>
+        <div class="basket__object">
+          <div class="basket__info">
+            <h2 class="my-2">
+              {{ item.art.title }}
+            </h2>
+            <p class="my-2">
+              {{ item.art.artist.nickname }}
+            </p>
+          </div>
+          <div class="basket__price ms-auto">
+            <h5 class="my-0 mx-3">₩ {{ item.art.price|default:"0" }}</h5>
+            <!-- 장바구니에서 삭제 -->
+            <button type="submit" data-art-id="{{ item.art.pk }}"
+              class="remove-btn basket__button btn mx-5">삭제하기</button>
+          </div>
         </div>
-
       </div>
-    </div>
-    {% endfor %}
+      {% endfor %}
+    </form>
   </div>
   <div class="basket__footer">
     <a href="{% url 'articles:main' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">작품 목록으로</p>
     </a>
-    <h2 class="ms-auto my-0 mx-5">{{ total_price }} Won</h2>
+    <h2 class="ms-auto my-0 mx-5">₩ {{ total_price }}</h2>
     <a href="{% url 'orders:payment' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">결제하기</p>
     </a>
@@ -55,6 +55,8 @@
 </div>
 
 {% block js %}
+{% endblock js %}
+
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script>
   new SimpleBar(document.getElementById('basket__simplebar'));
@@ -62,26 +64,25 @@
 
 <!-- 상품 삭제 -->
 <script>
-  function remove(event) {
-    console.log(event.target.dataset.cartitemId)
-    var delete_warngin = confirm("작품을 장바구니에서 삭제하시겠습니까?")
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-    if (delete_warngin == true) {
-      axios({
-        method: 'post',
-        url: `/orders/mycart/${event.target.dataset.cartitemId}/delete/`,
-        headers: {'X-CSRFToken': csrftoken},
-        data: {'cartitem_pk': event.target.dataset.cartitemId},
-      })
-      .then(res => {
-        const resdata = res.data.pk
-        const div = document.getElementById(resdata)
-        console.log(div)
-        div.remove()
-      })
-    }
-  }
+  const removeBtnSet = document.querySelectorAll(".remove-btn");
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  for (i = 0; i < removeBtnSet.length; i++) {
+    removeBtnSet[i].addEventListener("click", function (event) {
+      event.preventDefault();
+      let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
+      if (delete_warning === true) {
+        axios({
+          method: 'post',
+          url: `/orders/mycart/${event.target.dataset.artId}/delete/`,
+          headers: { 'X-CSRFToken': csrftoken },
+        })
+          .then(response => {
+            const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
+            targetDiv.remove();
+          });
+      };
+    });
+  };
 </script>
-{% endblock js %}
 
 {% endblock content %}
