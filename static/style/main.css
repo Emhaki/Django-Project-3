@@ -171,8 +171,7 @@ input[type='search']::-webkit-search-cancel-button {
 
 /* image */
 .main__view {
-  /* width: calc(100% - 400px); */
-  width: 82%;
+  width: 80%;
   height: 85vh;
   margin-left: 2rem;
 }
@@ -202,9 +201,11 @@ input[type='search']::-webkit-search-cancel-button {
 
 .view__images > a > img {
   cursor: pointer;
-  margin: 0.2rem;
-  width: 236px;
-  height: 236px;
+  margin: 0.3rem;
+  width: 230px;
+  height: 230px;
+  /* width: 23%;
+  height: 40%; */
   border-radius: 0;
 }
 
