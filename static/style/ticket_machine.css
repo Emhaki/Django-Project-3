@@ -1,0 +1,212 @@
+@import url(./base.css);
+
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  height: 100%;
+  display: grid;
+  background-color: var(--main);
+}
+
+.ticket-machine {
+  position: absolute;
+  top: -10px;
+  left: 48%;
+  transform: translatex(-50%);
+  width: 600px;
+  height: 200px;
+  background-color: var(--high-sub);
+  border: 2px solid #000;
+  border-top: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 5px 4px 0 3.5px var(--highlight), 6px 5px 0 4.5px #000;
+}
+
+.slot-wrapper {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translatex(-60%);
+  width: 360px;
+  height: 40px;
+  margin: auto;
+  background-color: #ffe;
+  border: 2px solid #000;
+  border-radius: 20px;
+  box-shadow: 2px 2px #ffa, 3px 3px #000;
+}
+
+#printer-slot {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translatex(-48%);
+  width: 280px;
+  height: 2px;
+  background-color: #000;
+}
+
+.wrapper {
+  position: relative;
+  top: -730px;
+  left: 39%;
+  transform: translatex(-60%);
+  width: 250px;
+  display: none;
+  transition-duration: 5s;
+}
+
+.dest {
+  color: #fa0;
+  font-size: 22px;
+  -webkit-text-stroke: 1px #fff;
+}
+
+.ticket-cover {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translatex(-61%);
+  width: 280px;
+  height: 20px;
+  background-color: #ffe;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+.ticket__logo {
+  position: absolute;
+  top: 9rem;
+  width: 6rem;
+  height: 3rem;
+}
+
+#btn {
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 130px;
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 25px;
+  color: #fff;
+  font-weight: 700;
+}
+
+#btn:hover {
+  background-color: white;
+  color: var(--highlight);
+  transition: all 200ms ease-in-out;
+}
+
+/* 티켓 */
+.ticket {
+  transform: rotate(90deg);
+  font-family: sans-serif;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100%;
+  background-color: #04030c;
+  width: 550px;
+  height: 250px;
+  border-radius: 15px;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  display: block;
+  margin: auto;
+  color: #fff;
+}
+
+.date {
+  margin: 5px;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.date .day {
+  font-size: 50px;
+  float: left;
+}
+
+.date .month-and-time {
+  float: left;
+  margin: 15px 0 0 0;
+  font-weight: bold;
+}
+
+.artist {
+  font-size: 20px;
+  margin: 10px 100px 0 40px;
+  float: left;
+  font-weight: bold;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.location {
+  float: left;
+  margin: 110px 0 0 25px;
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.location::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/cb/QRCodeWikipedia.png');
+  background-size: 60px 60px;
+  width: 60px;
+  height: 60px;
+  content: '';
+  display: inline-block;
+  margin-left: 1rem;
+  position: absolute;
+  left: -90px;
+  bottom: 4px;
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.rip {
+  border-right: 5px dotted white;
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 450px;
+}
+
+.cta .buy {
+  position: absolute;
+  top: 82px;
+  right: -37px;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+}
+
+.small {
+  font-weight: 200;
+}
+
+.ticket-1 {
+  background-image: url(https://i.pinimg.com/564x/ff/1c/2e/ff1c2ea98d52b96c91033dcfb42a53c9.jpg);
+  background-position: 20% 60%;
+}
+
+#btn:active {
+  border-width: 3px;
+  transform: translate(-1px, -1px);
+}
