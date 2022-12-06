@@ -2,90 +2,33 @@
 {% load django_bootstrap5 %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'style/main.css' %}">
+  <link rel="stylesheet" href="{% static 'style/main.css' %}">
 {% endblock css %}
 {% block content %}
-<section class="main__bg">
+
+  <section class="main__bg">
     <nav class="articles__nav">
-      <button
-        class="offcanvas__btn btn btn-primary"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling"
-      >
-        <img
-          class="nav__logo"
-          src="../../../static/img/logo-orange.png"
-          alt="logo"
-        />
+      <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <img class="nav__logo" src="../../../static/img/logo-orange.png" alt="logo"/>
       </button>
-      <div
-        style="width: 16rem"
-        class="offcanvas offcanvas-start"
-        data-bs-scroll="true"
-        data-bs-backdrop="false"
-        tabindex="-1"
-        id="offcanvasScrolling"
-        aria-labelledby="offcanvasScrollingLabel"
-      >
+      <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
         <div class="offcanvas-header">
-          <img
-            class="offcanvas__logo offcanvas-title"
-            src="../../../static/img/logo-op-blue.png"
-            alt="logo"
-          />
+          <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
           <div>
             <button class="btn offcanvas__header--btn">
-              <svg
-                style="width: 1.5rem; height: 1.5rem"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-person-x"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"
-                />
+              <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
               </svg>
             </button>
             <button class="btn offcanvas__header--btn">
-              <svg
-                style="width: 1.5rem; height: 1.5rem"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-person"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
-                />
+              <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
               </svg>
             </button>
-            <button
-              class="offcanvas__close--btn"
-              type="button"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-x-lg"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
-                />
+            <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
               </svg>
             </button>
           </div>
@@ -100,150 +43,97 @@
             <li>문의사항</li>
             <li>
               About
-              <img
-                class="offcanvas__about--logo"
-                src="../../../static/img/logo-orange.png"
-              />
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <!-- menu -->
     <section class="main__container">
-      <!-- menu -->
       <div class="menu">
         <div class="menu__wrap">
           <p class="menu__title">SHOP</p>
-          <hr class="menu__hr" />
+          <hr class="menu__hr"/>
           <form class="menu__form" action="">
             <div>
-              <input
-                class="menu__search"
-                type="search"
-                name="search"
-                placeholder="작가 및 제목 검색"
-              />
-              <svg
-                class="search__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-search"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                />
+              <input class="menu__search" type="search" name="search" placeholder="작가 및 제목 검색"/>
+              <svg class="bi bi-search search__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg>
             </div>
           </form>
-          {% for type in category %}
-          <ul class="menu__list">
-            <li><a href="?type={{ type }}">{{ type }}</a></li>
+          <ul class="menu__lists">
+            {% for type in category %}
+              <li>
+                <a class="menu__list" href="?type={{ type }}">{{ type }}</a>
+              </li>
+            {% endfor %}
           </ul>
-          {% endfor %}
         </div>
       </div>
 
-      <!-- image -->
+      <!-- 카테고리 -->
       <div class="main__view">
-        <header>
+        <header class="main__category">
           <p class="view__title">{{ name }}</p>
-          <p class="view__subtitle">
-            중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온
-            그림(수정)
-          </p>
+          {% if name == '동양화' %}
+            <p class="view__subtitle">
+              중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온 그림
+            </p>
+          {% elif name == '서양화' %}
+            <p class="view__subtitle">
+              서양의 전통적인 재료와 화법을 이용하여 그린 그림
+            </p>
+          {% elif name == '판화' %}
+            <p class="view__subtitle">
+              나무 ·금속 ·돌 등의 면에 형상을 그려 판을 만든 다음, 잉크나 물감 등을 칠하여 종이나 천 등에 인쇄하는 회화의 장르
+            </p>
+          {% elif name == '일러스트' %}
+            <p class="view__subtitle">
+              제3자에게 무엇인가 의미를 전달하거나, 내용 암시에 사용되기 위해 제작된 그림
+            </p>
+          {% elif name == '조각 및 조소' %}
+            <p class="view__subtitle">
+              입체를 수단으로 공간에 표현하는 조형미술
+            </p>
+          {% elif name == '설치미술' %}
+            <p class="view__subtitle">
+              메시지 전달을 위해 색다른 진열방식으로 보여주는 미술
+            </p>
+          {% elif name == '사진' %}
+            <p class="view__subtitle">
+              빛이나 전자기적 발광을 이용하여 감광성 재료 또는 촬상소자에 초점을 맞추어 맺힌 피사체의 영상을 기록하는 것
+            </p>
+          {% endif %}
         </header>
 
-        {% for type in page_obj %}        
         <div class="view__images">
-          <p>{{ type.title }}</p>
-          <a href={% url 'articles:detail' type.pk %}>
-          <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
-          </a>
+          {% for type in page_obj %}
+            <a href={% url 'articles:detail' type.pk %}>
+              <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
+            </a>
+          {% endfor %}
         </div>
-        {% endfor %}
-        <!-- image -->
-      {% comment %} <div class="main__view">
-        <header>
-          <p class="view__title">동양화</p>
-          <p class="view__subtitle">
-            중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온
-            그림(수정)
-          </p>
-        </header>
-        <div class="view__images">
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/PAT%20MARTIN_1ST%20PLACE.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/Lewis_Khan%202ND%20PLACE.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/ASHLEY_BOURNE_PPL%20CHOICE%20AWARD.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/MAX_MIECHOWSKI_peoples_choice.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/Daniel_Jack_Lyons_1ST%20PLACE.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/MARK%20MAHANEY%202ND%20PLACE.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/Garrett-Grove_2nd%20Place.jpg"
-          />
-          <img
-            src="https://picter-assets.s3.eu-west-1.amazonaws.com/contest-websites/palm-photo-prize-2021/previous-winner/Roger-Richardson_1st%20place.jpg"
-          />
-        </div> {% endcomment %}
 
         <!--페이지네이션-->
-        {% comment %} <div class="view__pagination">페이지네이션 자리</div> {% endcomment %}
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" style="margin-top:1rem;">
           <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
             {% if page_obj.has_previous %}
-            <li class="page-item disabled">
-              <a class="page-link" href="?type={{name}}{{ page_obj.previous_page_number }}">Previous</a>
-            </li>
+              <li class="page-item disabled">
+                <a class="page-link" style="background-color: transparent; border:1px solid white; border-radius: 0;" href="?type={{name}}{{ page_obj.previous_page_number }}">
+                <</a> </li> {% else %} <li class="page-item disabled"> <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#"> <</a> </li> {% endif %} <!-- 현재페이지 --> {% for page_number in page_obj.paginator.page_range %} {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %} {% if page_number == page_obj.number %} <li class="page-item active" aria-current="page" style="background-color: transparent"> <a class="page-link" style="background-color: transparent; border:1px solid white;" href="?type={{name}}{{ page_number }}">{{ page_number }}</a> </li> {% else %} <li class="page-item"> <a class="page-link" style="background-color: transparent; border:1px solid white;" href="?type={{name}}{{ page_number }}">{{ page_number }}</a> </li> {% endif %} {% endif %} {% endfor %} <!-- 다음페이지 --> {% if page_obj.has_next %} <li class="page-item"> <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" href="?type={{name}}{{ page_obj.next_page_number }}">>
+                </a>
+              </li>
             {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Previous</a>
-            </li>
-            {% endif %}
-
-            <!-- 현재페이지 -->
-            {% for page_number in page_obj.paginator.page_range %}
-              {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
-                {% if page_number == page_obj.number %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?type={{name}}{{ page_number }}">{{ page_number }}</a>
-                  </li>
-                {% else %}
-                <li class="page-item">
-                  <a class="page-link" href="?type={{name}}{{ page_number }}">{{ page_number }}</a>
-                </li>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-
-            <!-- 다음페이지 -->
-            {% if page_obj.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="?type={{name}}{{ page_obj.next_page_number }}">Next</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Next</a>
-            </li>
+              <li class="page-item disabled">
+                <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#">></a>
+              </li>
             {% endif %}
           </ul>
         </nav>
-
       </div>
     </section>
-  </section>
-{% endblock content %}
+
+  {% endblock content %}

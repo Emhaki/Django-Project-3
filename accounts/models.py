@@ -13,3 +13,4 @@ class User(AbstractUser):
     location = models.CharField(max_length=40)
     location_detail = models.CharField(max_length=40)
     test = models.CharField(max_length=40, blank=True)
+

@@ -1,19 +1,81 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load django_bootstrap5 %}
-
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/upload.css' %}">
+{% endblock css %}
 {% block content %}
 
 {% if request.resolver_match.url_name == 'create' %}
-<div class='container m-5'>
-    <h1 class='fw-blod'> 새로운 작품 등록 </h1>
-    {% else %}
-    <h1> 작품 수정 </h1>
-    {% endif %}
-
-    <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form art_form %}
-    {% bootstrap_button button_type="submit" content="SUBMIT" %}
-    </form>
+<div class="upload__back">
+    <div class='upload__back__container'>
+        <h1 class='upload__title'>작품 등록</h1>
+        {% else %}
+        <h1> 작품 수정 </h1>
+        {% endif %}
+        <form action="" method="POST" enctype="multipart/form-data" class="upload__form">
+            {% csrf_token %}
+            <div class="upload__total">
+                <div class="upload__total__info">
+                    <div class="upload__img">
+                        <p>이미지</p>
+                        <input class="upload__img__name" id="imginfo" value="첨부파일" placeholder="첨부파일" readonly>
+                        <input type="file" id="choosefile" name="images" accept="image/*"
+                            onchange="setThumbnail(event);" tag="choosefile">
+                        <label for="choosefile">파일 선택</label>
+                    </div>
+                    <div class="upload__form__category">
+                        {% bootstrap_form art_form %}
+                    </div>
+                    <div class="upload__titleform">
+                        <p>제목</p>
+                        <input type="text" name="title" required placeholder="작품 제목을 입력해주세요.">
+                    </div>
+                    <div class="upload__size">
+                        <p>작품 크기</p>
+                        <input type="text" name="art_size" required placeholder="ex) 1024 X 960">
+                    </div>
+                    <div class="upload__date">
+                        <p>제작 년도</p>
+                        <input type="text" name="painted_year" maxlength="4" placeholder="ex) 2022">
+                    </div>
+                    <div class="upload__contentform">
+                        <p>작품 설명</p>
+                        <textarea name="content" rows="6" required placeholder="작품 설명을 입력해주세요."></textarea>
+                    </div>
+                </div>
+                <div class="upload__preview" id="preview"></div>
+            </div>
+        </form>
+    </div>
 </div>
+<script>
+    const fileUp = document.querySelector("#choosefile");
+    fileUp.addEventListener("change", () => {
+        const imgInfo = document.querySelector("#imginfo");
+        imgInfo.value = fileUp.files[0].name;
+    })
+    window.innerWidth.addEventListener("change", () => {
+        console.log(window.innerWidth)
+    })
+    function setThumbnail(event) {
+        var reader = new FileReader();
+        const imgPreview = document.querySelector("#preview");
+        console.log(imgPreview.childElementCount)
+        reader.onload = function (event) {
+            var img = document.createElement("img");
+            img.setAttribute("src", event.target.result);
+            img.setAttribute("class", "upload__preview__img")
+            img.setAttribute("id", "imgpreview")
+            if (imgPreview.childElementCount >= 1) {
+                imgPreview.removeChild(document.querySelector("#imgpreview"));
+                imgPreview.appendChild(img);
+            }
+            else {
+                document.querySelector("#preview").appendChild(img);
+            }
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 {% endblock %}
