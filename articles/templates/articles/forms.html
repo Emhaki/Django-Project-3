@@ -21,7 +21,7 @@
                         <p>이미지</p>
                         <input class="upload__img__name" id="imginfo" value="" placeholder="첨부파일" readonly>
                         <input type="file" id="choosefile" name="image" accept="image/*" required
-                            onchange="setThumbnail(event);" tag="choosefile">
+                            onchange="setThumbnail(event);" value=""tag="choosefile">
                         <label for="choosefile">파일 선택</label>
                     </div>
                     <div class="upload__form__category">
@@ -47,6 +47,10 @@
                     <div class="upload__date">
                         <p>제작 년도</p>
                         <input type="text" name="painted_year" required maxlength="4" placeholder="ex) 2022">
+                    </div>
+                    <div class="upload__price">
+                        <p>가격</p>
+                        <input type="number" name="art_size" required placeholder="가격을 입력해주세요.">
                     </div>
                     <div class="upload__contentform">
                         <p>작품 설명</p>

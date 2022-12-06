@@ -187,6 +187,33 @@
     transition: all .3s;
 }
 
+/* 가격 */
+.upload__price {
+    display: flex;
+    width: 100%;
+    height: 8%;
+    align-items: center;
+}
+
+.upload__price p {
+    width: 20%;
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.upload__price input {
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    transition: all .3s;
+}
+
 /* 파일 선택 부분 */
 
 .upload__img {
@@ -299,34 +326,39 @@
 
     .upload__img {
         height: 12%;
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
 
     .upload__titleform {
         height: 12%;
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
 
     .upload__size {
         height: 12%;
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
 
     .upload__date {
         height: 12%;
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
     
     .upload__form__category {
         height: 12%;
-        margin: 1rem 0;
+        margin-top: 1rem;
     }
-
+    
+    .upload__price {
+        height: 12%;
+        margin-top: 1rem;
+    }
+    .upload__contentform {
+        margin-top: 1rem;
+    }
     .upload__contentform textarea {
         font-size: 3vw;
-        margin: 1rem 0;
     }
-
     .upload__form__button {
         width: 40%;
         height: 5%;
@@ -359,9 +391,8 @@
     .upload__form__category p {
         font-size: 1.3rem;
     }
-    .upload__form__category .mb-3 .form-select {
-        font-size: 3vw;
-        transition: all .3s;
+    .upload__price p {
+        font-size: 1.3rem;
     }
 
     .upload__titleform input {
@@ -416,7 +447,9 @@
     .upload__form__category {
         height: 6%;
     }
-
+    .upload__price {
+        height: 6%
+    }
     .upload__form__button {
         width: 40%;
         height: 4%;
@@ -443,10 +476,15 @@
     .upload__img p {
         font-size: 1.2rem;
     }
+    .upload__price p {
+        font-size: 1.2rem;
+    }
     .upload__img label {
         font-size: .9vw;
     }
-
+    .upload__form__category p {
+        font-size: 1.2rem;
+    }
     .upload__form__category .mb-3 .form-select {
         font-size: 1.1rem;
         transition: all .3s;
@@ -468,6 +506,11 @@
         transition: all .3s;
     }
 
+    .upload__price input {
+        font-size: 1.1rem;
+        transition: all .3s;
+    }
+    
     .upload__date input {
         font-size: 1.1rem;
         transition: all .3s;
