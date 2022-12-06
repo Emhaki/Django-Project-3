@@ -16,5 +16,15 @@ class SignupForm(UserCreationForm):
             "username": "아이디",
             "email": "이메일",
             "nickname": "이름",
-            "location": "주소",
+            "location": "주소"
         }
+
+class UpdateForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = (
+            "username",
+            "email",
+            "location",
+            "location_detail",
+        )

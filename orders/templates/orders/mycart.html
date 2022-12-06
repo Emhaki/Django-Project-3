@@ -32,8 +32,13 @@
         </div>
         <div class="basket__price ms-auto">
           <h5 class="my-0 mx-3">{{ item.art.price }} Won</h5>
-          <a href="" class="basket__button btn mx-5">삭제하기</a>
+          <!-- 장바구니에서 삭제 -->
+          <button data-note-id="{{cartitem.pk}}" value="{{cartitem.pk}}" onclick="remove(event)" class="basket__button btn mx-5">
+            {% csrf_token %}
+            삭제하기
+          </button>
         </div>
+
       </div>
     </div>
     {% endfor %}
@@ -53,6 +58,29 @@
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script>
   new SimpleBar(document.getElementById('basket__simplebar'));
+</script>
+
+<!-- 상품 삭제 -->
+<script>
+  function remove(event) {
+    console.log(event.target.dataset.cartitemId)
+    var delete_warngin = confirm("작품을 장바구니에서 삭제하시겠습니까?")
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    if (delete_warngin == true) {
+      axios({
+        method: 'post',
+        url: `/orders/mycart/${event.target.dataset.cartitemId}/delete/`,
+        headers: {'X-CSRFToken': csrftoken},
+        data: {'cartitem_pk': event.target.dataset.cartitemId},
+      })
+      .then(res => {
+        const resdata = res.data.pk
+        const div = document.getElementById(resdata)
+        console.log(div)
+        div.remove()
+      })
+    }
+  }
 </script>
 {% endblock js %}
 

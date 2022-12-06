@@ -1,11 +1,13 @@
 from articles.models import Art
 from django.db import transaction
 from django.utils import timezone
+from django.contrib import messages
 from .models import Order, CartItem
 from django.http import JsonResponse
 from .forms import CartForm, OrderCreateForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect, get_object_or_404
 
 User = get_user_model()
 
@@ -69,7 +71,9 @@ def payment(request):
 
 # 장바구니
 def mycart(request):
-    cart_items = CartItem.objects.order_by("-id")
+    cart_items = CartItem.objects.filter(user_id=request.user.pk)
+    
+    # 장바구니 총 금액 
     total_price = 0
     for item in cart_items:
         total_price += item.art.price
@@ -103,7 +107,24 @@ def add_cart(request, art_pk):
             art=art,
         )
         cart.save()
+        in_cart = True
 
+    context = {
+        "in_cart": in_cart,
+        "cart_length": cart.count(),
+    }
+
+    return redirect("orders:mycart", context)
+
+# 장바구니 삭제
+def delete_cart(request, cartitem_pk):
+    cartitem = get_object_or_404(CartItem, pk=cartitem_pk)
+    
+    if cartitem.user == request.user and request.method == "POST":
+        cartitem.delete()
+        return JsonResponse({"pk": cartitem_pk})
+    else:
+        messages.error(request, "남의 장바구니를 지울 수 없어요!")
     return redirect("orders:mycart")
 
 

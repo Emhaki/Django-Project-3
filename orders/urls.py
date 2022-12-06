@@ -9,6 +9,7 @@ urlpatterns = [
     # 장바구니
     path("mycart/", views.mycart, name="mycart"),
     path("mycart/<int:art_pk>/add/", views.add_cart, name="add_cart"),
+    path("mycart/<int:cartitem_pk>/delete/", views.delete_cart, name="delete_cart"),
     # 주문
     path("order_delete/", views.order_delete, name="order_delete"),
     path("order_list/", views.order_list, name="order_list"),

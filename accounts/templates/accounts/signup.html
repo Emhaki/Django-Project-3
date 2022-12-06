@@ -163,6 +163,7 @@
     const check1 = document.querySelector('#email-check-1')
     const check2 = document.querySelector('#email-check-2')
     const success = document.querySelector("#sendEmail")
+    const validNumber = document.querySelector('#valid-number')
     if (userEmail.length == 0) {
       alert("이메일을 입력해주세요!")
       return
@@ -178,7 +179,6 @@
       data: { 'user_email': userEmail }
     })
       .then(response => {
-        const validNumber = document.querySelector('#valid-number')
         validNumber.innerText = response.data.validnumber
       });
   }
@@ -191,6 +191,7 @@
     const validNumber = document.querySelector('#valid-number').innerText
     const inputNumber = document.querySelector('#input-number').value
     const check2 = document.querySelector('#email-check-2')
+    const emailResult = document.querySelector('#email-result')
     console.log(validNumber)
     console.log(inputNumber)
 
@@ -204,7 +205,6 @@
       }
     })
       .then(response => {
-        const emailResult = document.querySelector('#email-result')
         if (response.data.check == true) {
           emailResult.innerText = "확인되었습니다. 가입을 진행해주세요."
           check2.classList.add('d-none')

@@ -16,21 +16,26 @@
         </div>
         <hr>
         {% comment %} 받은 DM {% endcomment %}
-        {% for note in notes %}
-        <div class="post__cover__main__box__list">
+        {% for note in page_obj %}
+        <div class="post__cover__main__box__list" id="{{note.pk}}">
         <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{note.pk}}" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
           <div class="post__cover__main__box__modal" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
-            {{ note.from_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
-            {{ note.title }} |
-            {{ note.content }} |
-            {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
-            <p id="readbool">읽음여부: {{ note.read }}</p>
+            <div style="width:80px;">{{ note.from_user.username }}</div>  {% comment %} 보낸사람 {% endcomment %}
+            <div style="width:120px;">{{ note.title }}</div>
+            <div style="width:150px;">{{ note.created_at|date:'o.m.d' }}</div>
+            <div style="width:30px;">
+              {% if note.read == 0 %}
+              <i id="readbool" class="bi bi-check"></i>
+              {% else %}
+              <i id="readbool" class="bi bi-check-all"></i>
+              {% endif %}
+            </div>
           </div>
         </button>
-        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-        </svg></a>
+        <button class="btn">
+          {% csrf_token %}
+            <i class="bi bi-trash" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="remove(event)"></i>
+        </button>
         </div>
         {% comment %} 받은 DM 끝 {% endcomment %}
         <!-- Modal -->
@@ -38,18 +43,15 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ note.title }}</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ note.from_user.username }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                {{ note.title }}
                 {{ note.content }}
-                {{ note.created_at|date:'o.m.d' }} {{ note.created_at|time:"H:i" }} |
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                <a href="{% url 'notes:send' note.from_user.pk %}">
-                  <button type="button" class="btn btn-primary">답장하기</button>
-                </a>
               </div>
             </div>
           </div>
@@ -64,7 +66,7 @@
             <!-- 이전페이지 -->
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.previous_page_number }}">이전</a>
+                <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.previous_page_number }}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -76,11 +78,11 @@
                 {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
                   {% if page_number == page_obj.number %}
                     <li class="page-item active" aria-current="page">
-                      <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                      <a class="page-link text-bg-danger border-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% else %}
                     <li class="page-item">
-                        <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                        <a class="page-link text-danger" href="?note={{from_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -88,7 +90,7 @@
             
             {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+                <a class="page-link text-danger" href="?note={{from_name}}{{ page_obj.next_page_number }}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -107,21 +109,22 @@
         </div>
         <hr>
         {% comment %} 보낸 DM {% endcomment %}
-        {% for to_note in to_notes %}
+        {% for to_note in to_page_obj %}
         <div class="post__cover__main__box__list">
         <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
-          <div>
-          {{ to_note.to_user.nickname }} | {% comment %} 보낸사람 {% endcomment %}
-          {{ to_note.title }} |
-          {{ to_note.content }} |
-          {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
-          읽음여부: {{ to_note.read }}
+          <div class="post__cover__main__box__modal" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
+            <div style="width:80px;">{{ to_note.from_user.username }}</div>  {% comment %} 보낸사람 {% endcomment %}
+            <div style="width:120px;">{{ to_note.title }}</div>
+            <div style="width:150px;">{{ to_note.created_at|date:'o.m.d' }}</div>
+            <div style="width:30px;">
+              {% if note.read == 0 %}
+              <i id="readbool" class="bi bi-check"></i>
+              {% else %}
+              <i id="readbool" class="bi bi-check-all"></i>
+              {% endif %}
+            </div>
           </div>
         </button>
-        <a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-        </svg></a>
       </div>
         {% comment %} 보낸 DM 끝 {% endcomment %}
         <!-- Modal -->
@@ -129,12 +132,12 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ to_note.title }}</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ to_note.from_user.username }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                {{ to_note.title }}
                 {{ to_note.content }}
-                {{ to_note.created_at|date:'o.m.d' }} {{ to_note.created_at|time:"H:i" }} |
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
@@ -156,7 +159,7 @@
             <!-- 이전페이지 -->
             {% if to_page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ to_page_obj.previous_page_number }}">이전</a>
+                <a class="page-link text-danger" href="?note={{to_name}}{{ to_page_obj.previous_page_number }}">이전</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -168,11 +171,11 @@
                 {% if page_number >= to_page_obj.number|add:-5 and page_number <= to_page_obj.number|add:5 %}
                   {% if page_number == to_page_obj.number %}
                     <li class="page-item active" aria-current="page">
-                      <a class="page-link text-bg-danger border-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                      <a class="page-link text-bg-danger border-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% else %}
                     <li class="page-item">
-                        <a class="page-link text-danger" href="?note={{ page_number }}">{{ page_number }}</a>
+                        <a class="page-link text-danger" href="?note={{to_name}}{{ page_number }}">{{ page_number }}</a>
                     </li>
                   {% endif %}
                 {% endif %}
@@ -180,7 +183,7 @@
             
             {% if to_page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link text-danger" href="?note={{ page_obj.next_page_number }}">다음</a>
+                <a class="page-link text-danger" href="?note={{to_name}}{{ to_page_obj.next_page_number }}">다음</a>
             </li>
             {% else %}
             <li class="page-item disabled">
@@ -205,7 +208,7 @@
     })
     .then(response => {
       const div = document.querySelector("#readbool")
-      div.innerText = "읽음여부: True"
+      div.className = "bi bi-check-all"
     })
   }
 

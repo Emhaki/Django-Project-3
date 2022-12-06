@@ -105,7 +105,7 @@
 
 .article__img {
   cursor: pointer;
-  max-width: calc(100% - 60vw);
+  max-width: calc(100% - 70vw);
   height: auto;
   object-fit: contain;
 }
@@ -113,6 +113,16 @@
 .article__img:hover {
   transform: scale(1.1);
   transition: all 500ms ease-in-out;
+}
+
+.dummy {
+  opacity: 0;
+  width: 8rem;
+}
+
+.oriental,
+.sculpture {
+  height: 35rem;
 }
 
 /* 스크롤 숨김 */
@@ -150,6 +160,16 @@
 .article__img:hover + .info {
   opacity: 1;
   transition: all 200ms ease-in;
+}
+
+.oriental__info,
+.sculpture__info {
+  transform: translateY(6rem);
+}
+
+.illustration__info,
+.picture__info {
+  transform: translateY(7rem);
 }
 
 /* 화살표 */

@@ -11,3 +11,5 @@ class User(AbstractUser):
     refresh_token = models.TextField(blank=True)
     is_creater = models.BooleanField(default=False)
     location = models.CharField(max_length=40)
+    location_detail = models.CharField(max_length=40)
+    test = models.CharField(max_length=40, blank=True)
