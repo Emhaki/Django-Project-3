@@ -42,9 +42,9 @@
     <a href="{% url 'articles:main' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">작품 목록으로</p>
     </a>
-    <h2 class="ms-auto my-0 mx-5">{{ total }} Won</h2>
-    <a href="" class="basket__footerbtn btn">
-      <p class="basket__footerfont">주문하기</p>
+    <h2 class="ms-auto my-0 mx-5">{{ total_price }} Won</h2>
+    <a href="{% url 'orders:payment' %}" class="basket__footerbtn btn">
+      <p class="basket__footerfont">결제하기</p>
     </a>
   </div>
 </div>

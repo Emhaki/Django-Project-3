@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
 from articles.models import Art
-from .models import Order, CartItem
-from .forms import CartForm
-from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils import timezone
+from .models import Order, CartItem
+from django.http import JsonResponse
+from .forms import CartForm, OrderCreateForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -26,52 +27,56 @@ def info(request, art_pk):
     return render(request, "orders/info.html", context)
 
 
+# 주문 생성
 def payment(request):
-    shipping_name = request.user.username
-    # shipping_email = request.user.email
-    # shipping_zipcode = request.user.zipcode
-    # shipping_address = request.user.address
-    
-    # 장바구니 가져오기
-    cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    
-    # 장바구니 총 금액 
-    total_price = 0
-    for item in cart_items:
-        total_price += item.art.price
-    
-    # 배송비
-    if total_price >= 300000:
-        delivery_fee = 0
-    else:
-         delivery_fee = 30000
-
-    
-    billing_amount = total_price + delivery_fee
-    
-    # 주문서
-    if cart_items is not None:
-        context = {
-            "cart_items": cart_items,
-            "total_price": total_price,
-            # "shipping_address": shipping_address,
-            "shipping_name": shipping_name,
-            # "shipping_email": shipping_email,
-            "delivery_fee": delivery_fee,
-            "billing_amount": billing_amount,
-        }
-        return render(request, "orders/payment.html", context)
-    else:
+    if request.method == "POST":
         return redirect("/")
+    else:
+        data = {
+            "username": request.user.nickname,
+            "email": request.user.email,
+            "address": request.user.location,
+        }
+        payment_form = OrderCreateForm(initial=data)
+
+        # 장바구니 가져오기
+        cart_items = CartItem.objects.filter(user_id=request.user.pk)
+
+        # 장바구니 총 금액
+        total_price = 0
+        for item in cart_items:
+            total_price += item.art.price
+
+        # 배송비
+        if total_price >= 300000:
+            delivery_fee = 0
+        else:
+            delivery_fee = 3000
+
+        billing_amount = total_price + delivery_fee
+
+        # 주문서
+        if cart_items is not None:
+            context = {
+                "payment_form": payment_form,
+                "cart_items": cart_items,
+                "total_price": total_price,
+                "delivery_fee": delivery_fee,
+                "billing_amount": billing_amount,
+            }
+    return render(request, "orders/payment.html", context)
 
 
 # 장바구니
 def mycart(request):
     cart_items = CartItem.objects.order_by("-id")
+    total_price = 0
+    for item in cart_items:
+        total_price += item.art.price
 
     context = {
         "cart_items": cart_items,
-        # "total": total,
+        "total_price": total_price,
     }
 
     return render(request, "orders/mycart.html", context)
@@ -100,46 +105,6 @@ def add_cart(request, art_pk):
         cart.save()
 
     return redirect("orders:mycart")
-
-
-# 주문 생성
-def create_order(request):
-    shipping_name = request.user.username
-    # shipping_email = request.user.email
-    # shipping_zipcode = request.user.zipcode
-    # shipping_address = request.user.address
-
-    # 장바구니 가져오기
-    cart_items = CartItem.objects.filter(user_id=request.user.pk)
-
-    # 장바구니 총 금액
-    total_price = 0
-    for item in cart_items:
-        total_price += item.art.price
-    
-    # 배송비
-    if total_price >= 300000:
-        delivery_fee = 0
-    else:
-        delivery_fee = 30000
-
-
-    billing_amount = total_price + delivery_fee
-
-    # 주문서
-    if cart_items is not None:
-        context = {
-            "cart_items": cart_items,
-            "total_price": total_price,
-            # "shipping_address": shipping_address,
-            "shipping_name": shipping_name,
-            # "shipping_email": shipping_email,
-            "delivery_fee": delivery_fee,
-            "billing_amount": billing_amount,
-        }
-        return render(request, "orders/payment.html", context)
-    else:
-        return redirect("/")
 
 
 # 주문 완료
@@ -195,31 +160,31 @@ def complete(request, user_pk):
 
 # 주문 상세
 # def detail(request):
-    # 결제 목록 출력
-    # 결제 완료된 주문들
-    # user_orders = (
-    #     Order.objects.filter(user__id=user_pk, order_status="결제완료")
-    #     | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
-    #     | Order.objects.filter(user__id=user_pk, order_status="배송완료")
-    # ).order_by("-register_data")
+# 결제 목록 출력
+# 결제 완료된 주문들
+# user_orders = (
+#     Order.objects.filter(user__id=user_pk, order_status="결제완료")
+#     | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
+#     | Order.objects.filter(user__id=user_pk, order_status="배송완료")
+# ).order_by("-register_data")
 
-    # # 취소된 주문들
-    # cancel_orders = Order.objects.filter(
-    #     user__id=user_pk, order_status="취소주문"
-    # ).order_by("-register_data")
+# # 취소된 주문들
+# cancel_orders = Order.objects.filter(
+#     user__id=user_pk, order_status="취소주문"
+# ).order_by("-register_data")
 
-    # # 누적 주문금액
-    # accumulated_amount = 0
-    # orders = Order.objects.filter(user__id=user_pk)
-    # for order in orders:
-    #     if order.order_status == "결제완료":
-    #         accumulated_amount += int(order.art.price)
+# # 누적 주문금액
+# accumulated_amount = 0
+# orders = Order.objects.filter(user__id=user_pk)
+# for order in orders:
+#     if order.order_status == "결제완료":
+#         accumulated_amount += int(order.art.price)
 
-    # context = {
-    #     "user_orders": user_orders,
-    #     "cancel_orders": cancel_orders,
-    #     "accumulated_amount": accumulated_amount,
-    # }
+# context = {
+#     "user_orders": user_orders,
+#     "cancel_orders": cancel_orders,
+#     "accumulated_amount": accumulated_amount,
+# }
 #     return render(request, "orders/detail.html", context)
 
 # 배송상태
@@ -281,3 +246,16 @@ def order_list(request):
         "delivery_complete_orders": delivery_complete_orders,
     }
     return render(request, "orders/order_list.html", context)
+
+
+# 약관 동의
+def agree(request):
+    print(request.POST["is_checked"])
+    if request.POST["is_checked"] == "true":
+        is_agreed = True
+    else:
+        is_agreed = False
+    context = {
+        "is_agreed": is_agreed,
+    }
+    return JsonResponse(context)
