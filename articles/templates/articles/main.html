@@ -54,13 +54,34 @@
       <div class="menu">
         <div class="menu__wrap">
           <p class="menu__title">SHOP</p>
-          <hr class="menu__hr"/>
-          <form class="menu__form" action="">
+          <hr class="menu__hr" />
+          <!-- 검색 -->
+          <form class="menu__form" action="{% url 'articles:search' %}">
             <div>
-              <input class="menu__search" type="search" name="search" placeholder="작가 및 제목 검색"/>
-              <svg class="bi bi-search search__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
+                <input
+                  class="menu__search"
+                  type="search"
+                  name="search"
+                  value="{{search}}"
+                  placeholder="작가 및 제목 검색"
+                  aria-label="Search"
+                />
+                <button class="btn" type="submit">
+                  <svg
+                    class="search__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-search"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                    />
+                  </svg>
+                </button>
+
             </div>
           </form>
           <ul class="menu__lists">
@@ -75,46 +96,24 @@
 
       <!-- 카테고리 -->
       <div class="main__view">
-        <header class="main__category">
+        <header>
           <p class="view__title">{{ name }}</p>
-          {% if name == '동양화' %}
-            <p class="view__subtitle">
-              중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온 그림
-            </p>
-          {% elif name == '서양화' %}
-            <p class="view__subtitle">
-              서양의 전통적인 재료와 화법을 이용하여 그린 그림
-            </p>
-          {% elif name == '판화' %}
-            <p class="view__subtitle">
-              나무 ·금속 ·돌 등의 면에 형상을 그려 판을 만든 다음, 잉크나 물감 등을 칠하여 종이나 천 등에 인쇄하는 회화의 장르
-            </p>
-          {% elif name == '일러스트' %}
-            <p class="view__subtitle">
-              제3자에게 무엇인가 의미를 전달하거나, 내용 암시에 사용되기 위해 제작된 그림
-            </p>
-          {% elif name == '조각 및 조소' %}
-            <p class="view__subtitle">
-              입체를 수단으로 공간에 표현하는 조형미술
-            </p>
-          {% elif name == '설치미술' %}
-            <p class="view__subtitle">
-              메시지 전달을 위해 색다른 진열방식으로 보여주는 미술
-            </p>
-          {% elif name == '사진' %}
-            <p class="view__subtitle">
-              빛이나 전자기적 발광을 이용하여 감광성 재료 또는 촬상소자에 초점을 맞추어 맺힌 피사체의 영상을 기록하는 것
-            </p>
-          {% endif %}
+          <p class="view__subtitle">
+            중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온
+            그림(수정)
+          </p>
         </header>
 
+        <!-- image -->
+        {% for type in page_obj %}        
         <div class="view__images">
-          {% for type in page_obj %}
-            <a href={% url 'articles:detail' type.pk %}>
-              <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
-            </a>
-          {% endfor %}
+          <a href={% url 'articles:detail' type.pk %}>
+          <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
+          </a>
         </div>
+        {% endfor %}
+
+
 
         <!--페이지네이션-->
         <nav aria-label="Page navigation example" style="margin-top:1rem;">

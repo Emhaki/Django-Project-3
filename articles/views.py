@@ -5,10 +5,13 @@ from .models import Art, Comment
 from .forms import ArtForm, CommentForm
 from django.core.paginator import Paginator
 import re
+from django.views.generic import ListView
+from django.db.models import Q
 
 
-def main(request):
-    arts = Art.objects.order_by("pk")
+def main(request):    
+    arts = Art.objects.order_by('pk')
+
     # 작품 카테고리
     category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
     art_type_all = "모든 작품"
@@ -17,7 +20,7 @@ def main(request):
     # 페이지네이션
     paginator = Paginator(arts, 8)
     page_number = request.GET.get("type")
-
+    
     if request.GET.get("type"):
         name = re.sub(r"[0-9]", "", request.GET.get("type"))
         arts = Art.objects.filter(art_category__contains=name)
@@ -25,11 +28,12 @@ def main(request):
         page_number = re.sub(r"[^0-9]", "", request.GET.get("type"))
         page_obj = paginator.get_page(page_number)
         context = {
-            "arts": arts,
-            "name": name,
-            "page_obj": page_obj,
-            "category": category,
-            "art_type_all": art_type_all,
+            'arts': arts,
+            'name': name,
+            'page_obj': page_obj,
+            'category': category, 
+            'art_type_all': art_type_all,
+
         }
         return render(request, "articles/main.html", context)
 
@@ -128,6 +132,78 @@ def like(request, pk):
     if request.user in article.likes.all():
         article.likes.remove(request.user)
     else:
-        article.likes.add(request.user)
+        article.likes.add(request.user)        
+    return redirect('articles:detail', pk)
 
-    return redirect("articles:detail", pk)
+# class SearchView(ListView):
+#     model = Art
+#     context_object_name = "arts_list"
+#     template_name = "articles/search.html"
+#     paginate_by = 8
+    
+#     def get_queryset(self):
+#         search_keyword = self.request.GET.get("q", "")
+#         arts_list = Art.objects.order_by('-id')
+#         return Art.objects.filter(
+#             Q(title__icontains=search_keyword)
+#             | Q(artist__icontains=search_keyword)
+#         )
+        
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         paginator = context["paginator"]
+#         page_numbers_range = 5
+#         max_index = len(paginator.page_range)
+        
+#         page = self.request.GET.get("page")
+#         current_page = int(page) if page else 1
+        
+#         start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+#         end_index = start_index + page_numbers_range
+        
+#         if end_index >= max_index:
+#             end_index = max_index
+        
+#         page_range = paginator.page_range[start_index:end_index]
+#         context["page_range"] = page_range
+        
+#         search_keyword = self.request.GET.get("q", "")
+        
+#         if len(search_keyword) > 1:
+#             context["q"] = search_keyword
+
+#         return context
+
+def search(request):
+    all_data = Art.objects.order_by("-pk")
+    search = request.GET.get("search")
+    paginator = Paginator(all_data, 6)
+    page_obj = paginator.get_page(request.GET.get("page"))
+    category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
+
+    if search:
+        search_list = all_data.filter(
+            Q(title__icontains=search)
+            | Q(content__icontains=search) 
+            | Q(artist__nickname__icontains=search) 
+            )
+        paginator = Paginator(search_list, 6)
+        page_obj = paginator.get_page(request.GET.get("page"))
+        context = {
+            "search": search,
+            "search_list": search_list,
+            "question_list": page_obj,
+            "category": category,
+        }
+    else:
+        if search == None :
+            search = ''
+            
+        context = {
+            "search": search,
+            "search_list": all_data,
+            "question_list": page_obj,
+            "category": category,
+        }
+    return render(request, "articles/search.html", context)
+
