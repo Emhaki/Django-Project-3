@@ -24,13 +24,10 @@ dic = {
 
 # @login_required
 def index(request):
-
     notes = request.user.user_to.order_by("-created_at") # 받은거
     to_notes = request.user.user_from.order_by("-created_at") # 보낸거
     from_name = "from"
     to_name = "to_notes"
-    print(request.GET.get("note"))
-
 
     # 받은 편지 페이지네이션
     paginator = Paginator(notes, 2)
@@ -42,16 +39,17 @@ def index(request):
     to_page_number = request.GET.get("note")
     to_page_obj = to_paginator.get_page(to_page_number)
 
-    # if "from" in request.GET.get("note"):
-    #     # 받은 편지 페이지네이션
-    #     paginator = Paginator(notes, 2)
-    #     page_number = request.GET.get("note")
-    #     page_obj = paginator.get_page(page_number.strip("from"))
-    # elif "to_notes" in request.GET.get("note"):
-    #     # 보낸 편지 페이지네이션
-    #     to_paginator = Paginator(to_notes, 2)
-    #     to_page_number = request.GET.get("note")
-    #     to_page_obj = to_paginator.get_page(to_page_number.strip("to_notes"))
+    if request.GET.get("note"):
+        if "from" in request.GET.get("note"):
+            # 받은 편지 페이지네이션
+            paginator = Paginator(notes, 2)
+            page_number = request.GET.get("note")
+            page_obj = paginator.get_page(page_number.strip("from"))
+        elif "to_notes" in request.GET.get("note"):
+            # 보낸 편지 페이지네이션
+            to_paginator = Paginator(to_notes, 2)
+            to_page_number = request.GET.get("note")
+            to_page_obj = to_paginator.get_page(to_page_number.strip("to_notes"))
         
     context = {
         "from_name": from_name,
@@ -114,7 +112,7 @@ def delete(request, note_pk):
     print(request.POST)
     if request.user == note.to_user and request.method == "POST":
         note.delete()
-        return redirect("notes:index")
+        return JsonResponse({"pk": note_pk})
     else:
         messages.error(request, "남의 쪽지는 지울 수 없어요.😅")
         return redirect("notes:index")

@@ -8,9 +8,10 @@ import re
 from django.views.generic import ListView
 from django.db.models import Q
 
-def main(request):
-    
+
+def main(request):    
     arts = Art.objects.order_by('pk')
+
     # 작품 카테고리
     category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
     art_type_all = "모든 작품"
@@ -24,7 +25,7 @@ def main(request):
         name = re.sub(r"[0-9]", "", request.GET.get("type"))
         arts = Art.objects.filter(art_category__contains=name)
         paginator = Paginator(arts, 8)
-        page_number = re.sub(r"[^0-9]", "", request.GET.get("type")) 
+        page_number = re.sub(r"[^0-9]", "", request.GET.get("type"))
         page_obj = paginator.get_page(page_number)
         context = {
             'arts': arts,
@@ -32,91 +33,97 @@ def main(request):
             'page_obj': page_obj,
             'category': category, 
             'art_type_all': art_type_all,
+
         }
         return render(request, "articles/main.html", context)
-    
+
     else:
-       context = {
-        'arts': arts,
-        'category': category,
-        'art_type_all': art_type_all,
+        context = {
+            "arts": arts,
+            "category": category,
+            "art_type_all": art_type_all,
         }
     return render(request, "articles/main.html", context)
+
 
 # @artist_required
 # 작가만 작품 등록할 수 있도록
 def create(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         art_form = ArtForm(request.POST, request.FILES)
         if art_form.is_valid():
             art = art_form.save(commit=False)
-            art.artist = request.user 
+            art.artist = request.user
             art.save()
-            return redirect('articles:main')
-    
+            return redirect("articles:main")
+
     else:
         art_form = ArtForm()
-    
+
     context = {
-        'art_form': art_form,
+        "art_form": art_form,
     }
-    return render(request, 'articles/forms.html', context=context)
+    return render(request, "articles/forms.html", context=context)
+
 
 def detail(request, pk):
     art = Art.objects.get(pk=pk)
     comment_form = CommentForm()
 
     context = {
-        'art': art,
-        'comments': art.comment_set.all(),
-        'comment_form': comment_form,
+        "art": art,
+        "comments": art.comment_set.all(),
+        "comment_form": comment_form,
     }
-    return render(request, 'articles/detail.html', context)
+    return render(request, "articles/detail.html", context)
+
 
 # @artist_required
 def update(request, pk):
     art = Art.objects.get(pk=pk)
-    if request.user == art.user: 
-        if request.method == 'POST':
+    if request.user == art.user:
+        if request.method == "POST":
             article_form = ArtForm(request.POST, request.FILES, instance=art)
             if article_form.is_valid():
                 article_form.save()
-                return redirect('articles:detail', art.pk)
+                return redirect("articles:detail", art.pk)
 
         else:
             art_form = ArtForm(instance=art)
-        context = {
-            'art_form': art_form
-        }
-        return render(request, 'articles/form.html', context)
+        context = {"art_form": art_form}
+        return render(request, "articles/form.html", context)
     else:
-        return redirect('articles:detail', art.pk)
+        return redirect("articles:detail", art.pk)
+
 
 # @artist_required
 def delete(request, pk):
     Art.objects.get(pk=pk).delete()
     return redirect("articles:main", pk)
 
+
 # @artist_required
 def comment_create(request, pk):
     art = Art.objects.get(pk=pk)
     comment_form = CommentForm(request.POST)
-    
+
     if comment_form.is_valid():
         comment = comment_form.save(commit=False)
         comment.art = art
         comment.user = request.user
         comment.save()
 
-    return redirect('articles:detail', art.pk)
+    return redirect("articles:detail", art.pk)
+
 
 # @artist_required
 def comment_delete(request, pk, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
 
     if comment.user == request.user:
-        comment.delete()     
-    return redirect('articles:detail', pk)
+        comment.delete()
+    return redirect("articles:detail", pk)
+
 
 # @login_required
 def like(request, pk):
@@ -125,8 +132,7 @@ def like(request, pk):
     if request.user in article.likes.all():
         article.likes.remove(request.user)
     else:
-        article.likes.add(request.user)
-        
+        article.likes.add(request.user)        
     return redirect('articles:detail', pk)
 
 # class SearchView(ListView):
@@ -200,3 +206,4 @@ def search(request):
             "category": category,
         }
     return render(request, "articles/search.html", context)
+

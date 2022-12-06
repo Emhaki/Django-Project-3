@@ -167,7 +167,8 @@
   transform: translateY(6rem);
 }
 
-.illustration__info {
+.illustration__info,
+.picture__info {
   transform: translateY(7rem);
 }
 
