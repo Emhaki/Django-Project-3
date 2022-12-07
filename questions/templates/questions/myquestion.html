@@ -15,7 +15,8 @@
   </div>
   {% for question in questions %}
   <div class="myquestion__list">
-    <div class="myquestion__list__title">Q. {{ question.title }}
+    <div class="myquestion__list__title">
+      <p>Q. {{ question.title }}</p>
       <button class="myquestion__list__title__button" data-container="myquestion__title__content__{{ question.pk }}">
         <svg class="myquestion__list__title__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
           <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -38,9 +39,9 @@
       {% endif %}
       <div class="myquestion__title__content__box">
       <p class="myquestion__title__content__text">{{ question.content }}</p>
-      <div class="myquestion__title__content__comment">
+      {% comment %} <div class="myquestion__title__content__comment">
 
-      </div>
+      </div> {% endcomment %}
     </div>
     </div>
   </div>
@@ -49,35 +50,12 @@
 </section>
 </section>
 <script>
-var linkToggle = document.querySelectorAll('.myquestion__list__title__button');
-let checkBtn = document.querySelector(".myquestion__list__title");
-for(i = 0; i < linkToggle.length; i++){
+  const toggles = document.querySelectorAll(".myquestion__list__title__button");
 
-  linkToggle[i].addEventListener('click', function(event){
-    event.preventDefault();
-    checkBtn.classList.toggle("active")
-    var container = document.getElementById(this.dataset.container);
-    if (!container.classList.contains('active')) {
-      container.classList.add('active');
-      container.style.height = 'auto';
-
-      var height = "auto";
-
-      container.style.height = '0px';
-
-      setTimeout(function () {
-        container.style.height = height;
-      }, 0);
-    } else {
-      container.style.height = '0px';
-
-      container.addEventListener('transitionend', function () {
-        container.classList.remove('active');
-      }, {
-        once: true
-      });
-    }
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      toggle.parentNode.classList.toggle("active");
+    });
   });
-}
 </script>
 {% endblock content %}

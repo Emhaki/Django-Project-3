@@ -16,15 +16,16 @@
 }
 
 .myquestion__title {
-    height:20%;
+    height: 20%;
     position: relative;
+    margin-bottom: 2rem;
+    transition: all .3s;
 }
 
 .myquestion__title__text {
     color: var(--main);
     font-weight: bold;
     font-size: 4rem;
-    padding-bottom: 10rem;
     margin: 0;
 }
 
@@ -58,7 +59,7 @@
 .myquestion__list {
     width: 100%;
     height: auto;
-    padding: 3rem;
+    padding: 1rem;
     background-color: var(--white);
     margin-bottom: 1rem;
     display: flex;
@@ -74,27 +75,32 @@
     justify-content: baseline;
     align-items: center;
     padding-left: 2rem;
-    font-size: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
     position: relative;
+
+}
+
+.myquestion__list__title p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70%;
+    margin: 0;
 }
 
 .myquestion__title__content {
-    display: flex;
     width: 100%;
-    transition: height 0.35s ease-in-out;
-    overflow: hidden;
-}
-.myquestion__title__content:not(.active) {
-    display:none;
+    height: 50%;
+    display: none;
 }
 
-.myquestion__list .myquestion__list__title .active .myquestion__title__content {
-    height: 70%;
+.myquestion__list .active ~ .myquestion__title__content {
+    display: flex;
 }
 
 .myquestion__title__content__image {
-    width: 40%;
-    padding-left: 2rem;
+    width: 50%;
     display: flex;
     align-items: center;
 }
@@ -102,7 +108,8 @@
 .myquestion__title__content__image img {
     width: 100%;
     height: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
+    transition: all .3s;
 }
 
 .myquestion__title__content__box {
@@ -116,7 +123,7 @@
 .myquestion__title__content__text {
     width: 100%;
     height: 30%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 0;
 }
 
@@ -160,4 +167,107 @@
 
 .myquestion__list .active .myquestion__list__title__button .myquestion__list__title__button__down {
     display: none;
+}
+
+@media (max-width:1200px) {
+    .myquestion__title__content__image {
+        padding-left: 0;
+    }
+    .myquestion__title__content__image img {
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        transition: all .3s;
+    }
+    .myquestion__title__content__box {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+    }
+}
+
+@media (max-width:900px) {
+    .myquestion__list .active ~ .myquestion__title__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .myquestion__title__content__image img {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        transition: all .3s;
+    }
+    .myquestion__title__content__box {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        padding: 1rem;
+        flex-direction: row;
+    }
+    .myquestion__title__content__comment {
+        display: none;
+    }
+    .myquestion__title__content {
+        margin-top: 1rem;
+        height: 70%;
+    }
+    .myquestion__list__title {
+        font-size: 1.5rem;
+    }
+    .myquestion__title__content__image {
+        width: 90%;
+        height: 60%;
+        display: flex;
+        align-items: center;
+    }
+    .myquestion__title__content__text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width:500px) {
+    .myquestion__title__text {
+        font-size: 2rem;
+    }
+    .myquestion__title button {
+        top: 2%;
+        right: 5%;
+        width: 7rem;
+        height: 2rem;
+        font-size: 1rem;
+    }
+    .myquestion__title {
+        height: 10%;
+        transition: all .3s;
+    }
+    .myquestion__list__title {
+        font-size: 1rem;
+    }
+    .myquestion__title__content__text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-height: 580px){
+    .myquestion__list__title {
+        font-size: 1.5rem;
+    }
+    .myquestion__title__content__image {
+        width: 30%;
+    }
+    .myquestion__title__text {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-height: 580px) and (max-width: 900px) {
+    .myquestion__title__text {
+        font-size: 2rem;
+    }
+    .myquestion__title__content__image {
+        width: 100%;
+    }
 }
