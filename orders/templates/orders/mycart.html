@@ -33,7 +33,7 @@
             </p>
           </div>
           <div class="basket__price ms-auto">
-            <h5 class="my-0 mx-3">₩ {{ item.art.price|default:"0" }}</h5>
+            <h5 class="my-0 mx-3">₩ {{ item.art.price }}</h5>
             <!-- 장바구니에서 삭제 -->
             <button type="submit" data-art-id="{{ item.art.pk }}"
               class="remove-btn basket__button btn mx-5">삭제하기</button>
@@ -47,8 +47,8 @@
     <a href="{% url 'articles:main' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">작품 목록으로</p>
     </a>
-    <h2 class="ms-auto my-0 mx-5">₩ {{ total_price }}</h2>
-    <a href="{% url 'orders:payment' %}" class="basket__footerbtn btn">
+    <h2 id="basket__tp" class="ms-auto my-0 mx-5">₩ {{ total_price|default:"0" }}</h2>
+    <a id="basket__paymentbtn" href="{% url 'orders:payment' %}" class="basket__footerbtn btn">
       <p class="basket__footerfont">결제하기</p>
     </a>
   </div>
@@ -79,10 +79,23 @@
           .then(response => {
             const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
             targetDiv.remove();
+
+            const basketTp = document.querySelector("#basket__tp");
+            basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
           });
       };
     });
   };
+</script>
+<script>
+  const paymentBtn = document.querySelector("#basket__paymentbtn");
+  const totalPrice = document.querySelector("#basket__tp");
+  paymentBtn.addEventListener("click", function () {
+    if (totalPrice.innerText === "₩ 0") {
+      event.preventDefault();
+      alert("장바구니에 작품이 없습니다!");
+    };
+  });
 </script>
 
 {% endblock content %}

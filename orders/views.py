@@ -104,7 +104,7 @@ def add_cart(request, art_pk):
         )
         cart.save()
         in_cart = True
-
+    
     # context = {
     #     "in_cart": in_cart,
     # }
@@ -118,8 +118,14 @@ def delete_cart(request, art_pk):
     if request.method == "POST":
         target = my_cart.get(art__pk=my_pick.pk)
         target.delete()
+        
+        total_price_after_delete = 0
+        for item in my_cart:
+            total_price_after_delete += item.art.price
+        
         context = {
             "artPk": art_pk,
+            "total_price_after_delete" : total_price_after_delete,
         }
         return JsonResponse(context)
     else:
