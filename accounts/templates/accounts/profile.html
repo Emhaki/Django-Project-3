@@ -33,11 +33,16 @@
             <p class="profile__container__info__text__name">
             {% comment %} 작가 인증표시 {% endcomment %}
             {% if profile.is_creater == True %}
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-            </svg> {{profile.username}}
-            {% else %}
+            <span>
+              <i class="bi bi-check-circle-fill"></i>
+            </span>
+            <span>
               {{profile.username}}
+            </span>
+            {% else %}
+            <span>
+              <span id="creater-mark"></span> {{profile.username}}
+            </span>
             {% endif %}
             {% comment %}  {% endcomment %}
             </p>
@@ -51,13 +56,20 @@
         {% if not profile.is_creater %}
           {% comment %} request유저가 프로필주인이면 {% endcomment %}
           {% if request.user in profiles %}
-          <button class="profile__container__info__writer modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal"> 작가 인증 </button>
+          <div id="art-create2">
+            <button class="profile__container__info__writer modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#emailCheckModal"> 작가 인증 </button>
+          </div>
           {% endif %}
         {% elif request.user in profiles and creater %}
-        <a href="{% url 'articles:create' %}">
-          <button class="profile__container__info__writer modal-btn" type="button"> 작품 등록 </button>
-        </a>
+          <a href="{% url 'articles:create' %}">
+            <button class="profile__container__info__writer modal-btn" type="button"> 작품 등록 </button>
+          </a>
         {% endif %}
+        <div id="art-create" class="d-none">
+          <a href="{% url 'articles:create' %}">
+            <button class="profile__container__info__writer modal-btn" type="button"> 작품 등록 </button>
+          </a>
+        </div>
         <hr class="profile__container__info__hr">
         <div class="profile__container__info__social">
           <p>소셜계정</p>
@@ -163,7 +175,7 @@
           </ul>
           </span>
         </div>
-        {% comment %} 보낸 DM 페이지네이션 끝 {% endcomment %}
+        {% comment %} 작품 페이지네이션 끝 {% endcomment %}
         <div class="profile__container__tabs__box box2">
           <div class="profile__container__tabs__box__grid">
             <div class="profile__container__tabs__box__grid__card">
@@ -238,6 +250,7 @@
                 <p class="profile__container__tabs__box__grid__card__main_price">150,000</p>
               </div>
             </div>
+            
           </div>
         </div>
         <div class="profile__container__tabs__box box3">박스3</div>
@@ -312,8 +325,6 @@
         const validNumber = document.querySelector('#valid-number').innerText
         const inputNumber = document.querySelector('#input-number').value
         const check2 = document.querySelector('#email-check-2')
-        console.log(validNumber)
-        console.log(inputNumber)
 
         axios({
                 method: 'post',
@@ -326,9 +337,17 @@
               })
               .then(response =>{
                 const emailResult = document.querySelector('#email-result')
+                const artCreate = document.querySelector('#art-create')
+                const artCreate2 = document.querySelector('#art-create2')
+                const createMark = document.querySelector('#creater-mark')
                 if (response.data.check==true) {
                   emailResult.innerText = "작가 인증이 확인되었습니다."
                   check2.classList.add('d-none')
+                  artCreate.classList.remove('d-none')
+                  artCreate2.classList.add('d-none')
+                  const span = document.createElement('span')
+                  span.className = 'bi bi-check-circle-fill'
+                  createMark.appendChild(span)
                 }else{
                   emailResult.innerText = "번호가 틀렸습니다. 다시 입력해주세요."
                 }

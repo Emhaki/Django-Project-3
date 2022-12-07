@@ -143,7 +143,7 @@
 
 .detail__subtitle {
   color: var(--line);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
@@ -152,19 +152,43 @@
   margin-top: 3rem;
 }
 
-.heart {
-  cursor: pointer;
-  margin-top: 2rem;
+.like-forms {
+  background-color: transparent;
+  border: none;
+  color: var(--highlight);
 }
 
 .heart__number {
   font-weight: 600;
+  color: var(--highlight);
+}
+
+/* 수정, 삭제 */
+.update__btn,
+.delete__btn {
+  background-color: transparent;
+  border: none;
+}
+
+.detail__icon {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bi-pencil-fill {
+  color: var(--high-sub);
+}
+
+.update__btn:hover,
+.delete__btn:hover {
+  transform: scale(1.2);
+  transition: all 200ms ease-in-out;
 }
 
 /* 댓글 */
 .comment__input {
-  width: 100%;
-  height: 80px;
+  width: 86%;
   border: 1px solid var(--highlight);
   border-radius: 5px;
   padding: 0.5rem;
@@ -204,8 +228,27 @@
   color: var(--high-sub);
 }
 
+.comment__btn {
+  margin-left: 0.3rem;
+  background-color: var(--high-sub);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.comment__btn:hover {
+  transform: scale(1.1);
+  transition: all 200ms ease-in-out;
+}
+
+.delete__comment--btn {
+  background-color: transparent;
+  border: none;
+  transform: scaleX(-1) translateY(-0.6rem);
+}
+
 .bi-chat-dots {
-  transform: scaleX(-1) translateY(-0.2rem);
   margin-right: 0.3rem;
 }
 
