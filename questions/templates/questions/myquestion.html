@@ -39,15 +39,45 @@
       <div class="myquestion__title__content__box">
       <p class="myquestion__title__content__text">{{ question.content }}</p>
       <div class="myquestion__title__content__comment">
+        {% comment %} 문의 댓글 {% endcomment %}
+        {% if request.user.is_authenticated %}
+          <div id="question-comments" class="mt-3">
+            <form id="quesiton-comment-form" class="d-flex" data-question-id="{{ question.pk }}" method="POST">
+              {% csrf_token %}
+                <input type="text" name="content" class="form-control" placeholder="댓글을 달아주세요">
+                <input type="submit" class="btn btn-primary mx-1" value="작성">
+            </form>
+          </div>
+          <div id="question-commentss">
 
+          </div>
+          {% for comment in comments %}
+            <div class="fw-bold mt-2">
+              <a class="text-dark" href="{% url 'accounts:profile' comment.pk %}" style="text-decoration:none;">
+              {{ comment.user.username }}
+              </a>
+            </div>
+            <div sytle="width:350px;">
+              <div class="col-10 d-flex align-items-center">
+                {{ comment.content }}
+              </div>
+            </div>
+            <div style="font-size:12px;" class="text-muted">{{ comment.created_at|date:"o-m-d"}} {{comment.created_at|time:"H:i"}}</div>
+            <hr>
+            {% empty %}
+            <p class="text-black mt-2">문의 답변이 없습니다.</p>
+          {% endfor %}
+        {% endif %}
+        {% comment %} 문의 댓글 끝 {% endcomment %}
       </div>
-    </div>
+      </div>
     </div>
   </div>
   {% endfor %}
   <div class="myquestion__list__last"></div>
 </section>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
 var linkToggle = document.querySelectorAll('.myquestion__list__title__button');
 let checkBtn = document.querySelector(".myquestion__list__title");
@@ -79,5 +109,32 @@ for(i = 0; i < linkToggle.length; i++){
     }
   });
 }
+</script>
+<script>
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+const commentForm = document.getElementById('quesiton-comment-form')
+  commentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    axios({
+      method: 'post',
+      url: `/questions/${event.target.dataset.questionId}/comment/create/`,
+      headers: {'X-CSRFToken': csrftoken},
+      data: new FormData(commentForm)
+    })
+    .then(response => {
+      const comments = document.getElementById("question-commentss")
+      const div = document.createElement('div')
+      const p = document.createElement('p')
+      const small = document.createElement('small')
+      div.innerText = `${response.data.userName}`
+      div.className = "fw-bold mt-2"
+      p.innerText = `${response.data.content}`
+      p.className = "text-muted"
+      small.innerText = "0분전"
+      small.className = "text-muted fs-7"
+      const hr = document.createElement('hr')
+      comments.append(div, p, small, hr)
+    })
+  })
 </script>
 {% endblock content %}
