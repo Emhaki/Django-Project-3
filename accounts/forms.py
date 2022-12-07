@@ -30,3 +30,12 @@ class UpdateForm(UserChangeForm):
             "location",
             "location_detail",
         )
+
+class UpdateSocialForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = (
+            "facebook",
+            "github",
+            "instagram",
+        )

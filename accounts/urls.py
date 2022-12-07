@@ -9,6 +9,7 @@ urlpatterns = [
     path("login/", views.login, name="login"),
     path("logout/", views.logout, name="logout"),
     path("<int:user_pk>/", views.profile, name="profile"),
+    path("social/", views.social, name="social"),
     # 카카오 로그인
     path("login/kakao/", views.kakao_request, name="kakao"),
     path("kakao/login/callback/", views.kakao_callback, name="kakao_callback"),
