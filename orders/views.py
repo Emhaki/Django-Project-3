@@ -38,6 +38,7 @@ def payment(request):
             "username": request.user.nickname,
             "email": request.user.email,
             "address": request.user.location,
+            "address_detail": request.user.location_detail,
         }
         payment_form = OrderCreateForm(initial=data)
 
@@ -46,14 +47,17 @@ def payment(request):
 
         # 장바구니 총 금액
         total_price = 0
-        for item in cart_items:
-            total_price += item.art.price
-
+        if cart_items:
+            for item in cart_items:
+                total_price += item.art.price
+        # 바로구매
+        else:
+            total_price = item.art.price
         # 배송비
         if total_price >= 300000:
             delivery_fee = 0
         else:
-            delivery_fee = 3000
+            delivery_fee = 30000
 
         billing_amount = total_price + delivery_fee
 
@@ -128,10 +132,9 @@ def delete_cart(request, art_pk):
 
 
 # 주문 완료
-def complete(request, user_pk):
-    cart_items = CartItem.objects.filter(user_id=request.user.pk)
-    # shipping_address = request.GET.get("shipping_address")
-    # shipping_email = request.GET.get("shipping_email")
+def complete(request):
+    cart_items = CartItem.objects.filter(user__id=request.user.pk)
+
 
     for cart_item in cart_items:
         art = cart_item.art
@@ -140,8 +143,6 @@ def complete(request, user_pk):
             order = Order(
                 user=request.user,
                 art=art,
-                # shipping_address=shipping_address,
-                # shipping_email=shipping_email,
             )
             order.save()
 
@@ -150,32 +151,7 @@ def complete(request, user_pk):
 
     cart_items.delete()
 
-    # 결제 목록 출력
-    # 결제 완료된 주문들
-    user_orders = (
-        Order.objects.filter(user__id=user_pk, order_status="결제완료")
-        | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
-        | Order.objects.filter(user__id=user_pk, order_status="배송완료")
-    ).order_by("-created_at")
-
-    # 취소된 주문들
-    cancel_orders = Order.objects.filter(
-        user__id=user_pk, order_status="취소주문"
-    ).order_by("-created_at")
-
-    # 누적 주문금액
-    accumulated_amount = 0
-    orders = Order.objects.filter(user__id=user_pk)
-    for order in orders:
-        if order.order_status == "결제완료":
-            accumulated_amount += int(order.art.price)
-
-    context = {
-        "user_orders": user_orders,
-        "cancel_orders": cancel_orders,
-        "accumulated_amount": accumulated_amount,
-    }
-    return render(request, "orders/complete.html", context)
+    return render(request, "orders/complete.html")
 
 
 # 주문 상세

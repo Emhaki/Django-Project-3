@@ -51,7 +51,7 @@
       <hr class="info__hr m-0">
       <div class="info__price-section">
         <h1 class="mt-3">가격</h1>
-        <h2 class="info__price">₩ {{ art.price }}</h2>
+        <h2 id="art-price" value="{{art.price}}" name="{{art.price}}" class="info__price">₩ {{ art.price }}</h2>
       </div>
       <div class="info__order">
         <!-- 장바구니 추가 -->
@@ -69,10 +69,27 @@
           <button type="submit" class="btn btn-lg">장바구니 담기</button>
           {% endif %}
         </form>
-        <a href="{% url 'orders:payment' %}" class="ms-5 btn btn-lg">바로 구매하기</a>
+        <a href="{% url 'orders:payment' %}" onclick="buying(event)" class="ms-5 btn btn-lg">바로 구매하기</a>
         {% endif %}
       </div>
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+    function buying(event) {
+      const artPrice = document.querySelector("#art-price").value;
+      console.log(artPrice)
+      axios ({
+        method: 'post',
+        url: payment/,
+        headers: {'X-CSRFToken': csrftoken},
+        data: {'art_pk': artPrice},
+      })
+      .then(response => {
+         console.log(data)
+      })
+    }
+</script>
+
 {% endblock content %}
