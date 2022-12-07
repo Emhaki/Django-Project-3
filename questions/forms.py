@@ -14,3 +14,10 @@ class QuestionForm(forms.ModelForm):
             "title": "문의 제목",
             "content": "문의 내용",
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            "content"
+        ]
