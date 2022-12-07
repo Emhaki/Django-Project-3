@@ -1,11 +1,6 @@
 @import url(./base.css);
 
-.upload__back__container {
-    width: 90%;
-    height: 90%;
-}
-
-.upload__back {
+.question__back {
     width: 100%;
     height: 100vh;
     background-color: var(--highlight);
@@ -15,18 +10,17 @@
     align-items: center;
 }
 
-/* 전체 감싸는 div */
-
-.upload__total {
-    width: 100%;
+.question__container {
+    width: 80%;
     height: 80%;
-    display: flex;
 }
 
-/* 제목 */
-
-.upload__title {
+.question__title {
     height:20%;
+    position: relative;
+}
+
+.question__title__text {
     color: var(--main);
     font-weight: bold;
     font-size: 4rem;
@@ -34,18 +28,44 @@
     margin: 0;
 }
 
-/* form 영역 */
-
-.upload__form {
+.question__title a {
+    text-decoration: none;
     display: flex;
-    flex-direction:column;
+    justify-content: center;
     align-items: center;
+}
+
+.question__title button {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 10rem;
+    height: 3rem;
+    color: var(--white);
+    font-size: 1.5rem;
+    background-color: var(--main);
+    border-radius: 10px;
+    border: none;
+    transition: all .3s;
+}
+
+.question__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     height:80%;
 }
 
-/* 왼쪽 div */
+/* info 왼쪽 div */
 
-.upload__total__info {
+.question__total {
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+
+.question__info {
     width: 60%;
     height: 100%;
     margin-bottom: 3rem;
@@ -55,9 +75,7 @@
     justify-content: space-evenly;
 }
 
-/* 작품 제목 */
-
-.upload__form__category {
+.question__info__name {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -65,7 +83,7 @@
     align-items: center;
 }
 
-.upload__form__category p {
+.question__info__name p {
     width: 20%;
     color: white;
     text-align: center;
@@ -73,25 +91,54 @@
     margin: 0;
 }
 
-.upload__form__category select {
+.question__info__name input {
     width: 80%;
     height: 100%;
     border: none;
     border-radius: 10px;
+    background-color:#9a9da0 !important;
     padding-left: 1rem;
     font-size: 1.5rem;
     outline: none;
     transition: all .3s;
 }
 
-.upload__titleform {
+.question__info__email {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 8%;
+    align-items: center;
+}
+
+.question__info__email p {
+    width: 20%;
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.question__info__email input {
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color:#9a9da0 !important;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    transition: all .3s;
+}
+
+.question__img {
     display: flex;
     width: 100%;
     height: 8%;
     align-items: center;
 }
 
-.upload__titleform p {
+.question__img p {
     width: 20%;
     color: white;
     text-align: center;
@@ -99,139 +146,7 @@
     margin: 0;
 }
 
-.upload__titleform input {
-    width: 80%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    padding-left: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-    transition: all .3s;
-}
-
-.upload__contentform {
-    display: flex;
-    width: 100%;
-}
-
-.upload__contentform p {
-    width: 20%;
-    color: white;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.upload__contentform textarea {
-    width: 80%;
-    height: 100%;
-    height: auto;
-    border: none;
-    border-radius: 10px;
-    padding-left: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-    transition: all .3s;
-}
-
-.upload__size {
-    display: flex;
-    width: 100%;
-    height: 8%;
-    align-items: center;
-}
-
-.upload__size p {
-    width: 20%;
-    color: white;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.upload__size input {
-    width: 80%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    padding-left: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-    transition: all .3s;
-}
-
-.upload__date {
-    display: flex;
-    width: 100%;
-    height: 8%;
-    align-items: center;
-}
-
-.upload__date p {
-    width: 20%;
-    color: white;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.upload__date input {
-    width: 80%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    padding-left: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-    transition: all .3s;
-}
-
-/* 가격 */
-.upload__price {
-    display: flex;
-    width: 100%;
-    height: 8%;
-    align-items: center;
-}
-
-.upload__price p {
-    width: 20%;
-    color: white;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.upload__price input {
-    width: 80%;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    padding-left: 1rem;
-    font-size: 1.5rem;
-    outline: none;
-    transition: all .3s;
-}
-
-/* 파일 선택 부분 */
-
-.upload__img {
-    display: flex;
-    width: 100%;
-    height: 8%;
-    align-items: center;
-}
-
-.upload__img p {
-    width: 20%;
-    color: white;
-    text-align: center;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-.upload__img__name {
+.question__img__name {
     width: 70%;
     height: 100%;
     border: none;
@@ -239,13 +154,13 @@
     padding-left: 1rem;
     font-size: 1.5rem;
     cursor:default;
-    background-color: gray;
+    background-color: #9a9da0;
     color: rgba(0, 0, 0, 0.185);
     outline: none;
     transition: all .3s;
 }
 
-.upload__img label {
+.question__img label {
     margin-left: 1rem;
     width: 9%;
     height: 100%;
@@ -264,9 +179,58 @@
     display: none;
 }
 
-/* 등록 버튼 */
+.question__titleform {
+    display: flex;
+    width: 100%;
+    height: 8%;
+    align-items: center;
+}
 
-.upload__form__button {
+.question__titleform p {
+    width: 20%;
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.question__titleform input {
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    transition: all .3s;
+}
+
+.question__contentform {
+    display: flex;
+    width: 100%;
+}
+
+.question__contentform p {
+    width: 20%;
+    color: white;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.question__contentform textarea {
+    width: 80%;
+    height: 100%;
+    height: auto;
+    border: none;
+    border-radius: 10px;
+    padding-left: 1rem;
+    font-size: 1.5rem;
+    outline: none;
+    transition: all .3s;
+}
+
+.question__form__button {
     width: 25%;
     height: 7%;
     background-color: var(--main);
@@ -278,88 +242,78 @@
     font-size: 1.2rem;
 }
 
-/* 미리보기 css */
-
-.upload__preview {
+.question__preview {
     width: 40%;
     height: 100%;
 }
 
-.upload__preview__img {
+.question__preview__img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
 @media (max-width: 1200px) {
-    .upload__total {
+    .question__total {
         width: 100%;
         height: 90%;
         display: flex;
         flex-direction: column;
     }
 
-    .upload__form {
+    .question__form {
         height:100%;
     }
 
-    .upload__total__info {
+    .question__info {
         width: 100%;
         height: 50%;
         margin-bottom: 3rem;
         padding-right: 2rem;
     }
 
-    .upload__preview {
+    .question__preview {
         width: 100%;
         height: 40%;
     }
 
-    .upload__preview__img {
+    .question__preview__img {
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
-    .upload__img label {
+
+    .question__img label {
         font-size: .9vw;
     }
 
-    .upload__img {
+    .question__info__name {
         height: 12%;
         margin-top: 1rem;
     }
 
-    .upload__titleform {
+    .question__info__email {
         height: 12%;
         margin-top: 1rem;
     }
 
-    .upload__size {
+    .question__img {
         height: 12%;
         margin-top: 1rem;
     }
 
-    .upload__date {
+    .question__titleform {
         height: 12%;
         margin-top: 1rem;
     }
-    
-    .upload__form__category {
-        height: 12%;
+
+    .question__contentform {
         margin-top: 1rem;
     }
-    
-    .upload__price {
-        height: 12%;
-        margin-top: 1rem;
+    .question__contentform textarea {
+        font-size: 1.5rem;
     }
-    .upload__contentform {
-        margin-top: 1rem;
-    }
-    .upload__contentform textarea {
-        font-size: 3vw;
-    }
-    .upload__form__button {
+    .question__form__button {
         width: 40%;
         height: 5%;
         transition: all .3s;
@@ -367,90 +321,61 @@
 }
 
 @media (max-width: 700px) {
-    .upload__form__category .mb-3 label {
+    .question__info__name p {
         font-size: 1.3rem;
     }
-    .upload__titleform p {
+    .question__info__email p {
         font-size: 1.3rem;
     }
-    .upload__contentform p {
+    .question__titleform p {
         font-size: 1.3rem;
     }
-    .upload__size p {
+    .question__contentform p {
         font-size: 1.3rem;
     }
-    .upload__date p {
+    .question__img p {
         font-size: 1.3rem;
     }
-    .upload__img p {
-        font-size: 1.3rem;
-    }
-    .upload__img label {
+    .question__img label {
         font-size: .9vw;
     }
-    .upload__form__category p {
-        font-size: 1.3rem;
-    }
-    .upload__price p {
-        font-size: 1.3rem;
-    }
-
-    .upload__titleform input {
+    .question__titleform input {
         font-size: 3vw;
         transition: all .3s;
     }
 
-    .upload__contentform textarea {
+    .question__contentform textarea {
         width: 80%;
         height: 100%;
         font-size: 3vw;
         transition: all .3s;
     }
-    .upload__size input {
-        font-size: 3vw;
-        transition: all .3s;
-    }
-
-    .upload__date input {
-        font-size: 3vw;
-        transition: all .3s;
-    }
-
-    .upload__img__name {
+    .question__img__name {
         font-size: 3vw;
         transition: all .3s;
     }
     
-    .upload__img label {
+    .question__img label {
         width: 9%;
         height: 100%;
         font-size: .9vw;
         transition: all .3s;
     }
-
-    .upload__img {
-        height: 6%;
+    .question__info__name {
+        height: 9%;
     }
 
-    .upload__titleform {
-        height: 6%;
+    .question__info__email {
+        height: 9%;
+    }
+    .question__img {
+        height: 9%;
     }
 
-    .upload__size {
-        height: 6%;
+    .question__titleform {
+        height: 9%;
     }
-
-    .upload__date {
-        height: 6%;
-    }
-
-    .upload__form__category {
-        height: 6%;
-    }
-    .upload__price {
-        height: 6%
-    }
-    .upload__form__button {
+    .question__form__button {
         width: 40%;
         height: 4%;
         transition: all .3s;
@@ -458,77 +383,50 @@
 }
 
 @media (max-height: 800px) {
-    .upload__form__category .mb-3 label {
+    .question__info__name p {
         font-size: 1.2rem;
     }
-    .upload__titleform p {
+    .question__info__email p {
         font-size: 1.2rem;
     }
-    .upload__contentform p {
+    .question__titleform p {
         font-size: 1.2rem;
     }
-    .upload__size p {
+    .question__contentform p {
         font-size: 1.2rem;
     }
-    .upload__date p {
+    .question__img p {
         font-size: 1.2rem;
     }
-    .upload__img p {
+    .question__price p {
         font-size: 1.2rem;
     }
-    .upload__price p {
-        font-size: 1.2rem;
-    }
-    .upload__img label {
+    .question__img label {
         font-size: .9vw;
     }
-    .upload__form__category p {
-        font-size: 1.2rem;
-    }
-    .upload__form__category .mb-3 .form-select {
+    .question__titleform input {
         font-size: 1.1rem;
         transition: all .3s;
     }
-
-    .upload__titleform input {
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-
-    .upload__contentform textarea {
+    .question__contentform textarea {
         width: 80%;
         height: 100%;
         font-size: 1.1rem;
         transition: all .3s;
     }
-    .upload__size input {
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-
-    .upload__price input {
+    .question__img__name {
         font-size: 1.1rem;
         transition: all .3s;
     }
     
-    .upload__date input {
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-
-    .upload__img__name {
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-    
-    .upload__img label {
+    .question__img label {
         width: 9%;
         height: 100%;
         font-size: .9vw;
         transition: all .3s;
     }
 
-    .upload__form__button {
+    .question__form__button {
         height: 8%;
         transition: all .3s;
     }

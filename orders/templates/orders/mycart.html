@@ -48,9 +48,12 @@
       <p class="basket__footerfont">작품 목록으로</p>
     </a>
     <h2 id="basket__tp" class="ms-auto my-0 mx-5">₩ {{ total_price|default:"0" }}</h2>
-    <a id="basket__paymentbtn" href="{% url 'orders:payment' %}" class="basket__footerbtn btn">
-      <p class="basket__footerfont">결제하기</p>
-    </a>
+    <form method="POST" action="{% url 'orders:payment' %}">
+      {% csrf_token %}
+      <button id="basket__paymentbtn" type="submit" class="basket__footerbtn btn">
+        <p class="basket__footerfont">결제하기</p>
+      </button>
+    </form>
   </div>
 </div>
 

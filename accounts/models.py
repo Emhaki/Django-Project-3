@@ -13,3 +13,6 @@ class User(AbstractUser):
     location = models.CharField(max_length=40)
     location_detail = models.CharField(max_length=40)
     test = models.CharField(max_length=40, blank=True)
+    instagram = models.CharField(max_length=100, blank=True, null=True)
+    github = models.CharField(max_length=100, blank=True, null=True)
+    facebook = models.CharField(max_length=100, blank=True, null=True)

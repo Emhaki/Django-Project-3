@@ -92,7 +92,7 @@
         </div>
         <div class="payment__art-description-1">
           <p class="art__title">{{ item.art.title }}</p>
-          <p class="art__artist">{{ item.art.artist }}</p>
+          <p class="art__artist">{{ item.art.artist.nickname }}</p>
         </div>
         <div class="payment__art-description-2">
           <p class="art__year">{{ item.art.painted_year }}</p>
@@ -131,9 +131,10 @@
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
 <script>
+  // 심플바
   const simpleBar2 = new SimpleBar(document.getElementById('simplebar__art-section'));
-</script>
-<script>
+
+  // 결제 API
   const orderBtn = document.getElementById('order_btn')
   orderBtn.addEventListener('click', function (event) {
     event.preventDefault();
@@ -155,8 +156,7 @@
       if (rsp.success) {
         var msg = '결제가 완료되었습니다.';
         msg += '결제 금액 : ' + rsp.paid_amount + '원';
-        // location.href = "/orders/order/?shipping_address=" + shipping_address.value + "&contact_number=" + shipping_phoneNum.value;
-
+        location.href = "/orders/complete/"
       }
       else {
         var msg = rsp.error_msg;

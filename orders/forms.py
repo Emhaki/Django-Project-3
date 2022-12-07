@@ -16,6 +16,8 @@ class OrderCreateForm(forms.ModelForm):
             "username",
             "email",
             "address",
+            "address_detail",
+            "contact_number",
             "requests",
             "delivery_option",
         )
@@ -23,6 +25,8 @@ class OrderCreateForm(forms.ModelForm):
             "username": "이름",
             "email": "이메일",
             "address": "주소",
+            "address_detail": "상세주소",
+            "contact_number": "연락처",
             "requests": "기타 사항",
             "delivery_option": "요청 사항",
         }

@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 import re
 from django.views.generic import ListView
 from django.db.models import Q
+from django.http import JsonResponse
 
 
 def main(request):    
@@ -127,52 +128,23 @@ def comment_delete(request, pk, comment_pk):
 
 # @login_required
 def like(request, pk):
-    article = Art.objects.get(pk=pk)
+    if request.user.is_authenticated:
+        art = Art.objects.get(pk=pk)
 
-    if request.user in article.likes.all():
-        article.likes.remove(request.user)
-    else:
-        article.likes.add(request.user)        
-    return redirect('articles:detail', pk)
-
-# class SearchView(ListView):
-#     model = Art
-#     context_object_name = "arts_list"
-#     template_name = "articles/search.html"
-#     paginate_by = 8
+        if request.user in art.likes.all():
+            art.likes.remove(request.user)
+            is_liked = False
+        else:
+            art.likes.add(request.user) 
+            is_liked = True
+            
+        context = {
+                'is_liked': is_liked,
+                'like_cnt': art.likes.count()
+            }
+        return JsonResponse(context)
     
-#     def get_queryset(self):
-#         search_keyword = self.request.GET.get("q", "")
-#         arts_list = Art.objects.order_by('-id')
-#         return Art.objects.filter(
-#             Q(title__icontains=search_keyword)
-#             | Q(artist__icontains=search_keyword)
-#         )
-        
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         paginator = context["paginator"]
-#         page_numbers_range = 5
-#         max_index = len(paginator.page_range)
-        
-#         page = self.request.GET.get("page")
-#         current_page = int(page) if page else 1
-        
-#         start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
-#         end_index = start_index + page_numbers_range
-        
-#         if end_index >= max_index:
-#             end_index = max_index
-        
-#         page_range = paginator.page_range[start_index:end_index]
-#         context["page_range"] = page_range
-        
-#         search_keyword = self.request.GET.get("q", "")
-        
-#         if len(search_keyword) > 1:
-#             context["q"] = search_keyword
-
-#         return context
+    return redirect('accounts:login')
 
 def search(request):
     all_data = Art.objects.order_by("-pk")

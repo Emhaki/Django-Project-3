@@ -220,6 +220,14 @@ input[type='search']::-webkit-search-cancel-button {
   width: 0 !important;
 }
 
+/* search menu */
+.search__menu {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: 600;
+}
+
 @media (max-width: 1270px) {
   .view__images {
     text-align: center;

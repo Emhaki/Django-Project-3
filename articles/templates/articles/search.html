@@ -8,7 +8,7 @@
 <section class="main__bg">
     <nav class="articles__nav">
       <button
-        class="offcanvas__btn btn btn-primary"
+        class="offcanvas__btn"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasScrolling"
         aria-controls="offcanvasScrolling"
@@ -143,16 +143,16 @@
                 </button>
               </form>
             </div>
-
+          
+          <ul class="menu__lists">
           {% for type in category %}
-          <ul class="menu__list">
             <li>
               <form action="{% url 'articles:main' %}">
-              <button type="submit" name="type" value="{{type}}">{{ type }}</button>      
+              <button class="search__menu"type="submit" name="type" value="{{type}}">{{ type }}</button>      
               </form>        
             </li>
-          </ul>
           {% endfor %}
+        </ul>
         </div>
       </div>
 
@@ -162,11 +162,10 @@
         {% if not question_list  %}
         <p class="view__title">{{ search }}에 대한 검색 결과가 없습니다.</p>
         {% else %}
-          <p>메롱</p>
           {% if search == None %}
           <p class="view__title">검색 결과가 없습니다.</p>
           {% else %}
-          <p class="view__title">{{ search }}에 대한 검색 결과</p>
+          <p class="view__title">'{{ search }}'에 대한 검색 결과</p>
           <p class="view__subtitle"></p>
           {% endif %}
         {% endif %}
@@ -181,17 +180,16 @@
         {% endfor %}
         
         <!--페이지네이션-->
-        {% comment %} <div class="view__pagination">페이지네이션 자리</div> {% endcomment %}
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
             {% if question_list.has_previous %}
-            <li class="page-item disabled">
-              <a class="page-link" href="?search ={{search }}&page={{ question_list.previous_page_number }}">Previous</a>
+            <li class="page-item">
+              <a class="page-link" style="background-color: transparent; border:1px solid white; border-radius: 0; color:white" href="?search ={{search }}&page={{ question_list.previous_page_number }}"><</a>
             </li>
             {% else %}
             <li class="page-item disabled">
-              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Previous</a>
+              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#"><</a>
             </li>
             {% endif %}
 
@@ -200,11 +198,11 @@
               {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
                 {% if page_number == question_list.number %}
                   <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
+                    <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
                   </li>
                 {% else %}
                 <li class="page-item">
-                  <a class="page-link" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
+                  <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
                 </li> 
                 {% endif %}
               {% endif %}
@@ -213,11 +211,11 @@
             <!-- 다음페이지 -->
             {% if question_list.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?search={{search}}&page={{ question_list.next_page_number }}">Next</a>
+              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" href="?search={{search}}&page={{ question_list.next_page_number }}">></a>
             </li>
             {% else %}
             <li class="page-item disabled">
-              <a class="page-link" tabindex="-1" aria-disabled="true" href="#">Next</a>
+              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#">></a>
             </li>
             {% endif %}
           </ul>

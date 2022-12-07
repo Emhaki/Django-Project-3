@@ -11,12 +11,14 @@ class SignupForm(UserCreationForm):
             "email",
             "nickname",
             "location",
+            "location_detail",
         )
         labels = {
             "username": "아이디",
             "email": "이메일",
             "nickname": "이름",
-            "location": "주소"
+            "location": "주소",
+            "location_detail": "상세주소",
         }
 
 class UpdateForm(UserChangeForm):
@@ -27,4 +29,13 @@ class UpdateForm(UserChangeForm):
             "email",
             "location",
             "location_detail",
+        )
+
+class UpdateSocialForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = (
+            "facebook",
+            "github",
+            "instagram",
         )

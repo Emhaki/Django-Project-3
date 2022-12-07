@@ -1,84 +1,274 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'style/articles_detail.css' %}">
+{% endblock css %}
 {% block content %}
-<div class="d-flex flex-column justify-content-center container">
-    <!-- 게시글 내용 -->
-    <div class='card text-bg-dark border-light mb-3 p-3'>
-        {% comment %} <h2><a class='text-decoration-none fw-bold' href="{% url 'accounts:detail' article.user.pk %}">{{ article.user.username }}</a></h2> {% endcomment %}
-        <br>
-        <h1 class='fw-bold'>{{ art.title }}</h1>
-        <hr>
-        <p class='mt-3'>{{ art.artist.nickname }}</p>
-        <p class='mt-3'>{{ art.content }}</p>
-        <p class='mt-3'>{{ art.painted_year }}</p>
-        <p class='mt-3'>{{ art.art_category }}</p>
-    </div>
-    
-    <div class='container mt-3 mb-3'>
-        <!-- 좋아요 -->
-        {% if request.user.is_authenticated %}
-            <a class="like-heart" href="{% url 'articles:like' art.pk %}">
-            {% if request.user in art.likes.all %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+<section class="detail__bg">
+    <nav class="articles__nav">
+        <button
+          class="offcanvas__btn btn btn-primary"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasScrolling"
+          aria-controls="offcanvasScrolling"
+        >
+          <img
+            class="nav__logo"
+            src="../../../static/img/logo-orange.png"
+            alt="logo"
+          />
+        </button>
+        <div
+          style="width: 16rem"
+          class="offcanvas offcanvas-start"
+          data-bs-scroll="true"
+          data-bs-backdrop="false"
+          tabindex="-1"
+          id="offcanvasScrolling"
+          aria-labelledby="offcanvasScrollingLabel"
+        >
+          <div class="offcanvas-header">
+            <img
+              class="offcanvas__logo offcanvas-title"
+              src="../../../static/img/logo-op-blue.png"
+              alt="logo"
+            />
+            <div>
+              <button class="btn offcanvas__header--btn">
+                <svg
+                  style="width: 1.5rem; height: 1.5rem"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-person-x"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"
+                  />
                 </svg>
-            {% else %}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+              </button>
+              <button class="btn offcanvas__header--btn">
+                <svg
+                  style="width: 1.5rem; height: 1.5rem"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-person"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
+                  />
                 </svg>
-            {% endif %}</a><p>{{ art.likes.count }}</p>
-        {% endif %}
-    </div>
+              </button>
+              <button
+                class="offcanvas__close--btn"
+                type="button"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="offcanvas__ul">
+              <li>홈</li>
+              <li>프로필</li>
+              <li>전체 작품</li>
+              <li>최근 본 작품</li>
+              <li>편지함</li>
+              <li>문의사항</li>
+              <li>
+                About
+                <img
+                  class="offcanvas__about--logo"
+                  src="../../../static/img/logo-orange.png"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-    <!-- 이미지 -->
-    <div class='container text-center'>
-        {% if art.image %}
-        <img src="{{ art.image.url }}" alt="{{ article.image }}">
-        {% endif %}
-    </div>
+    <section class="detail__container">
+        <div class="detail__box">
+            <!-- 이미지 -->
+            {% if art.image %}
+            <img class="detail__img" src="{{ art.image.url }}" alt="{{ article.image }}" onclick="resizeImage(this)">
+            {% endif %}
+            <div class="article__detail">
 
-    <!-- 버튼 -->
-    <div class='d-flex justify-content-end'>
-        {% comment %} {% if request.user == article.user %} {% endcomment %}
-        <button class="btn btn-dark m-2" type="button" onclick="location.href='{% url 'articles:update' art.pk %}'">
-            Update
-        </button>
-        {% comment %} {% endif %} {% endcomment %}
-        <button class="btn btn-outline-dark m-2" type="button" onclick="location.href='{% url 'articles:main' %}'">
-            BACK
-        </button>
-        <button class="btn btn-danger m-2" type="button" onclick="location.href='{% url 'articles:delete' art.pk %}'">
-            DELETE
-        </button>
-        <button class="btn btn-outline-success m-2" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
-            Go to order
-        </button>
-    </div>
-    <hr>
-    <button class="btn btn-primary" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
-        주문하기
-    </button>
-    <!-- 댓글 쓰기 Form-->
-    <br>
-    <h4>Comments</h4>
-    <form action="{% url 'articles:comment_create' art.pk %}" method="POST">
-        {% csrf_token %}
-        {% bootstrap_form comment_form %}
-        {% bootstrap_button button_type="submit" content="SUBMIT" %}
-    </form>
-    <hr>
+                <!-- 닫기 버튼 -->
+                <button class="detail__close" onclick="restoreImage()">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-x-lg"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+                      />
+                    </svg>
+                </button>
 
-    <!-- 댓글 목록 -->
-    {% for comment in comments %}
-        <p>{{ comment.content }}</p> 
-        <hr>    
-        {% if request.user == comment.user %}
-            <form action="{% url 'articles:comment_delete' comment.art.pk comment.pk %}" method="POST">
-            {% csrf_token %}
-            <button class="btn btn-dark">삭제</button>           
-            </form>
-        {% endif %} 
-    {% endfor %}
-</div>
+                <!-- 작품 내용 -->
+                <div class="detail__content">
+                    <div class="detail__header">
+                        <p class="detail__title">{{ art.title }}</p>
+                        <p class="detail__subtitle">{{ art.artist.nickname }} | {{ art.art_category }} | {{ art.painted_year }}</p>
+                    </div>
+                    <p class="detail__info">
+                        {{ art.content }}
+                    </p>
+
+                    <div class="detail__icon">
+                      <!-- 좋아요 -->
+                      {% if request.user.is_authenticated %}
+                      <form class="like-forms" data-art-id="{{ art.pk }}">
+                          {% csrf_token %}
+                          <button class="like-forms" type="submit" href="{% url 'articles:like' art.pk %}">
+                            {% if request.user in art.like.all %}
+                            <i id="like-{{ art.pk }}" class="bi bi-heart-fill"></i>
+                            {% else %}
+                            <i id="like-{{ art.pk }}" class="bi bi-heart"></i>
+                            {% endif %}
+                          </button>
+                            <span id="like-cnt" class="heart__number">{{ art.like.count }}</span>
+                      </form>
+                      {% endif %}
+                      <!-- 수정 삭제 -->
+                      <div>
+                        <button class="update__btn" type="button" onclick="location.href='{% url 'articles:update' art.pk %}'">
+                        <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <button class="delete__btn" type="button" onclick="location.href='{% url 'articles:delete' art.pk %}'">
+                        <i class="bi bi-trash-fill"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <!-- 댓글 입력 -->
+                    <form action="{% url 'articles:comment_create' art.pk %}" method="POST">
+                      {% csrf_token %}
+                      <input
+                        name="content"
+                        class="comment__input"
+                        placeholder="소중한 소감 한마디를 남겨주세요 ✍🏻"
+                      ></input> 
+                      <button class="comment__btn" type="submit"><i class="bi bi-arrow-up-short"></i></button>
+                    </form>
+
+                    <!-- 댓글 목록 -->
+                    <div class="comment__container">
+                      {% for comment in comments %}
+                      <div class="comment">
+                        <div class="comment__header">
+                          <p class="comment__writer">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-chat-dots"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                              />
+                              <path
+                                d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"
+                              />
+                            </svg>
+                            {{ comment.user }}
+                          </p>
+
+                          <!-- 댓글 삭제 -->
+                          {% if request.user == comment.user %}
+                          <form action="{% url 'articles:comment_delete' comment.art.pk comment.pk %}" method="POST">
+                          {% csrf_token %}
+                          <button class="delete__comment--btn">
+                            <i class="bi bi-trash-fill"></i>
+                          </button>           
+                          </form>
+                          {% endif %}     
+                        </div>
+                        <p class="comment__content">{{ comment.content }}</p>
+                      </div>
+                      {% endfor %}
+                    </div>
+                </div> 
+            </div>
+
+            <!-- 버튼 -->
+            {% comment %} <button class="btn btn-outline-success m-2" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
+                Go to order
+            </button> {% endcomment %}
+        </div>
+    </section>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+{% block js %}
+    <script src="{% static 'script/articles_detail.js' %}"></script>
+{% endblock js %}
+
+<!--좋아요-->
+<script type="text/javascript">
+    const forms = document.querySelectorAll('.like-forms')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    forms.forEach((form) => {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault()
+            const artId = event.target.dataset.artId
+
+            axios({
+                method: 'post',
+                url: `/articles/${artId}/like/`,
+                headers: {'X-CSRFToken': csrftoken},
+            })
+                .then((response) => {
+                    const isLiked = response.data.is_liked
+                    const likeBtn = document.querySelector(`#like-${artId}`)
+                    const likeCnt = document.querySelector('#like-cnt')
+                    const likeAdd = response.data.like_cnt
+
+                    if (isLiked === true) {
+                    likeBtn.className = 'bi bi-heart-fill'
+                    likeCnt.innerText = likeAdd
+                    } else {
+                    likeBtn.className = 'bi bi-heart'
+                    likeCnt.innerText = likeAdd
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.response)
+                })
+            })
+        })
+</script>
 {% endblock content %}

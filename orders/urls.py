@@ -15,7 +15,7 @@ urlpatterns = [
     path("order_list/", views.order_list, name="order_list"),
     # 결제
     path("payment/", views.payment, name="payment"),
-    path("complete/<int:user_pk>/", views.complete, name="complete"),
+    path("complete/", views.complete, name="complete"),
     # 결제 후 배송상태
     path("delivery/", views.delivery, name="delivery"),
     path("delivery_complete/", views.delivery_complete, name="delivery_complete"),

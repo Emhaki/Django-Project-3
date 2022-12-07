@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="signup-frame">
+  <div role="alert" aria-live="assertive" aria-atomic="true" id="toast_signup" class="toast_1">
+    <div class="toast-body" id="toast_context">
+      {% comment %} <button type="button" class="btn-close" id="closebtn" aria-label="Close"></button> {% endcomment %}
+    </div>
+  </div>
+  <div class="signup-frame__form">
+    <img class="signup-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
+    <form id="form-signup" action="" method="POST">
+      {% csrf_token %}
+      <div class="signup-frame__form__container">
+        <div class="signup-frame__form__container__login" id="login__check">
+          <p>아이디
+          </p>
+          <div class="signup-frame__form__container__login__check">
+            <input class="signup-frame__form__container__login__check__input" required="required" type="text"
+              id="idname" name="username" placeholder="아이디를 입력해주세요">
+            <input class="signup-frame__form__container__login__check__button" type="button" id="idcheck" value="중복확인">
+          </div>
+        </div>
+        <div class="signup-frame__form__container__email">
+          <p>이메일
+          </p>
+          <div class="signup-frame__form__container__email__check">
+            <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com">
+            <!--전달할 value값-->
+            <!-- 현동 : 모달 버튼 아이디 추가 modal-btn0 -->
+            <button class="modal-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal0">이메일 인증</button>
+          </div>
+        </div>
+        <div class="signup-frame__form__container__address">
+          <p>주소
+          </p>
+          <div class="signup-frame__form__container__address__search">
+            <input type="text" name="location" id="sample5_address" placeholder="주소">
+            <a type="button" value="주소 검색">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                viewbox="0 0 16 16" onclick="DaumPostcode()">
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </a>
+            {% comment %} 지도 안사용할거같아서 0으로처리함 {% endcomment %}
+            <div id="map" style="width:0px;height:0px;margin-top:0px;display:none"></div>
+            {% comment %} {% endcomment %}
+          </div>
+        </div>
+        <div class="signup-frame__form__container__address">
+          <p>상세주소
+          </p>
+          <div class="signup-frame__form__container__address__search">
+            <input type="text" name="location_detail" id="sample6_address" placeholder="상세주소">
+          </div>
+        </div>
+        <div class="signup-frame__form__container__submit">
+          <a href="{% url 'accounts:login' %}">
+            <input type="button" class="signup-frame__form__container__submit__back" value="뒤로가기">
+          </a>
+          <button class="signup-frame__form__container__submit__go" onclick="checkSignup()">가입하기</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% comment %} axious {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% comment %} 주소검색 api {% endcomment %}
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+{% endblock content %}

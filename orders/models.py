@@ -41,22 +41,24 @@ class CartItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    username = models.CharField(max_length=10)
-    requests = models.TextField(max_length=100)
+    requests = models.TextField(max_length=100, null=True)
     shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     order_status = models.CharField(max_length=250, default="결제완료")
+    
+
+    # 사용자 주문 정보
+    username = models.CharField(max_length=10)
+    email = models.EmailField()
+    address = models.CharField(max_length=250)
+    address_detail = models.CharField(max_length=250)
     contact_number = models.CharField(max_length=250, null=True)
     delivery_option = models.CharField(
         max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
     )
-
-    # 사용자 주문 정보 (for 카카오 로그인)
-    email = models.EmailField()
-    address = models.CharField(max_length=250)
-
+    
     class Meta:
         ordering = ["-created_at"]
 
