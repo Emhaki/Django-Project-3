@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/myques  tion.css' %}">
+{% endblock css %}
 {% block content %}
 
 <h1>내 문의</h1>
@@ -17,5 +20,13 @@
     </div>
   {% endif %}
 {% endfor %}
+  <div id = "box" class="slider">Show / Hide</div>
+  <button onclick="slideToggle('box');">Slide</button>
 
+  <script>
+    function slideToggle(el) {
+      var elem = document.getElementById(el);
+      elem.classList.toggle("open");
+    }
+  </script>
 {% endblock content %}
