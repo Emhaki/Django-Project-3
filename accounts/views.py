@@ -268,4 +268,4 @@ def check_artist_number(request):
         user.save()
     else:
         check = False
-    return JsonResponse({"check": check})
+    return JsonResponse({"check": check,})
