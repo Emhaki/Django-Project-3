@@ -153,36 +153,6 @@ def complete(request):
 
     return render(request, "orders/complete.html")
 
-
-# 주문 상세
-# def detail(request):
-# 결제 목록 출력
-# 결제 완료된 주문들
-# user_orders = (
-#     Order.objects.filter(user__id=user_pk, order_status="결제완료")
-#     | Order.objects.filter(user__id=user_pk, order_status="배송 준비중")
-#     | Order.objects.filter(user__id=user_pk, order_status="배송완료")
-# ).order_by("-register_data")
-
-# # 취소된 주문들
-# cancel_orders = Order.objects.filter(
-#     user__id=user_pk, order_status="취소주문"
-# ).order_by("-register_data")
-
-# # 누적 주문금액
-# accumulated_amount = 0
-# orders = Order.objects.filter(user__id=user_pk)
-# for order in orders:
-#     if order.order_status == "결제완료":
-#         accumulated_amount += int(order.art.price)
-
-# context = {
-#     "user_orders": user_orders,
-#     "cancel_orders": cancel_orders,
-#     "accumulated_amount": accumulated_amount,
-# }
-#     return render(request, "orders/detail.html", context)
-
 # 배송상태
 def delivery(request, order_pk):
     order = Order.objects.get(pk=order_pk)
