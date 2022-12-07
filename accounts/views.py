@@ -170,8 +170,10 @@ def logout(request):
     auth_logout(request)
     return redirect("accounts:index")
 
+def social(request):
 
-# 
+    return render(request, "accounts/social_update.html")
+
 # 
 def profile(request, user_pk):
   profiles = get_user_model().objects.filter(pk=user_pk)
