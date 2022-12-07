@@ -54,6 +54,7 @@ def payment(request):
         
         billing_amount = total_price + delivery_fee
     
+    
     else:
         # 장바구니 총 금액
         total_price = 0
