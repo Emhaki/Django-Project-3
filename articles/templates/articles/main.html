@@ -107,9 +107,38 @@
       <div class="main__view">
         <header>
           <p class="view__title">{{ name }}</p>
+          {% if name == '동양화' %}
           <p class="view__subtitle">
-            중국에서 비롯하여 한국, 일본 등 동양 여러 나라에서 발달해 온 그림(수정)
+            종이나 비단, 붓, 먹, 채색 등 동양의 전통적 재료와 기법 및 이론을 사용한 그림
           </p>
+          {% elif name == '서양화' %}
+          <p class="view__subtitle">
+            유화·수채화·펜화 등으로 그린 그림으로  인물화, 정물화, 풍경화, 추상화 등으로 나뉨
+          </p>
+          {% elif name == '판화' %}
+          <p class="view__subtitle">
+            나무·금속·돌 등의 면에 형상을 그려 판을 만든 다음, 잉크나 물감 등을 칠하여 종이나 천 등에 인쇄한 그림
+          </p>
+          {% elif name == '일러스트' %}
+          <p class="view__subtitle">
+            보이지 않는 생각, 감정, 사상 등을 시각화하여 대중매체를 통해 전달되는 그림
+          </p>
+          {% elif name == '조각 및 조소' %}
+          <p class="view__subtitle">
+            재료를 깎고 새기거나 빚어서 입체 형상을 만든 조형예술
+          </p>
+          {% elif name == '설치미술' %}
+          <p class="view__subtitle">
+            개성적인 진열방식을 도입하여 작품의 메시지를 시각·청각·후각·촉각 등으로 전달
+          </p>
+          {% elif name == '사진' %}
+          <p class="view__subtitle">
+            사회, 문화, 자연, 인간 등을 소재로 예술적인 시각에서 촬영한 예술성 있는 작품
+          </p>
+          {% else %}
+          <p class="view__subtitle">
+          </p>
+          {% endif %}
         </header>
 
         <!-- image -->
