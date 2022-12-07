@@ -41,8 +41,7 @@ class CartItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    username = models.CharField(max_length=10)
-    requests = models.TextField(max_length=100)
+    requests = models.TextField(max_length=100, null=True)
     shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

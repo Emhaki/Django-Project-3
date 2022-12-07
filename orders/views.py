@@ -31,28 +31,36 @@ def info(request, art_pk):
 
 # 주문 생성
 def payment(request):
-    if request.method == "POST":
-        return redirect("/")
+    # 사용자 정보 가져오기
+    data = {
+        "username": request.user.nickname,
+        "email": request.user.email,
+        "address": request.user.location,
+        "address_detail": request.user.location_detail,
+    }
+    payment_form = OrderCreateForm(initial=data)
+
+    # 장바구니 가져오기
+    cart_items = CartItem.objects.filter(user_id=request.user.pk)
+
+    # 바로구매
+    if request.method == "GET":
+        total_price = int(request.GET.get('바로구매'))
+        # 배송비
+        if total_price >= 150000:
+            delivery_fee = 0
+        else:
+            delivery_fee = 30000
+        
+        billing_amount = total_price + delivery_fee
+    
     else:
-        data = {
-            "username": request.user.nickname,
-            "email": request.user.email,
-            "address": request.user.location,
-            "address_detail": request.user.location_detail,
-        }
-        payment_form = OrderCreateForm(initial=data)
-
-        # 장바구니 가져오기
-        cart_items = CartItem.objects.filter(user_id=request.user.pk)
-
         # 장바구니 총 금액
         total_price = 0
         if cart_items:
             for item in cart_items:
                 total_price += item.art.price
-        # 바로구매
-        else:
-            total_price = item.art.price
+
         # 배송비
         if total_price >= 300000:
             delivery_fee = 0
@@ -61,15 +69,15 @@ def payment(request):
 
         billing_amount = total_price + delivery_fee
 
-        # 주문서
-        if cart_items is not None:
-            context = {
-                "payment_form": payment_form,
-                "cart_items": cart_items,
-                "total_price": total_price,
-                "delivery_fee": delivery_fee,
-                "billing_amount": billing_amount,
-            }
+    # 주문서
+    context = {
+        "payment_form": payment_form,
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "delivery_fee": delivery_fee,
+        "billing_amount": billing_amount,
+    }
+    
     return render(request, "orders/payment.html", context)
 
 
@@ -132,20 +140,42 @@ def delete_cart(request, art_pk):
 
 
 # 주문 완료
+# def complete(request):
+#     cart_items = CartItem.objects.filter(user__id=request.user.pk)
+
+
+#     for cart_item in cart_items:
+#         art = cart_item.art
+
+#         with transaction.atomic():
+#             order = Order(
+#                 username = request.user.nickname,
+#                 email = request.user.email,
+#                 art=art,
+#             )
+#             order.save()
+
+#             art.soldout = True
+#             art.save()
+
+#     cart_items.delete()
+
+#     return render(request, "orders/complete.html")
+
 def complete(request):
     cart_items = CartItem.objects.filter(user__id=request.user.pk)
-
 
     for cart_item in cart_items:
         art = cart_item.art
 
         with transaction.atomic():
             order = Order(
-                user=request.user,
+                username = request.user.nickname,
+                email = request.user.email,
                 art=art,
             )
             order.save()
-
+            
             art.soldout = True
             art.save()
 
