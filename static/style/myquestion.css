@@ -1,0 +1,14 @@
+#box{
+    width:400px;
+    background:orange;
+    margin:0 auto;
+    margin-top:3%;
+    overflow:hidden;
+  }
+  .slider {
+      transition:all 2s ease-in-out;
+      height:0px;
+  }
+  .slider.open {
+      height:400px;
+  }

@@ -1,35 +1,72 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/create_question.css' %}">
+{% endblock css %}
 {% block content %}
-
-
-
-<div class="container">
-  <h1>문의하기</h1>
-  <div class="row justify-content-center">
-    <div>이름</div>
-    <fieldset disabled>
-      <div>
+<section class="question__back">
+<div class="question__container">
+  <h1 class='question__title'>문의하기</h1>
+  <form action="" method="POST" enctype="multipart/form-data" class="question__form" id="upload__form">
+    {% csrf_token %}
+    <div class="question__total">
+    <div class="question__info">
+      <div class="question__info__name">
+        <p>이름</p>
         {% comment %} 카카오 유저라면 nickname / 카카오 유저아닐시 username {% endcomment %}
-        <input type="text" class="form-control" placeholder="{{request.user.nickname}}">
+        <input type="text" class="form-control" disabled placeholder="{{request.user.nickname}}">
       </div>
-    </fieldset>
-    <div>이메일</div>
-    <fieldset disabled>
-      <div>
-        <input type="text" class="form-control" placeholder="{{request.user.email}}">
+      <div class="question__info__email">
+        <p>이메일</p>
+        <input type="text" class="form-control" disabled placeholder="{{request.user.email}}">
       </div>
-    </fieldset>
-    <div>
-      <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% bootstrap_button button_type='submit' content='문의 작성' button_class='btn btn-primary' %}
-      </form>
-      <div id="form-message-warning mt-4"></div>
+      <div class="question__titleform">
+          <p>문의 제목</p>
+          <input type="text" name="title" required placeholder="작품 제목을 입력해주세요.">
+      </div>
+      <div class="question__contentform">
+          <p>문의 내용</p>
+          <textarea name="content" rows="3" required placeholder="작품 설명을 입력해주세요."></textarea>
+      </div>
+      <div class="question__img">
+        <p>이미지</p>
+        <input class="question__img__name" id="imginfo" value="" placeholder="첨부파일" readonly>
+        <input type="file" id="choosefile" name="image" accept="image/*" required
+            onchange="setThumbnail(event);" value=""tag="choosefile">
+        <label for="choosefile">파일 선택</label>
     </div>
+    </div>
+    <div class="question__preview" id="preview"></div>
   </div>
+    <button type="submit" class="question__form__button">등록하기</button>
+  </form>
 </div>
-
+</section>
+<script>
+  const fileUp = document.querySelector("#choosefile");
+  fileUp.addEventListener("change", () => {
+      const imgInfo = document.querySelector("#imginfo");
+      imgInfo.value = fileUp.files[0].name;
+  })
+  function setThumbnail(event) {
+      var reader = new FileReader();
+      const imgPreview = document.querySelector("#preview");
+      console.log(imgPreview.childElementCount)
+      reader.onload = function (event) {
+          var img = document.createElement("img");
+          img.setAttribute("src", event.target.result);
+          img.setAttribute("class", "question__preview__img")
+          img.setAttribute("id", "imgpreview")
+          if (imgPreview.childElementCount >= 1) {
+              imgPreview.removeChild(document.querySelector("#imgpreview"));
+              imgPreview.appendChild(img);
+          }
+          else {
+              document.querySelector("#preview").appendChild(img);
+          }
+      };
+      reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
 {% endblock content %}
