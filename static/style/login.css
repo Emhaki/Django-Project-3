@@ -10,8 +10,8 @@
 }
 
 .login-frame__form {
-    width: 46rem;
-    height: 46rem;
+    width: 40rem;
+    height: 40rem;
     border-radius: 100%;
     background-color: var(--main);
     position: relative;
