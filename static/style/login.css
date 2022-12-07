@@ -213,7 +213,7 @@
     }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 850px) {
     .login-frame__form {
         width: 30rem;
         height: 30rem;
@@ -305,6 +305,53 @@
     .login-frame__form__detail__signup {
         margin-left: 1rem;
         font-size: .9rem;
+        color: white;
+    }
+}
+
+@media (max-width: 550px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
         color: white;
     }
 }
