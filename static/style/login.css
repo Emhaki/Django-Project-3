@@ -355,3 +355,473 @@
         color: white;
     }
 }
+
+@media (max-height:700px) {
+    .login-frame__form {
+        width: 35rem;
+        height: 35rem;
+    }
+    .login-frame__form__img {
+        position: absolute;
+        left: 50%;
+        top: 2%;
+        transform: translateX(-50%);
+        width: 14rem;
+        height: 8rem;
+        transition: all .3s;
+    }
+
+    .login-frame__form__id {
+        width: 20rem;
+        height: 3.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.7rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__password {
+        width: 20rem;
+        height: 3.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.5rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__logbtn {
+        width: 20rem;
+        height: 3rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        background-color: rgba(18, 45, 78, 0.95);
+        transform: translateX(-50%);
+        border: none;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 16rem;
+        height: 2rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 66%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        font-size: .7rem;
+        font-weight: bold;
+        transition: all .3s;
+    }
+
+    .login-frame_-form__detail__find {
+        margin-right: 1rem;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        color: white;
+    }
+}
+
+@media (max-height:600px) {
+    .login-frame__form {
+        width: 30rem;
+        height: 30rem;
+        border-radius: 100%;
+        background-color: var(--main);
+        transition: all .3s;
+        position: relative;
+    }
+
+    .login-frame__form__img {
+        position: absolute;
+        left: 50%;
+        top: 2%;
+        transform: translateX(-50%);
+        width: 12rem;
+        height: 6rem;
+        transition: all .3s;
+    }
+
+    .login-frame__form__id {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__password {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__logbtn {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        background-color: rgba(18, 45, 78, 0.95);
+        transform: translateX(-50%);
+        border: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 14rem;
+        height: 2rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 66%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        font-size: .7rem;
+        font-weight: bold;
+        transition: all .3s;
+    }
+
+    .login-frame_-form__detail__find {
+        margin-right: 1rem;
+        font-size: .9rem;
+        color: white;
+        overflow: auto;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 1rem;
+        font-size: .9rem;
+        color: white;
+    }
+}
+
+@media (max-height:500px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
+        color: white;
+    }
+}
+
+@media (max-height:700px) and (max-width:850px) {
+    .login-frame__form {
+        width: 30rem;
+        height: 30rem;
+        border-radius: 100%;
+        background-color: var(--main);
+        transition: all .3s;
+        position: relative;
+    }
+
+    .login-frame__form__img {
+        position: absolute;
+        left: 50%;
+        top: 2%;
+        transform: translateX(-50%);
+        width: 12rem;
+        height: 6rem;
+        transition: all .3s;
+    }
+
+    .login-frame__form__id {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__password {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(217, 217, 217, 0.43);
+        border: none;
+        font-size: 1.2rem;
+        padding-left: 1.5rem;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__logbtn {
+        width: 17rem;
+        height: 2.5rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 52%;
+        left: 50%;
+        background-color: rgba(18, 45, 78, 0.95);
+        transform: translateX(-50%);
+        border: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        transition: all .3s;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 14rem;
+        height: 2rem;
+        border-radius: 6px;
+        position: absolute;
+        top: 66%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: none;
+        font-size: .7rem;
+        font-weight: bold;
+        transition: all .3s;
+    }
+
+    .login-frame_-form__detail__find {
+        margin-right: 1rem;
+        font-size: .9rem;
+        color: white;
+        overflow: auto;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 1rem;
+        font-size: .9rem;
+        color: white;
+    }
+}
+
+@media (max-height:500px) and (max-width:850px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
+        color: white;
+    }
+}
+
+@media (max-width:550px) and (max-height:700px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
+        color: white;
+    }
+}
+
+@media (max-width:550px) and (max-height:600px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 4rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
+        color: white;
+    }
+}
