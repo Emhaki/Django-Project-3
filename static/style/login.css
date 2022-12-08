@@ -21,10 +21,10 @@
 .login-frame__form__img {
     position: absolute;
     left: 50%;
-    top: 2%;
+    top: 6%;
     transform: translateX(-50%);
-    width: 20rem;
-    height: 10rem;
+    width: 15rem;
+    height: 7rem;
 }
 
 .login-frame__form__id {
@@ -131,10 +131,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 14rem;
-        height: 8rem;
+        width: 10rem;
+        height: 5rem;
         transition: all .3s;
     }
 
@@ -226,10 +226,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -317,7 +317,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -364,10 +364,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 14rem;
-        height: 8rem;
+        width: 10rem;
+        height: 5rem;
         transition: all .3s;
     }
 
@@ -459,10 +459,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -550,7 +550,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -602,10 +602,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -693,7 +693,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -740,7 +740,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -787,7 +787,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -834,7 +834,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
