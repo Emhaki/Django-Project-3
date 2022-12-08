@@ -14,9 +14,11 @@
     <div class="payment__user-section">
       <h3 class="payment__title">결제</h3>
       <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
-      <form id="payment-form" action="" method="POST" class="form">
+      <!--결제 Form-->
+      <form id="payment-form" method="POST" class="form" action="{% url 'orders:complete' %}">
         {% csrf_token %}
-        {% bootstrap_form payment_form layout='horizontal' %}
+        {% bootstrap_form payment_form layout='horizontal' %} 
+      </form>
         <!-- Button trigger modal -->
         <div class="d-flex mt-5">
           <button type="button" class="modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
@@ -123,7 +125,7 @@
     </div>
   </div>
   <div class="payment__execute-btn">
-    <button id="order_btn" form="payment-form" type="submit" class="payment__execute btn btn-lg" disabled>결제하기</button>
+    <input id="order_btn" type="submit" class="payment__execute btn btn-lg">결제하기</input>
   </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -151,18 +153,21 @@
       amount: '{{ billing_amount }}',
       buyer_name: '{{ request.user.nickname }}',
       buyer_email: '{{ request.user.email }}',
-
+      //m_redirect_url
     }, function (rsp) {
       if (rsp.success) {
-        var msg = '결제가 완료되었습니다.';
-        msg += '결제 금액 : ' + rsp.paid_amount + '원';
-        location.href = "/orders/complete/"
+        // var msg = '결제가 완료되었습니다.';
+        // msg += '결제 금액 : ' + rsp.paid_amount + '원';
+        
+        // payment_form 셀렉트
+        // payment_form submit
+        const paymentForm = document.querySelector("#payment-form");
+        paymentForm.submit()
       }
       else {
         var msg = rsp.error_msg;
-
       }
-      alert(msg);
+      // alert(msg);
     });
   });
 </script>

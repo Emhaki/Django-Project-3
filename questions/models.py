@@ -9,8 +9,9 @@ class Question(models.Model):
     image = models.ImageField(upload_to="images/", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="questions"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="question"
     )
+    admin = models.BooleanField(default=False) # admin이 다 볼 수있게
 
 class Comment(models.Model):
     content = models.TextField()
