@@ -10,8 +10,8 @@ from django.db.models import Q
 from django.http import JsonResponse
 
 
-def main(request):    
-    arts = Art.objects.order_by('pk')
+def main(request):
+    arts = Art.objects.order_by("pk")
 
     # 작품 카테고리
     category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
@@ -21,7 +21,7 @@ def main(request):
     # 페이지네이션
     paginator = Paginator(arts, 8)
     page_number = request.GET.get("type")
-    
+
     if request.GET.get("type"):
         name = re.sub(r"[0-9]", "", request.GET.get("type"))
         arts = Art.objects.filter(art_category__contains=name)
@@ -29,12 +29,11 @@ def main(request):
         page_number = re.sub(r"[^0-9]", "", request.GET.get("type"))
         page_obj = paginator.get_page(page_number)
         context = {
-            'arts': arts,
-            'name': name,
-            'page_obj': page_obj,
-            'category': category, 
-            'art_type_all': art_type_all,
-
+            "arts": arts,
+            "name": name,
+            "page_obj": page_obj,
+            "category": category,
+            "art_type_all": art_type_all,
         }
         return render(request, "articles/main.html", context)
 
@@ -70,7 +69,6 @@ def create(request):
 def detail(request, pk):
     art = Art.objects.get(pk=pk)
     comment_form = CommentForm()
-
     context = {
         "art": art,
         "comments": art.comment_set.all(),
@@ -105,25 +103,45 @@ def delete(request, pk):
 
 # @artist_required
 def comment_create(request, pk):
-    art = Art.objects.get(pk=pk)
-    comment_form = CommentForm(request.POST)
-
-    if comment_form.is_valid():
-        comment = comment_form.save(commit=False)
-        comment.art = art
-        comment.user = request.user
-        comment.save()
-
-    return redirect("articles:detail", art.pk)
+    if request.user.is_authenticated:
+        art = Art.objects.get(pk=pk)
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.art = art
+            comment.user = request.user
+            comment.save()
+        comments = art.comment_set.all()
+        comment_dict = {}
+        i = 0
+        for one_comment in comments:
+            comment_dict[f"comment_set{i}"] = {
+                "commentPk": one_comment.pk,
+                "commentUser": one_comment.user.username,
+                "commentContent": one_comment.content,
+            }
+            i += 1
+        context = {
+            "commentSet": comment_dict,
+        }
+        return JsonResponse(context)
+    else:
+        print("로그인 해주세요!")
+        context = {
+            "errorMsg": "로그인 해주세요!",
+        }
+        return JsonResponse(context)
 
 
 # @artist_required
-def comment_delete(request, pk, comment_pk):
+def comment_delete(request, comment_pk):
     comment = Comment.objects.get(pk=comment_pk)
-
     if comment.user == request.user:
         comment.delete()
-    return redirect("articles:detail", pk)
+    context = {
+        "commentPk": comment_pk,
+    }
+    return JsonResponse(context)
 
 
 # @login_required
@@ -135,16 +153,14 @@ def like(request, pk):
             art.likes.remove(request.user)
             is_liked = False
         else:
-            art.likes.add(request.user) 
+            art.likes.add(request.user)
             is_liked = True
-            
-        context = {
-                'is_liked': is_liked,
-                'like_cnt': art.likes.count()
-            }
+
+        context = {"is_liked": is_liked, "like_cnt": art.likes.count()}
         return JsonResponse(context)
-    
-    return redirect('accounts:login')
+
+    return redirect("accounts:login")
+
 
 def search(request):
     all_data = Art.objects.order_by("-pk")
@@ -156,9 +172,9 @@ def search(request):
     if search:
         search_list = all_data.filter(
             Q(title__icontains=search)
-            | Q(content__icontains=search) 
-            | Q(artist__nickname__icontains=search) 
-            )
+            | Q(content__icontains=search)
+            | Q(artist__nickname__icontains=search)
+        )
         paginator = Paginator(search_list, 6)
         page_obj = paginator.get_page(request.GET.get("page"))
         context = {
@@ -168,9 +184,9 @@ def search(request):
             "category": category,
         }
     else:
-        if search == None :
-            search = ''
-            
+        if search == None:
+            search = ""
+
         context = {
             "search": search,
             "search_list": all_data,
@@ -178,4 +194,3 @@ def search(request):
             "category": category,
         }
     return render(request, "articles/search.html", context)
-

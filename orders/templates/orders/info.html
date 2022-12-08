@@ -147,19 +147,18 @@
 {% comment %} <!-- 바로 구매하기 -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-    function buying(event) {
-      const artPrice = document.querySelector("#art-price").value;
-      console.log(artPrice)
-      axios ({
-        method: 'post',
-        url: `payment/`,
-        headers: {'X-CSRFToken': csrftoken},
-        data: {'art_pk': artPrice},
-      })
+  function buying(event) {
+    const artPrice = document.querySelector("#art-price").value;
+    console.log(artPrice)
+    axios({
+      method: 'post',
+      url: `payment/`,
+      headers: { 'X-CSRFToken': csrftoken },
+      data: { 'art_pk': artPrice },
+    })
       .then(response => {
-         console.log(data)
+        console.log(data)
       })
     }
 </script> {% endcomment %}
-
 {% endblock content %}
