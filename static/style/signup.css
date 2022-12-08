@@ -1236,6 +1236,113 @@
 }
 
 
+@media (max-height:650px) {
+    .signup-frame__form__img {
+        width: 14rem;
+        height: 7rem;
+        transition: all .3s;
+    }
+    .signup-frame__form__container__login p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+    .signup-frame__form__container__login__check__input {
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+    .signup-frame__form__container__login__check__button {
+        height: 2rem;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+
+    .signup-frame__form__container__password p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+
+    .signup-frame__form__container__password input {
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .signup-frame__form__container__check p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+    .signup-frame__form__container__check input{
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .signup-frame__form__container__name p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+
+    .signup-frame__form__container__name input {
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .signup-frame__form__container__email p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+
+    .signup-frame__form__container__email input {
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .signup-frame__form__container__email__check button {
+        height: 2rem;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+    .signup-frame__form__container__address p {
+        margin: 0;
+        width: 30%;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: all .4s;
+    }
+    .signup-frame__form__container__address__search input {
+        height: 2rem;
+        font-size: 1rem;
+        padding-left: 1.5rem;
+    }
+    .signup-frame__form__container__submit__back {
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    .signup-frame__form__container__submit__go {
+        height: 2rem;
+        font-size: 1rem;
+    }
+}
+
 @media (max-height:950px) and (max-width:1600px) {
     .signup-frame__form__container__login {
         display: flex;
