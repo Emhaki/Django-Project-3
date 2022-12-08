@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
 from django.http import  JsonResponse
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 def index(request):
@@ -21,16 +22,34 @@ def create(request):
     return render(request, "questions/create.html", context)
 
 def myquestion(request):
-  questions = Question.objects.filter(user=request.user.pk)
-  question = Question.objects.get(pk=request.user.pk)
-  comments = question.comment_set.all().order_by('-pk')
+    # 문의 pk를 추적할 수 있도록, 첫번째 문의는 댓글작성이 되나
+    # 두번째 문의부터 댓글작성이 안되는 현상 발생.
+    
+    question = Question.objects.get(pk=5)
+    questions = request.user.question.all()
+    comments = question.comment_set.all().order_by('-pk')
 
-  context = {
-    "questions": questions,
-    "comments": comments,
-  }
+    context = {
+      "questions": questions,
+      "comments": comments,
+    }
 
-  return render(request, "questions/myquestion.html", context)
+    return render(request, "questions/myquestion.html", context)
+
+def adminqna(request):
+
+    if str(request.user.username) == str(get_user_model().objects.get(username=request.user.username)):
+        questions = Question.objects.all()
+        comments = Question.objects.filter(admin=0)
+
+        context = {
+          "questions": questions,
+          "comments": comments,
+        }
+
+        return render(request, "questions/adminqna.html", context)
+    else:
+        return redirect("accounts:login")
 
 def comment_create(request, question_pk):
     question_comment = get_object_or_404(Question, pk=question_pk)
