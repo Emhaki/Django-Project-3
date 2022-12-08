@@ -162,7 +162,8 @@ def complete(request):
                 # total_price = order.total_product,
             )
             order.save()
-
+            
+            
             art.soldout = True
             art.save()
 
