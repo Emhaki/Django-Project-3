@@ -300,5 +300,23 @@
         };
       });
   });
+  // 댓글 삭제 (첫 로딩시)
+  window.onload = function () {
+    const deleteFormSet = document.querySelectorAll(".delete-form");
+    for (j = 0; j < deleteFormSet.length; j++) {
+      deleteFormSet[j].addEventListener("submit", function (event) {
+        event.preventDefault();
+        axios({
+          url: `/articles/comments/${event.target.dataset.commentId}/comment_delete/`,
+          headers: { 'X-CSRFToken': csrftoken },
+          method: "post",
+        })
+          .then(response => {
+            const targetDiv = document.querySelector(`#comment-${response.data.commentPk}`);
+            targetDiv.remove();
+          });
+      });
+    };
+  };
 </script>
 {% endblock content %}
