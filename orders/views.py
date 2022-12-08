@@ -28,47 +28,6 @@ def info(request, art_pk):
     }
     return render(request, "orders/info.html", context)
 
-
-# 주문 생성
-def payment(request):
-    # 사용자 정보 가져오기
-    data = {
-        "username": request.user.nickname,
-        "email": request.user.email,
-        "address": request.user.location,
-        "address_detail": request.user.location_detail,
-    }
-    payment_form = OrderCreateForm(initial=data)
-
-    # 장바구니 가져오기
-    cart_items = CartItem.objects.filter(user_id=request.user.pk)
-
-    # 장바구니 총 금액
-    total_price = 0
-    if cart_items:
-        for item in cart_items:
-            total_price += item.art.price
-
-    # 배송비
-    if total_price >= 300000:
-        delivery_fee = 0
-    else:
-        delivery_fee = 30000
-
-    billing_amount = total_price + delivery_fee
-
-    # 주문서
-    context = {
-        "payment_form": payment_form,
-        "cart_items": cart_items,
-        "total_price": total_price,
-        "delivery_fee": delivery_fee,
-        "billing_amount": billing_amount,
-    }
-    
-    return render(request, "orders/payment.html", context)
-
-
 # 장바구니
 def mycart(request):
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
@@ -77,7 +36,7 @@ def mycart(request):
     total_price = 0
     for item in cart_items:
         total_price += item.art.price
-
+        
     context = {
         "cart_items": cart_items,
         "total_price": total_price,
@@ -89,25 +48,29 @@ def mycart(request):
 # 장바구니 추가
 def add_cart(request, art_pk):
     # 장바구니 담기
-    my_pick = Art.objects.get(pk=art_pk)
-    my_cart = CartItem.objects.filter(user__id=request.user.pk)
-
-    if my_cart.filter(art__pk=my_pick.pk).exists():
-        already = my_cart.get(art__pk=my_pick.pk)
-        already.delete()
-        in_cart = False
-    else:
+    art = Art.objects.get(pk=art_pk)
+    try:
+        cart = CartItem.objects.get(art__pk=art.pk, user__id=request.user.pk)
+        # 장바구니에 해당 작품이 있으면 삭제
+        if cart:
+            if cart.art.title == art.title:
+                cart.delete()
+                in_cart = False
+                
+    except CartItem.DoesNotExist:
         user = User.objects.get(pk=request.user.pk)
         cart = CartItem(
             user=user,
-            art=my_pick,
+            art=art,
         )
         cart.save()
         in_cart = True
-    
+
     # context = {
     #     "in_cart": in_cart,
+    #     "cart_length": cart.count(),
     # }
+
     return redirect("orders:mycart")
 
 
@@ -132,44 +95,74 @@ def delete_cart(request, art_pk):
         messages.error(request.user.nickname, "님의 장바구니를 지울 수 없어요!")
         return redirect("orders:mycart")
 
+# 주문 생성
+def payment(request):
+    # 사용자 정보 가져오기
+    data = {
+        "username": request.user.nickname,
+        "email": request.user.email,
+        "address": request.user.location,
+        "address_detail": request.user.location_detail,
+    }
+    # 사용자 정보 From
+    payment_form = OrderCreateForm(initial=data)
+    if payment_form.is_valid():
+        payment_form.save()
+        print(payment_form)
+
+    
+    # 장바구니 가져오기
+    cart_items = CartItem.objects.filter(user_id=request.user.pk)
+
+    # 장바구니 총 금액
+    total_price = 0
+    if cart_items:
+        for item in cart_items:
+            total_price += item.art.price
+
+    # 배송비
+    if total_price >= 30000:
+        delivery_fee = 0
+    else:
+        delivery_fee = 3000
+
+    billing_amount = total_price + delivery_fee
+
+    # 주문서
+    context = {
+        "payment_form": payment_form,
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "delivery_fee": delivery_fee,
+        "billing_amount": billing_amount,
+    }
+    
+    return render(request, "orders/payment.html", context)
 
 # 주문 완료
-# def complete(request):
-#     cart_items = CartItem.objects.filter(user__id=request.user.pk)
-
-
-#     for cart_item in cart_items:
-#         art = cart_item.art
-
-#         with transaction.atomic():
-#             order = Order(
-#                 username = request.user.nickname,
-#                 email = request.user.email,
-#                 art=art,
-#             )
-#             order.save()
-
-#             art.soldout = True
-#             art.save()
-
-#     cart_items.delete()
-
-#     return render(request, "orders/complete.html")
-
 def complete(request):
     cart_items = CartItem.objects.filter(user__id=request.user.pk)
-
+    if request.method == 'POST':
+        payment_form = OrderCreateForm(request.POST)
+        print(payment_form)
+        
     for cart_item in cart_items:
         art = cart_item.art
-
+        
         with transaction.atomic():
             order = Order(
                 username = request.user.nickname,
                 email = request.user.email,
+                address = request.user.location,
+                address_detail = request.user.location_detail,
+                contact_number = payment_form.contact_number,
+                requests = payment_form.requests,
+                delivery_option = payment_form.payment_form,
                 art=art,
+                # total_price = order.total_product,
             )
             order.save()
-            
+
             art.soldout = True
             art.save()
 

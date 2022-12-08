@@ -19,15 +19,14 @@ class Art(models.Model):
     content = models.CharField(max_length=500)
     art_category = models.CharField(max_length=10, choices=category_choices)
     painted_year = models.CharField(max_length=20)
-    painted_way = models.CharField(max_length=50, null=True)
-    art_size = models.CharField(max_length=20, null=True)
-    price = models.PositiveIntegerField(blank=True, null=True)
+    painted_way = models.CharField(max_length=50)
+    art_size = models.CharField(max_length=20)
+    price = models.PositiveIntegerField(blank=True)
     image = ProcessedImageField(
         upload_to="images/",
         blank=True,
         format="JPEG",
-        options={"quality": 100},
-        null=True,
+        options={"quality": 100}
     )
     artist = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     likes = models.ManyToManyField(AUTH_USER_MODEL, related_name="like_arts")

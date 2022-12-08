@@ -41,8 +41,6 @@ class CartItem(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    requests = models.TextField(max_length=100, null=True)
-    shipping_price = models.IntegerField()
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -55,6 +53,7 @@ class Order(models.Model):
     address = models.CharField(max_length=250)
     address_detail = models.CharField(max_length=250)
     contact_number = models.CharField(max_length=250, null=True)
+    requests = models.TextField(max_length=100, null=True)
     delivery_option = models.CharField(
         max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
     )
@@ -66,8 +65,12 @@ class Order(models.Model):
         return f"Order {self.id}"
 
     def get_total_product(self):
-        return sum(item.get_item_price() for item in self.item.all())
+        return sum(item.get_item_price() for item in self.art.price.all())
 
     def get_total_price(self):
         total_product = self.get_total_product()
+        if total_product >= 30000:
+            total_product += 3000
+        else:
+            total_product += 0
         return total_product

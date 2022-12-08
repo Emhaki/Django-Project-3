@@ -14,6 +14,7 @@
     <div class="payment__user-section">
       <h3 class="payment__title">결제</h3>
       <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
+      <!--결제 Form-->
       <form id="payment-form" action="" method="POST" class="form">
         {% csrf_token %}
         {% bootstrap_form payment_form layout='horizontal' %}
@@ -151,7 +152,7 @@
       amount: '{{ billing_amount }}',
       buyer_name: '{{ request.user.nickname }}',
       buyer_email: '{{ request.user.email }}',
-
+      //m_redirect_url
     }, function (rsp) {
       if (rsp.success) {
         var msg = '결제가 완료되었습니다.';
