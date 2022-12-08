@@ -262,8 +262,13 @@
         method: "post",
       })
         .then(response => {
-          const targetDiv = document.querySelector(`#comment-${response.data.commentPk}`);
-          targetDiv.remove();
+          let auth = "{{ request.user.is_authenticated }}";
+          if (auth === "True") {
+            const targetDiv = document.querySelector(`#comment-${response.data.commentPk}`);
+            targetDiv.remove();
+          } else if (auth === "False") {
+            alert(response.data.errorMsg);
+          };
         });
     });
 
@@ -312,8 +317,13 @@
           method: "post",
         })
           .then(response => {
-            const targetDiv = document.querySelector(`#comment-${response.data.commentPk}`);
-            targetDiv.remove();
+            let auth = "{{ request.user.is_authenticated }}";
+            if (auth === "True") {
+              const targetDiv = document.querySelector(`#comment-${response.data.commentPk}`);
+              targetDiv.remove();
+            } else if (auth === "False") {
+              alert(response.data.errorMsg);
+            };
           });
       });
     };

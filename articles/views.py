@@ -97,7 +97,10 @@ def update(request, pk):
 
 # @artist_required
 def delete(request, pk):
-    Art.objects.get(pk=pk).delete()
+    if request.user.is_authenticated:
+        target_art = Art.objects.get(pk=pk)
+        if request.user == target_art.artist:
+            target_art.delete()
     return redirect("articles:main", pk)
 
 
@@ -135,13 +138,19 @@ def comment_create(request, pk):
 
 # @artist_required
 def comment_delete(request, comment_pk):
-    comment = Comment.objects.get(pk=comment_pk)
-    if comment.user == request.user:
-        comment.delete()
-    context = {
-        "commentPk": comment_pk,
-    }
-    return JsonResponse(context)
+    if request.user.is_authenticated:
+        comment = Comment.objects.get(pk=comment_pk)
+        if comment.user == request.user:
+            comment.delete()
+        context = {
+            "commentPk": comment_pk,
+        }
+        return JsonResponse(context)
+    else:
+        context = {
+            "errorMsg": "로그인 해주세요!",
+        }
+        return JsonResponse(context)
 
 
 # @login_required
