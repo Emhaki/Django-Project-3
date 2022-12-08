@@ -43,32 +43,19 @@ def payment(request):
     # 장바구니 가져오기
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
 
-    # 바로구매
-    if request.method == "GET":
-        total_price = int(request.GET.get('바로구매'))
-        # 배송비
-        if total_price >= 150000:
-            delivery_fee = 0
-        else:
-            delivery_fee = 30000
-        
-        billing_amount = total_price + delivery_fee
-    
-    
+    # 장바구니 총 금액
+    total_price = 0
+    if cart_items:
+        for item in cart_items:
+            total_price += item.art.price
+
+    # 배송비
+    if total_price >= 300000:
+        delivery_fee = 0
     else:
-        # 장바구니 총 금액
-        total_price = 0
-        if cart_items:
-            for item in cart_items:
-                total_price += item.art.price
+        delivery_fee = 30000
 
-        # 배송비
-        if total_price >= 300000:
-            delivery_fee = 0
-        else:
-            delivery_fee = 30000
-
-        billing_amount = total_price + delivery_fee
+    billing_amount = total_price + delivery_fee
 
     # 주문서
     context = {
