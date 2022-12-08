@@ -21,10 +21,10 @@
 .login-frame__form__img {
     position: absolute;
     left: 50%;
-    top: 2%;
+    top: 6%;
     transform: translateX(-50%);
-    width: 20rem;
-    height: 10rem;
+    width: 15rem;
+    height: 7rem;
 }
 
 .login-frame__form__id {
@@ -118,7 +118,7 @@
     color: white;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1550px) {
     .login-frame__form {
         width: 35rem;
         height: 35rem;
@@ -131,10 +131,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 14rem;
-        height: 8rem;
+        width: 10rem;
+        height: 5rem;
         transition: all .3s;
     }
 
@@ -226,10 +226,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -317,7 +317,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -356,7 +356,7 @@
     }
 }
 
-@media (max-height:700px) {
+@media (max-height:800px) {
     .login-frame__form {
         width: 35rem;
         height: 35rem;
@@ -364,10 +364,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 14rem;
-        height: 8rem;
+        width: 10rem;
+        height: 5rem;
         transition: all .3s;
     }
 
@@ -459,10 +459,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -550,7 +550,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -589,7 +589,7 @@
     }
 }
 
-@media (max-height:700px) and (max-width:850px) {
+@media (max-height:800px) and (max-width:850px) {
     .login-frame__form {
         width: 30rem;
         height: 30rem;
@@ -602,10 +602,10 @@
     .login-frame__form__img {
         position: absolute;
         left: 50%;
-        top: 2%;
+        top: 6%;
         transform: translateX(-50%);
-        width: 12rem;
-        height: 6rem;
+        width: 8rem;
+        height: 4rem;
         transition: all .3s;
     }
 
@@ -685,6 +685,53 @@
     }
 }
 
+@media (max-height:800px) and (max-width:550px) {
+    .login-frame__form {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .login-frame__form__img {
+        width: 6rem;
+        height: 3rem;
+    }
+
+    .login-frame__form__id {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__password {
+        font-size: .7rem;
+        width: 12rem;
+        height: 1.5rem;
+    }
+
+    .login-frame__form__logbtn {
+        font-size: .8rem;
+        height: 1.5rem;
+        width: 12rem;
+    }
+
+    .login-frame__form__googlebtn {
+        width: 11rem;
+        height: 1.2rem;
+        top: 64%;
+        font-size: .5rem;
+    }
+
+    .login-frame_-form__detail__find {
+        font-size: .6rem;
+    }
+
+    .login-frame__form__detail__signup {
+        margin-left: 0rem;
+        font-size: .6rem;
+        color: white;
+    }
+}
+
 @media (max-height:500px) and (max-width:850px) {
     .login-frame__form {
         width: 20rem;
@@ -693,7 +740,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -740,7 +787,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
@@ -787,7 +834,7 @@
 
     .login-frame__form__img {
         width: 6rem;
-        height: 4rem;
+        height: 3rem;
     }
 
     .login-frame__form__id {
