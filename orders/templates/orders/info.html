@@ -71,8 +71,8 @@
         </form>
         <form action="{% url 'orders:payment' %}" method="GET">
           <button class="ms-5 btn btn-lg" onclick="location.href='{% url 'orders:payment' %}'">
-            <input type="submit" value="바로 구매하기"/>
-            <input type="hidden" value="{{art.price}}" name="바로구매"/>
+            <input type="submit" value="바로 구매하기" />
+            <input type="hidden" value="{{art.price}}" name="바로구매" />
           </button>
         </form>
         {% endif %}
@@ -83,19 +83,19 @@
 <!-- 바로 구매하기 -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-    function buying(event) {
-      const artPrice = document.querySelector("#art-price").value;
-      console.log(artPrice)
-      axios ({
-        method: 'post',
-        url: `payment/`,
-        headers: {'X-CSRFToken': csrftoken},
-        data: {'art_pk': artPrice},
-      })
+  function buying(event) {
+    const artPrice = document.querySelector("#art-price").value;
+    console.log(artPrice)
+    axios({
+      method: 'post',
+      url: `payment/`,
+      headers: { 'X-CSRFToken': csrftoken },
+      data: { 'art_pk': artPrice },
+    })
       .then(response => {
-         console.log(data)
+        console.log(data)
       })
-    }
+  }
 </script>
 
 {% endblock content %}
