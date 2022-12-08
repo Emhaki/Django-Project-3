@@ -111,12 +111,36 @@ def kakao_callback(request):
 
 
 def kakao_signup(request):
-  if request.method == "POST":
-      form = UpdateForm(request.POST, instance=request.user)
+    if request.method == "POST":
+        form = UpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+              form.save()
+              return redirect("accounts:profile", request.user.pk)
+    else:
+        if request.GET:
+          names = get_user_model().objects.filter(username=request.GET.get("username"))
+          if names:
+            context = {
+              'check' : "True",
+            }
+            return JsonResponse(context)
+          else:
+            context = {
+              'check' : "False",
+            }
+            return JsonResponse(context)
+    return render(request, "accounts/kakao_signup.html")
+
+def signup(request):
+
+    if request.method == "POST":
+      form = SignupForm(request.POST)
       if form.is_valid():
-            form.save()
-            return redirect("accounts:profile", request.user.pk)
-  else:
+        forms = form.save(commit=False)
+        forms.email = request.POST.get('email')
+        forms.save()
+        return redirect("accounts:login")
+    else:
       if request.GET:
         names = get_user_model().objects.filter(username=request.GET.get("username"))
         if names:
@@ -129,31 +153,7 @@ def kakao_signup(request):
             'check' : "False",
           }
           return JsonResponse(context)
-  return render(request, "accounts/kakao_signup.html")
-
-def signup(request):
-
-  if request.method == "POST":
-    form = SignupForm(request.POST)
-    if form.is_valid():
-      forms = form.save(commit=False)
-      forms.email = request.POST.get('email')
-      forms.save()
-      return redirect("accounts:login")
-  else:
-    if request.GET:
-      names = get_user_model().objects.filter(username=request.GET.get("username"))
-      if names:
-        context = {
-          'check' : "True",
-        }
-        return JsonResponse(context)
-      else:
-        context = {
-          'check' : "False",
-        }
-        return JsonResponse(context)
-  return render(request, "accounts/signup.html")
+    return render(request, "accounts/signup.html")
 
 
 def login(request):
@@ -172,26 +172,32 @@ def logout(request):
 
 def social(request):
 
+    if request.method == "POST":
+        form = UpdateSocialForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("accounts:profile", request.user.pk)
+
     return render(request, "accounts/social_update.html")
 
 # 
 def profile(request, user_pk):
-  profiles = get_user_model().objects.filter(pk=user_pk)
-  creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
-  # 작가가 등록한 작품들
-  arts = Art.objects.filter(artist=user_pk).order_by("-pk")
+    profiles = get_user_model().objects.filter(pk=user_pk)
+    creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
+    # 작가가 등록한 작품들
+    arts = Art.objects.filter(artist=user_pk).order_by("-pk")
 
-  paginator = Paginator(arts, 6)
-  page_number = request.GET.get("page")
-  page_obj = paginator.get_page(page_number)
+    paginator = Paginator(arts, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
-  context = {
-    "profiles" : profiles,
-    "creater": creater,
-    "arts" : arts,
-    "page_obj": page_obj,
-  }
-  return render(request, "accounts/profile.html", context)
+    context = {
+      "profiles" : profiles,
+      "creater": creater,
+      "arts" : arts,
+      "page_obj": page_obj,
+    }
+    return render(request, "accounts/profile.html", context)
 
 
 # 이메일 인증
