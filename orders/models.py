@@ -13,12 +13,9 @@ delivery_choices = (
 
 # Create your models here.
 class CartItem(models.Model):
-    # carts = models.ManyToManyField(Art, related_name = 'carts_user')
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    # active = models.BooleanField(default=False)
-    # 장바구니에 담을 양
-    # quantity = models.PositiveIntegerField(default=0)
+
     class Meta:
         verbose_name = "장바구니"
         verbose_name_plural = f"{verbose_name} 목록"
@@ -31,16 +28,17 @@ class CartItem(models.Model):
             total += art
         return total
 
-    # def __init__(self, price):
-    #     self.art.price = price
 
-    # def __str__(self):
-    #     return (self.art)
+# 게시글(art) - 댓글(order)
+# order(댓글) 1 : art(게시글) 1
+# 게시글 1 : 댓글 N
 
 
+# 유저 1 : 주문 N
+# 그림 1 : 주문 N -> 주문 1 : 그림 N
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    art = models.ForeignKey(Art, on_delete=models.CASCADE)
+    # art = models.ForeignKey(Art, on_delete=models.CASCADE) # 얘가 문제다. 얘르르 지우고 Art 클래스에 Order에 대한 ForeignKey 가 있어야한다.
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -58,19 +56,19 @@ class Order(models.Model):
         max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
     )
     
-    class Meta:
-        ordering = ["-created_at"]
+    # class Meta:
+    #     ordering = ["-created_at"]
 
-    def __str__(self):
-        return f"Order {self.id}"
+    # def __str__(self):
+    #     return f"Order {self.id}"
 
-    def get_total_product(self):
-        return sum(item.get_item_price() for item in self.art.price.all())
+    # def get_total_product(self):
+    #     return sum(item.get_item_price() for item in self.art.price.all())
 
-    def get_total_price(self):
-        total_product = self.get_total_product()
-        if total_product >= 30000:
-            total_product += 3000
-        else:
-            total_product += 0
-        return total_product
+    # def get_total_price(self):
+    #     total_product = self.get_total_product()
+    #     if total_product >= 30000:
+    #         total_product += 3000
+    #     else:
+    #         total_product += 0
+    #     return total_product
