@@ -69,18 +69,18 @@
           <button type="submit" class="btn btn-lg">장바구니 담기</button>
           {% endif %}
         </form>
-        <form action="{% url 'orders:payment' %}" method="GET">
+        {% comment %} <form action="{% url 'orders:payment' %}" method="GET">
           <button class="ms-5 btn btn-lg" onclick="location.href='{% url 'orders:payment' %}'">
             <input type="submit" value="바로 구매하기"/>
-            <input type="hidden" value="{{art.price}}" name="바로구매"/>
+            <input type="hidden" value="{{art}}" name="바로구매"/>
           </button>
-        </form>
+        </form> {% endcomment %}
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-<!-- 바로 구매하기 -->
+{% comment %} <!-- 바로 구매하기 -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
     function buying(event) {
@@ -96,6 +96,6 @@
          console.log(data)
       })
     }
-</script>
+</script> {% endcomment %}
 
 {% endblock content %}
