@@ -2,6 +2,7 @@ from django.db import models
 from config.settings import AUTH_USER_MODEL
 from imagekit.processors import ResizeToFill
 from imagekit.models import ProcessedImageField
+# from orders.models import Order
 
 category_choices = (
     ("서양화", "서양화"),
@@ -31,6 +32,7 @@ class Art(models.Model):
     artist = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     likes = models.ManyToManyField(AUTH_USER_MODEL, related_name="like_arts")
     soldout = models.BooleanField(default=False)
+    # order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="art_order")
 
 
 class Comment(models.Model):

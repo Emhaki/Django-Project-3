@@ -141,35 +141,54 @@ def payment(request):
 
 # 주문 완료
 def complete(request):
-    cart_items = CartItem.objects.filter(user__id=request.user.pk)
     if request.method == 'POST':
-        payment_form = OrderCreateForm(request.POST)
-        print(payment_form)
-        
-    for cart_item in cart_items:
-        art = cart_item.art
-        
-        with transaction.atomic():
-            order = Order(
-                username = request.user.nickname,
-                email = request.user.email,
-                address = request.user.location,
-                address_detail = request.user.location_detail,
-                contact_number = payment_form.contact_number,
-                requests = payment_form.requests,
-                delivery_option = payment_form.payment_form,
-                art=art,
-                # total_price = order.total_product,
-            )
-            order.save()
-            
-            
-            art.soldout = True
-            art.save()
+        cart_items = CartItem.objects.filter(user__id=request.user.pk)
+        order_form = OrderCreateForm(request.POST)
+        if order_form.is_valid():
+            order = order_form.save(commit = False)
 
-    cart_items.delete()
+        # 주문 1 : 그림 1 -> 주문 1 : 그림 N
+        # 1. 주문을 먼저 생성
+        # 2. 1 에서 생성한 주문(order)를 가지고(외래키), cart_items에 있는 art들을 생성
+    
+        for cart_item in cart_items:
+            art = cart_item.art
+            
+            with transaction.atomic():
+                order.user = request.user
+                order.username = request.user.nickname
+                order.email = request.user.email
+                order.address = request.user.location
+                order.address_detail = request.user.location_detail
+                order.total_price = art.price
+                art.order = art
+                order.save()
+                art.soldout = True
+                art.save()
 
-    return render(request, "orders/complete.html")
+                # order = Order(
+                #     username = request.user.nickname,
+                #     email = request.user.email,
+                #     address = request.user.location,
+                #     address_detail = request.user.location_detail,
+                #     contact_number = order_form.contact_number,
+                #     requests = order_form.requests,
+                #     delivery_option = order_form.delivery_option,
+                #     art=art,
+                #     # total_price = order.total_product,
+                # )
+                
+                
+        cart_items.delete()
+
+    else:
+        pass
+
+    orders = Order.objects.filter(user_id=request.user.pk)
+    context = {
+        "orders": orders,
+    }
+    return render(request, "orders/complete.html", context)
 
 # 배송상태
 def delivery(request, order_pk):
