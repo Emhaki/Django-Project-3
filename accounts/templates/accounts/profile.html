@@ -277,7 +277,37 @@
         {% comment %} 저장된 작품탭끝 {% endcomment %}
         <div class="profile__container__tabs__box box3">박스3</div>
         <div class="profile__container__tabs__box box4">박스4</div>
-        <div class="profile__container__tabs__box box5">박스5</div>
+        <div class="profile__container__tabs__box box5">
+          
+          <div class="profile__container__tabs__box__grid">
+            {% for user_cart in user_carts %}
+            <div class="profile__container__tabs__box__grid__card">
+              <a href="{% url 'articles:detail' user_cart.art.pk %}">
+                <div class="profile__container__tabs__box__grid__card__imgbox">
+                  {% comment %}  {% endcomment %}
+                  {% if user_cart.art.image %}
+                    <img src="{{ user_cart.art.image.url }}" alt="">
+                  {% else %}
+                    <img src="{% static 'images/art1_n4hYkfD.jpg' %}" alt="">
+                  {% endif %}
+                  {% comment %}  {% endcomment %}
+                  <svg class="profile__container__tabs__box__grid__card__imgbox__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                </div>
+                <div class="profile__container__tabs__box__grid__card__main">
+                  <p class="profile__container__tabs__box__grid__card__main_title">
+                    {{ user_cart.art.title }}
+                  </p>
+                  <p class="profile__container__tabs__box__grid__card__main_price">
+                    {{ user_cart.art.price | intcomma }}
+                  </p>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
       </div>
     </section>
   </section>
