@@ -141,8 +141,23 @@ def payment(request):
 
 # 주문 완료
 def complete(request):
+    # order_pk = Order.objects.get(pk=pk)
     if request.method == 'POST':
         cart_items = CartItem.objects.filter(user__id=request.user.pk)
+        # 장바구니 총 금액
+        total_price = 0
+        if cart_items:
+            for item in cart_items:
+                total_price += item.art.price
+
+        # 배송비
+        if total_price >= 30000:
+            delivery_fee = 0
+        else:
+            delivery_fee = 3000
+
+        billing_amount = total_price + delivery_fee
+
         order_form = OrderCreateForm(request.POST)
         if order_form.is_valid():
             order = order_form.save(commit = False)
@@ -150,7 +165,6 @@ def complete(request):
         # 주문 1 : 그림 1 -> 주문 1 : 그림 N
         # 1. 주문을 먼저 생성
         # 2. 1 에서 생성한 주문(order)를 가지고(외래키), cart_items에 있는 art들을 생성
-    
         for cart_item in cart_items:
             art = cart_item.art
             
@@ -160,33 +174,24 @@ def complete(request):
                 order.email = request.user.email
                 order.address = request.user.location
                 order.address_detail = request.user.location_detail
-                order.total_price = art.price
-                art.order = art
+                order.total_price = billing_amount
                 order.save()
+                
                 art.soldout = True
+                art.order = order
                 art.save()
-
-                # order = Order(
-                #     username = request.user.nickname,
-                #     email = request.user.email,
-                #     address = request.user.location,
-                #     address_detail = request.user.location_detail,
-                #     contact_number = order_form.contact_number,
-                #     requests = order_form.requests,
-                #     delivery_option = order_form.delivery_option,
-                #     art=art,
-                #     # total_price = order.total_product,
-                # )
-                
-                
+        
+        
         cart_items.delete()
-
     else:
         pass
 
-    orders = Order.objects.filter(user_id=request.user.pk)
+    order = Order.objects.last()
+    art = Art.objects.filter(order__id=order.pk)
+    print(art)
     context = {
-        "orders": orders,
+        "order": order,
+        "art": art,
     }
     return render(request, "orders/complete.html", context)
 

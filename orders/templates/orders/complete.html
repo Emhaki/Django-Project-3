@@ -12,12 +12,12 @@
   <!-- <div class="d-flex">
     <h1 class="complete__pagetitle ms-auto">구매 완료</h1>
   </div> -->
+  {% for item in art %}
   <div class="complete__container">
-    {% for order in orders %}
     <div>
       <div class="complete__photo-section">
         <!-- <img class="complete__photo" src="{% static 'photos/pic_1.png' %}" alt="작품"> -->
-        <img class="complete__photo" src="{{ order.art.image.url }}" alt="{{ order.art.image }}">
+        <img class="complete__photo" src="{{ item.image.url }}" alt="{{ item.image }}">
       </div>
       <p class="complete__art-size">
         1220 x 1000
@@ -35,14 +35,14 @@
           <div class="receipt__orange orange-2"></div>
         </div>
         <h2 class="receipt__title">
-          {{ order.art.title }}
+          {{ item.title }}
         </h2>
         <p class="receipt__description">
-          {{ order.art.content }}
+          {{ item.content }}
         </p>
         <hr>
         <div class="receipt__profile">
-          <h4 class="receipt__artist-name">{{ order.art.artist.nickname }}</h4>
+          <h4 class="receipt__artist-name">{{ item.nickname }}</h4>
           <div class="receipt__picture-link">
             <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
             <a class="receipt__dm-link" href="">
@@ -61,10 +61,9 @@
         <hr>
         <div class="receipt__footer">
           <p class="receipt__price">가격</p>
-          <p class="receipt__price">{{ order.accumulated_amount }} Won</p>
+          <p class="receipt__price">{{ order.total_price }} Won</p>
         </div>
       </div>
-      {% endfor %}
       <div class="receipt__btn">
         <a href="" class="btn btn-lg receipt__btn-link">메인으로
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
@@ -77,5 +76,5 @@
     </div>
   </div>
 </div>
-
+{% endfor %}
 {% endblock content %}
