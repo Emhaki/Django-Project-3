@@ -6,26 +6,26 @@
 {% endblock css %}
 {% block content %}
 
-
 <div class="upload__back">
     <div class='upload__back__container'>
         <h1 class='upload__title'>작품 수정</h1>
-        
+
         <form action="" method="POST" enctype="multipart/form-data" class="upload__form" id="upload__form">
             {% csrf_token %}
             <div class="upload__total">
                 <div class="upload__total__info">
                     <div class="upload__img">
                         <p>이미지</p>
-                        <input class="upload__img__name" id="imginfo" value="{{art.image.url}}" placeholder="첨부파일" readonly>
-                        <input type="file" id="choosefile" name="image" accept="image/*" required
-                            onchange="setThumbnail(event);" value="{{art.image.url}}" tag="choosefile">
+                        <input class="upload__img__name" id="imginfo" value="{{art.image.url}}" placeholder="첨부파일"
+                            readonly="readonly">
+                        <input type="file" id="choosefile" name="image" accept="image/*" onchange="setThumbnail(event);"
+                            value="{{art.image.url}}" tag="choosefile">
                         <label for="choosefile">파일 선택</label>
                     </div>
                     <div class="upload__form__category">
                         <p>카테고리</p>
-                        <select name="art_category" required id="upload__form"  value="{{art.art_category}}">
-                            <option value="" selected disabled hidden>---------</option>
+                        <select name="art_category" id="upload__form" >
+                            <option value="{{art.art_category}}" selected="selected" hidden="hidden">{{art.art_category}}</option>
                             <option value="동양화">동양화</option>
                             <option value="서양화">서양화</option>
                             <option value="판화">판화</option>
@@ -37,31 +37,33 @@
                     </div>
                     <div class="upload__titleform">
                         <p>제목</p>
-                        <input type="text" name="title" required placeholder="작품 제목을 입력해주세요." value="{{art.title}}">
+                        <input type="text" name="title" placeholder="작품 제목을 입력해주세요." value="{{art.title}}">
                     </div>
                     <div class="upload__size">
                         <p>작품 크기</p>
-                        <input type="text" name="art_size" required placeholder="ex) 1024 X 960" value="{{art.art_size}}">
+                        <input type="text" name="art_size" placeholder="ex) 1024 X 960" value="{{art.art_size}}">
                     </div>
                     <div class="upload__date">
                         <p>제작 년도</p>
-                        <input type="text" name="painted_year" required maxlength="4" placeholder="ex) 2022" value="{{art.painted_year}}">
+                        <input type="text" name="painted_year" maxlength="4" placeholder="ex) 2022"
+                            value="{{art.painted_year}}">
                     </div>
                     <div class="upload__date">
                         <p>제작 기법</p>
-                        <input type="text" name="painted_way" required maxlength="20" placeholder="ex) 캔버스에 유화" value="{{art.painted_way}}">
+                        <input type="text" name="painted_way" maxlength="20" placeholder="ex) 캔버스에 유화"
+                            value="{{art.painted_way}}">
                     </div>
                     <div class="upload__price">
                         <p>가격</p>
-                        <input type="number" name="price" required placeholder="가격을 입력해주세요." value="{{art.price}}">
+                        <input type="number" name="price" placeholder="ex) 300000" value="{{art.price}}">
                     </div>
                     <div class="upload__contentform">
                         <p>작품 설명</p>
-                        <textarea name="content" rows="3" required placeholder="작품 설명을 입력해주세요." value="{{art.content}}"></textarea>
+                        <textarea name="content" rows="3" placeholder="작품 설명을 입력해주세요.">{{art.content}}</textarea>
                     </div>
                 </div>
-                <div class="upload__preview" id="preview" value="{{art.image.url}}">
-                    {% comment %} 사진 불러오기가 안됨! {% endcomment %}
+                <div class="upload__preview" id="preview">
+                    <img src="{{art.image.url}}" class="upload__preview__img" id="updatepreview" alt="">
                 </div>
             </div>
             <button type="submit" class="upload__form__button">등록하기</button>
@@ -74,6 +76,7 @@
         const imgInfo = document.querySelector("#imginfo");
         imgInfo.value = fileUp.files[0].name;
     })
+
     function setThumbnail(event) {
         var reader = new FileReader();
         const imgPreview = document.querySelector("#preview");
@@ -82,12 +85,11 @@
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
             img.setAttribute("class", "upload__preview__img")
-            img.setAttribute("id", "imgpreview")
+            img.setAttribute("id", "updatepreview")
             if (imgPreview.childElementCount >= 1) {
-                imgPreview.removeChild(document.querySelector("#imgpreview"));
+                imgPreview.removeChild(document.querySelector("#updatepreview"));
                 imgPreview.appendChild(img);
-            }
-            else {
+            } else {
                 document.querySelector("#preview").appendChild(img);
             }
         };
