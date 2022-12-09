@@ -22,29 +22,22 @@ def create(request):
     return render(request, "questions/create.html", context)
 
 def myquestion(request):
+
     # 문의 pk를 추적할 수 있도록, 첫번째 문의는 댓글작성이 되나
     # 두번째 문의부터 댓글작성이 안되는 현상 발생.
-    
-    question = Question.objects.get(pk=5)
-    questions = request.user.question.all()
-    comments = question.comment_set.all().order_by('-pk')
-
+    my_questions = Question.objects.filter(user_id=request.user.pk)
     context = {
-      "questions": questions,
-      "comments": comments,
+      "questions": my_questions,
     }
 
     return render(request, "questions/myquestion.html", context)
 
 def adminqna(request):
-
-    if str(request.user.username) == str(get_user_model().objects.get(username=request.user.username)):
-        questions = Question.objects.all()
-        comments = Question.objects.filter(admin=0)
+    if str(request.user.username) == str(get_user_model().objects.get(username="admin")):
+        my_questions = Question.objects.filter(admin=0)
 
         context = {
-          "questions": questions,
-          "comments": comments,
+          "questions": my_questions,
         }
 
         return render(request, "questions/adminqna.html", context)
@@ -53,7 +46,7 @@ def adminqna(request):
 
 def comment_create(request, question_pk):
     question_comment = get_object_or_404(Question, pk=question_pk)
-    
+    print(request.POST)
     if request.user.is_authenticated:
         commentForm = CommentForm(request.POST)
         if commentForm.is_valid():
@@ -66,7 +59,7 @@ def comment_create(request, question_pk):
               'userName': comment.user.username,
               'created_at': comment.created_at
             }
-
+            print(context)
         return JsonResponse(context)
     else:
         return redirect("accounts:login")
