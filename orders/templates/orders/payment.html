@@ -17,7 +17,9 @@
         <!--결제 Form-->
         <form id="payment-form" method="POST" class="form" action="{% url 'orders:complete' %}">
           {% csrf_token %}
-          {% bootstrap_form payment_form layout = 'horizontal' %}
+          <!-- layout='horizontal' 처럼 붙어있어야 됨 -->
+          <!-- layout = 'horizontal' 처럼 띄어져있으면 안됨 -->
+          {% bootstrap_form payment_form layout='horizontal' %}
         </form>
         <!-- Button trigger modal -->
         <div class="d-flex mt-5">
