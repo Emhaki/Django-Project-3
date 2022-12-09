@@ -38,12 +38,10 @@ class CartItem(models.Model):
 # 그림 1 : 주문 N -> 주문 1 : 그림 N
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # art = models.ForeignKey(Art, on_delete=models.CASCADE) # 얘가 문제다. 얘르르 지우고 Art 클래스에 Order에 대한 ForeignKey 가 있어야한다.
     total_price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    order_status = models.CharField(max_length=250, default="결제완료")
-    
+    order_status = models.CharField(max_length=250, default="결제완료")  
 
     # 사용자 주문 정보
     username = models.CharField(max_length=10)
@@ -56,19 +54,4 @@ class Order(models.Model):
         max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
     )
     
-    # class Meta:
-    #     ordering = ["-created_at"]
 
-    # def __str__(self):
-    #     return f"Order {self.id}"
-
-    # def get_total_product(self):
-    #     return sum(item.get_item_price() for item in self.art.price.all())
-
-    # def get_total_price(self):
-    #     total_product = self.get_total_product()
-    #     if total_product >= 30000:
-    #         total_product += 3000
-    #     else:
-    #         total_product += 0
-    #     return total_product
