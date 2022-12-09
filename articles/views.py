@@ -63,7 +63,7 @@ def create(request):
     context = {
         "art_form": art_form,
     }
-    return render(request, "articles/forms.html", context=context)
+    return render(request, "articles/create.html", context=context)
 
 
 def detail(request, pk):
@@ -80,7 +80,7 @@ def detail(request, pk):
 # @artist_required
 def update(request, pk):
     art = Art.objects.get(pk=pk)
-    if request.user == art.user:
+    if request.user == art.artist:
         if request.method == "POST":
             article_form = ArtForm(request.POST, request.FILES, instance=art)
             if article_form.is_valid():
@@ -89,8 +89,12 @@ def update(request, pk):
 
         else:
             art_form = ArtForm(instance=art)
-        context = {"art_form": art_form}
-        return render(request, "articles/form.html", context)
+            
+        context = {
+            "art": art,
+            "art_form": art_form
+            }
+        return render(request, "articles/update.html", context)
     else:
         return redirect("articles:detail", art.pk)
 
@@ -101,7 +105,7 @@ def delete(request, pk):
         target_art = Art.objects.get(pk=pk)
         if request.user == target_art.artist:
             target_art.delete()
-    return redirect("articles:main", pk)
+    return redirect("articles:main")
 
 
 # @artist_required

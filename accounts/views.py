@@ -6,6 +6,7 @@ from django.contrib import messages
 from random import random
 from .forms import *
 from articles .models import *
+from orders .models import *
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -168,7 +169,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:index")
+    return redirect("accounts:login")
 
 def social(request):
 
@@ -185,17 +186,27 @@ def profile(request, user_pk):
     profiles = get_user_model().objects.filter(pk=user_pk)
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
     # 작가가 등록한 작품들
-    arts = Art.objects.filter(artist=user_pk).order_by("-pk")
-
+    arts = Art.objects.filter(artist=user_pk).order_by()
     paginator = Paginator(arts, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
+    # 해당 유저가 좋아요를 누른 작품들
+    art_likes = Art.objects.filter(likes=user_pk).order_by()
+    like_paginator = Paginator(art_likes, 6)
+    page_number = request.GET.get("like_page")
+    like_page_obj = like_paginator.get_page(page_number)
+
+    # 해당 유저의 카트아이템
+    user_carts = CartItem.objects.filter(user=user_pk)
     context = {
       "profiles" : profiles,
       "creater": creater,
       "arts" : arts,
+      "art_likes": art_likes,
       "page_obj": page_obj,
+      "like_page_obj": like_page_obj,
+      "user_carts": user_carts,
     }
     return render(request, "accounts/profile.html", context)
 

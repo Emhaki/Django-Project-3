@@ -41,7 +41,7 @@
   text-align: right;
 }
 
-.offcanvas__ul > li {
+.offcanvas__ul>li {
   margin-bottom: 1rem;
 }
 
@@ -197,4 +197,18 @@
     margin-top: 3rem;
     margin-left: 0;
   }
+}
+
+
+.info__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+}
+
+
+.info__modal-content {
+  max-width: 60rem;
+  max-height: 60rem;
 }

@@ -42,7 +42,7 @@
   text-align: right;
 }
 
-.offcanvas__ul > li {
+.offcanvas__ul>li {
   margin-bottom: 1rem;
 }
 
@@ -218,10 +218,22 @@
     margin-left: 0;
   }
 
-  .basket__price {
-  }
+  .basket__price {}
 
   .basket__button {
     font-size: 1rem;
   }
+}
+
+.photo__modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+}
+
+
+.photo__modal-content {
+  max-width: 60rem;
+  max-height: 60rem;
 }
