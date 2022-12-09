@@ -168,7 +168,7 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    return redirect("accounts:index")
+    return redirect("accounts:login")
 
 def social(request):
 
@@ -185,7 +185,7 @@ def profile(request, user_pk):
     profiles = get_user_model().objects.filter(pk=user_pk)
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
     # 작가가 등록한 작품들
-    arts = Art.objects.filter(artist=user_pk).order_by("-pk")
+    arts = Art.objects.filter(artist=user_pk).order_by()
 
     paginator = Paginator(arts, 6)
     page_number = request.GET.get("page")
