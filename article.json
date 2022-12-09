@@ -1,0 +1,723 @@
+[
+  {
+    "model": "articles.art",
+    "pk": 1,
+    "fields": {
+      "title": "동양화_1",
+      "content": "동양화 첫번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2022",
+      "painted_way": "손",
+      "art_size": "1920 X 1280",
+      "price": 100000,
+      "image": "images/1_p51CX7J.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 2,
+    "fields": {
+      "title": "동양화_2",
+      "content": "동양화 두번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2022",
+      "painted_way": "손",
+      "art_size": "1920 X 1280",
+      "price": 100200,
+      "image": "images/2.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 3,
+    "fields": {
+      "title": "동양화_3",
+      "content": "동양화 세번쨰 작품",
+      "art_category": "동양화",
+      "painted_year": "2022",
+      "painted_way": "연필",
+      "art_size": "1920 X 1280",
+      "price": 200000,
+      "image": "images/3.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 4,
+    "fields": {
+      "title": "동양화_4",
+      "content": "동양화 네번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2012",
+      "painted_way": "먹",
+      "art_size": "1920 X 1280",
+      "price": 300000,
+      "image": "images/4.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 5,
+    "fields": {
+      "title": "동양화_5",
+      "content": "동양화 다섯번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2019",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 400000,
+      "image": "images/5.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 6,
+    "fields": {
+      "title": "동양화_6",
+      "content": "동양화 여섯번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2018",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 500000,
+      "image": "images/6.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 7,
+    "fields": {
+      "title": "동양화_7",
+      "content": "동양화 일곱번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2048",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 350000,
+      "image": "images/7.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 8,
+    "fields": {
+      "title": "동양화_8",
+      "content": "동양화 여덟번째 작품",
+      "art_category": "동양화",
+      "painted_year": "1996",
+      "painted_way": "수채화",
+      "art_size": "1920 X 1280",
+      "price": 605000,
+      "image": "images/8.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 9,
+    "fields": {
+      "title": "동양화_9",
+      "content": "동양화 아홉번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2011",
+      "painted_way": "연필",
+      "art_size": "1920 X 1280",
+      "price": 700000,
+      "image": "images/9.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 10,
+    "fields": {
+      "title": "동양화_10",
+      "content": "동양화 열번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2542",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 985000,
+      "image": "images/10.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 11,
+    "fields": {
+      "title": "동양화_11",
+      "content": "동양화 열한번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2100",
+      "painted_way": "손바닥",
+      "art_size": "1920 X 1280",
+      "price": 760000,
+      "image": "images/11.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 12,
+    "fields": {
+      "title": "동양화_12",
+      "content": "동양화 열두번째 작품",
+      "art_category": "동양화",
+      "painted_year": "1522",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 450000,
+      "image": "images/12.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 13,
+    "fields": {
+      "title": "동양화_13",
+      "content": "동양화 열세번째 작품",
+      "art_category": "동양화",
+      "painted_year": "1999",
+      "painted_way": "깜지",
+      "art_size": "1920 X 1280",
+      "price": 421000,
+      "image": "images/13.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 14,
+    "fields": {
+      "title": "동양화_14",
+      "content": "동양화 열네번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2008",
+      "painted_way": "볼펜",
+      "art_size": "1920 X 1280",
+      "price": 1000000,
+      "image": "images/14.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 15,
+    "fields": {
+      "title": "동양화_15",
+      "content": "동양화 열다섯번째 작품",
+      "art_category": "동양화",
+      "painted_year": "2004",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 2000000,
+      "image": "images/15.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 16,
+    "fields": {
+      "title": "서양화_1",
+      "content": "서양화 첫번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2001",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 100000,
+      "image": "images/1_ONHs7WK.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 17,
+    "fields": {
+      "title": "서양화_2",
+      "content": "서양화 두번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1995",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 2000000,
+      "image": "images/2_cdTSkWJ.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 18,
+    "fields": {
+      "title": "서양화_3",
+      "content": "서양화 세번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2011",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 2000000,
+      "image": "images/3_C45hlM8.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 19,
+    "fields": {
+      "title": "서양화_4",
+      "content": "서양화 네번쨰 작품",
+      "art_category": "서양화",
+      "painted_year": "1950",
+      "painted_way": "석탄",
+      "art_size": "1920 X 1280",
+      "price": 300000,
+      "image": "images/4_JaJt8kb.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 20,
+    "fields": {
+      "title": "서양화_5",
+      "content": "서양화 다섯번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1895",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 350000,
+      "image": "images/5_AeMyEMa.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 21,
+    "fields": {
+      "title": "서양화_6",
+      "content": "서양화 여섯번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2320",
+      "painted_way": "실",
+      "art_size": "1920 X 1280",
+      "price": 540000,
+      "image": "images/6_dVKL3bG.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 22,
+    "fields": {
+      "title": "서양화_7",
+      "content": "서양화 일곱번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2003",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 980000,
+      "image": "images/7_EAn8rpr.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 23,
+    "fields": {
+      "title": "서양화_8",
+      "content": "서양화 여덟번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2006",
+      "painted_way": "붓펜",
+      "art_size": "1920 X 1280",
+      "price": 1000000,
+      "image": "images/8_kihw1aM.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 24,
+    "fields": {
+      "title": "서양화_9",
+      "content": "서양화 아홉번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1993",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 2500000,
+      "image": "images/9_4hgdz6C.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 25,
+    "fields": {
+      "title": "서양화_10",
+      "content": "서양화 열번쨰 작품",
+      "art_category": "서양화",
+      "painted_year": "2422",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 3500000,
+      "image": "images/10_hWHxw51.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 26,
+    "fields": {
+      "title": "서양화_11",
+      "content": "서양화 열한번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1888",
+      "painted_way": "물감, 캔버스",
+      "art_size": "1920 X 1280",
+      "price": 2400000,
+      "image": "images/11_0pvtV4b.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 27,
+    "fields": {
+      "title": "서양화_12",
+      "content": "서양화 열두번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1856",
+      "painted_way": "식빵",
+      "art_size": "1920 X 1280",
+      "price": 2000000,
+      "image": "images/12_3zX61bE.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 28,
+    "fields": {
+      "title": "서양화_13",
+      "content": "서양화 열세번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1998",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 240500,
+      "image": "images/13_j7BB336.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 29,
+    "fields": {
+      "title": "서양화_14",
+      "content": "서양화 열네번째 작품",
+      "art_category": "서양화",
+      "painted_year": "2001",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 3500000,
+      "image": "images/14_BiwnvAC.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 30,
+    "fields": {
+      "title": "서양화_15",
+      "content": "서양화 열다섯번째 작품",
+      "art_category": "서양화",
+      "painted_year": "1995",
+      "painted_way": "물감",
+      "art_size": "1920 X 1280",
+      "price": 450000,
+      "image": "images/15_AkNiwI7.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 31,
+    "fields": {
+      "title": "일러스트_1",
+      "content": "일러스트 첫번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2002",
+      "painted_way": "테블릿",
+      "art_size": "1920 X 1280",
+      "price": 100000,
+      "image": "images/1_iYvJtJc.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 32,
+    "fields": {
+      "title": "일러스트_2",
+      "content": "일러스트 두번쨰 작품",
+      "art_category": "일러스트",
+      "painted_year": "2022",
+      "painted_way": "테블릿",
+      "art_size": "1920 X 1280",
+      "price": 200000,
+      "image": "images/2_Q1vO56F.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 33,
+    "fields": {
+      "title": "일러스트_3",
+      "content": "일러스트 세번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2032",
+      "painted_way": "컴퓨터 그림판",
+      "art_size": "1920 X 1280",
+      "price": 3500000,
+      "image": "images/3_KtkO3qh.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 34,
+    "fields": {
+      "title": "일러스트_4",
+      "content": "일러스트 네번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2009",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 352400,
+      "image": "images/4_m83x2fl.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 35,
+    "fields": {
+      "title": "일러스트_5",
+      "content": "일러스트 다섯번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2011",
+      "painted_way": "휴대폰",
+      "art_size": "1920 X 1280",
+      "price": 230300,
+      "image": "images/5_OK2OIr1.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 36,
+    "fields": {
+      "title": "일러스트_6",
+      "content": "일러스트 여섯번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2016",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 657213,
+      "image": "images/6_HNV8TQH.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 37,
+    "fields": {
+      "title": "일러스트_7",
+      "content": "일러스트 일곱번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2019",
+      "painted_way": "피그마",
+      "art_size": "1920 X 1280",
+      "price": 354265,
+      "image": "images/7_9WN4Wt2.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 38,
+    "fields": {
+      "title": "일러스트_8",
+      "content": "일러스트 여덟번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2022",
+      "painted_way": "테블릿",
+      "art_size": "1920 X 1280",
+      "price": 3542368,
+      "image": "images/8_cXldDhj.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 39,
+    "fields": {
+      "title": "일러스트_9",
+      "content": "일러스트 아홉번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2044",
+      "painted_way": "연필",
+      "art_size": "1920 X 1280",
+      "price": 785222,
+      "image": "images/9_oLNKmKE.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 40,
+    "fields": {
+      "title": "일러스트_10",
+      "content": "일러스트 열번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2002",
+      "painted_way": "월드컵",
+      "art_size": "1920 X 1280",
+      "price": 31598,
+      "image": "images/10_pOUgPin.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 41,
+    "fields": {
+      "title": "일러스트_11",
+      "content": "일러스트 열한번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2011",
+      "painted_way": "유화",
+      "art_size": "1920 X 1280",
+      "price": 3000000,
+      "image": "images/11_Je2iM1g.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 42,
+    "fields": {
+      "title": "일러스트_12",
+      "content": "일러스트 열두번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2022",
+      "painted_way": "테블릿",
+      "art_size": "1920 X 1280",
+      "price": 1450000,
+      "image": "images/12_iqsQdSg.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 43,
+    "fields": {
+      "title": "일러스트_13",
+      "content": "일러스트 열세번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2020",
+      "painted_way": "알 수 없음",
+      "art_size": "1920 X 1280",
+      "price": 3500000,
+      "image": "images/13_6JQIAzg.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 44,
+    "fields": {
+      "title": "일러스트_14",
+      "content": "일러스트 열네번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2021",
+      "painted_way": "테블릿",
+      "art_size": "1920 X 1280",
+      "price": 4500000,
+      "image": "images/14_7ab1EWT.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }, {
+    "model": "articles.art",
+    "pk": 45,
+    "fields": {
+      "title": "일러스트_15",
+      "content": "일러스트 열다섯번째 작품",
+      "art_category": "일러스트",
+      "painted_year": "2011",
+      "painted_way": "붓",
+      "art_size": "1920 X 1280",
+      "price": 9000000,
+      "image": "images/15_uUQfEit.jpg",
+      "artist": 1,
+      "soldout": false,
+      "likes": []
+    }
+  }
+]

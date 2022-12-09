@@ -29,7 +29,7 @@ class Art(models.Model):
         options={"quality": 100}
     )
     artist = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    likes = models.ManyToManyField(AUTH_USER_MODEL, related_name="like_arts")
+    likes = models.ManyToManyField(AUTH_USER_MODEL, related_name="like_arts", blank=True)
     soldout = models.BooleanField(default=False)
     # order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="art_order")
     order = models.ForeignKey('orders.Order', on_delete=models.CASCADE, null=True)
