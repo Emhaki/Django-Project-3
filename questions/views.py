@@ -46,7 +46,6 @@ def adminqna(request):
 
 def comment_create(request, question_pk):
     question_comment = get_object_or_404(Question, pk=question_pk)
-    print(request.POST)
     if request.user.is_authenticated:
         commentForm = CommentForm(request.POST)
         if commentForm.is_valid():
