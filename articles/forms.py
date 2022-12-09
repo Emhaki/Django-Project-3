@@ -10,6 +10,7 @@ class ArtForm(forms.ModelForm):
             "title",
             "art_size",
             "painted_year",
+            "painted_way",
             "content",
             "image",
             "price",
