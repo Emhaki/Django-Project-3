@@ -252,12 +252,16 @@
     border-radius: 10px;
     background-color: rgba(128, 128, 128, 0.8);
     color:black;
-    font-size: .9vw;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all .3s;
+}
+
+.upload__img label p{
+    width: 100%;
+    font-size: 1vw;
 }
 
 #choosefile {
@@ -292,27 +296,27 @@
 }
 
 @media (max-width: 1200px) {
+    .upload__form {
+        height: auto;
+        padding-bottom: 2rem;
+    }
     .upload__total {
         width: 100%;
-        height: 90%;
+        height: auto;
         display: flex;
         flex-direction: column;
     }
-
-    .upload__form {
-        height:100%;
-    }
-
     .upload__total__info {
         width: 100%;
-        height: 50%;
-        margin-bottom: 3rem;
-        padding-right: 2rem;
+        height: auto;
+        margin-bottom: 0;
+        padding-right: 0;
     }
 
     .upload__preview {
         width: 100%;
-        height: 40%;
+        height: auto;
+        margin: 2rem 0;
     }
 
     .upload__preview__img {
@@ -320,8 +324,16 @@
         height: 100%;
         object-fit: contain;
     }
+    .upload__img__name {
+        width: 60%;
+    }
+
     .upload__img label {
-        font-size: .9vw;
+        width: 15%;
+    }
+
+    .upload__img label p {
+        font-size: 1.5rem;
     }
 
     .upload__img {
@@ -361,12 +373,16 @@
     }
     .upload__form__button {
         width: 40%;
-        height: 5%;
+        height: 10%;
+        font-size: 1.5rem;
         transition: all .3s;
     }
 }
 
 @media (max-width: 700px) {
+    .upload__form__category select {
+        font-size: 3vw
+    }
     .upload__form__category .mb-3 label {
         font-size: 1.3rem;
     }
@@ -385,8 +401,9 @@
     .upload__img p {
         font-size: 1.3rem;
     }
-    .upload__img label {
-        font-size: .9vw;
+    .upload__img label p {
+        font-size: 1rem;
+        padding: .3rem 0;
     }
     .upload__form__category p {
         font-size: 1.3rem;
@@ -394,7 +411,6 @@
     .upload__price p {
         font-size: 1.3rem;
     }
-
     .upload__titleform input {
         font-size: 3vw;
         transition: all .3s;
@@ -422,12 +438,15 @@
     }
     
     .upload__img label {
-        width: 9%;
+        width: 15%;
         height: 100%;
-        font-size: .9vw;
         transition: all .3s;
     }
-
+    
+    .upload__price input {
+        font-size: 3vw;
+        transition: all .3s;
+    }
     .upload__img {
         height: 6%;
     }
@@ -458,6 +477,9 @@
 }
 
 @media (max-height: 800px) {
+    .upload__total__info {
+        margin: 0;
+    }
     .upload__form__category .mb-3 label {
         font-size: 1.2rem;
     }
@@ -522,14 +544,47 @@
     }
     
     .upload__img label {
-        width: 9%;
-        height: 100%;
         font-size: .9vw;
-        transition: all .3s;
+    }
+    
+    .upload__form__category select {
+        font-size: 1.1rem;
     }
 
     .upload__form__button {
         height: 8%;
         transition: all .3s;
+    }
+}
+
+@media (max-width: 500px) {
+    .upload__title {
+        height: auto;
+        font-size: 3rem;
+        padding-bottom: 3rem;
+    }
+    .upload__img p {
+    font-size: .9rem;
+    }
+    .upload__img label p {
+        font-size: 2.5vw;
+    }
+    .upload__form__category p {
+    font-size: .9rem;
+    }
+    .upload__titleform p {
+    font-size: .9rem;
+    }
+    .upload__size p {
+    font-size: .9rem;
+    }
+    .upload__date p {
+    font-size: .9rem;
+    }
+    .upload__price p {
+    font-size: .9rem;
+    }
+    .upload__contentform p {
+    font-size: .9rem;
     }
 }
