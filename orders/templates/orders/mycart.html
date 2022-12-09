@@ -3,181 +3,205 @@
 {% load static %}
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'style/cart.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
-  <style>
-    .simplebar-scrollbar::before {
-      background-color: var(--white);
-    }
-  </style>
+<link rel="stylesheet" type="text/css" href="{% static 'style/cart.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+<style>
+  .simplebar-scrollbar::before {
+    background-color: var(--white);
+  }
+</style>
 {% endblock css %}
 
 {% block content %}
-  <section class="cart__bg">
-    <nav class="articles__nav">
-      <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-        <img class="nav__logo" src="../../../static/img/logo-op-blue.png" alt="logo"/>
-      </button>
-      <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-        <div class="offcanvas-header pb-0">
-          <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
-          <div>
-            <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="offcanvas__ul">
-            <li>
-              {% if request.user.is_authenticated %}
-                <a href="{% url 'accounts:logout' %}">
-                  <button class="btn offcanvas__header--btn p-0">
-                    {{ request.user.username }}
-                    <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
-                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                      <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                  </button>
-                </a>
-              {% else %}
-                <a href="{% url 'accounts:login' %}">
-                  <button class="btn offcanvas__header--btn">
-                    <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
-                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    </svg>
-                  </button>
-                </a>
-              {% endif %}
-            </li>
-            <li>
-              <a href="{% url 'articles:main' %}" class="text-dark">
-                홈
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
-                프로필
-              </a>
-            </li>
-            <li>전체 작품</li>
-            <li>최근 본 작품</li>
-            <li>
-              <a href="{% url 'notes:index' %}" class="text-dark">
-                편지함
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'questions:index' %}" class="text-dark">
-                문의사항
-              </a>
-            </li>
-            <li>
-              About
-              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
-            </li>
-          </ul>
+<section class="cart__bg">
+  <nav class="articles__nav">
+    <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling">
+      <img class="nav__logo" src="../../../static/img/logo-op-blue.png" alt="logo" />
+    </button>
+    <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+      tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header pb-0">
+        <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo" />
+        <div>
+          <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+              viewbox="0 0 16 16">
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+            </svg>
+          </button>
         </div>
       </div>
-    </nav>
-    <section class="cart__container">
-      <div class="cart__header">
-        <h2 class="basket__title">{{ request.user.nickname }}님의 장바구니</h2>
-        <a href="{% url 'articles:main' %}">
-          <button class="cart__goto--list">
-            <i class="bi bi-arrow-left-short"></i>
-            작품 목록으로</button>
-        </a>
+      <div class="offcanvas-body">
+        <ul class="offcanvas__ul">
+          <li>
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'accounts:logout' %}">
+              <button class="btn offcanvas__header--btn p-0">
+                {{ request.user.username }}
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                  <path
+                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                  <path fill-rule="evenodd"
+                    d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z" />
+                </svg>
+              </button>
+            </a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}">
+              <button class="btn offcanvas__header--btn">
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                  <path
+                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                </svg>
+              </button>
+            </a>
+            {% endif %}
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+              홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
+              프로필
+            </a>
+          </li>
+          <li>전체 작품</li>
+          <li>최근 본 작품</li>
+          <li>
+            <a href="{% url 'notes:index' %}" class="text-dark">
+              편지함
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+              문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png" />
+          </li>
+        </ul>
       </div>
-      <div id="basket__simplebar" class="basket__content">
-        <form id="basket-form">
-          {% csrf_token %}
-          {% for item in cart_items %}
-            <div id="art-{{ item.art.pk }}">
-              <div class="basket__object">
-                <div class="basket__photo">
-                  <img class="basket__photo-object" src="{{ item.art.image.url }}" alt="{{ item.art_image }}">
-                </div>
-                <div class="basket__info">
-                  <h4 class="cart__title">
-                    {{ item.art.title }}
-                  </h4>
-                  <p class="my-2">
-                    {{ item.art.artist.nickname }}
-                  </p>
-                </div>
-                <div class="basket__price ms-auto">
-                  <h5 class="my-0 mx-3">₩
-                    {{ item.art.price }}</h5>
-                  <!-- 장바구니에서 삭제 -->
-                  <button type="submit" data-art-id="{{ item.art.pk }}" class="remove-btn basket__button">
-                    <i class="bi bi-trash-fill"></i>
-                  </button>
+    </div>
+  </nav>
+  <section class="cart__container">
+    <div class="cart__header">
+      <h2 class="basket__title">{{ request.user.nickname }}님의 장바구니</h2>
+      <a href="{% url 'articles:main' %}">
+        <button class="cart__goto--list">
+          <i class="bi bi-arrow-left-short"></i>
+          작품 목록으로</button>
+      </a>
+    </div>
+    <div id="basket__simplebar" class="basket__content">
+      <form id="basket-form">
+        {% csrf_token %}
+        {% for item in cart_items %}
+        <div id="art-{{ item.art.pk }}">
+          <div class="basket__object">
+            <div class="basket__photo">
+              <a class="modal-btn" data-bs-toggle="modal" data-bs-target="#photoModal-{{ forloop.counter }}">
+                <img class="basket__photo-object" src="{{ item.art.image.url }}" alt="{{ item.art_image }}">
+              </a>
+            </div>
+            <div class="modal fade" id="photoModal-{{ forloop.counter }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog photo__modal">
+                <div class="modal-content photo__modal-content">
+                  <img src="{{ item.art.image.url }}" class="p-0 m-0">
                 </div>
               </div>
             </div>
-          {% endfor %}
-        </form>
-      </div>
-      <div class="basket__footer">
-        <h2 id="basket__tp" class="cart__whole--price ms-auto my-0 mx-5">₩
-          {{ total_price|default:"0" }}</h2>
-        <form method="POST" action="{% url 'orders:payment' %}">
-          {% csrf_token %}
-          <button id="basket__paymentbtn" type="submit" class="basket__payment--btn">
-            결제하기
-          </button>
-        </form>
-      </div>
-    </section>
+            <div class="basket__info">
+              <h4 class="cart__title">
+                {{ item.art.title }}
+              </h4>
+              <p class="my-2">
+                {{ item.art.artist.nickname }}
+              </p>
+            </div>
+            <div class="basket__price ms-auto">
+              <h5 class="my-0 mx-3">₩
+                {{ item.art.price }}</h5>
+              <!-- 장바구니에서 삭제 -->
+              <button type="submit" data-art-id="{{ item.art.pk }}" class="remove-btn basket__button">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </form>
+    </div>
+    <div class="basket__footer">
+      <h2 id="basket__tp" class="cart__whole--price ms-auto my-0 mx-5">₩
+        {{ total_price|default:"0" }}</h2>
+      <form method="POST" action="{% url 'orders:payment' %}">
+        {% csrf_token %}
+        <button id="basket__paymentbtn" type="submit" class="basket__payment--btn">
+          결제하기
+        </button>
+      </form>
+    </div>
   </section>
+</section>
 
-  {% block js %}{% endblock js %}
+{% block js %}{% endblock js %}
 
-  <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
-  <script>
-    new SimpleBar(document.getElementById('basket__simplebar'));
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
+<script>
+  new SimpleBar(document.getElementById('basket__simplebar'));
+</script>
 
-  <!-- 상품 삭제 -->
-  <script>
-    const removeBtnSet = document.querySelectorAll(".remove-btn");
-    const csrftoken = document
-      .querySelector('[name=csrfmiddlewaretoken]')
-      .value;
-    for (i = 0; i < removeBtnSet.length; i++) {
-      removeBtnSet[i].addEventListener("click", function (event) {
-        event.preventDefault();
-        let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
-        if (delete_warning === true) {
-          axios({
-            method: 'post',
-            url: `/orders/mycart/${event.target.dataset.artId}/delete/`,
-            headers: {
-              'X-CSRFToken': csrftoken
-            }
-          }).then(response => {
-            const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
-            targetDiv.remove();
+<!-- 상품 삭제 -->
+<script>
+  const removeBtnSet = document.querySelectorAll(".remove-btn");
+  const csrftoken = document
+    .querySelector('[name=csrfmiddlewaretoken]')
+    .value;
+  for (i = 0; i < removeBtnSet.length; i++) {
+    removeBtnSet[i].addEventListener("click", function (event) {
+      event.preventDefault();
+      let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
+      if (delete_warning === true) {
+        axios({
+          method: 'post',
+          url: `/orders/mycart/${event.target.dataset.artId}/delete/`,
+          headers: {
+            'X-CSRFToken': csrftoken
+          }
+        }).then(response => {
+          const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
+          targetDiv.remove();
 
-            const basketTp = document.querySelector("#basket__tp");
-            basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
-          });
-        };
-      });
-    };
-  </script>
-  <script>
-    const paymentBtn = document.querySelector("#basket__paymentbtn");
-    const totalPrice = document.querySelector("#basket__tp");
-    paymentBtn.addEventListener("click", function () {
-      if (totalPrice.innerText === "₩ 0") {
-        event.preventDefault();
-        alert("장바구니에 작품이 없습니다!");
+          const basketTp = document.querySelector("#basket__tp");
+          basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
+        });
       };
     });
-  </script>
-
+  };
+</script>
+<script>
+  const paymentBtn = document.querySelector("#basket__paymentbtn");
+  const totalPrice = document.querySelector("#basket__tp");
+  paymentBtn.addEventListener("click", function () {
+    if (totalPrice.innerText === "₩ 0") {
+      event.preventDefault();
+      alert("장바구니에 작품이 없습니다!");
+    };
+  });
+</script>
+<!-- 모달 다이얼로그 크기제한 강제 해제 -->
+<script>
+  const modalSet = document.querySelectorAll(".modal-dialog");
+  for (i = 0; i < modalSet.length; i++) {
+    modalSet[i].style.setProperty("max-width", "none");
+  };
+</script>
 {% endblock content %}

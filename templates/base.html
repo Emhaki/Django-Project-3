@@ -53,9 +53,11 @@
     const modalBtnSet = document.querySelectorAll(".modal-btn");
     for (i; i < modalBtnSet.length; i++) {
       modalBtnSet[i].addEventListener("click", function (event) {
+        // console.log(event.target)
+        // console.log(this)
         if (document.querySelector(".modal-backdrop") !== null) {
           const modalBack = document.querySelector("#modal-back-div");
-          modalBack.appendChild(document.querySelector(event.target.dataset.bsTarget));
+          modalBack.appendChild(document.querySelector(this.dataset.bsTarget));
         };
       });
     };
