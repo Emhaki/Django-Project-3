@@ -1,71 +1,146 @@
 @import url(./base.css);
 
-
-body {
+.cart__bg {
   background-color: var(--highlight);
+  width: 100%;
+  height: 100vh;
+  white-space: nowrap;
 }
 
-
-.container {
-  margin-top: 8rem;
+/* off canvas */
+.offcanvas__btn {
+  background-color: transparent;
+  border: none;
 }
 
+.offcanvas__btn:hover {
+  background-color: transparent;
+}
+
+.offcanvas__logo {
+  width: 6em;
+  height: 3em;
+}
+
+.offcanvas__header--btn {
+  padding: 0.1rem;
+}
+
+.bi-person-x,
+.bi-person {
+  cursor: pointer;
+}
+
+.offcanvas__close--btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__ul {
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.offcanvas__ul > li {
+  margin-bottom: 1rem;
+}
+
+.offcanvas__logout,
+.offcanvas__profile {
+  padding: 0.1rem;
+}
+
+.offcanvas__about--logo {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+/* nav */
+.articles__nav {
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  z-index: 200;
+}
+
+.nav__logo {
+  margin-top: 2rem;
+  width: 5rem;
+  height: 3rem;
+  transform: rotate(90deg);
+}
+
+.nav__logo:hover {
+  transform: rotate(90deg) scale(1.2);
+  transition: all 200ms ease;
+}
+
+/* main */
+.cart__container {
+  padding: 4rem 7rem;
+}
+
+.cart__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
 
 .basket__title {
   color: var(--main);
   font-weight: bolder;
-  margin: 2rem 0;
 }
 
+.cart__goto--list {
+  background-color: transparent;
+  border: none;
+  transform: translateY(1.3rem);
+  color: var(--main-sub);
+  font-weight: 600;
+  font-size: 1.2rem;
+}
 
 .basket__content {
   overflow: auto;
   overflow-x: hidden;
-  padding: 0 3rem;
   background-color: var(--main);
-  height: 40rem;
-  font-weight: bolder;
   border-radius: 0.5rem;
+  padding: 0 3rem;
 }
-
 
 .basket__object {
   display: flex;
   background-color: var(--white);
-  height: 15rem;
-  width: 74rem;
-  margin: 2rem 0 2rem 3rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  width: 100%;
+  height: auto;
+  height: 8rem;
+  margin: 2rem 0;
+  padding: 1rem 3rem;
+  border-radius: 0.1rem;
 }
-
 
 .basket__photo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2.5rem 0;
-  height: 14rem;
-  width: 14rem;
+  width: 8rem;
 }
-
 
 .basket__photo-object {
-  border-color: var(--white);
-  border-style: solid;
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-
 .basket__info {
-  margin-left: 3rem;
+  margin-left: 2rem;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
 }
 
+.cart__title {
+  font-weight: 600;
+}
 
 .basket__price {
   display: flex;
@@ -73,48 +148,80 @@ body {
   align-items: center;
 }
 
-
 .basket__button {
-  color: var(--white);
-  background-color: var(--main);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2rem;
-  width: 9rem;
+  margin-left: 2rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--main);
 }
 
+.basket__button:hover {
+  transform: scale(1.2);
+  transition: 200ms ease-in;
+  color: var(--main-sub);
+}
 
 .basket__footer {
   color: var(--main);
-  margin: 3rem;
+  margin: 3rem 0;
   font-weight: bolder;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.cart__whole--price {
+  font-weight: 600;
+}
 
-.basket__footer a {
+.basket__payment--btn {
+  width: 10rem;
+  height: 3.5rem;
   color: var(--white);
   background-color: var(--main);
-}
-
-
-.basket__footer a:hover {
-  color: var(--white);
-  background-color: var(--main);
-}
-
-
-.basket__footerbtn {
-  width: 15rem;
-}
-
-
-.basket__footerfont {
-  margin: 0;
-  padding: 0;
   font-size: 1.5rem;
-  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.basket__payment--btn:hover {
+  background-color: var(--main-sub);
+  transition: all 200ms ease-in-out;
+}
+
+@media (max-width: 800px) {
+  .cart__bg {
+    height: auto;
+  }
+
+  .cart__header {
+    flex-direction: column;
+  }
+
+  .cart__goto--list {
+    float: right;
+  }
+
+  .basket__object {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .basket__photo {
+    width: 100%;
+  }
+
+  .basket__info {
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+
+  .basket__price {
+  }
+
+  .basket__button {
+    font-size: 1rem;
+  }
 }

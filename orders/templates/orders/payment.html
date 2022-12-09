@@ -3,22 +3,22 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'style/payment.css' %}">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/payment.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css"/>
 {% endblock css %}
 
 {% block content %}
 
-<div class="container">
-  <div class="d-flex justify-content-start">
-    <div class="payment__user-section">
-      <h3 class="payment__title">결제</h3>
-      <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
-      <!--결제 Form-->
-      <form id="payment-form" method="POST" class="form" action="{% url 'orders:complete' %}">
-        {% csrf_token %}
-        {% bootstrap_form payment_form layout='horizontal' %} 
-      </form>
+  <section class="payment__bg">
+    <div class="d-flex justify-content-start">
+      <div class="payment__user-section">
+        <h3 class="payment__title">결제</h3>
+        <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
+        <!--결제 Form-->
+        <form id="payment-form" method="POST" class="form" action="{% url 'orders:complete' %}">
+          {% csrf_token %}
+          {% bootstrap_form payment_form layout = 'horizontal' %}
+        </form>
         <!-- Button trigger modal -->
         <div class="d-flex mt-5">
           <button type="button" class="modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
@@ -29,8 +29,7 @@
           </button>
         </div>
         <!-- Modal -->
-        <div class="modal fade m-0" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false"
-          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade m-0" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog d-flex justify-content-center">
             <div class="modal-content" style="width:50rem; height: 50rem;">
               <div class="modal-header">
@@ -48,8 +47,7 @@
                   </form>
                 </div>
                 <div>
-                  <button form="terms-agree-form-1" id="OK-1" name="OK1" type="submit" class="btn btn-primary" disabled
-                    data-bs-dismiss="modal">확인</button>
+                  <button form="terms-agree-form-1" id="OK-1" name="OK1" type="submit" class="btn btn-primary" disabled="disabled" data-bs-dismiss="modal">확인</button>
                   <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">취소</button>
                 </div>
               </div>
@@ -57,8 +55,7 @@
           </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog d-flex justify-content-center">
             <div class="modal-content" style="width:50rem; height: 50rem;">
               <div class="modal-header">
@@ -76,8 +73,7 @@
                   </form>
                 </div>
                 <div>
-                  <button form="terms-agree-form-2" id="OK-2" name="OK2" type="submit" class="btn btn-primary" disabled
-                    data-bs-dismiss="modal">확인</button>
+                  <button form="terms-agree-form-2" id="OK-2" name="OK2" type="submit" class="btn btn-primary" disabled="disabled" data-bs-dismiss="modal">확인</button>
                   <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">취소</button>
                 </div>
               </div>
@@ -89,45 +85,50 @@
     <div class="payment__art-section">
       <div id="simplebar__art-section">
         {% for item in cart_items %}
-        <div class="art__photo-section">
-          <img class="art__photo" src="{{ item.art.image.url }}" alt="{{ item.art.image }}">
-        </div>
-        <div class="payment__art-description-1">
-          <p class="art__title">{{ item.art.title }}</p>
-          <p class="art__artist">{{ item.art.artist.nickname }}</p>
-        </div>
-        <div class="payment__art-description-2">
-          <p class="art__year">{{ item.art.painted_year }}</p>
-          <p class="art__way">{{ item.art.painted_way }}</p>
-          <p class="art__size">{{ item.art.art_size }}</p>
-        </div>
-        <div class="payment__art-description-3">
-          <p class="art__howmuch">작품 가격</p>
-          <p class="art__price">₩ {{ item.art.price }}</p>
-        </div>
-        <hr>
+          <div class="art__photo-section">
+            <img class="art__photo" src="{{ item.art.image.url }}" alt="{{ item.art.image }}">
+          </div>
+          <div class="payment__art-description-1">
+            <p class="art__title">{{ item.art.title }}</p>
+            <p class="art__artist">{{ item.art.artist.nickname }}</p>
+          </div>
+          <div class="payment__art-description-2">
+            <p class="art__year">{{ item.art.painted_year }}</p>
+            <p class="art__way">{{ item.art.painted_way }}</p>
+            <p class="art__size">{{ item.art.art_size }}</p>
+          </div>
+          <div class="payment__art-description-3">
+            <p class="art__howmuch">작품 가격</p>
+            <p class="art__price">₩
+              {{ item.art.price }}</p>
+          </div>
+          <hr>
         {% endfor %}
       </div>
       <hr>
       <div class="payment__total-price-1">
         <p class="total-1">작품 총 가격</p>
-        <p class="total-2">₩ {{ total_price }}</p>
+        <p class="total-2">₩
+          {{ total_price }}</p>
       </div>
       <div class="payment__total-price-2">
         <p class="fee-1">배송료</p>
-        <p class="fee-2">₩ {{ delivery_fee }}</p>
+        <p class="fee-2">₩
+          {{ delivery_fee }}</p>
       </div>
       <p class="fee-3">₩ 300,000 이상일 경우 배송료 무료입니다.</p>
       <div class="payment__total-price-3">
         <h3 class="total-3">총 가격</h3>
-        <h3 class="total-4">₩ {{ billing_amount }}</h3>
+        <h3 class="total-4">₩
+          {{ billing_amount }}</h3>
       </div>
     </div>
   </div>
   <div class="payment__execute-btn">
     <input id="order_btn" type="submit" class="payment__execute btn btn-lg">결제하기</input>
   </div>
-</div>
+</section>
+
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -158,13 +159,12 @@
       if (rsp.success) {
         // var msg = '결제가 완료되었습니다.';
         // msg += '결제 금액 : ' + rsp.paid_amount + '원';
-        
+
         // payment_form 셀렉트
         // payment_form submit
         const paymentForm = document.querySelector("#payment-form");
         paymentForm.submit()
-      }
-      else {
+      } else {
         var msg = rsp.error_msg;
       }
       // alert(msg);
@@ -174,7 +174,9 @@
 <script>
   const modalSet = document.querySelectorAll(".modal-dialog");
   for (i = 0; i < modalSet.length; i++) {
-    modalSet[i].style.setProperty("max-width", "none");
+    modalSet[i]
+      .style
+      .setProperty("max-width", "none");
   };
 </script>
 <script>
@@ -182,12 +184,16 @@
   const OKbtn2 = document.querySelector("#OK-2");
   const check1 = document.querySelector("#terms-check-1");
   const check2 = document.querySelector("#terms-check-2");
-  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const csrftoken = document
+    .querySelector('[name=csrfmiddlewaretoken]')
+    .value;
   let flag1 = false
   let flag2 = false
 
   check1.addEventListener("click", function () {
-    const check1_is_checked = document.querySelector("#terms-check-1").checked;
+    const check1_is_checked = document
+      .querySelector("#terms-check-1")
+      .checked;
     if (check1_is_checked) {
       OKbtn1.disabled = false;
     } else {
@@ -196,7 +202,9 @@
   });
 
   check2.addEventListener("click", function () {
-    const check2_is_checked = document.querySelector("#terms-check-2").checked;
+    const check2_is_checked = document
+      .querySelector("#terms-check-2")
+      .checked;
     if (check2_is_checked) {
       OKbtn2.disabled = false;
     } else {
@@ -206,44 +214,50 @@
 
   OKbtn1.addEventListener("click", function () {
     event.preventDefault();
-    const check1_is_checked = document.querySelector("#terms-check-1").checked;
+    const check1_is_checked = document
+      .querySelector("#terms-check-1")
+      .checked;
     const formData = new FormData();
     formData.append("is_checked", check1_is_checked);
     axios({
       method: 'post',
       url: `/ orders / agree / `,
-      headers: { 'X-CSRFToken': csrftoken },
-      data: formData,
-    })
-      .then(response => {
-        if (response.data.is_agreed) {
-          flag1 = response.data.is_agreed;
-          if (flag1 && flag2) {
-            orderBtn.disabled = false;
-          };
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: formData
+    }).then(response => {
+      if (response.data.is_agreed) {
+        flag1 = response.data.is_agreed;
+        if (flag1 && flag2) {
+          orderBtn.disabled = false;
         };
-      });
+      };
+    });
   });
 
   OKbtn2.addEventListener("click", function () {
     event.preventDefault();
-    const check2_is_checked = document.querySelector("#terms-check-2").checked;
+    const check2_is_checked = document
+      .querySelector("#terms-check-2")
+      .checked;
     const formData = new FormData();
     formData.append("is_checked", check2_is_checked);
     axios({
       method: 'post',
       url: `/ orders / agree /`,
-      headers: { 'X-CSRFToken': csrftoken },
-      data: formData,
-    })
-      .then(response => {
-        if (response.data.is_agreed) {
-          flag2 = response.data.is_agreed;
-          if (flag1 && flag2) {
-            orderBtn.disabled = false;
-          };
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: formData
+    }).then(response => {
+      if (response.data.is_agreed) {
+        flag2 = response.data.is_agreed;
+        if (flag1 && flag2) {
+          orderBtn.disabled = false;
         };
-      });
+      };
+    });
   });
 </script>
 {% endblock content %}
