@@ -153,43 +153,47 @@
           {% comment %} 작품 페이지네이션 {% endcomment %}
           <div class="paginagtion pag_box1">
             <hr>
-            <span class="step-links">
-            <ul class="pagination justify-content-center">
-              <!-- 이전페이지 -->
-              {% if page_obj.has_previous %}
-              <li class="page-item">
-                  <a class="page-link text-danger" href="?page={{ page_obj.previous_page_number }}">이전</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                  <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-              </li>
-              {% endif %}
-              {% for page_number in page_obj.paginator.page_range %}
+            <!--페이지네이션-->
+            <nav aria-label="Page navigation example" style="margin-top:1rem;">
+              <ul class="pagination justify-content-center">
+                <!-- 이전페이지 -->
+                {% if page_obj.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" style="background-color: transparent; border:1px solid white; border-radius: 0; color:white" href="?page={{ page_obj.previous_page_number }}"><</a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#"><</a>
+                  </li>
+                {% endif %}
+                <!-- 현재페이지 -->
+                {% for page_number in page_obj.paginator.page_range %}
                   {% if page_number >= page_obj.number|add:-5 and page_number <= page_obj.number|add:5 %}
                     {% if page_number == page_obj.number %}
-                      <li class="page-item active" aria-current="page">
-                        <a class="page-link text-bg-danger border-danger" href="?page={{ page_number }}">{{ page_number }}</a>
+                      <li class="page-item active" aria-current="page" style="background-color: transparent">
+                        <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?page={{ page_number }}">{{ page_number }}</a>
                       </li>
                     {% else %}
                       <li class="page-item">
-                          <a class="page-link text-danger" href="?page={{ page_number }}">{{ page_number }}</a>
+                        <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?page={{ page_number }}">{{ page_number }}</a>
                       </li>
                     {% endif %}
                   {% endif %}
-              {% endfor %}
-              
-              {% if page_obj.has_next %}
-              <li class="page-item">
-                  <a class="page-link text-danger" href="?page={{ page_obj.next_page_number }}">다음</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                  <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-              </li>
-              {% endif %}
-            </ul>
-            </span>
+                {% endfor %}
+                <!-- 다음페이지 -->
+                {% if page_obj.has_next %}
+                  <li class="page-item">
+                    <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" href="?page={{ page_obj.next_page_number }}">>
+                    </a>
+                  </li>
+                {% else %}
+                  <li class="page-item disabled">
+                    <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#">></a>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
+            <!--페이지네이션 끝-->
           </div>
           {% comment %} 작품 페이지네이션 끝 {% endcomment %}
         </div>
