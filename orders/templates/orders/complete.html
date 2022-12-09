@@ -3,78 +3,151 @@
 {% load static %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{% static 'style/complete.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/complete.css' %}">
 {% endblock css %}
 
 {% block content %}
 
-<div class="container">
-  <!-- <div class="d-flex">
-    <h1 class="complete__pagetitle ms-auto">구매 완료</h1>
-  </div> -->
-  {% for item in art %}
-  <div class="complete__container">
-    <div>
-      <div class="complete__photo-section">
-        <!-- <img class="complete__photo" src="{% static 'photos/pic_1.png' %}" alt="작품"> -->
-        <img class="complete__photo" src="{{ item.image.url }}" alt="{{ item.image }}">
-      </div>
-      <p class="complete__art-size">
-        1220 x 1000
-      </p>
-      <p class="complete__payment">
-        신용카드 결제
-      </p>
-    </div>
-    <div>
-      <h1 class="complete__pagetitle">구매 완료</h1>
-      <div class="complete__receipt">
-        <div class="receipt__topline"></div>
-        <div class="d-flex">
-          <div class="receipt__orange orange-1"></div>
-          <div class="receipt__orange orange-2"></div>
-        </div>
-        <h2 class="receipt__title">
-          {{ item.title }}
-        </h2>
-        <p class="receipt__description">
-          {{ item.content }}
-        </p>
-        <hr>
-        <div class="receipt__profile">
-          <h4 class="receipt__artist-name">{{ item.nickname }}</h4>
-          <div class="receipt__picture-link">
-            <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
-            <a class="receipt__dm-link" href="">
-              <div class="receipt__gray-circle">
-                <img class="receipt__dm-img" src="{% static 'img/vector.png' %}">
-              </div>
-            </a>
+  <section class="complete__bg">
+    <nav class="articles__nav">
+      <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <img class="nav__logo" src="../../../static/img/logo-op-blue.png" alt="logo"/>
+      </button>
+      <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header pb-0">
+          <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
+          <div>
+            <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+              </svg>
+            </button>
           </div>
-          <a href="">
-            <img class="receipt__insta-img" src="{% static 'img/instagram.png' %}">
-          </a>
-          <a href="">
-            <img class="receipt__link-img" src="{% static 'img/link.png' %}">
-          </a>
         </div>
-        <hr>
-        <div class="receipt__footer">
-          <p class="receipt__price">가격</p>
-          <p class="receipt__price">{{ order.total_price }} Won</p>
+        <div class="offcanvas-body">
+          <ul class="offcanvas__ul">
+            <li>
+              {% if request.user.is_authenticated %}
+                <a href="{% url 'accounts:logout' %}">
+                  <button class="btn offcanvas__header--btn p-0">
+                    {{ request.user.username }}
+                    <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                      <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                      <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </a>
+              {% else %}
+                <a href="{% url 'accounts:login' %}">
+                  <button class="btn offcanvas__header--btn">
+                    <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    </svg>
+                  </button>
+                </a>
+              {% endif %}
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+                홈
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
+                프로필
+              </a>
+            </li>
+            <li>전체 작품</li>
+            <li>최근 본 작품</li>
+            <li>
+              <a href="{% url 'notes:index' %}" class="text-dark">
+                편지함
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'questions:index' %}" class="text-dark">
+                문의사항
+              </a>
+            </li>
+            <li>
+              About
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="receipt__btn">
-        <a href="" class="btn btn-lg receipt__btn-link">메인으로
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-            class="bi bi-arrow-right-short" viewBox="0 0 18 18">
-            <path fill-rule="evenodd"
-              d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
+    </nav>
+
+    <section class="complete__container">
+      {% for item in art %}
+        <h1 class="complete__pagetitle">구매 완료</h1>
+        <div class="complete__box">
+          <div class="complete__left">
+            <div class="complete__photo-section">
+              <img class="complete__photo" src="{{ item.image.url }}" alt="{{ item.image }}">
+              <div class="soldout__box">
+                Sold Out
+              </div>
+            </div>
+
+          </div>
+          <div class="complete__right">
+            <div class="complete__receipt">
+              <div class="receipt__topline"></div>
+              <div class="d-flex">
+                <div class="receipt__orange orange-1"></div>
+                <div class="receipt__orange orange-2"></div>
+              </div>
+              <h2 class="receipt__title">
+                {{ item.title }}
+              </h2>
+              <p class="complete__art-size">
+                1220 x 1000
+              </p>
+              <div class="receipt__description">
+                {{ item.content }}
+              </div>
+              <hr>
+              <div class="receipt__profile">
+                <h5 class="receipt__artist-name">{{ item.nickname }}</h5>
+                <div class="receipt__picture-link">
+                  <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진">
+                  <a class="receipt__dm-link" href="">
+                    <div class="receipt__gray-circle">
+                      <img class="receipt__dm-img" src="{% static 'img/vector.png' %}">
+                    </div>
+                  </a>
+                </div>
+                <div class="complete__icon">
+                  <a class="complete__insta" href="">
+                    <i class="bi bi-instagram"></i>
+                  </a>
+                  <a class="complete__link" href="">
+                    <i class="bi bi-link-45deg"></i>
+                  </a>
+                </div>
+              </div>
+              <hr>
+              <div class="receipt__footer">
+                <p class="complete__payment">
+                  신용카드 결제
+                </p>
+                <p class="receipt__price">₩
+                  {{ order.total_price }}
+                </p>
+              </div>
+            </div>
+            <div class="receipt__btn">
+              <a href="" class="receipt__goto--home">
+                <i class="bi bi-house"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-short" viewbox="0 0 18 18">
+                  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  {% endfor %}
 {% endblock content %}
