@@ -110,7 +110,7 @@ def kakao_callback(request):
         auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
         return redirect("accounts:kakao_signup")
 
-
+# 카카오 로그인
 def kakao_signup(request):
     if request.method == "POST":
         form = UpdateForm(request.POST, instance=request.user)
@@ -133,7 +133,6 @@ def kakao_signup(request):
     return render(request, "accounts/kakao_signup.html")
 
 def signup(request):
-
     if request.method == "POST":
       form = SignupForm(request.POST)
       if form.is_valid():
@@ -156,32 +155,59 @@ def signup(request):
           return JsonResponse(context)
     return render(request, "accounts/signup.html")
 
-
 def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect("accounts:index")
+            return redirect("articles:main")
     else:
         return render(request, "accounts/login.html")
-
 
 def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
 
+# 소셜업데이트
 def social(request):
+    instagram = request.user.instagram
+    github = request.user.github
+    facebook = request.user.facebook
 
     if request.method == "POST":
         form = UpdateSocialForm(request.POST, instance=request.user)
+        
         if form.is_valid():
             form.save()
+            # if request.POST.get('instagram') == '':
+            #     print('여기3')
+            #     form.instagram = request.user.instagram
+            # else:
+            #     form.instagram = request.POST.get('instagram')
+
+            # if request.POST.get('github') == '':
+            #     print("여기1")
+            #     form.github = request.user.github
+            # else:
+            #     form.github = request.POST.get('github')
+
+            # if request.POST.get('facebook') == '':
+            #     print("여기2")
+            #     form.facebook = request.user.facebook
+            # else:
+            #     form.facebook = request.POST.get('facebook')
+
             return redirect("accounts:profile", request.user.pk)
 
-    return render(request, "accounts/social_update.html")
+    context = {
+        "instagram": instagram,
+        "github": github,
+        "facebook": facebook,
+    }
 
-# 
+    return render(request, "accounts/social_update.html", context)
+
+# 프로필페이지
 def profile(request, user_pk):
     profiles = get_user_model().objects.filter(pk=user_pk)
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
@@ -210,6 +236,54 @@ def profile(request, user_pk):
     }
     return render(request, "accounts/profile.html", context)
 
+# 프로필 업데이트
+def profile_update(request):
+    creater_name = request.user.creater_name
+    introduce = request.user.introduce
+    email = request.user.email
+    location = request.user.location
+    location_detail = request.user.location_detail
+
+    if request.method == "POST":
+        form = UpdateDetailForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            forms = form.save(commit=False)
+            # if request.POST['creater_name'] == '':
+            #     forms.creater_name = request.user.creater_name
+            # else:
+            #     forms.creater_name = request.POST['creater_name']
+
+            # if request.POST['introduce'] == None:
+            #     forms.introduce = request.user.introduce
+            # else:
+            #     forms.introduce = request.POST['introduce']
+
+            # if request.POST['email'] == '':
+            #     forms.email = request.user.email
+            # else:
+            #     forms.email = request.POST['email']
+
+            # if request.POST['location'] == '':
+            #     forms.location = request.user.location
+            # else:
+            #     forms.location = request.POST['location']
+
+            # if request.POST['location_detail'] == '':
+            #     forms.email = request.user.location_detail
+            # else:
+            #     forms.email = request.POST['location_detail']
+
+            forms.save()
+            return redirect("accounts:profile", request.user.pk)
+
+    context = {
+      "creater_name" : creater_name,
+      "introduce" : introduce,
+      "email" : email,
+      "location" : location,
+      "location_detail" : location_detail,
+    }
+    return render(request, "accounts/profile_update.html", context)
 
 # 이메일 인증
 def send_valid_number(request):

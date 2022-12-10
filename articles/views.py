@@ -131,9 +131,15 @@ def comment_create(request, pk):
         comment_dict = {}
         i = 0
         for one_comment in comments:
+            if one_comment.user.test:
+                name = one_comment.user.creater_name
+            elif one_comment.user.creater_name:
+                name = one_comment.user.creater_name
+            elif one_comment.user.username:
+                name = one_comment.user.username
             comment_dict[f"comment_set{i}"] = {
                 "commentPk": one_comment.pk,
-                "commentUser": one_comment.user.username,
+                "commentUser": name,
                 "commentContent": one_comment.content,
             }
             i += 1

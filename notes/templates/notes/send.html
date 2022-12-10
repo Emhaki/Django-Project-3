@@ -7,11 +7,23 @@
 
 <div class="container my-5" style="max-width:500px;">
   <div class="d-flex justify-content-center mb-2" id="profile">
+    {% if to_user.test %}
     <img id="profileimage" src="{{to_user.profileimage}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-circle">
+    {% elif to_user.profileimage %}
+    <img id="profileimage" src="{{to_user.profileimage.url}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-circle">
+    {% else %}
+    <img src="{% static 'img/luna2.jpeg' %}" alt="">
+    {% endif %}
   </div>
   <fieldset disabled>
     <div>
+      {% if to_user.test %}
+      <input type="text" class="form-control" placeholder="{{to_user.creater_name}}">
+      {% elif to_user.creater_name %}
+      <input type="text" class="form-control" placeholder="{{to_user.creater_name}}">
+      {% else %}
       <input type="text" class="form-control" placeholder="{{to_user.username}}">
+      {% endif %}
     </div>
   </fieldset>
   <form action="" method="POST">
