@@ -10,6 +10,15 @@ from django.db.models import Q
 from django.http import JsonResponse
 
 
+def index(request):
+
+        return render(request, 'articles/index.html')
+
+def loading(request):
+
+        return render(request, 'articles/loading.html')
+
+
 def main(request):
     arts = Art.objects.order_by("pk")
 
