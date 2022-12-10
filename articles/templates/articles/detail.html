@@ -101,6 +101,7 @@
             </form>
             {% endif %}
             <!-- 수정 삭제 -->
+            {% if request.user.is_creater %}
             <div>
               <button class="update__btn" type="button" onclick="location.href='{% url 'articles:update' art.pk %}'">
                 <i class="bi bi-pencil-fill"></i>
@@ -110,6 +111,14 @@
               </button>
             </div>
           </div>
+          {% else %}
+            <div>
+              <button type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
+                주문하기
+              </button>
+            </div>
+          </div>
+          {% endif %}
           <hr />
 
           <!-- 댓글 입력 -->
