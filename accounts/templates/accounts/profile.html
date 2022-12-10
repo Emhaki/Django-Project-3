@@ -12,9 +12,11 @@
       <div class="profile__container__info">
         <div class="profile__container__info__img">
           <div class="profile__container__info__img__back">
-            {% comment %} 프로필 이미지 {% endcomment %}
-            {% if profile.profileimage %}
-            <img src="{{profile.profileimage}}" alt="">
+            {% comment %} 카카오 프로필 이미지 {% endcomment %}
+            {% if profile.test %}
+            <img src="{{profile.profileimage }}" alt="">
+            {% elif profile.profileimage %}
+            <img src="{{profile.profileimage.url }}" alt="">
             {% else %}
             <img src="{% static 'img/luna2.jpeg' %}" alt="">
             {% endif %}
@@ -33,16 +35,35 @@
             <p class="profile__container__info__text__name">
             {% comment %} 작가 인증표시 {% endcomment %}
             {% if profile.is_creater == True %}
-            <span>
-              <i class="bi bi-check-circle-fill"></i>
-            </span>
-            <span>
-              {{profile.username}}
-            </span>
+              <span>
+                <i class="bi bi-check-circle-fill"></i>
+              </span>
+              {% if profile.creater_name %}
+              <span>
+                {{ profile.creater_name }}
+              </span>
+              {% elif profile.username %}
+              <span>
+                {{ profile.username }}
+              </span>
+              {% endif %}
+            {% comment %}  {% endcomment %}
             {% else %}
-            <span>
-              <span id="creater-mark"></span> {{profile.username}}
-            </span>
+              {% if profile.creater_name %}
+                <span>
+                  <span id="creater-mark"></span> {{profile.creater_name}}
+                </span>
+              {% elif profile.username %}
+                <span>
+                  <span id="creater-mark"></span> {{profile.username}}
+                </span>
+              {% endif %}
+            {% endif %}
+            {% comment %} 프로필수정 {% endcomment %}
+            {% if request.user in profiles %}
+            <a href="{% url 'accounts:profile_update' %}" class="text-dark fs-3">
+              <i class="bi bi-gear-fill"></i>
+            </a>
             {% endif %}
             {% comment %}  {% endcomment %}
             </p>
@@ -50,8 +71,20 @@
           </div>
         </div>
         <div class="profile__container__info__detail">
-          <p>안녕하세요, 저는 뉴욕과 서울을 기반으로 활동하는 일러스트레이터 노희원 입니다. 저는 현재 School of Visual Arts에서 일러스트 전공으로 재학중이며 주로 회화, 디지털 및 전통 일러스트에 중점을 두고 작품활동을 하고 있습니다.
+          {% if profile.introduce %}
+          <p>{{ profile.introduce }}
           </p>
+          {% else %}
+            {% if profile.creater_name %}
+            <p>
+              {{ profile.creater_name }}의 프로필 페이지입니다.
+            </p>
+            {% elif profile.username %}
+            <p>
+              {{ profile.username }}의 프로필 페이지입니다.
+            </p>
+            {% endif %}
+          {% endif %}
         </div>
         {% if not profile.is_creater %}
           {% comment %} request유저가 프로필주인이면 {% endcomment %}

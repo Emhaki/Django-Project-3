@@ -6,13 +6,20 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    profileimage = models.ImageField(upload_to="images/", blank=True)
-    nickname = models.CharField(max_length=10, blank=True)
+    profileimage = ProcessedImageField(
+        upload_to="images/",
+        blank=True,
+        format="JPEG",
+        options={"quality": 100}
+    )
+    nickname = models.CharField(max_length=10, blank=True) # 본명
+    creater_name = models.CharField(max_length=10, blank=True) # 사용자의 아이디
+    introduce = models.CharField(max_length=200, blank=True) # 소개글
     refresh_token = models.TextField(blank=True)
     is_creater = models.BooleanField(default=False)
-    location = models.CharField(max_length=40)
-    location_detail = models.CharField(max_length=40)
+    location = models.CharField(max_length=40, blank=True)
+    location_detail = models.CharField(max_length=40, blank=True)
     test = models.CharField(max_length=40, blank=True)
-    instagram = models.CharField(max_length=100, blank=True, null=True)
-    github = models.CharField(max_length=100, blank=True, null=True)
-    facebook = models.CharField(max_length=100, blank=True, null=True)
+    instagram = models.CharField(max_length=100, blank=True)
+    github = models.CharField(max_length=100, blank=True)
+    facebook = models.CharField(max_length=100, blank=True)
