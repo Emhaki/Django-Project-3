@@ -52,7 +52,13 @@
           {% for comment in question.comment_set.all %}
           {% if comment.question.pk == question.pk %}
             <div class="fw-bold mt-2">
-              {{ comment.user.username }}
+              {% if comment.user.test %}
+                {{ comment.user.creater_name }}
+              {% elif comment.user.creater_name %}
+                {{ comment.user.creater_name }}
+              {% elif comment.user.username %}
+                {{ comment.user.username }}
+              {% endif %}
             </div>
             <div sytle="width:350px;">
               <div class="col-10 d-flex align-items-center">

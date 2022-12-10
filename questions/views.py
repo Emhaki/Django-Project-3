@@ -53,9 +53,15 @@ def comment_create(request, question_pk):
             comment.question = question_comment
             comment.user = request.user
             comment.save()
+            if comment.user.test:
+                name = comment.user.creater_name
+            elif comment.user.creater_name:
+                name = comment.user.creater_name
+            elif comment.user.username:
+                name = comment.user.username
             context = {
               'content': comment.content,
-              'userName': comment.user.username,
+              'userName': name,
               'created_at': comment.created_at
             }
             print(context)
