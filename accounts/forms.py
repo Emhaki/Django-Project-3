@@ -25,7 +25,19 @@ class UpdateForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
         fields = (
-            "username",
+            "creater_name",
+            "email",
+            "location",
+            "location_detail",
+        )
+
+class UpdateDetailForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = get_user_model()
+        fields = (
+            "creater_name",
+            "profileimage",
+            "introduce",
             "email",
             "location",
             "location_detail",
