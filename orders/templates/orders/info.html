@@ -148,18 +148,19 @@
                 </div>
                 <div class="modal-body">
                   <div class="">
+                <form action="{% url 'orders:offer_create' art.pk %}" method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
                     <img src="{{ art.image.url }}" />
                     <p>{{ art.title }}</p>
                   </div>
-                  <form action="{% url 'orders:offer' %}" method="POST"  enctype="multipart/form-data">
-                    {% csrf_token %}
                     {% bootstrap_form offer_form %}
-                  </form>
+                  
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-                  <button type="button" class="btn btn-primary">등록</button>
+                  <button type="submit" class="btn btn-primary">등록</button>
                 </div>
+              </form>
               </div>
             </div>
           </div>

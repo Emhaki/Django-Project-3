@@ -14,10 +14,10 @@
       <button>돌아가기</button>
     </a>
   </div>
-  {% for question in questions %}
+  {% for offer in offers %}
   <div class="myquestion__list">
     <div class="myquestion__list__title">
-      <p>Q. {{ question.title }}</p>
+      <p>제시가격: {{ offer.offer_price }}</p> <p>기존가격: {{ offer.art.price }}</p>
       <button class="myquestion__list__title__button" data-container="myquestion__title__content__{{ question.pk }}">
         <svg class="myquestion__list__title__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
           <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -28,10 +28,10 @@
         </svg> 
       </button>
     </div>
-    <div class="myquestion__title__content" id="myquestion__title__content__{{ question.pk }}">
-      {% if question.image %}
+    <div class="myquestion__title__content" id="myquestion__title__content__{{ offer.pk }}">
+      {% if offer.art.image %}
       <div class="myquestion__title__content__image">
-        <img src="{{ question.image.url }}" alt="">
+        <img src="{{ offer.art.image.url }}" alt="">
       </div>
       {% else %}
       <div>
@@ -39,45 +39,17 @@
       </div>
       {% endif %}
       <div class="myquestion__title__content__box">
-      <p class="myquestion__title__content__text">{{ question.content }}</p>
+        <p class="myquestion__title__content__text">제목: {{ offer.title }}</p>
       <div class="myquestion__title__content__comment">
-        {% comment %} 문의 댓글 {% endcomment %}
-        {% if request.user.is_authenticated %}
-          <div id="question-comments" class="mt-3">
-            <form id="question-comment-form" class="d-flex create-form" data-question-id="{{ question.pk }}">
-              {% csrf_token %}
-                <input type="text" name="content" class="form-control" placeholder="댓글을 달아주세요">
-                <input type="submit" class="btn btn-primary mx-1" value="작성">
-            </form>
-          </div>          
-          {% for comment in question.comment_set.all %}
-          {% if comment.question.pk == question.pk %}
-            <div class="fw-bold mt-2">
-              {% if comment.user.test %}
-                {{ comment.user.creater_name }}
-              {% elif comment.user.creater_name %}
-                {{ comment.user.creater_name }}
-              {% elif comment.user.username %}
-                {{ comment.user.username }}
-              {% endif %}
-            </div>
-            <div sytle="width:350px;">
-              <div class="col-10 d-flex align-items-center">
-                {{ comment.content }}
-              </div> 
-            </div>
-            <div style="font-size:12px;" class="text-muted">{{ comment.created_at|date:"o-m-d"}} {{comment.created_at|time:"H:i"}}</div>
-            <hr>
-          {% endif %}
-          {% endfor %}
-          <div id="question-commentss-{{ question.pk }}" class="question-commentss">
-
-          </div>
-        {% endif %}
-        {% comment %} 문의 댓글 끝 {% endcomment %}
+        <p class="myquestion__title__content__comment">내용: {{ offer.content }}</p>
+        <p class="myquestion__title__content__comment">작품명: {{ offer.art.title }}</p>
       </div>
-      </div>
+      <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="수락" value="수락">수락</button>
+      </form>
     </div>
+  </div>
   </div>
   {% endfor %}
   <div class="myquestion__list__last"></div>

@@ -20,8 +20,9 @@ def info(request, art_pk):
     art = Art.objects.get(pk=art_pk)
     cart_form = CartForm()
     cart = CartItem.objects.filter(user_id=request.user.pk).filter(art_id=art_pk)
+    
+    
     offer_form = OfferForm()
-    print(cart)
     context = {
         "art": art,
         "cart_form": cart_form,
@@ -75,7 +76,6 @@ def add_cart(request, art_pk):
     # }
 
     return redirect("orders:mycart")
-
 
 # 장바구니 삭제
 def delete_cart(request, art_pk):
@@ -282,13 +282,25 @@ def offer(request):
     }
     return render(request, "orders/offer.html", context)
 
-def offer_accept(request):
-    # offer_accept = get_object_or_404(Offer, pk=offer_pk)
-    if request.POST == "수락":
+def offer_create(request, art_pk):
+    art = Art.objects.get(pk=art_pk)
+
+    if request.method == "POST":
         offer_form = OfferForm(request.POST)
         if offer_form.is_valid():
-            art_price = Art.objects.get(pk=offer_form.art.pk)
-            art_price.price = offer_form.offer_price
-            art_price.save()
+            offer = offer_form.save(commit=False)
+            offer.art_id = art.pk
+            offer.user = art.artist
+            offer.save()
+
+    return redirect("orders:info", art_pk)
+
+def offer_accept(request, offer_pk):
+    offer_accept = get_object_or_404(Offer, pk=offer_pk)
+    
+    if request.POST["수락"] == "수락":
+        art_price = Art.objects.get(pk=offer_accept.art.pk)
+        art_price.price = offer_accept.offer_price
+        art_price.save()
     
     return render(request, "orders/offer.html")
