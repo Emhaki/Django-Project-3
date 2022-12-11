@@ -118,14 +118,14 @@
       </div>
       <h2 class="info__artist-name ms-auto">{{ art.artist.nickname }}</h2>
       <div class="info__inquire">
-        <a class="ms-auto" href="">
+        <!-- <a class="ms-auto" href="">
           작가에게 문의하기
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
             class="bi bi-arrow-right-short" viewBox="0 0 18 18">
             <path fill-rule="evenodd"
               d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z" />
           </svg>
-        </a>
+        </a> -->
       </div>
 
       <hr class="info__hr m-0">
@@ -133,7 +133,36 @@
         <span>가격</span>
         <span id="art-price" value="{{art.price}}" name="{{art.price}}">₩ {{ art.price }}</span>
       </div>
-      <div class="info__order">
+      <div class="info__order align-items-center">
+        <!-- 가격 문의 -->
+        <div style="display:flex; justify-content:flex-end; margin-right: 3rem;">
+          <button type="submit" class="info__cart modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">가격문의</button>
+        </div>
+          <!-- 가격 문의 모달 -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">가격 제시</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="">
+                    <img src="{{ art.image.url }}" />
+                    <p>{{ art.title }}</p>
+                  </div>
+                  <form action="{% url 'orders:offer' %}" method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form offer_form %}
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+                  <button type="button" class="btn btn-primary">등록</button>
+                </div>
+              </div>
+            </div>
+          </div>
         <!-- 장바구니 추가 -->
         {% if art.soldout == False %}
         <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
