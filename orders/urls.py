@@ -23,5 +23,6 @@ urlpatterns = [
     path("agree/", views.agree, name="agree"),
     # 가격 문의
     path("offer/", views.offer, name="offer"),
-    path("offer_accept/", views.offer_accept, name="offer_accept")
+    path("offer/<int:art_pk>/create/", views.offer_create, name="offer_create"),
+    path("offer_accept/<int:offer_pk>/", views.offer_accept, name="offer_accept")
 ]
