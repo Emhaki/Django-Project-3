@@ -275,7 +275,19 @@ def profile_update(request):
 
             forms.save()
             return redirect("accounts:profile", request.user.pk)
-
+    else:
+        if request.GET:
+            names = get_user_model().objects.filter(creater_name=request.GET.get("creater_name"))
+            if names:
+              context = {
+                'check' : "True",
+              }
+              return JsonResponse(context)
+            else:
+              context = {
+                'check' : "False",
+              }
+              return JsonResponse(context)
     context = {
       "creater_name" : creater_name,
       "introduce" : introduce,
