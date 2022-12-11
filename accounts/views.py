@@ -179,24 +179,7 @@ def social(request):
         
         if form.is_valid():
             form.save()
-            # if request.POST.get('instagram') == '':
-            #     print('여기3')
-            #     form.instagram = request.user.instagram
-            # else:
-            #     form.instagram = request.POST.get('instagram')
-
-            # if request.POST.get('github') == '':
-            #     print("여기1")
-            #     form.github = request.user.github
-            # else:
-            #     form.github = request.POST.get('github')
-
-            # if request.POST.get('facebook') == '':
-            #     print("여기2")
-            #     form.facebook = request.user.facebook
-            # else:
-            #     form.facebook = request.POST.get('facebook')
-
+            
             return redirect("accounts:profile", request.user.pk)
 
     context = {
@@ -219,19 +202,27 @@ def profile(request, user_pk):
 
     # 해당 유저가 좋아요를 누른 작품들
     art_likes = Art.objects.filter(likes=user_pk).order_by()
-    like_paginator = Paginator(art_likes, 6)
+    like_paginator = Paginator(art_likes, 2)
     page_number = request.GET.get("like_page")
     like_page_obj = like_paginator.get_page(page_number)
 
     # 해당 유저의 카트아이템
     user_carts = CartItem.objects.filter(user=user_pk)
+    cart_paginator = Paginator(art_likes, 6)
+    page_number = request.GET.get("cart_page")
+    cart_page_obj = cart_paginator.get_page(page_number)
+
     context = {
       "profiles" : profiles,
       "creater": creater,
+      # 등록작품 관련
       "arts" : arts,
-      "art_likes": art_likes,
       "page_obj": page_obj,
+      # 찜한 작품관련
+      "art_likes": art_likes,
       "like_page_obj": like_page_obj,
+      # 카트관련
+      "cart_page_obj": cart_page_obj,
       "user_carts": user_carts,
     }
     return render(request, "accounts/profile.html", context)
@@ -248,31 +239,6 @@ def profile_update(request):
         form = UpdateDetailForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             forms = form.save(commit=False)
-            # if request.POST['creater_name'] == '':
-            #     forms.creater_name = request.user.creater_name
-            # else:
-            #     forms.creater_name = request.POST['creater_name']
-
-            # if request.POST['introduce'] == None:
-            #     forms.introduce = request.user.introduce
-            # else:
-            #     forms.introduce = request.POST['introduce']
-
-            # if request.POST['email'] == '':
-            #     forms.email = request.user.email
-            # else:
-            #     forms.email = request.POST['email']
-
-            # if request.POST['location'] == '':
-            #     forms.location = request.user.location
-            # else:
-            #     forms.location = request.POST['location']
-
-            # if request.POST['location_detail'] == '':
-            #     forms.email = request.user.location_detail
-            # else:
-            #     forms.email = request.POST['location_detail']
-
             forms.save()
             return redirect("accounts:profile", request.user.pk)
 
@@ -315,12 +281,11 @@ def check_valid_number(request):
     input_number = json.loads(request.body)["input_number"]
     print(json.loads(request.body))
     print(valid_number, input_number)
-    if valid_number == input_number:
+    if (valid_number and input_number != '') and valid_number == input_number:
         check = True
     else:
         check = False
     return JsonResponse({"check": check})
-
 
 # 작가 인증
 def check_artist(request):
@@ -355,7 +320,7 @@ def check_artist_number(request):
     valid_number = json.loads(request.body)["valid_number"]
     input_number = json.loads(request.body)["input_number"]
     print(user)
-    if valid_number == input_number:
+    if (valid_number and input_number != '') and valid_number == input_number:
         check = True
         user.is_creater = True
         user.save()
