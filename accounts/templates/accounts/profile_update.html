@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% load django_bootstrap5 %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'style/profile_update.css' %}">
+{% endblock css %}
 {% block content %}
 <div class="signup-frame">
-  <div role="alert" aria-live="assertive" aria-atomic="true" id="toast_signup" class="toast_1">
-    <div class="toast-body" id="toast_context">
+  <div role="alert" aria-live="assertive" aria-atomic="true" id="toast_update" class="toast_1">
+    <div class="toast-body" id="toast_nick">
       {% comment %} <button type="button" class="btn-close" id="closebtn" aria-label="Close"></button> {% endcomment %}
     </div>
   </div>
@@ -14,23 +16,27 @@
     <form id="form-signup" action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="signup-frame__form__container">
-        <div class="signup-frame__form__container__login" id="login__check">
+        <div class="signup-frame__form__container__login" id="nick__check">
           <p>유저 아이디
           </p>
           <div class="signup-frame__form__container__login__check">
             <input class="signup-frame__form__container__login__check__input" type="text"
-              id="idname" name="creater_name" value="{{creater_name}}" placeholder="사용자에게 보여질 아이디를 입력해주세요">
-            <input class="signup-frame__form__container__login__check__button" type="button" id="idcheck" value="중복확인">
+              id="nicknames" name="creater_name" value="{{creater_name}}" placeholder="사용자에게 보여질 아이디를 입력해주세요">
+            <input class="signup-frame__form__container__login__check__button" type="button" id="nicknamecheck" value="중복확인">
           </div>
         </div>
-        <div class="signup-frame__form__container__name">
+        <div class="signup-frame__form__container__image">
           <p>프로필 이미지
           </p>
           <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" id="choosefile" name="profileimage" accept="image/*"
-                onchange="setThumbnail(event);" value="" tag="choosefile">
-            <label for="choosefile">
+            <div class="signup-frame__form__container__image__form">
+            <input class="signup-frame__form__container__image__form__images" id="imginfo" value="" placeholder="첨부파일" readonly>
+            <input type="file" id="choosefile" name="profileimage" accept="image/*" tag="choosefile">
+            <label class="signup-frame__form__container__image__form__choose" for="choosefile">
+              <p>파일 선택</p>
+            </label>
+            </div>
           </form>
         </div>
         <div class="signup-frame__form__container__name">
@@ -118,7 +124,7 @@
 {% comment %} 주소검색 api {% endcomment %}
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2b86257fe02047393d0fd3f879088463&libraries=services"></script>
-<script src="{% static 'script/signup.js' %}"></script>
+<script src="{% static 'script/pro_update.js' %}"></script>
 <script>
   var mapContainer = document.getElementById('map'), // 지도를 표시할 div
     mapOption = {
