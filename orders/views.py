@@ -1,4 +1,4 @@
-from articles.models import Art
+from articles.models import *
 from django.db import transaction
 from django.utils import timezone
 from django.contrib import messages
@@ -267,3 +267,7 @@ def agree(request):
         "is_agreed": is_agreed,
     }
     return JsonResponse(context)
+
+def offer(request):
+    
+    return render(request, "orders/offer.html")
