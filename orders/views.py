@@ -20,12 +20,14 @@ def info(request, art_pk):
     art = Art.objects.get(pk=art_pk)
     cart_form = CartForm()
     cart = CartItem.objects.filter(user_id=request.user.pk).filter(art_id=art_pk)
+    offer_form = OfferForm()
     print(cart)
     context = {
         "art": art,
         "cart_form": cart_form,
         "cart": cart,
         "content": "결제 정보 페이지",
+        "offer_form": offer_form,
     }
     return render(request, "orders/info.html", context)
 
