@@ -1,5 +1,5 @@
 from django import forms
-from .models import Art, Comment
+from .models import *
 
 
 class ArtForm(forms.ModelForm):
@@ -21,5 +21,15 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = [
+            "content",
+        ]
+
+class OfferForm(forms.ModelForm):
+    class Meta:
+        model = Offer
+        fields = [
+            "title",
+            "offer_price",
+            "art",
             "content",
         ]

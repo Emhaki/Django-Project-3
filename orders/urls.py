@@ -21,4 +21,6 @@ urlpatterns = [
     path("delivery_complete/", views.delivery_complete, name="delivery_complete"),
     # 약관 동의여부
     path("agree/", views.agree, name="agree"),
+    # 가격 문의
+    path("offer/", views.offer, name="offer")
 ]

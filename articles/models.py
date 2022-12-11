@@ -40,3 +40,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+class Offer(models.Model):
+    title = models.CharField(max_length=20)
+    content = models.TextField()
+    offer_price = models.IntegerField()
+    art = models.ForeignKey(Art, on_delete=models.CASCADE)
