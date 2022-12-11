@@ -46,3 +46,4 @@ class Offer(models.Model):
     content = models.TextField()
     offer_price = models.IntegerField()
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
