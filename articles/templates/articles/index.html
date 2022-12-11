@@ -58,7 +58,7 @@
       <!-- 사진 -->
       <article class="article__container">
         {% for type in page_obj %}
-        <a href={% url 'articles:detail' type.pk %}>
+        <a href="{% url 'articles:detail' type.pk %}">
           <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
         </a>
       {% endfor %}
