@@ -6,7 +6,7 @@
 {% endblock css %}
 {% block content %}
 
-<section class="myquestion__back">
+<section class="myquestion__back">  
   <section class="myquestion__container">
   <div class="myquestion__title">
     <h1 class='myquestion__title__text'>가격 문의</h1>
@@ -39,15 +39,20 @@
       </div>
       {% endif %}
       <div class="myquestion__title__content__box">
-        <p class="myquestion__title__content__text">제목: {{ offer.title }}</p>
-      <div class="myquestion__title__content__comment">
-        <p class="myquestion__title__content__comment">내용: {{ offer.content }}</p>
-        <p class="myquestion__title__content__comment">작품명: {{ offer.art.title }}</p>
+        <p class="myquestion__title__content__text">{{ offer.title }}</p>
+      <div class="myquestion__title__content__comment mt-2">
+        <p>내용: {{ offer.content }}</p>
       </div>
-      <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" name="수락" value="수락">수락</button>
-      </form>
+      <div class="myquestion__title__content__comment">
+        <p>작품명: {{ offer.art.title }}</p>
+      </div>
+      <div>
+        <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form ">
+          {% csrf_token %}
+          <button type="submit" name="수락" value="수락" class="offer-outline-btn">수락</button>
+        </form>
+      </div>
+      
     </div>
   </div>
   </div>

@@ -67,6 +67,7 @@
     align-items: baseline;
     justify-content: center;
     border-radius: 10px;
+    position: relative;
 }
 .myquestion__list__title {
     width: 100%;
@@ -125,6 +126,7 @@
     height: 30%;
     font-size: 1.5rem;
     margin: 0;
+    margin-bottom: 5px;
 }
 
 .myquestion__title__content__comment {
@@ -132,6 +134,7 @@
     height: 70%;
     font-size: 1rem;
     margin: 0;
+    margin-top: 3px;
 }
 .myquestion__list__title__button {
     background-color: transparent;
@@ -225,6 +228,7 @@
     }
     .myquestion__title__content__text {
         font-size: 1.3rem;
+        margin-top: 2rem;
     }
 }
 
@@ -271,3 +275,27 @@
         width: 100%;
     }
 }
+
+.offer-form {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+}
+
+.offer-outline-btn {
+    border: 1px solid var(--high-sub);
+    color: var(--high-sub);
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .offer-outline-btn:hover {
+    background-color: var(--high-sub);
+    color: white;
+    transform: scale(1.1);
+    transition: all 200ms ease-in-out;
+  }

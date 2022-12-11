@@ -138,37 +138,38 @@
         <div style="display:flex; justify-content:flex-end; margin-right: 3rem;">
           <button type="submit" class="info__cart modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">가격문의</button>
         </div>
-          <!-- 가격 문의 모달 -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog offer_modal" style="display: flex; justify-content: center; align-items: center;">
-              <div class="modal-content p-3" style="max-width: 60rem;">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">가격 제시</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="">
-                  <form action="{% url 'orders:offer_create' art.pk %}" method="POST"  enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row mb-4">
-                      <div class="col-3">
-                        <img src="{{ art.image.url }}" style="width: 100%; height: 100%; margin-right: 1rem;" />
-                      </div>
-                      <div class="col-9">
-                        <h5>{{ art.title }}</h5>
-                      </div>
-                    </div>
-                    <hr class="offer-line">
-                    {% bootstrap_form offer_form %}
-                  </div>
-                  <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn offer-outline-btn" data-bs-dismiss="modal">취소</button>
-                    <button type="submit" class="btn offer-btn">등록</button>
-                  </div>
-                </form>
+        <!-- 가격 문의 모달 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog offer_modal" style="display: flex; justify-content: center; align-items: center;">
+            <div class="modal-content p-3" style="max-width: 60rem;">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">가격 제시</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <div class="modal-body">
+                <div class="">
+                <form action="{% url 'orders:offer_create' art.pk %}" method="POST"  enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="row mb-4">
+                    <div class="col-3">
+                      <img src="{{ art.image.url }}" style="width: 100%; height: 100%; margin-right: 1rem;" />
+                    </div>
+                    <div class="col-9">
+                      <h5>{{ art.title }}</h5>
+                    </div>
+                  </div>
+                  <hr class="offer-line">
+                  {% bootstrap_form offer_form %}
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn offer-outline-btn" data-bs-dismiss="modal">취소</button>
+                  <button type="submit" class="btn offer-btn">등록</button>
+                </div>
+              </form>
             </div>
           </div>
+        </div>
+        </div>
         <!-- 장바구니 추가 -->
         {% if art.soldout == False %}
         <form method="POST" action="{% url 'orders:add_cart' art.pk %}">
