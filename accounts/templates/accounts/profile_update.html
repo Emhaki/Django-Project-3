@@ -36,7 +36,11 @@
         <div class="signup-frame__form__container__name">
           <p>소개글
           </p>
+          {% if introduce == None %}
+          <input type="text" name="introduce" value="" placeholder="소개글을 입력해주세요">
+          {% else %}
           <input type="text" name="introduce" value="{{introduce}}" placeholder="소개글을 입력해주세요">
+          {% endif %}
         </div>
         <div class="signup-frame__form__container__email">
           <p>이메일
