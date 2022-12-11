@@ -1,5 +1,5 @@
 from articles.models import *
-from articles.forms import OfferForm
+from articles.forms import *
 from django.db import transaction
 from django.utils import timezone
 from django.contrib import messages
@@ -272,5 +272,23 @@ def agree(request):
     return JsonResponse(context)
 
 def offer(request):
+    # 해당유저 정보
+    user = get_user_model().objects.get(id=request.user.pk)
+    # 가격제안들
+    offers = Offer.objects.filter(user_id=user)
+
+    context = {
+        "offers": offers,
+    }
+    return render(request, "orders/offer.html", context)
+
+def offer_accept(request):
+    # offer_accept = get_object_or_404(Offer, pk=offer_pk)
+    if request.POST == "수락":
+        offer_form = OfferForm(request.POST)
+        if offer_form.is_valid():
+            art_price = Art.objects.get(pk=offer_form.art.pk)
+            art_price.price = offer_form.offer_price
+            art_price.save()
     
     return render(request, "orders/offer.html")
