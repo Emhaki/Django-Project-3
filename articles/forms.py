@@ -30,6 +30,10 @@ class OfferForm(forms.ModelForm):
         fields = [
             "title",
             "offer_price",
-            "art",
             "content",
         ]
+        labels = {
+            "title": "제목",
+            "offer_price": "제시 가격",
+            "content": "내용",
+        }
