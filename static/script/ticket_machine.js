@@ -2,7 +2,7 @@ const tick = document.querySelector('.wrapper');
 const ticket = document.querySelector('.ticket');
 
 btn.onclick = function () {
-  if (tick.style.top == '148px') {
+  if (tick.style.top == '200px') {
     tick.style.display = 'none';
     tick.style.top = '-730px';
     btn.style.animationPlayState = 'running';
@@ -14,7 +14,7 @@ btn.onclick = function () {
 };
 
 function continueFunction() {
-  tick.style.top = '148px';
+  tick.style.top = '200px';
   btn.style.animationPlayState = 'paused';
   btn.innerHTML = 'WAIT...';
   setTimeout(restartAnimation, 5000);
@@ -30,5 +30,9 @@ function restartAnimation() {
 }
 
 function takeTicket() {
-  tick.style.transform = 'rotate(-90deg)';
+  tick.style.transform = 'rotate(-90deg) translateY(-25%)';
+  ticket.style.cursor = "pointer";
+  ticket.addEventListener("click", () => {
+    location.href = location.origin + "/articles/index/";
+  })
 }

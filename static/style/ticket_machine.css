@@ -3,6 +3,7 @@
 * {
   box-sizing: border-box;
 }
+
 body,
 html {
   height: 100%;
@@ -13,7 +14,7 @@ html {
 .ticket-machine {
   position: absolute;
   top: -10px;
-  left: 48%;
+  left: 50%;
   transform: translatex(-50%);
   width: 600px;
   height: 200px;
@@ -29,7 +30,7 @@ html {
   position: absolute;
   top: -10px;
   left: 50%;
-  transform: translatex(-60%);
+  transform: translatex(-50%);
   width: 360px;
   height: 40px;
   margin: auto;
@@ -43,7 +44,7 @@ html {
   position: absolute;
   top: 8px;
   left: 50%;
-  transform: translatex(-48%);
+  transform: translatex(-50%);
   width: 280px;
   height: 2px;
   background-color: #000;
@@ -52,9 +53,10 @@ html {
 .wrapper {
   position: relative;
   top: -730px;
-  left: 39%;
-  transform: translatex(-60%);
-  width: 250px;
+  left: 50%;
+  transform: translatex(-50%);
+  width: 550px;
+  height: 550px;
   display: none;
   transition-duration: 5s;
 }
@@ -69,7 +71,7 @@ html {
   position: absolute;
   top: -10px;
   left: 50%;
-  transform: translatex(-61%);
+  transform: translatex(-50%);
   width: 280px;
   height: 20px;
   background-color: #ffe;

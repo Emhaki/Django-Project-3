@@ -16,9 +16,8 @@
       <div id="printer-slot"></div>
     </div>
     <div class="wrapper">
-      <a href="{% url 'articles:index' %}">
-        <div class="ticket ticket-1">
-          <div class="date">
+        <div class="ticket ticket-1" id="tickets">
+          <div class="date" id="tickets_child">
             <span class="day">15</span>
             <span class="month-and-time">DEC</br><span class="small">10AM</span></span>
           </div>
@@ -39,7 +38,6 @@
             <p class="buy" href="#">GRAB A TICKET</p>
           </div>
         </div>
-      </a>
     </div>
     <div class="ticket-cover"></div>
     <script src="../../../static/script/ticket_machine.js"></script>
