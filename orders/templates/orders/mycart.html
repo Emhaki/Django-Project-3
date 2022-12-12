@@ -199,10 +199,11 @@
       Swal.fire({
         title: '작품 삭제하기',
         text: "작품을 장바구니에서 삭제하시겠습니까?",
-        icon: 'warning',
+        icon: "warning",
+        backdrop: "rgba(255,255,255,0.5)",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#f3672a',
+        cancelButtonColor: '#203e96',
         confirmButtonText: '삭제하기',
         cancelButtonText: '놔두기'
       }).then((result) => {
@@ -215,9 +216,11 @@
             }
           }).then(response => {
             Swal.fire({
+              backdrop: "rgba(255,255,255,0.5)",
               title: '삭제완료',
               text: "삭제되었습니다.",
-              icon: 'success',
+              icon: "success",
+              confirmButtonColor: '#203e96',
               confirmButtonText: '닫기',
             });
             const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
@@ -238,9 +241,12 @@
     if (totalPrice.innerText === "₩ 0") {
       event.preventDefault();
       swal.fire({
+        backdrop: "rgba(255,255,255,0.5)",
+        confirmButtonColor: '#203e96',
+        confirmButtonText: '닫기',
         title: "한번 더 확인해주세요!",
         text: "장바구니에 작품이 없습니다!",
-        icon: "error",
+        icon: "warning",
       });
     };
   });
