@@ -352,13 +352,23 @@ def check_artist(request):
 
     mail_subject = "[NES]이메일 인증번호입니다."
     user_email = json.loads(request.body)["user_email"]
+    user_email2 = json.loads(request.body)["user_email2"]
+
+    print(user_email)
+    print(user_email2)
     if "ac.kr" in user_email[:] or "edu" in user_email[-4:]:
         email = EmailMessage(mail_subject, message, to=[user_email])
         email.send()
-        return JsonResponse({"validnumber": validnumber})
+        check = True
+        
+    elif "ac.kr" in user_email2[:] or "edu" in user_email2[-4:]:
+        email = EmailMessage(mail_subject, message, to=[user_email2])
+        email.send()
+        check = True
     else:
-        messages(request, "학교 이메일이 아니에요.")
-        return redirect("profile")
+        check = False
+        
+    return JsonResponse({"validnumber": validnumber, "check": check})
 
 
 def check_artist_number(request):
