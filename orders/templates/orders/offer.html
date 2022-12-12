@@ -10,14 +10,14 @@
   <section class="myquestion__container">
   <div class="myquestion__title">
     <h1 class='myquestion__title__text'>가격 문의</h1>
-    <a href="{% url 'questions:index'%}">
-      <button>돌아가기</button>
+    <a href="{% url 'articles:main'%}">
+      <button class="btn order-outline-btn">돌아가기</button>
     </a>
   </div>
   {% for offer in offers %}
   <div class="myquestion__list">
     <div class="myquestion__list__title">
-      <p>제시가격: {{ offer.offer_price }}</p> <p>기존가격: {{ offer.art.price }}</p>
+      <p class="mx-5">제시 가격: ₩ {{ offer.offer_price }}</p> <p>기존 가격: ₩ {{ offer.art.price }}</p>
       <button class="myquestion__list__title__button" data-container="myquestion__title__content__{{ question.pk }}">
         <svg class="myquestion__list__title__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
           <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
@@ -39,22 +39,21 @@
       </div>
       {% endif %}
       <div class="myquestion__title__content__box">
-        <p class="myquestion__title__content__text">{{ offer.title }}</p>
-      <div class="myquestion__title__content__comment mt-2">
-        <p>내용: {{ offer.content }}</p>
+        <p class="myquestion__title__content__text"><span class="category-text">제목</span> {{ offer.title }}</p>
+        <div class="myquestion__title__content__comment">
+          <p><span class="category-text">내용</span> {{ offer.content }}</p>
+        </div>
+        <div class="myquestion__title__content__comment">
+          <p><span class="category-text">작품</span> {{ offer.art.title }}</p>
+        </div>
+        <div>
+          <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form ">
+            {% csrf_token %}
+            <button type="submit" name="수락" value="수락" class="offer-outline-btn">수락</button>
+          </form>
+        </div>
       </div>
-      <div class="myquestion__title__content__comment">
-        <p>작품명: {{ offer.art.title }}</p>
-      </div>
-      <div>
-        <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form ">
-          {% csrf_token %}
-          <button type="submit" name="수락" value="수락" class="offer-outline-btn" data-offer-id="{{offer.pk}}" value="{{offer.pk}}" onclick="accept(event)">수락</button>
-        </form>
-      </div>
-      
     </div>
-  </div>
   </div>
   {% endfor %}
   <div class="myquestion__list__last"></div>
