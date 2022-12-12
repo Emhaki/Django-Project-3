@@ -38,12 +38,31 @@
       data: new FormData(loginForm)
     })
       .then(response => {
-        if (response.data.errorMsg) {
-          swal.fire({
-            title: "한번 더 확인해주세요!",
-            text: response.data.errorMsg,
-            icon: "error",
-          });
+        let msg = response.data.errorMsg;
+        if (msg) {
+          if (msg === "잘못된 아이디 혹은 패스워드 입니다.") {
+            let titleText = "잘못된 입력입니다."
+            let iconText = "error"
+            swal.fire({
+              backdrop: "rgba(255,255,255,0.5)",
+              confirmButtonColor: '#203e96',
+              confirmButtonText: '닫기',
+              title: titleText,
+              text: msg,
+              icon: iconText,
+            });
+          } else if (msg === "존재하지 않는 회원입니다.") {
+            let titleText = "정보를 찾을 수 없습니다."
+            let iconText = "question"
+            swal.fire({
+              backdrop: "rgba(255,255,255,0.5)",
+              confirmButtonColor: '#203e96',
+              confirmButtonText: '닫기',
+              title: titleText,
+              text: msg,
+              icon: iconText,
+            });
+          };
           loginForm.reset();
         } else {
           window.location.href = "{% url 'articles:main' %}";

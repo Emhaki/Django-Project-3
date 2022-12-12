@@ -14,11 +14,11 @@
     <h1 class="recently__title">
       최근 본 작품
     </h1>
-    <div class="row gx-3 gy-5 recently__content">
+    <div class="recently__content">
       {% for art in art_list %}
-      <div class="col-4">
+      <div>
         <a href="{% url 'articles:detail' art.pk %}">
-          <img src="{{ art.image.url }}" class="recently__images">
+          <img src="{{ art.image.url }}">
         </a>
       </div>
       {% endfor %}

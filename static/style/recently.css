@@ -54,13 +54,20 @@ body {
 
 
 .recently__content {
-  margin: 0 0 0 5rem;
-  padding-bottom: 9rem;
-  width: 95rem;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1rem 0 0 4rem;
+  padding-bottom: 7rem;
+  max-width: 96rem;
 }
 
 
-.recently__images {
+.recently__content>div {
+  padding: 2rem 1rem;
+}
+
+
+.recently__content>div>a>img {
   width: 30rem;
   height: 24rem;
 }
