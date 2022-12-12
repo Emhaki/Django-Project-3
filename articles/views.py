@@ -224,7 +224,6 @@ def search(request):
     if search:
         search_list = all_data.filter(
             Q(title__icontains=search)
-            | Q(content__icontains=search)
             | Q(artist__nickname__icontains=search)
         )
         paginator = Paginator(search_list, 6)

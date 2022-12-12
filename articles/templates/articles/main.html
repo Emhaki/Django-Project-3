@@ -47,7 +47,7 @@
   {% elif name == '설치미술' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
-      <p class="loading__title">일러스트</p>
+      <p class="loading__title">설치미술</p>
       <p class="loading__subtitle">Illustration</p>
     </div>
   </section>
@@ -153,7 +153,11 @@
               홈
               </a>
             </li>
-            <li>전체 작품</li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              전체 작품
+              </a>
+            </li>
             <li>
               <a href="{% url 'questions:index' %}" class="text-dark">
               문의사항
