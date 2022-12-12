@@ -6,7 +6,7 @@
 {% endblock css %}
 {% block content %}
 
-<section class="myquestion__back">
+<section class="myquestion__back">  
   <section class="myquestion__container">
   <div class="myquestion__title">
     <h1 class='myquestion__title__text'>가격 문의</h1>
@@ -39,15 +39,20 @@
       </div>
       {% endif %}
       <div class="myquestion__title__content__box">
-        <p class="myquestion__title__content__text">제목: {{ offer.title }}</p>
-      <div class="myquestion__title__content__comment">
-        <p class="myquestion__title__content__comment">내용: {{ offer.content }}</p>
-        <p class="myquestion__title__content__comment">작품명: {{ offer.art.title }}</p>
+        <p class="myquestion__title__content__text">{{ offer.title }}</p>
+      <div class="myquestion__title__content__comment mt-2">
+        <p>내용: {{ offer.content }}</p>
       </div>
-      <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" name="수락" value="수락">수락</button>
-      </form>
+      <div class="myquestion__title__content__comment">
+        <p>작품명: {{ offer.art.title }}</p>
+      </div>
+      <div>
+        <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form ">
+          {% csrf_token %}
+          <button type="submit" name="수락" value="수락" class="offer-outline-btn" data-offer-id="{{offer.pk}}" value="{{offer.pk}}" onclick="accept(event)">수락</button>
+        </form>
+      </div>
+      
     </div>
   </div>
   </div>
@@ -66,36 +71,20 @@
     });
     
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-    // const commentForm = document.getElementById('question-comment-form')
-    const commentFormSet = document.querySelectorAll('.create-form')
-    const commentsSet = document.querySelectorAll(".question-commentss")
-      for (j=0; j < commentFormSet.length; j++) {
-      // console.log(commentFormSet[j])
-      let targetDiv = commentsSet[j]
-      commentFormSet[j].addEventListener('submit', function(event) {
-        event.preventDefault();
-        // console.log(event.target)
+    function accept(event) {
+      var delete_warngin = confirm("제안을 수락하시겠습니까?")
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+      if (delete_warngin == true) {
         axios({
           method: 'post',
-          url: `/questions/${event.target.dataset.questionId}/comment/create/`,
+          url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
           headers: {'X-CSRFToken': csrftoken},
-          data: new FormData(event.target)
+          data: {'note_pk': event.target.dataset.offerId},
         })
         .then(response => {
-          // console.log(`${event.target.dataset.questionId}`)
-          const div = document.createElement('div')
-          const p = document.createElement('p')
-          const small = document.createElement('small')
-          div.innerText = `${response.data.userName}`
-          div.className = "fw-bold mt-2"
-          p.innerText = `${response.data.content}`
-          p.className = "text-muted"
-          small.innerText = "0분전"
-          small.className = "text-muted fs-7"
-          const hr = document.createElement('hr')
-          targetDiv.append(div, p, small, hr)
+
         })
-      })
+      }
     }
 </script>
 {% endblock content %}

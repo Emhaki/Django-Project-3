@@ -303,4 +303,4 @@ def offer_accept(request, offer_pk):
         art_price.price = offer_accept.offer_price
         art_price.save()
     
-    return render(request, "orders/offer.html")
+    return redirect("orders:offer")
