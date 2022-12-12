@@ -1,7 +1,7 @@
 @import url(./base.css);
 
 .myquestion__back {
-    background-color: var(--highlight);
+    background-color: var(--high-sub);
     width: 100%;
     overflow: auto;
     height: 100vh;

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {% load static %}
 
 {% block css %}
@@ -152,11 +153,11 @@
         <p class="fee-2">₩
           {{ delivery_fee }}</p>
       </div>
-      <p class="fee-3">₩ 300,000 이상일 경우 배송료 무료입니다.</p>
+      <p class="fee-3">₩ 30,000 이상일 경우 배송료 무료입니다.</p>
       <div class="payment__total-price-3">
         <h3 class="total-3">총 가격</h3>
         <h3 class="total-4">₩
-          {{ billing_amount }}</h3>
+          {{ billing_amount | intcomma }}</h3>
       </div>
     </div>
   </div>

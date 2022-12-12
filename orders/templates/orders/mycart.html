@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {% load static %}
 
 {% block css %}
@@ -155,7 +156,7 @@
             </div>
             <div class="basket__price ms-auto">
               <h5 class="my-0 mx-3">₩
-                {{ item.art.price }}</h5>
+                {{ item.art.price | intcomma }}</h5>
               <!-- 장바구니에서 삭제 -->
               <button type="submit" data-art-id="{{ item.art.pk }}" class="remove-btn basket__button">
                 <i class="bi bi-trash-fill"></i>
