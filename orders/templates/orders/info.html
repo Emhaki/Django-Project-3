@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {% load static %}
 
 {% block css %}
@@ -158,7 +159,7 @@
       <hr class="info__hr m-0">
       <div class="info__price-section">
         <span>가격</span>
-        <span id="art-price" value="{{art.price}}" name="{{art.price}}">₩ {{ art.price }}</span>
+        <span id="art-price" value="{{art.price}}" name="{{art.price}}">₩ {{ art.price | intcomma }}</span>
       </div>
       <div class="info__order align-items-center offer-modal">
         <!-- 가격 문의 -->

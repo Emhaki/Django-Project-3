@@ -1,7 +1,7 @@
 @import url(./base.css);
 
 body {
-    background-color: var(--highlight);
+    background-color: var(--high-sub);
 }
 
 .question-back {
@@ -14,7 +14,7 @@ body {
 }
 
 .question__container {
-    width: 80%;
+    width: 75%;
     height: 90%;
 }
 
@@ -50,7 +50,7 @@ body {
     width: 10%;
     height: 60%;
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background-color: var(--main);
     border-radius: 10px;
     border: none;
@@ -62,7 +62,7 @@ body {
 .question__container__main {
     width: 100%;
     height: auto;
-    background-color: var(--main);
+    /* background-color: var(--main); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,7 +87,7 @@ body {
 }
 
 .question__container__main__box__title {
-    font-size: 1.5vw;
+    font-size: 1.8vw;
     transition: all .3s;
 }
 
@@ -128,8 +128,8 @@ body {
 }
 
 .question__container__main__box__button__down {
-    width: 2rem;
-    height: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .question__container__main__box__button__cancle {
@@ -169,7 +169,7 @@ body {
     width: 10%;
     height: 60%;
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background-color: var(--main);
     border-radius: 10px;
     border: none;
@@ -181,7 +181,7 @@ body {
     .question__container__footer button,
     .question__container__header button {
         width: 14%;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         transition: all .3s;
     }
 }
@@ -191,7 +191,7 @@ body {
     .question__container__footer button,
     .question__container__header button {
         width: 16%;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         transition: all .3s;
     }
 
@@ -220,7 +220,7 @@ body {
     .question__container__footer button,
     .question__container__header button {
         width: 100%;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         height: 50%;
         transition: all .3s;
         right: 0%;

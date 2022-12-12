@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load humanize %}
 {% load static %}
 
 {% block css %}
@@ -133,7 +134,7 @@
                   신용카드 결제
                 </p>
                 <p class="receipt__price">₩
-                  {{ order.total_price }}
+                  {{ order.total_price | intcomma }}
                 </p>
               </div>
             </div>
