@@ -77,8 +77,9 @@
         </div>
         <div class="offcanvas-body">
           <ul class="offcanvas__ul">
+            <!-- 로그인 유저 -->
+            {% if request.user.is_authenticated %}
             <li>
-              {% if request.user.is_authenticated %}
               <a href="{% url 'accounts:logout' %}">
                 <button class="btn offcanvas__header--btn p-0">
                   {{ request.user.username }}
@@ -88,15 +89,6 @@
                   </svg>
                 </button>
               </a>
-              {% else %}
-              <a href="{% url 'accounts:login' %}">
-                <button class="btn offcanvas__header--btn">
-                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                  </svg>
-                </button>
-              </a>
-              {% endif %}
             </li>
             <li>
               <a href="{% url 'articles:main' %}" class="text-dark">
@@ -104,18 +96,16 @@
               </a>
             </li>
             <li>
-              {% if request.user.is_authenticated %}
               <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
               프로필
               </a>
-              {% else %}
-              <a href="{% url 'accounts:login' %}" class="text-dark">
-                프로필
-                </a>
-              {% endif %}
             </li>
             <li>전체 작품</li>
-            <li>최근 본 작품</li>
+            <li>
+              <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+                최근 본 작품
+              </a>
+            </li>
             <li>
               <a href="{% url 'notes:index' %}" class="text-dark">
               편지함
@@ -130,6 +120,34 @@
               About
               <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
             </li>
+            <!-- 비로그인 유저 -->
+            {% else %}
+            <li>
+              <a href="{% url 'accounts:login' %}">
+                <button class="btn offcanvas__header--btn">
+                  로그인 해주세요!
+                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                </button>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              홈
+              </a>
+            </li>
+            <li>전체 작품</li>
+            <li>
+              <a href="{% url 'questions:index' %}" class="text-dark">
+              문의사항
+              </a>
+            </li>
+            <li>
+              About
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+            </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -269,4 +287,4 @@
       }, 2000);
     })
   </script>
-  {% endblock content %}
+{% endblock content %}

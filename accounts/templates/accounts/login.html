@@ -39,7 +39,11 @@
     })
       .then(response => {
         if (response.data.errorMsg) {
-          alert(response.data.errorMsg);
+          swal.fire({
+            title: "한번 더 확인해주세요!",
+            text: response.data.errorMsg,
+            icon: "error",
+          });
           loginForm.reset();
         } else {
           window.location.href = "{% url 'articles:main' %}";
