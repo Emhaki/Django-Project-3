@@ -161,11 +161,17 @@
             </div>
           </div>
           {% else %}
+            {% if art.soldout == False %}
             <div>
               <button class="btn order-outline-btn" type="button" onclick="location.href='{% url 'orders:info' art.pk %}'">
                 주문하기
               </button>
             </div>
+            {% else %}
+            <div class="fw-bold">
+                Soldout
+            </div>
+            {% endif %}
           </div>
           {% endif %}
           <hr />
