@@ -19,6 +19,9 @@ def loading(request):
 
     return render(request, "articles/loading.html")
 
+def ticket_machine(request):
+
+    return render(request, "articles/ticket_machine.html")
 
 def main(request):
     arts = Art.objects.order_by("pk")
