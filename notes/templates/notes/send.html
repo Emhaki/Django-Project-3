@@ -12,15 +12,21 @@
     <div class="post__cover__main">
       <div class="post__cover__main__box">
         <div class="post__cover__main__box__header">
+          {% if to_user.test %}
           <img id="profileimage" src="{{to_user.profileimage}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
+          {% elif to_user.profileimage %}
+          <img id="profileimage" src="{{to_user.profileimage.url}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
+          {% else %}
+          <img src="{% static 'img/luna2.jpeg' %}" alt="">
+          {% endif %}
         </div>
         {% comment %} 받은 DM {% endcomment %}
         <div class="d-flex justify-content-center fw-bold mt-1">
           {% if to_user.test %}
             {{to_user.creater_name}}
           {% elif to_user.creater_name %}
-            {{to_user.creater_name}}
-          {% elif to_user.usrename %}
+            {{to_user.creater_name }}
+          {% elif to_user.username %}
             {{to_user.username}}
           {% endif %}
         </div>
