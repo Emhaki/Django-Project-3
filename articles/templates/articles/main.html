@@ -112,7 +112,11 @@
               프로필
               </a>
             </li>
-            <li>전체 작품</li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              전체 작품
+              </a>
+            </li>
             <li>
               <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
                 최근 본 작품
