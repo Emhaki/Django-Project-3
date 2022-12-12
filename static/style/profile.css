@@ -258,12 +258,52 @@
   color: gray;
 }
 
+.profile__container__tabs__box__grid__card__imgbox__icon2 {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 3vw;
+  height: 3vh;
+  right: 1%;
+  top: 5%;
+  color: #d00000;
+}
+
+
 .pag_box1 {
   width: 100%;
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 100%);
+}
+
+/* 판매완료 태그 */
+
+.complete__photo-section {
+  position: relative;
+  width: 100%;
+}
+
+.complete__photo {
+  width: 100%;
+  max-height: 85vh;
+  object-fit: fill;
+}
+
+.soldout__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 109%;
+  background-color: var(--main);
+  color: var(--highlight);
+  font-size: 1.5vw;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  transform: translate(-50%, -50%) rotate(30deg);
+  border-radius: 4px;
 }
 
 /* 1500px 일때 프로필, 글자 조정 */
