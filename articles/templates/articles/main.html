@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="{% static 'style/main.css' %}">
   <link rel="stylesheet" href="../../../static/style/loading.css" />
   <link rel="stylesheet" href="../static/style/start.css"/>
-
 {% endblock css %}
 {% block content %}
   <!--로딩화면-->
@@ -16,6 +15,7 @@
       <p class="loading__subtitle">Oriental painting</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '서양화' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -23,6 +23,7 @@
       <p class="loading__subtitle">Western painting</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '판화' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -30,6 +31,7 @@
       <p class="loading__subtitle">Engraving</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '일러스트' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -37,6 +39,7 @@
       <p class="loading__subtitle">Illustration</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '조각 및 조소' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -44,6 +47,7 @@
       <p class="loading__subtitle">Sculpture</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '설치미술' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -51,6 +55,7 @@
       <p class="loading__subtitle">Illustration</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% elif name == '사진' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
@@ -58,6 +63,7 @@
       <p class="loading__subtitle">Picture</p>
     </div>
   </section>
+  <script src="../../../static/script/loading.js"></script>
   {% else %}
   <section id="loading" class="loading__bg">
     <section class="start__bg">
@@ -67,11 +73,10 @@
         <span class="blink">|</span>
       </div>
     </section>
-    <script src="../static/script/start.js"></script>
   </section>
+  <script src="../../../static/script/start.js"></script>
   {% endif %}
-
-  <section class="main__bg">
+  <section class="main__bg" id="main_bg">
     <nav class="articles__nav">
       <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
         <img class="nav__logo" src="../../../static/img/logo-orange.png" alt="logo"/>
@@ -187,6 +192,7 @@
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
               </button>
+
             </div>
           </form>
           <ul class="menu__lists">
@@ -302,15 +308,13 @@
   integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
   crossorigin="anonymous"
   ></script>
-  <script src="../../../static/script/loading.js"></script>
-
-  <!--로딩-->
   <script>
     const loading = document.querySelector('#loading');
-
-    window.addEventListener('load', ()=>{
-    setTimeout(() => {
-            loading.style.display = 'none';
+    const totals = document.querySelector("#main_bg");
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        totals.style.display = 'block';
+        loading.style.display = 'none';
       }, 2000);
     })
   </script>
