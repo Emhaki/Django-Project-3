@@ -41,7 +41,7 @@
   text-align: right;
 }
 
-.offcanvas__ul > li {
+.offcanvas__ul>li {
   margin-bottom: 1rem;
 }
 
@@ -126,10 +126,10 @@
 }
 
 /* 스크롤 숨김 */
-.article__items::-webkit-scrollbar {
+/* .article__items::-webkit-scrollbar {
   display: none;
   width: 0 !important;
-}
+} */
 
 /* 이미지 소개 */
 .image__info {
@@ -157,7 +157,7 @@
   left: -3rem;
 }
 
-.article__img:hover + .info {
+.article__img:hover+.info {
   opacity: 1;
   transition: all 200ms ease-in;
 }
@@ -193,7 +193,7 @@
 }
 
 @media (max-width: 750px) {
-  .article__img:hover + .info {
+  .article__img:hover+.info {
     opacity: 0;
     transition: all 200ms ease-in;
   }
