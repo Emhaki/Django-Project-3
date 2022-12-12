@@ -10,24 +10,60 @@
 {% block content %}
 
   <section class="payment__bg">
-    <div class="d-flex justify-content-start">
-      <div class="payment__user-section">
+    <div class="payment__infos">
+      <div class="payment__user__section">
         <h3 class="payment__title">결제</h3>
         <p class="payment__notice">본인 정보가 정확한지 확인해주세요.</p>
         <!--결제 Form-->
-        <form id="payment-form" method="POST" class="form" action="{% url 'orders:complete' %}">
+        <form id="payment-form" method="POST" action="{% url 'orders:complete' %}">
           {% csrf_token %}
-          {% bootstrap_form payment_form %}
+          <div class="d-flex flex-column">
+          <div class="payment__name__form">
+            <label class="payment__name__form__label" for="id_username">이름</label>
+            <input type="text" name="username" value="{{ data.username }}" maxlength="10" class="payment__name__form__input" placeholder="이름" required id="id_username">
+          </div>
+          <div class="payment__email__form">
+            <label class="payment__email__form__label" for="id_email">이메일</label>
+            <input type="email" name="email" value="{{ data.email }}" maxlength="254" class="payment__email__form__input" placeholder="이메일" required id="id_email">
+          </div>
+          <div class="payment__address__form">
+            <label class="payment__address__form__label" for="id_address">주소</label>
+            <input type="text" name="address" value="{{ data.address }}" maxlength="250" class="payment__address__form__input" placeholder="주소" required id="id_address">
+          </div>
+          <div class="payment__address__detail__form">
+            <label class="payment__address__detail__form__label" for="id_address_detail">상세주소</label>
+            <input type="text" name="address_detail" value="{{ data.address_detail }}" maxlength="250" class="payment__address__detail__form__input" placeholder="상세주소" required id="id_address_detail">
+          </div>
+          <div class="payment__number__form">
+            <label class="payment__number__form__label" for="id_contact_number">연락처</label>
+            <input type="text" name="contact_number" maxlength="250" class="payment__number__form__input" placeholder="연락처" required id="id_contact_number">
+          </div>
+          <div class="payment__question__form">
+            <label class="payment__question__form__label" for="id_requests">기타 사항</label>
+            <textarea name="requests" cols="10" rows="2" placeholder="요청사항을 적어주세요." maxlength="100" class="payment__question__form__input" required id="id_requests"></textarea>
+          </div>
+          <div class="payment__request__form">
+            <label class="payment__request__form__label" for="id_delivery_option">요청 사항</label>
+            <select name="delivery_option" class="payment__request__form__select" id="id_delivery_option">
+              <option value="부재시 문 앞에 놓아주세요." selected>부재시 문 앞에 놓아주세요.</option>
+              <option value="부재시 경비실에 맡겨주세요.">부재시 경비실에 맡겨주세요.</option>
+              <option value="부재시 전화 또는 문자주세요.">부재시 전화 또는 문자 주세요.</option>
+              <option value="택배함에 넣어주세요.">택배함에 넣어주세요.</option>
+              <option value="파손위험이 있는 상품입니다. 배송 시 주의해주세요.">파손위험이 있는 상품입니다. 배송 시 주의해주세요.</option>
+              <option value="배송 전에 연락주세요.">배송 전에 연락주세요.</option>
+            </select>
+          </div>
+        </div>
         </form>
         <!-- Button trigger modal -->
-        <div class="d-flex mt-5">
+        {% comment %} <div class="payment__agree">
           <button type="button" class="modal-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
             전자상거래 표준 약관 확인
           </button>
           <button type="button" class="modal-btn ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
             택배 이용 약관 확인
           </button>
-        </div>
+        </div> {% endcomment %}
         <!-- Modal -->
         <div class="modal fade m-0" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog d-flex justify-content-center">
@@ -124,8 +160,8 @@
       </div>
     </div>
   </div>
-  <div class="payment__execute-btn">
-    <input id="order_btn" type="submit" class="payment__execute btn btn-lg">결제하기</input>
+  <div class="payment__execute">
+    <input id="order_btn" type="submit" class="payment__execute__btn btn btn-lg"></input>
   </div>
 </section>
 

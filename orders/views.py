@@ -130,7 +130,6 @@ def payment(request):
         delivery_fee = 3000
 
     billing_amount = total_price + delivery_fee
-
     # 주문서
     context = {
         "payment_form": payment_form,
@@ -138,6 +137,7 @@ def payment(request):
         "total_price": total_price,
         "delivery_fee": delivery_fee,
         "billing_amount": billing_amount,
+        "data": data,
     }
     
     return render(request, "orders/payment.html", context)
