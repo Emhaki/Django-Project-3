@@ -17,6 +17,7 @@ import json
 from django.core.mail import EmailMessage
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -171,9 +172,7 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            context = {
-                
-            }
+            context = {}
             return JsonResponse(context)
         else:
             user = get_user_model().objects.filter(username=request.POST["username"])
@@ -387,3 +386,22 @@ def check_artist_number(request):
             "check": check,
         }
     )
+
+
+@login_required
+def recently(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    user_recently_view = user.recently_view
+    user_recently_view = user_recently_view.replace("__", ",")
+    user_recently_view = user_recently_view.replace("__", ",").replace("_", "")
+    user_recently_view_list = user_recently_view.split(",")
+    # print(user_recently_view_list)
+    art_list = []
+    while user_recently_view_list:
+        target_pk = user_recently_view_list.pop()
+        art = Art.objects.get(id=target_pk)
+        art_list.append(art)
+    context = {
+        "art_list": art_list,
+    }
+    return render(request, "accounts/recently.html", context)

@@ -168,22 +168,39 @@
   for (i = 0; i < removeBtnSet.length; i++) {
     removeBtnSet[i].addEventListener("click", function (event) {
       event.preventDefault();
-      let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
-      if (delete_warning === true) {
-        axios({
-          method: 'post',
-          url: `/orders/mycart/${event.target.dataset.artId}/delete/`,
-          headers: {
-            'X-CSRFToken': csrftoken
-          }
-        }).then(response => {
-          const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
-          targetDiv.remove();
+      // let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
+      Swal.fire({
+        title: '작품 삭제하기',
+        text: "작품을 장바구니에서 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '삭제하기',
+        cancelButtonText: '놔두기'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            method: 'post',
+            url: `/orders/mycart/${this.dataset.artId}/delete/`,
+            headers: {
+              'X-CSRFToken': csrftoken
+            }
+          }).then(response => {
+            Swal.fire({
+              title: '삭제완료',
+              text: "삭제되었습니다.",
+              icon: 'success',
+              confirmButtonText: '닫기',
+            });
+            const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
+            targetDiv.remove();
 
-          const basketTp = document.querySelector("#basket__tp");
-          basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
-        });
-      };
+            const basketTp = document.querySelector("#basket__tp");
+            basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
+          });
+        };
+      });
     });
   };
 </script>
@@ -193,7 +210,11 @@
   paymentBtn.addEventListener("click", function () {
     if (totalPrice.innerText === "₩ 0") {
       event.preventDefault();
-      alert("장바구니에 작품이 없습니다!");
+      swal.fire({
+        title: "한번 더 확인해주세요!",
+        text: "장바구니에 작품이 없습니다!",
+        icon: "error",
+      });
     };
   });
 </script>
