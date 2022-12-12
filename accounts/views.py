@@ -241,6 +241,25 @@ def profile(request, user_pk):
     page_number = request.GET.get("cart_page")
     cart_page_obj = cart_paginator.get_page(page_number)
 
+    # 구매내역 목록
+    # art모델과 order모델에서 일치하는 작품명 필터링 + 결제완료 상태 필터링 + user_id=user_pk값인 것 필터링
+    buys = Order.objects.filter(order_status="결제완료").filter(user_id=user_pk)
+    list_ = []
+    purchases = Art.objects.filter(order_id=999999999)
+    if buys:
+        for buy in buys:
+          list_.append(str(buy.pk))
+    purchases = Art.objects.filter(order_id__in=list_)
+    buy_paginator = Paginator(purchases, 6)
+    page_number = request.GET.get("buy_page")
+    buy_page_obj = buy_paginator.get_page(page_number)
+
+    # 판매내역 목록
+    soldouts = Art.objects.filter(soldout=True).filter(artist=user_pk)
+    soldout_paginator = Paginator(soldouts, 6)
+    page_number = request.GET.get("soldout_page")
+    soldout_page_obj = soldout_paginator.get_page(page_number)
+
     context = {
         "profiles": profiles,
         "creater": creater,
@@ -251,8 +270,14 @@ def profile(request, user_pk):
         "art_likes": art_likes,
         "like_page_obj": like_page_obj,
         # 카트관련
-        "cart_page_obj": cart_page_obj,
         "user_carts": user_carts,
+        "cart_page_obj": cart_page_obj,
+        # 구매관련
+        "purchases": purchases,
+        "buy_page_obj": buy_page_obj,
+        # 판매관련
+        "soldouts": soldouts,
+        "soldout_page_obj": soldout_page_obj,
     }
     return render(request, "accounts/profile.html", context)
 
