@@ -92,7 +92,7 @@ def detail(request, pk):
             user_recently_view += f"_{target}_"
 
         # 최근 본 작품 개수제한
-        if len(user_recently_view.replace("_", "")) > 5:
+        if len(user_recently_view.replace("_", "")) > 6:
             i = 1
             while user_recently_view[i] != "_":
                 i += 1
@@ -224,7 +224,6 @@ def search(request):
     if search:
         search_list = all_data.filter(
             Q(title__icontains=search)
-            | Q(content__icontains=search)
             | Q(artist__nickname__icontains=search)
         )
         paginator = Paginator(search_list, 6)

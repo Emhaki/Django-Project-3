@@ -17,6 +17,7 @@ import json
 from django.core.mail import EmailMessage
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -171,9 +172,7 @@ def login(request):
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            context = {
-                
-            }
+            context = {}
             return JsonResponse(context)
         else:
             user = get_user_model().objects.filter(username=request.POST["username"])
@@ -352,13 +351,23 @@ def check_artist(request):
 
     mail_subject = "[NES]이메일 인증번호입니다."
     user_email = json.loads(request.body)["user_email"]
+    user_email2 = json.loads(request.body)["user_email2"]
+
+    print(user_email)
+    print(user_email2)
     if "ac.kr" in user_email[:] or "edu" in user_email[-4:]:
         email = EmailMessage(mail_subject, message, to=[user_email])
         email.send()
-        return JsonResponse({"validnumber": validnumber})
+        check = True
+        
+    elif "ac.kr" in user_email2[:] or "edu" in user_email2[-4:]:
+        email = EmailMessage(mail_subject, message, to=[user_email2])
+        email.send()
+        check = True
     else:
-        messages(request, "학교 이메일이 아니에요.")
-        return redirect("profile")
+        check = False
+        
+    return JsonResponse({"validnumber": validnumber, "check": check})
 
 
 def check_artist_number(request):
@@ -377,3 +386,22 @@ def check_artist_number(request):
             "check": check,
         }
     )
+
+
+@login_required
+def recently(request, user_pk):
+    user = get_object_or_404(get_user_model(), pk=user_pk)
+    user_recently_view = user.recently_view
+    user_recently_view = user_recently_view.replace("__", ",")
+    user_recently_view = user_recently_view.replace("__", ",").replace("_", "")
+    user_recently_view_list = user_recently_view.split(",")
+    # print(user_recently_view_list)
+    art_list = []
+    while user_recently_view_list:
+        target_pk = user_recently_view_list.pop()
+        art = Art.objects.get(id=target_pk)
+        art_list.append(art)
+    context = {
+        "art_list": art_list,
+    }
+    return render(request, "accounts/recently.html", context)

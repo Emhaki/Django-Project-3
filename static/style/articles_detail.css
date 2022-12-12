@@ -284,3 +284,15 @@
     /* margin-top: rem; */
   }
 }
+
+.order-outline-btn {
+  border: 1px solid var(--high-sub);
+  color: var(--high-sub);
+}
+
+.order-outline-btn:hover {
+  background-color: var(--high-sub);
+  color: white;
+  transform: scale(1.1);
+  transition: all 200ms ease-in-out;
+}

@@ -1,4 +1,4 @@
-const txt = 'for the all future talented Artists';
+const txt = 'for all future talented Artists';
 let i = 0;
 const speed = 100;
 

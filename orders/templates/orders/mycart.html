@@ -35,58 +35,85 @@
       </div>
       <div class="offcanvas-body">
         <ul class="offcanvas__ul">
+          <!-- 로그인 유저 -->
+          {% if request.user.is_authenticated %}
           <li>
-            {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}">
               <button class="btn offcanvas__header--btn p-0">
                 {{ request.user.username }}
-                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                  fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
-                  <path
-                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                  <path fill-rule="evenodd"
-                    d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z" />
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
                 </svg>
               </button>
             </a>
-            {% else %}
-            <a href="{% url 'accounts:login' %}">
-              <button class="btn offcanvas__header--btn">
-                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                  fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
-                  <path
-                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                </svg>
-              </button>
-            </a>
-            {% endif %}
           </li>
           <li>
             <a href="{% url 'articles:main' %}" class="text-dark">
-              홈
+            홈
             </a>
           </li>
           <li>
             <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
-              프로필
+            프로필
             </a>
           </li>
-          <li>전체 작품</li>
-          <li>최근 본 작품</li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+              최근 본 작품
+            </a>
+          </li>
           <li>
             <a href="{% url 'notes:index' %}" class="text-dark">
-              편지함
+            편지함
             </a>
           </li>
           <li>
             <a href="{% url 'questions:index' %}" class="text-dark">
-              문의사항
+            문의사항
             </a>
           </li>
           <li>
             About
-            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png" />
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
           </li>
+          <!-- 비로그인 유저 -->
+          {% else %}
+          <li>
+            <a href="{% url 'accounts:login' %}">
+              <button class="btn offcanvas__header--btn">
+                로그인 해주세요!
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+            문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -168,22 +195,39 @@
   for (i = 0; i < removeBtnSet.length; i++) {
     removeBtnSet[i].addEventListener("click", function (event) {
       event.preventDefault();
-      let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
-      if (delete_warning === true) {
-        axios({
-          method: 'post',
-          url: `/orders/mycart/${event.target.dataset.artId}/delete/`,
-          headers: {
-            'X-CSRFToken': csrftoken
-          }
-        }).then(response => {
-          const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
-          targetDiv.remove();
+      // let delete_warning = confirm("작품을 장바구니에서 삭제하시겠습니까?");
+      Swal.fire({
+        title: '작품 삭제하기',
+        text: "작품을 장바구니에서 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '삭제하기',
+        cancelButtonText: '놔두기'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            method: 'post',
+            url: `/orders/mycart/${this.dataset.artId}/delete/`,
+            headers: {
+              'X-CSRFToken': csrftoken
+            }
+          }).then(response => {
+            Swal.fire({
+              title: '삭제완료',
+              text: "삭제되었습니다.",
+              icon: 'success',
+              confirmButtonText: '닫기',
+            });
+            const targetDiv = document.querySelector(`#art-${response.data.artPk}`);
+            targetDiv.remove();
 
-          const basketTp = document.querySelector("#basket__tp");
-          basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
-        });
-      };
+            const basketTp = document.querySelector("#basket__tp");
+            basketTp.innerText = "₩" + " " + String(response.data.total_price_after_delete);
+          });
+        };
+      });
     });
   };
 </script>
@@ -193,7 +237,11 @@
   paymentBtn.addEventListener("click", function () {
     if (totalPrice.innerText === "₩ 0") {
       event.preventDefault();
-      alert("장바구니에 작품이 없습니다!");
+      swal.fire({
+        title: "한번 더 확인해주세요!",
+        text: "장바구니에 작품이 없습니다!",
+        icon: "error",
+      });
     };
   });
 </script>
