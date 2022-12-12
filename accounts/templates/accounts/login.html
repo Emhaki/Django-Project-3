@@ -3,7 +3,6 @@
 
 {% load django_bootstrap5 %}
 {% block content %}
-
 <div class="login-frame">
   <div class="login-frame__form">
     <img class="login-frame__form__img" src="{% static 'images/nes_orange.png' %}" alt="">
@@ -65,7 +64,7 @@
           };
           loginForm.reset();
         } else {
-          window.location.href = "{% url 'articles:main' %}";
+          window.location.href = "{% url 'articles:ticket_machine' %}";
         };
       });
   });

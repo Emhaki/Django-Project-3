@@ -5,8 +5,12 @@ app_name = "articles"
 
 urlpatterns = [
     path("", views.main, name="main"),
+    # 카테고리 (좌우스크롤) 페이지
     path("index/", views.index, name="index"),
+    # 글자 로딩 페이지
     path("loading/", views.loading, name="loading"),
+    # 티켓 출력 페이지
+    path("ticket_machine/", views.ticket_machine, name="ticket_machine"),
     path('create/', views.create, name='create'),
     path('<int:pk>/', views.detail, name='detail'),
     path('<int:pk>/update/', views.update, name='update'),

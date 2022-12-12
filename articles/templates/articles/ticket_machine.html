@@ -4,18 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/style/ticket_machine.css" />
+    <link rel="stylesheet" href="../../../static/style/ticket_machine.css" />
     <title>Ticket Machine</title>
   </head>
   <body>
     <div class="ticket-machine">
-      <img class="ticket__logo" src="../static/img/logo-op-blue.png" alt="logo"/>
-      <button id="btn">PRINT TICKET</button>
+      <img class="ticket__logo" src="../../../static/img/logo-op-blue.png" alt="logo"/>
+      <button id="btn">PRINT A TICKET</button>
     </div>
     <div class="slot-wrapper">
       <div id="printer-slot"></div>
     </div>
     <div class="wrapper">
+      <a href="{% url 'articles:index' %}">
         <div class="ticket ticket-1">
           <div class="date">
             <span class="day">15</span>
@@ -37,10 +38,10 @@
           <div class="cta">
             <p class="buy" href="#">GRAB A TICKET</p>
           </div>
-
-      </div>
+        </div>
+      </a>
     </div>
     <div class="ticket-cover"></div>
-    <script src="../static/script/ticket_machine.js"></script>
+    <script src="../../../static/script/ticket_machine.js"></script>
   </body>
 </html>

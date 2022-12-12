@@ -169,7 +169,7 @@
     </div>
     <div class="basket__footer">
       <h2 id="basket__tp" class="cart__whole--price ms-auto my-0 mx-5">₩
-        {{ total_price|default:"0" }}</h2>
+        {{ total_price|default:"0" | intcomma }}</h2>
       <form method="POST" action="{% url 'orders:payment' %}">
         {% csrf_token %}
         <button id="basket__paymentbtn" type="submit" class="basket__payment--btn">
