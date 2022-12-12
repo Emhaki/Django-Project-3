@@ -5,8 +5,8 @@ import requests
 from django.contrib import messages
 from random import random
 from .forms import *
-from articles .models import *
-from orders .models import *
+from articles.models import *
+from orders.models import *
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
@@ -94,7 +94,9 @@ def kakao_callback(request):
         kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
-        auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
+        auth_login(
+            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
+        )
         return redirect("accounts:profile", request.user.pk)
     else:
         kakao_login_user = get_user_model().objects.create(
@@ -107,66 +109,92 @@ def kakao_callback(request):
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        auth_login(request, kakao_user, backend="django.contrib.auth.backends.ModelBackend")
+        auth_login(
+            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
+        )
         return redirect("accounts:kakao_signup")
+
 
 # 카카오 로그인
 def kakao_signup(request):
     if request.method == "POST":
         form = UpdateForm(request.POST, instance=request.user)
         if form.is_valid():
-              form.save()
-              return redirect("accounts:profile", request.user.pk)
+            form.save()
+            return redirect("accounts:profile", request.user.pk)
     else:
         if request.GET:
-          names = get_user_model().objects.filter(username=request.GET.get("username"))
-          if names:
-            context = {
-              'check' : "True",
-            }
-            return JsonResponse(context)
-          else:
-            context = {
-              'check' : "False",
-            }
-            return JsonResponse(context)
+            names = get_user_model().objects.filter(
+                username=request.GET.get("username")
+            )
+            if names:
+                context = {
+                    "check": "True",
+                }
+                return JsonResponse(context)
+            else:
+                context = {
+                    "check": "False",
+                }
+                return JsonResponse(context)
     return render(request, "accounts/kakao_signup.html")
+
 
 def signup(request):
     if request.method == "POST":
-      form = SignupForm(request.POST)
-      if form.is_valid():
-        forms = form.save(commit=False)
-        forms.email = request.POST.get('email')
-        forms.save()
-        return redirect("accounts:login")
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            forms = form.save(commit=False)
+            forms.email = request.POST.get("email")
+            forms.save()
+            return redirect("accounts:login")
     else:
-      if request.GET:
-        names = get_user_model().objects.filter(username=request.GET.get("username"))
-        if names:
-          context = {
-            'check' : "True",
-          }
-          return JsonResponse(context)
-        else:
-          context = {
-            'check' : "False",
-          }
-          return JsonResponse(context)
+        if request.GET:
+            names = get_user_model().objects.filter(
+                username=request.GET.get("username")
+            )
+            if names:
+                context = {
+                    "check": "True",
+                }
+                return JsonResponse(context)
+            else:
+                context = {
+                    "check": "False",
+                }
+                return JsonResponse(context)
     return render(request, "accounts/signup.html")
+
 
 def login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect("articles:main")
+            context = {
+                
+            }
+            return JsonResponse(context)
+        else:
+            user = get_user_model().objects.filter(username=request.POST["username"])
+            if user.exists():
+                context = {
+                    "errorMsg": "잘못된 아이디 혹은 패스워드 입니다.",
+                }
+                return JsonResponse(context)
+            else:
+                context = {
+                    "errorMsg": "존재하지 않는 회원입니다.",
+                }
+                return JsonResponse(context)
     else:
         return render(request, "accounts/login.html")
+
 
 def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
+
 
 # 소셜업데이트
 def social(request):
@@ -176,10 +204,10 @@ def social(request):
 
     if request.method == "POST":
         form = UpdateSocialForm(request.POST, instance=request.user)
-        
+
         if form.is_valid():
             form.save()
-            
+
             return redirect("accounts:profile", request.user.pk)
 
     context = {
@@ -189,6 +217,7 @@ def social(request):
     }
 
     return render(request, "accounts/social_update.html", context)
+
 
 # 프로필페이지
 def profile(request, user_pk):
@@ -213,19 +242,20 @@ def profile(request, user_pk):
     cart_page_obj = cart_paginator.get_page(page_number)
 
     context = {
-      "profiles" : profiles,
-      "creater": creater,
-      # 등록작품 관련
-      "arts" : arts,
-      "page_obj": page_obj,
-      # 찜한 작품관련
-      "art_likes": art_likes,
-      "like_page_obj": like_page_obj,
-      # 카트관련
-      "cart_page_obj": cart_page_obj,
-      "user_carts": user_carts,
+        "profiles": profiles,
+        "creater": creater,
+        # 등록작품 관련
+        "arts": arts,
+        "page_obj": page_obj,
+        # 찜한 작품관련
+        "art_likes": art_likes,
+        "like_page_obj": like_page_obj,
+        # 카트관련
+        "cart_page_obj": cart_page_obj,
+        "user_carts": user_carts,
     }
     return render(request, "accounts/profile.html", context)
+
 
 # 프로필 업데이트
 def profile_update(request):
@@ -243,25 +273,28 @@ def profile_update(request):
             return redirect("accounts:profile", request.user.pk)
     else:
         if request.GET:
-            names = get_user_model().objects.filter(creater_name=request.GET.get("creater_name"))
+            names = get_user_model().objects.filter(
+                creater_name=request.GET.get("creater_name")
+            )
             if names:
-              context = {
-                'check' : "True",
-              }
-              return JsonResponse(context)
+                context = {
+                    "check": "True",
+                }
+                return JsonResponse(context)
             else:
-              context = {
-                'check' : "False",
-              }
-              return JsonResponse(context)
+                context = {
+                    "check": "False",
+                }
+                return JsonResponse(context)
     context = {
-      "creater_name" : creater_name,
-      "introduce" : introduce,
-      "email" : email,
-      "location" : location,
-      "location_detail" : location_detail,
+        "creater_name": creater_name,
+        "introduce": introduce,
+        "email": email,
+        "location": location,
+        "location_detail": location_detail,
     }
     return render(request, "accounts/profile_update.html", context)
+
 
 # 이메일 인증
 def send_valid_number(request):
@@ -293,11 +326,12 @@ def check_valid_number(request):
     input_number = json.loads(request.body)["input_number"]
     print(json.loads(request.body))
     print(valid_number, input_number)
-    if (valid_number and input_number != '') and valid_number == input_number:
+    if (valid_number and input_number != "") and valid_number == input_number:
         check = True
     else:
         check = False
     return JsonResponse({"check": check})
+
 
 # 작가 인증
 def check_artist(request):
@@ -332,10 +366,14 @@ def check_artist_number(request):
     valid_number = json.loads(request.body)["valid_number"]
     input_number = json.loads(request.body)["input_number"]
     print(user)
-    if (valid_number and input_number != '') and valid_number == input_number:
+    if (valid_number and input_number != "") and valid_number == input_number:
         check = True
         user.is_creater = True
         user.save()
     else:
         check = False
-    return JsonResponse({"check": check,})
+    return JsonResponse(
+        {
+            "check": check,
+        }
+    )

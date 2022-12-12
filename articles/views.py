@@ -12,11 +12,12 @@ from django.http import JsonResponse
 
 def index(request):
 
-        return render(request, 'articles/index.html')
+    return render(request, "articles/index.html")
+
 
 def loading(request):
 
-        return render(request, 'articles/loading.html')
+    return render(request, "articles/loading.html")
 
 
 def main(request):
@@ -77,6 +78,32 @@ def create(request):
 
 def detail(request, pk):
     art = Art.objects.get(pk=pk)
+    if request.user.is_authenticated:
+        user = get_user_model().objects.get(pk=request.user.pk)
+
+        user_recently_view = user.recently_view
+        target = str(art.pk)
+
+        # 번호 추가
+        if f"_{target}_" in user_recently_view:
+            user_recently_view = user_recently_view.replace(f"_{target}_", "")
+            user_recently_view += f"_{target}_"
+        else:
+            user_recently_view += f"_{target}_"
+
+        # 최근 본 작품 개수제한
+        if len(user_recently_view.replace("_", "")) > 5:
+            i = 1
+            while user_recently_view[i] != "_":
+                i += 1
+            else:
+                user_recently_view = user_recently_view[i + 1 :]
+
+        # 최근 본 작품 꺼내 쓸 때는 replace("__", ",").replace("_", "") 한 다음에 리스트로 바꿔서 꺼내 쓰면 될 것 같음
+        # 스택 자료구조
+        user.recently_view = user_recently_view
+        user.save()
+
     comment_form = CommentForm()
     context = {
         "art": art,
@@ -98,11 +125,8 @@ def update(request, pk):
 
         else:
             art_form = ArtForm(instance=art)
-            
-        context = {
-            "art": art,
-            "art_form": art_form
-            }
+
+        context = {"art": art, "art_form": art_form}
         return render(request, "articles/update.html", context)
     else:
         return redirect("articles:detail", art.pk)
