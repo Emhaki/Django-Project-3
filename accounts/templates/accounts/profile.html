@@ -399,15 +399,20 @@
     <div class="modal-content" style="width:330px;height:270px;">
       <div class="modal-body" id="modal-body-email" style="padding: 50px 40px 30px; font-size: 16px; text-align: center; letter-spacing: -0.5px;">
         <div id="email-check-1">
-          <div>작가 인증은 대학교 이메일로</div>
+          <div>작가 인증은 <span class="fw-bold">대학교 이메일로</span></div>
           <div>인증이 가능합니다.</div>
           <input id="id_email" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
           <br>
           <button id="sendEmail" type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">인증번호 보내기</button>
         </div>
-        <div id="email-check-2" class="d-none">
+        <div id="email-check-3" class="d-none">
+          <div>이메일 인증은</div>
+          <div><span class="fw-bold">ac.kr이나 edu 메일</span>이어야 합니다.</div>
+          <input id="id_email2" name="email" type="text" placeholder="예:nes@gmail.com"> <!--전달할 value값-->
+        </div>
+        <div id="email-check-2" class="d-none mt-3">
           <input id="input-number" type="text" class="form-control" placeholder="인증번호를 입력해주세요.">
-          <button type="button" class="mt-3 btn btn-green" onclick="checkEmail()">인증 확인</button>
+          <button id="confirm" type="button" class="mt-3 btn btn-green" onclick="checkEmail()">인증 확인</button>
           <button type="button" class="mt-3 btn btn-outline-green" onclick="sendEmail()">다시 보내기</button>
         </div>
         <div id="valid-number" class="d-none"></div>
@@ -426,6 +431,7 @@
 <script>
   const sendEmail = function () {
         const userEmail = document.querySelector('#id_email').value
+        const userEmail2 = document.querySelector('#id_email2').value
         
         const check1 = document.querySelector('#email-check-1')
         const check2 = document.querySelector('#email-check-2')
@@ -434,6 +440,7 @@
           alert("이메일을 입력해주세요!")
           return
         }
+        console.log("재실행")
         check1.classList.add('d-none')
         check2.classList.remove('d-none')
         success.innerText = "인증번호 전송완료"
@@ -442,11 +449,26 @@
                 method: 'post',
                 url: `/accounts/check_artist/`,
                 headers: {'X-CSRFToken': '{{ csrf_token }}'},
-                data: {'user_email': userEmail }
+                data: {'user_email': userEmail, "user_email2": userEmail2 }
               })
               .then(response => {
+                if (response.data.check == true) {
                 const validNumber = document.querySelector('#valid-number')
+                const errors = document.querySelector('#email-check-3')
+                const errors2 = document.querySelector('#input-number')
+                const errors3 = document.querySelector('#confirm')
+                errors.classList.add('d-none')
+                errors2.classList.remove('d-none')
+                errors3.classList.remove('d-none')
                 validNumber.innerText = response.data.validnumber
+                } else {
+                  const errors = document.querySelector('#email-check-3')
+                  const errors2 = document.querySelector('#input-number')
+                  const errors3 = document.querySelector('#confirm')
+                  errors.classList.remove('d-none')
+                  errors2.classList.add('d-none')
+                  errors3.classList.add('d-none')
+                }
               });
       }
 
