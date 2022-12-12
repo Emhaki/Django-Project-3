@@ -1,0 +1,163 @@
+.signup-frame__form__container__name {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  transition: all .3s;
+  margin-bottom: 5%;
+}
+
+.signup-frame__form__container__name input {
+  width: 85%;
+  height: 2.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all .3s;
+}
+
+.signup-frame__form__container__name2 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  transition: all .3s;
+}
+
+.signup-frame__form__container__name2 textarea {
+  width: 85%;
+  height: 3.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all .3s;
+}
+
+.signup-frame__form__container__submit__go {
+  margin-top: 16px;
+  width: 85%;
+  height: 2rem;
+  color:white;
+  background-color: var(--main);
+  border-radius: .7rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  transition: all .3s;
+}
+
+/* 배경화면 CSS */
+
+.post_back {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/back_post_3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
+/* 전체 영역 넓이 CSS */
+
+.post__cover__main__box {
+  width: 45%;
+  height: 100%;
+  /* background-color: rgba(32, 62, 150, .7); */
+  background-color: #fa7840;
+  border-radius: 16px;
+  box-shadow: 0 10px 5px rgba(0,0,0,0.5);
+}
+
+/* 전체 영역설정 CSS */
+
+.post__cover {
+  width: 50%;
+  height: 100%;
+}
+
+/* 제목 CSS */
+
+.post__cover__h1 {
+  margin-top: 0.3rem;
+  height: 10%;
+  color: white;
+}
+
+/* 받은 편지함 보낸 편지함 감싸는 CSS */
+
+.post__cover__main {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+/* main box CSS */
+
+.post__cover__main__box__header {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* main box header */
+
+.post__cover__main__box__header h1 {
+  font-weight: bold;
+}
+
+/* 박스내 내용물 CSS */
+
+.post__cover__main__box__list {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 내용물 게시글 클릭버튼 CSS */
+
+.post__cover__main__box .modal-btn {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem 0;
+}
+
+/* 게시글의 쓰레기통 CSS */
+
+.post__cover__main__box__list a {
+  width: 10%;
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin: .5rem 0;
+}
+
+.post__cover__main__box__list a:hover {
+  color: white
+}
+
+.post__cover__main__box__list a svg {
+  width: 45%;
+  height: 45%;
+}
+
+.post__cover__main__box__modal {
+  display: flex;
+}
+
+.post__cover__main__box__modal p {
+  margin: 0;
+}
