@@ -4,6 +4,7 @@
   background-color: var(--main);
   width: 100%;
   height: 100vh;
+  transition: all .5s;
 }
 
 /* off canvas */
@@ -117,7 +118,12 @@
 
 .dummy {
   opacity: 0;
-  width: 8rem;
+  width: 40rem;
+}
+
+.dummy2 {
+  opacity: 0;
+  width: 30rem;
 }
 
 .oriental,
