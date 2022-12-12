@@ -70,36 +70,20 @@
     });
     
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-    // const commentForm = document.getElementById('question-comment-form')
-    const commentFormSet = document.querySelectorAll('.create-form')
-    const commentsSet = document.querySelectorAll(".question-commentss")
-      for (j=0; j < commentFormSet.length; j++) {
-      // console.log(commentFormSet[j])
-      let targetDiv = commentsSet[j]
-      commentFormSet[j].addEventListener('submit', function(event) {
-        event.preventDefault();
-        // console.log(event.target)
+    function accept(event) {
+      var delete_warngin = confirm("제안을 수락하시겠습니까?")
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+      if (delete_warngin == true) {
         axios({
           method: 'post',
-          url: `/questions/${event.target.dataset.questionId}/comment/create/`,
+          url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
           headers: {'X-CSRFToken': csrftoken},
-          data: new FormData(event.target)
+          data: {'note_pk': event.target.dataset.offerId},
         })
         .then(response => {
-          // console.log(`${event.target.dataset.questionId}`)
-          const div = document.createElement('div')
-          const p = document.createElement('p')
-          const small = document.createElement('small')
-          div.innerText = `${response.data.userName}`
-          div.className = "fw-bold mt-2"
-          p.innerText = `${response.data.content}`
-          p.className = "text-muted"
-          small.innerText = "0분전"
-          small.className = "text-muted fs-7"
-          const hr = document.createElement('hr')
-          targetDiv.append(div, p, small, hr)
+
         })
-      })
+      }
     }
 </script>
 {% endblock content %}

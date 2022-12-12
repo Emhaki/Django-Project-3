@@ -251,3 +251,16 @@ body {
         font-size: 2.5vw;
     }
 }
+
+@media (max-height: 1000px) {
+    .question__container__main__box__title {
+        font-size: 1.5vw;
+        transition: all .3s;
+        margin: 0;
+    }
+
+    .question__container__main__box {
+        padding: 1rem 2rem;
+        margin: .5rem 0;
+    }
+}
