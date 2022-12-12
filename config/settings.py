@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-PJT_APPS = ["notes", "orders", "accounts", "articles", "questions"]
+PJT_APPS = ["notes", "orders", "accounts", "articles", "questions", "main"]
 
 LIBRARY_APPS = [
     "imagekit",

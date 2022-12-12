@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="../static/style/start.css"/>
+{% endblock css %}
+{% block content %}
+<section class="start__bg">
+  <div class="start__sentence">
+    <img class="start__logo" src="../static/img/logo-orange.png" alt="logo"/>
+    <span class="welcome__sentence"></span>
+    <span class="blink">|</span>
+  </div>
+</section>
+<script src="../../../static/script/start.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => { location.href="accounts/login/" }, 2500);
+  })
+</script>
+{% endblock content %}
