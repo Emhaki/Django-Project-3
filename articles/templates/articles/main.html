@@ -4,6 +4,7 @@
 {% block css %}
   <link rel="stylesheet" href="{% static 'style/main.css' %}">
   <link rel="stylesheet" href="../../../static/style/loading.css" />
+  <link rel="stylesheet" href="../static/style/start.css"/>
 
 {% endblock css %}
 {% block content %}
@@ -50,12 +51,23 @@
       <p class="loading__subtitle">Illustration</p>
     </div>
   </section>
-  {% else %}
+  {% elif name == '사진' %}
   <section id="loading" class="loading__bg">
     <div class="loading__sentence fade__effect">
       <p class="loading__title">사진</p>
       <p class="loading__subtitle">Picture</p>
     </div>
+  </section>
+  {% else %}
+  <section id="loading" class="loading__bg">
+    <section class="start__bg">
+      <div class="start__sentence">
+        <img class="start__logo" src="../static/img/logo-orange.png" alt="logo"/>
+        <span class="welcome__sentence"></span>
+        <span class="blink">|</span>
+      </div>
+    </section>
+    <script src="../static/script/start.js"></script>
   </section>
   {% endif %}
 
@@ -202,11 +214,19 @@
 
         <!-- image -->
         <div class="view__images">
-          {% for type in page_obj %}
-            <a href="{% url 'articles:detail' type.pk %}">
-              <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
-            </a>
-          {% endfor %}
+          {% if page_obj %}
+            {% for type in page_obj %}
+              <a href="{% url 'articles:detail' type.pk %}">
+                <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
+              </a>
+            {% endfor %}
+          {% else %}
+            {% for art in arts %}
+              <a href="{% url 'articles:detail' art.pk %}">
+                <img src="{{ art.image.url }}" alt="{{ art.image }}" class="">
+              </a>
+            {% endfor %}
+          {% endif %}
         </div>
 
         <!--페이지네이션-->
