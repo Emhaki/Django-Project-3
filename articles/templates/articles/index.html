@@ -1,123 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- 부트스트랩 추후 수정 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../../../static/style/articles_index.css"/>
-    <title>Main</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 부트스트랩 추후 수정 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../../../static/style/articles_index.css" />
+  <title>Main</title>
+</head>
 
-  <body>
-    <section class="articles__bg">
-      <nav class="articles__nav">
-        <button class="offcanvas__btn btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-          <img class="nav__logo" src="../../../static/img/logo-orange.png" alt="logo"/>
-        </button>
-        <div style="width: 16rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-          <div class="offcanvas-header">
-            <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
-            <div>
-              <button class="btn offcanvas__header--btn">
-                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
-                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-                </svg>
-              </button>
-              <button class="btn offcanvas__header--btn">
-                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
-                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                </svg>
-              </button>
-              <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
-                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="offcanvas__ul">
-              <li>홈</li>
-              <li>프로필</li>
-              <li>전체 작품</li>
-              <li>최근 본 작품</li>
-              <li>편지함</li>
-              <li>문의사항</li>
-              <li>
-                About
-                <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
-              </li>
-            </ul>
+<body>
+  <section class="articles__bg">
+    <nav class="articles__nav">
+      <button class="offcanvas__btn btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling">
+        <img class="nav__logo" src="../../../static/img/logo-orange.png" alt="logo" />
+      </button>
+      <div style="width: 16rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+        tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+          <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo" />
+          <div>
+            <button class="btn offcanvas__header--btn">
+              <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                <path
+                  d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                <path fill-rule="evenodd"
+                  d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z" />
+              </svg>
+            </button>
+            <button class="btn offcanvas__header--btn">
+              <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                <path
+                  d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+              </svg>
+            </button>
+            <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+                viewbox="0 0 16 16">
+                <path
+                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+              </svg>
+            </button>
           </div>
         </div>
-      </nav>
-      <!-- 사진 -->
-      <article class="article__container">
-        {% for type in page_obj %}
-        <a href={% url 'articles:detail' type.pk %}>
-          <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
-        </a>
+        <div class="offcanvas-body">
+          <ul class="offcanvas__ul">
+            <li>홈</li>
+            <li>프로필</li>
+            <li>전체 작품</li>
+            <li>최근 본 작품</li>
+            <li>편지함</li>
+            <li>문의사항</li>
+            <li>
+              About
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 사진 -->
+    <article class="article__container">
+      {% for type in page_obj %}
+      <a href={% url 'articles:detail' type.pk %}>
+        <img src="{{ type.image.url }}" alt="{{ type.image }}" class="">
+      </a>
       {% endfor %}
-        <div class="article__grid">
-          <div class="article__items">
-            <img class="dummy" src="https://i.pinimg.com/564x/8e/26/3c/8e263c45f6ca776718f02770a5246a58.jpg"/>
-            <a href='/articles/?type=동양화'>
-              <img class="article__img oriental" src="https://i.pinimg.com/564x/8e/26/3c/8e263c45f6ca776718f02770a5246a58.jpg"/>
-              <div class="image__info info oriental__info">
-                  <p class="info__title">Oriental painting</p>
-              </div>
-            </a>
-            <a href='/articles/?type=서양화'>
-              <img class="article__img" src="https://i.pinimg.com/564x/fa/c7/9a/fac79a5932bd1702cdee1f0d1c55b8e7.jpg"/>
-              <div class="image__info info">
-                <p class="info__title">Western painting</p>
-              </div>
-            </a>
-            <a href='/articles/?type=판화'>
-              <img class="article__img" src="https://i.pinimg.com/736x/57/51/08/575108e52be59b706455e720f519badd.jpg"/>
-              <div class="image__info info">
-                <p class="info__title">Engraving</p>
-              </div>
-            </a>
-            <a href='/articles/?type=일러스트'>
-              <img class="article__img" src="https://i.pinimg.com/564x/96/3c/66/963c663e63df7c7f3e58bb18cf2ad72b.jpg"/>
-              <div class="image__info info illustration__info">
-                <p class="info__title">Illustration</p>
-              </div>
-            </a>
-            <a href='/articles/?type=조각%20및%20조소'>
-              <img class="article__img sculpture" src="https://i.pinimg.com/564x/ff/1c/2e/ff1c2ea98d52b96c91033dcfb42a53c9.jpg"/>
-              <div class="image__info info sculpture__info">
-                <p class="info__title">Sculpture</p>
-              </div>
-            </a>
-            <a href='/articles/?type=설치미술'>
-              <img class="article__img" src="https://i.pinimg.com/564x/ac/f1/86/acf186ac61b4f4704ec62e293a261be6.jpg"/>
-              <div class="image__info info">
-                <p class="info__title">Installation art</p>
-              </div>
-            </a>
-            <a href='/articles/?type=사진'>
-              <img class="article__img" src="https://i.pinimg.com/564x/30/8c/80/308c806c7a37a150eaeedcc3a593efd8.jpg"/>
-              <div class="image__info info picture__info">
-                <p class="info__title">Picture</p>
-              </div>
-            </a>
-          </div>
+      <div class="article__grid" id="const_2">
+        <div class="article__items" id="scrollbar">
+          <img class="dummy" src="https://i.pinimg.com/564x/8e/26/3c/8e263c45f6ca776718f02770a5246a58.jpg" />
+          <a href='/articles/?type=동양화'>
+            <img class="article__img oriental"
+              src="https://i.pinimg.com/564x/8e/26/3c/8e263c45f6ca776718f02770a5246a58.jpg" />
+            <div class="image__info info oriental__info">
+              <p class="info__title">Oriental painting</p>
+            </div>
+          </a>
+          <a href='/articles/?type=서양화'>
+            <img class="article__img" src="https://i.pinimg.com/564x/fa/c7/9a/fac79a5932bd1702cdee1f0d1c55b8e7.jpg" />
+            <div class="image__info info">
+              <p class="info__title">Western painting</p>
+            </div>
+          </a>
+          <a href='/articles/?type=판화'>
+            <img class="article__img" src="https://i.pinimg.com/736x/57/51/08/575108e52be59b706455e720f519badd.jpg" />
+            <div class="image__info info">
+              <p class="info__title">Engraving</p>
+            </div>
+          </a>
+          <a href='/articles/?type=일러스트'>
+            <img class="article__img" src="https://i.pinimg.com/564x/96/3c/66/963c663e63df7c7f3e58bb18cf2ad72b.jpg" />
+            <div class="image__info info illustration__info">
+              <p class="info__title">Illustration</p>
+            </div>
+          </a>
+          <a href='/articles/?type=조각%20및%20조소'>
+            <img class="article__img sculpture"
+              src="https://i.pinimg.com/564x/ff/1c/2e/ff1c2ea98d52b96c91033dcfb42a53c9.jpg" />
+            <div class="image__info info sculpture__info">
+              <p class="info__title">Sculpture</p>
+            </div>
+          </a>
+          <a href='/articles/?type=설치미술'>
+            <img class="article__img" src="https://i.pinimg.com/564x/ac/f1/86/acf186ac61b4f4704ec62e293a261be6.jpg" />
+            <div class="image__info info">
+              <p class="info__title">Installation art</p>
+            </div>
+          </a>
+          <a href='/articles/?type=사진'>
+            <img class="article__img" src="https://i.pinimg.com/564x/30/8c/80/308c806c7a37a150eaeedcc3a593efd8.jpg" />
+            <div class="image__info info picture__info">
+              <p class="info__title">Picture</p>
+            </div>
+          </a>
         </div>
-        <div class="arrow__btn">
-          <svg viewbox="0 0 73 18" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 9H72M1 9L9.1697 1M1 9L9.1697 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </article>
-    </section>
-    <!-- 부트스트랩 추후 수정 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    
-  </body>
+      </div>
+      <div class="arrow__btn">
+        <svg viewbox="0 0 73 18" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 9H72M1 9L9.1697 1M1 9L9.1697 17" stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </div>
+    </article>
+  </section>
+  <!-- 부트스트랩 추후 수정 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script>
+    const cont_2 = document.getElementById('const_2');
+    const slider = document.getElementById('scrollbar');
+    const s_wid = slider.clientWidth;
+    const s_li = slider.children;
+    console.log(s_wid);
+    console.log(s_li);
+    let win_wid = window.innerWidth;
+    let s_move_max = (s_wid - (win_wid / 2)) * -1;
+    let s_pos = 0;
+    let pct = 0;
+    cont_2.addEventListener('wheel', function (e) {
+      e.preventDefault;
+      move_slider(e.deltaY);
+    });
+    function move_slider(amount) {
+      s_pos -= amount;
+      if (s_pos < s_move_max) {
+        s_pos = s_move_max;
+        return;
+      } else if (s_pos > 0) {
+        s_pos = 0;
+        return;
+      }
+      slider.style.transform = `translateX(${s_pos}px)`;
+      li_upDown(amount);
+    }
+    function li_upDown(amount) {
+      li_pos += amount;
+      for (let i = 0; i < s_li.length; i++) {
+        if (i % 2 != 0) {
+          s_li[i].style.transform = `translateY(${li_pos / (i * 5)}px)`;
+        } else {
+          s_li[i].style.transform = `translateY(${-li_pos / (i * 5)}px)`;
+        }
+      }
+    }
+  </script>
+</body>
+
 </html>
