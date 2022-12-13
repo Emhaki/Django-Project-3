@@ -88,6 +88,8 @@ button {
 }
 
 /* 전체 영역 넓이 CSS */
+.post__cover {
+}
 
 .post__cover__main__box {
   width: 35%;
@@ -181,7 +183,7 @@ button {
 }
 
 .post__cover__main__box__modal {
-  width: 90%;
+  width: 80%;
   display: flex;
   margin-bottom: 0.8rem;
 }
@@ -241,10 +243,15 @@ button {
 @media (max-width: 1000px) {
   .post_back {
     background-repeat: repeat-y;
+    height: auto;
   }
 
   .post__cover__h1 {
     height: 5%;
+  }
+
+  .post__cover {
+    margin: 0.5rem 0;
   }
 
   .post__cover__main {
