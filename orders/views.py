@@ -9,13 +9,15 @@ from .forms import CartForm, OrderCreateForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import artist_required
 
 User = get_user_model()
 
 
 # Create your views here.
 
-
+@login_required
 def info(request, art_pk):
     art = Art.objects.get(pk=art_pk)
     cart_form = CartForm()
@@ -32,6 +34,7 @@ def info(request, art_pk):
     }
     return render(request, "orders/info.html", context)
 
+@login_required
 # 장바구니
 def mycart(request):
     cart_items = CartItem.objects.filter(user_id=request.user.pk)
@@ -48,7 +51,7 @@ def mycart(request):
 
     return render(request, "orders/mycart.html", context)
 
-
+@login_required
 # 장바구니 추가
 def add_cart(request, art_pk):
     # 장바구니 담기
@@ -77,6 +80,7 @@ def add_cart(request, art_pk):
 
     return redirect("orders:mycart")
 
+@login_required
 # 장바구니 삭제
 def delete_cart(request, art_pk):
     my_pick = Art.objects.get(pk=art_pk)
@@ -98,6 +102,7 @@ def delete_cart(request, art_pk):
         messages.error(request.user.nickname, "님의 장바구니를 지울 수 없어요!")
         return redirect("orders:mycart")
 
+@login_required
 # 주문 생성
 def payment(request):
     # 사용자 정보 가져오기
@@ -142,6 +147,7 @@ def payment(request):
     
     return render(request, "orders/payment.html", context)
 
+@login_required
 # 주문 완료
 def complete(request):
     # order_pk = Order.objects.get(pk=pk)
@@ -214,7 +220,7 @@ def delivery_complete(request, order_pk):
     order.save()
     return redirect("orders:order_list")
 
-
+@login_required
 # 주문 취소
 def order_delete(request, order_pk):
     # 주문 가져오기
@@ -234,7 +240,7 @@ def order_delete(request, order_pk):
 
         return redirect("accounts:index", request.user.pk)
 
-
+@login_required
 # 주문 내역 리스트
 def order_list(request):
     # 결제 완료
@@ -258,7 +264,7 @@ def order_list(request):
     }
     return render(request, "orders/order_list.html", context)
 
-
+@login_required
 # 약관 동의
 def agree(request):
     print(request.POST["is_checked"])
@@ -271,6 +277,7 @@ def agree(request):
     }
     return JsonResponse(context)
 
+@login_required
 def offer(request):
     # 해당유저 정보
     user = get_user_model().objects.get(id=request.user.pk)
@@ -282,6 +289,7 @@ def offer(request):
     }
     return render(request, "orders/offer.html", context)
 
+@login_required
 def offer_create(request, art_pk):
     art = Art.objects.get(pk=art_pk)
 
@@ -295,6 +303,8 @@ def offer_create(request, art_pk):
 
     return redirect("orders:info", art_pk)
 
+@login_required
+@artist_required
 def offer_accept(request, offer_pk):
     offer_accept = get_object_or_404(Offer, pk=offer_pk)
     

@@ -5,7 +5,8 @@ from django.core.paginator import Paginator
 from .forms import *
 from django.contrib import messages
 from django.http import JsonResponse
-
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import artist_required
 
 # Create your views here.
 # 보낸 DM과 받은 DM의 모달id값을 일치시키기 위해 pk값과 text값을 분리
@@ -22,7 +23,7 @@ dic = {
     "9": "nine",
 }
 
-# @login_required
+@login_required
 def index(request):
     notes = request.user.user_to.order_by("-created_at") # 받은거
     to_notes = request.user.user_from.order_by("-created_at") # 보낸거
@@ -61,7 +62,7 @@ def index(request):
     return render(request, "notes/index.html", context)
 
 
-# @login_required
+@login_required
 def send(request, user_pk):
     notes = request.user.user_to.order_by("-created_at")
     to_user = get_object_or_404(get_user_model(), pk=user_pk)
@@ -89,7 +90,7 @@ def send(request, user_pk):
 
 
 # 버튼에 onclick을 걸어서 index에 보내고 index에서 데이터 받아올때 로직실행
-# @login_required
+@login_required
 def detail(request, note_pk):
     note = get_object_or_404(Notes, pk=note_pk)
     if request.user == note.to_user:
@@ -106,7 +107,7 @@ def detail(request, note_pk):
         return redirect("notes:index")
 
 
-# @login_required
+@login_required
 def delete(request, note_pk):
     note = get_object_or_404(Notes, pk=note_pk)
     print(request.POST)

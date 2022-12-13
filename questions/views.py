@@ -3,12 +3,15 @@ from .forms import *
 from .models import *
 from django.http import  JsonResponse
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import artist_required
 
 # Create your views here.
 def index(request):
 
   return render(request, "questions/index.html")
 
+@login_required
 def create(request):
     form = QuestionForm(request.POST or None, request.FILES or None)
     if form.is_valid():
@@ -21,6 +24,7 @@ def create(request):
     }
     return render(request, "questions/create.html", context)
 
+@login_required
 def myquestion(request):
 
     # 문의 pk를 추적할 수 있도록, 첫번째 문의는 댓글작성이 되나
@@ -32,6 +36,7 @@ def myquestion(request):
 
     return render(request, "questions/myquestion.html", context)
 
+@login_required
 def adminqna(request):
     if str(request.user.username) == str(get_user_model().objects.get(username="admin")):
         my_questions = Question.objects.filter(admin=0)
@@ -44,6 +49,7 @@ def adminqna(request):
     else:
         return redirect("accounts:login")
 
+@login_required
 def comment_create(request, question_pk):
     question_comment = get_object_or_404(Question, pk=question_pk)
     if request.user.is_authenticated:
