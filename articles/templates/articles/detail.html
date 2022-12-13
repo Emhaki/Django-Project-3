@@ -118,7 +118,11 @@
       <img class="detail__img" src="{{ art.image.url }}" alt="{{ article.image }}" onclick="resizeImage(this)">
       {% endif %}
       <div class="article__detail">
-
+        <a href="{% url 'articles:main' %}">
+          <button class="detail__back">
+            <i class="bi bi-arrow-up-short fs-3"></i>
+          </button>
+        </a>
         <!-- 닫기 버튼 -->
         <button class="detail__close" onclick="restoreImage()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
