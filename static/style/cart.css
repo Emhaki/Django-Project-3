@@ -7,6 +7,13 @@
   white-space: nowrap;
 }
 
+.custom-btn {
+  color: #010200;
+  background-color: #fff;
+  border: none;
+  padding: 0px;
+}
+
 /* off canvas */
 .offcanvas__btn {
   background-color: transparent;

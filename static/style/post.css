@@ -103,3 +103,90 @@
 .post__cover__main__box__modal p {
     margin: 0;
 }
+
+/* navbar */
+.articles__nav {
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  z-index: 200;
+}
+
+.custom-btn {
+  color: #010200;
+  background-color: #fff;
+  border: none;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+/* off canvas */
+.offcanvas__btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__btn:hover {
+  background-color: transparent;
+}
+
+.offcanvas__logo {
+  width: 6em;
+  height: 3em;
+}
+
+.offcanvas__header--btn {
+  padding: 0.1rem;
+}
+
+.bi-person-x,
+.bi-person {
+  cursor: pointer;
+}
+
+.offcanvas__close--btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__ul {
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.offcanvas__ul>li {
+  margin-bottom: 1rem;
+}
+
+.offcanvas__logout,
+.offcanvas__profile {
+  padding: 0.1rem;
+}
+
+.offcanvas__about--logo {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+/* nav */
+.articles__nav {
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  z-index: 200;
+}
+
+.nav__logo {
+  margin-top: 2rem;
+  width: 5rem;
+  height: 3rem;
+  transform: rotate(90deg);
+}
+
+.nav__logo:hover {
+  transform: rotate(90deg) scale(1.2);
+  transition: all 200ms ease;
+}
