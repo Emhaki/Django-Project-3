@@ -26,7 +26,7 @@
 /* 제목 */
 
 .upload__title {
-    height:20%;
+    height: 20%;
     color: var(--main);
     font-weight: bold;
     font-size: 4rem;
@@ -38,9 +38,9 @@
 
 .upload__form {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
-    height:80%;
+    height: 80%;
 }
 
 /* 왼쪽 div */
@@ -79,7 +79,7 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -105,7 +105,9 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -130,7 +132,9 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -156,7 +160,9 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -182,7 +188,9 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -209,7 +217,9 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
     outline: none;
     transition: all .3s;
 }
@@ -237,8 +247,10 @@
     border: none;
     border-radius: 10px;
     padding-left: 1rem;
-    font-size: 1.5rem;
-    cursor:default;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    font-size: 1.3rem;
+    cursor: default;
     background-color: gray;
     color: rgba(0, 0, 0, 0.185);
     outline: none;
@@ -251,7 +263,7 @@
     height: 100%;
     border-radius: 10px;
     background-color: rgba(128, 128, 128, 0.8);
-    color:black;
+    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,7 +271,7 @@
     transition: all .3s;
 }
 
-.upload__img label p{
+.upload__img label p {
     width: 100%;
     font-size: 1vw;
 }
@@ -271,7 +283,7 @@
 /* 등록 버튼 */
 
 .upload__form__button {
-    width: 25%;
+    width: 15%;
     height: 7%;
     background-color: var(--main);
     color: var(--white);
@@ -279,7 +291,8 @@
     border-radius: 10px;
     outline: 0;
     transition: all .3s;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-top: 2rem;
 }
 
 /* 미리보기 css */
@@ -300,12 +313,14 @@
         height: auto;
         padding-bottom: 2rem;
     }
+
     .upload__total {
         width: 100%;
         height: auto;
         display: flex;
         flex-direction: column;
     }
+
     .upload__total__info {
         width: 100%;
         height: auto;
@@ -324,6 +339,7 @@
         height: 100%;
         object-fit: contain;
     }
+
     .upload__img__name {
         width: 60%;
     }
@@ -355,27 +371,28 @@
         height: 12%;
         margin-top: 1rem;
     }
-    
+
     .upload__form__category {
         height: 12%;
         margin-top: 1rem;
     }
-    
+
     .upload__price {
         height: 12%;
         margin-top: 1rem;
     }
+
     .upload__contentform {
         margin-top: 1rem;
     }
-    .upload__contentform textarea {
-        font-size: 3vw;
-    }
+
     .upload__form__button {
-        width: 40%;
+        width: 25%;
         height: 10%;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         transition: all .3s;
+        margin: 0;
+        padding: 0.5rem 0;
     }
 }
 
@@ -383,34 +400,44 @@
     .upload__form__category select {
         font-size: 3vw
     }
+
     .upload__form__category .mb-3 label {
         font-size: 1.3rem;
     }
+
     .upload__titleform p {
         font-size: 1.3rem;
     }
+
     .upload__contentform p {
         font-size: 1.3rem;
     }
+
     .upload__size p {
         font-size: 1.3rem;
     }
+
     .upload__date p {
         font-size: 1.3rem;
     }
+
     .upload__img p {
         font-size: 1.3rem;
     }
+
     .upload__img label p {
         font-size: 1rem;
         padding: .3rem 0;
     }
+
     .upload__form__category p {
         font-size: 1.3rem;
     }
+
     .upload__price p {
         font-size: 1.3rem;
     }
+
     .upload__titleform input {
         font-size: 3vw;
         transition: all .3s;
@@ -422,6 +449,7 @@
         font-size: 3vw;
         transition: all .3s;
     }
+
     .upload__size input {
         font-size: 3vw;
         transition: all .3s;
@@ -436,17 +464,18 @@
         font-size: 3vw;
         transition: all .3s;
     }
-    
+
     .upload__img label {
         width: 15%;
         height: 100%;
         transition: all .3s;
     }
-    
+
     .upload__price input {
         font-size: 3vw;
         transition: all .3s;
     }
+
     .upload__img {
         height: 6%;
     }
@@ -466,9 +495,11 @@
     .upload__form__category {
         height: 6%;
     }
+
     .upload__price {
         height: 6%
     }
+
     .upload__form__button {
         width: 40%;
         height: 4%;
@@ -480,33 +511,43 @@
     .upload__total__info {
         margin: 0;
     }
+
     .upload__form__category .mb-3 label {
         font-size: 1.2rem;
     }
+
     .upload__titleform p {
         font-size: 1.2rem;
     }
+
     .upload__contentform p {
         font-size: 1.2rem;
     }
+
     .upload__size p {
         font-size: 1.2rem;
     }
+
     .upload__date p {
         font-size: 1.2rem;
     }
+
     .upload__img p {
         font-size: 1.2rem;
     }
+
     .upload__price p {
         font-size: 1.2rem;
     }
+
     .upload__img label {
         font-size: .9vw;
     }
+
     .upload__form__category p {
         font-size: 1.2rem;
     }
+
     .upload__form__category .mb-3 .form-select {
         font-size: 1.1rem;
         transition: all .3s;
@@ -523,6 +564,7 @@
         font-size: 1.1rem;
         transition: all .3s;
     }
+
     .upload__size input {
         font-size: 1.1rem;
         transition: all .3s;
@@ -532,7 +574,7 @@
         font-size: 1.1rem;
         transition: all .3s;
     }
-    
+
     .upload__date input {
         font-size: 1.1rem;
         transition: all .3s;
@@ -542,11 +584,11 @@
         font-size: 1.1rem;
         transition: all .3s;
     }
-    
+
     .upload__img label {
         font-size: .9vw;
     }
-    
+
     .upload__form__category select {
         font-size: 1.1rem;
     }
@@ -563,28 +605,36 @@
         font-size: 3rem;
         padding-bottom: 3rem;
     }
+
     .upload__img p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__img label p {
         font-size: 2.5vw;
     }
+
     .upload__form__category p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__titleform p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__size p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__date p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__price p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
+
     .upload__contentform p {
-    font-size: .9rem;
+        font-size: .9rem;
     }
 }
