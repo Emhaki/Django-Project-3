@@ -155,18 +155,48 @@
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     function accept(event) {
       var delete_warngin = confirm("제안을 수락하시겠습니까?")
-      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-      if (delete_warngin == true) {
-        axios({
-          method: 'post',
-          url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
-          headers: {'X-CSRFToken': csrftoken},
-          data: {'note_pk': event.target.dataset.offerId},
-        })
-        .then(response => {
 
-        })
-      }
-    }
+      Swal.fire({
+        title: "작품 가격 조정",
+        text: "구매자의 제안을 수락하시겠습니까?",
+        icon: "question",
+        backdrop: "rgba(255,255,255,0.5)",
+        showCancelButton: true,
+        confirmButtonColor: '#f3672a',
+        cancelButtonColor: '#203e96',
+        confirmButtonText: "수락합니다.",
+        cancelButtonText: "거절합니다."
+      })
+      .then((result) => {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        if (result.isConfirmed) {
+          axios({
+            method: 'post',
+            url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
+            headers: {'X-CSRFToken': csrftoken},
+            data: {'note_pk': event.target.dataset.offerId},
+          })
+          .then(response => {
+            Swal.fire({
+              backdrop: "rgba(255,255,255,0.5)",
+              title: '수락되었습니다.',
+              text: "작품의 가격이 조정되었습니다.",
+              icon: "success",
+              confirmButtonColor: '#203e96',
+              confirmButtonText: '닫기',
+            });
+          });
+        } else {
+          Swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            title: '거절되었습니다.',
+            text: "제안이 거절되었습니다.",
+            icon: "success",
+            confirmButtonColor: '#203e96',
+            confirmButtonText: '닫기',
+          });
+        };
+      });
+    };
 </script>
 {% endblock content %}
