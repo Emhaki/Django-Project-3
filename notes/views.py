@@ -24,33 +24,33 @@ dic = {
 
 # @login_required
 def index(request):
-    notes = request.user.user_to.order_by("-created_at") # 받은거
-    to_notes = request.user.user_from.order_by("-created_at") # 보낸거
+    notes = request.user.user_to.order_by("-created_at")  # 받은거
+    to_notes = request.user.user_from.order_by("-created_at")  # 보낸거
     from_name = "from"
     to_name = "to_notes"
 
     # 받은 편지 페이지네이션
-    paginator = Paginator(notes, 2)
+    paginator = Paginator(notes, 8)
     page_number = request.GET.get("note")
     page_obj = paginator.get_page(page_number)
 
     # 보낸 편지 페이지네이션
-    to_paginator = Paginator(to_notes, 2)
+    to_paginator = Paginator(to_notes, 8)
     to_page_number = request.GET.get("note")
     to_page_obj = to_paginator.get_page(to_page_number)
 
     if request.GET.get("note"):
         if "from" in request.GET.get("note"):
             # 받은 편지 페이지네이션
-            paginator = Paginator(notes, 2)
+            paginator = Paginator(notes, 8)
             page_number = request.GET.get("note")
             page_obj = paginator.get_page(page_number.strip("from"))
         elif "to_notes" in request.GET.get("note"):
             # 보낸 편지 페이지네이션
-            to_paginator = Paginator(to_notes, 2)
+            to_paginator = Paginator(to_notes, 8)
             to_page_number = request.GET.get("note")
             to_page_obj = to_paginator.get_page(to_page_number.strip("to_notes"))
-        
+
     context = {
         "from_name": from_name,
         "to_name": to_name,
