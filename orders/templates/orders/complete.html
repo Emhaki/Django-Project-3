@@ -81,7 +81,7 @@
 
     <section class="complete__container">
       {% for item in art %}
-        <h1 class="complete__pagetitle">구매 완료</h1>
+        {% comment %} <h1 class="complete__pagetitle"></h1> {% endcomment %}
         <div class="complete__box">
           <div class="complete__left">
             <div class="complete__photo-section">
@@ -148,7 +148,7 @@
             </div>
           </div>
         </div>
+        {% endfor %}
       </section>
     </section>
-  {% endfor %}
 {% endblock content %}
