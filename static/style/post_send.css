@@ -1,10 +1,18 @@
+input:focus {
+  outline: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
 .signup-frame__form__container__name {
   display: flex;
   width: 100%;
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  transition: all .3s;
+  transition: all 0.3s;
   margin-bottom: 5%;
 }
 
@@ -15,9 +23,9 @@
   background-color: rgba(217, 217, 217, 0.43);
   border: none;
   font-size: 1rem;
-  padding-left: 1.5rem;
+  padding-left: 1rem;
   color: black;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__name2 {
@@ -26,32 +34,33 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__name2 textarea {
   width: 85%;
-  height: 3.5rem;
+  height: 15.5rem;
   border-radius: 6px;
   background-color: rgba(217, 217, 217, 0.43);
   border: none;
   font-size: 1rem;
-  padding-left: 1.5rem;
+  padding-top: 0.7rem;
+  padding-left: 1rem;
   color: black;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__submit__go {
   margin-top: 16px;
   width: 85%;
-  height: 2rem;
-  color:white;
+  height: 2.5rem;
+  color: white;
   background-color: var(--main);
-  border-radius: .7rem;
+  border-radius: 0.7rem;
   font-weight: bold;
   font-size: 1rem;
   border: none;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 /* 배경화면 CSS */
@@ -74,7 +83,7 @@
   /* background-color: rgba(32, 62, 150, .7); */
   background-color: #fa7840;
   border-radius: 16px;
-  box-shadow: 0 10px 5px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* 전체 영역설정 CSS */
@@ -131,7 +140,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 /* 게시글의 쓰레기통 CSS */
@@ -142,11 +151,11 @@
   color: black;
   display: flex;
   justify-content: center;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .post__cover__main__box__list a:hover {
-  color: white
+  color: white;
 }
 
 .post__cover__main__box__list a svg {
