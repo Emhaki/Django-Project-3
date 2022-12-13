@@ -15,14 +15,14 @@
             {% comment %} 카카오 프로필 이미지 {% endcomment %}
             {% if profile.test %}
               {% if profile.profileimage %}
-              <img src="{{profile.profileimage.url }}" alt="">
+              <img src="{{profile.profileimage.url }}" alt="profile.img">
               {% else %}
-              <img src="{% static 'img/logo-blue.png' %}" alt="">
+              <img src="{% static 'img/logo-blue.png' %}" alt="profile.img">
               {% endif %}
             {% elif profile.profileimage %}
-            <img src="{{profile.profileimage.url }}" alt="">
+            <img src="{{profile.profileimage.url }}" alt="profile.img">
             {% else %}
-            <img src="{% static 'img/logo-blue.png' %}" alt="">
+            <img src="{% static 'img/logo-blue.png' %}" alt="profile.img">
             {% endif %}
             {% comment %}  {% endcomment %}
             <div class="profile__container__info__img__dm">
