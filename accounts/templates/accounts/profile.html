@@ -8,6 +8,106 @@
 
 {% for profile in profiles %}
   <section class="profile">
+    <nav class="articles__nav">
+      <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <img class="nav__logo" src="../../../static/images/nes_blue.png" alt="logo"/>
+      </button>
+      <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header pb-0">
+          <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
+          <div>
+            <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="offcanvas__ul">
+            <!-- 로그인 유저 -->
+            {% if request.user.is_authenticated %}
+            <li>
+              <a href="{% url 'accounts:logout' %}">
+                <button class="btn offcanvas__header--btn p-0">
+                  {{ request.user.username }}
+                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </button>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              홈
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
+              프로필
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              전체 작품
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+                최근 본 작품
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'notes:index' %}" class="text-dark">
+              편지함
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'questions:index' %}" class="text-dark">
+              문의사항
+              </a>
+            </li>
+            <li>
+              About
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+            </li>
+            <!-- 비로그인 유저 -->
+            {% else %}
+            <li>
+              <a href="{% url 'accounts:login' %}">
+                <button class="btn offcanvas__header--btn">
+                  로그인 해주세요!
+                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                </button>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              홈
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'articles:main' %}" class="text-dark">
+              전체 작품
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'questions:index' %}" class="text-dark">
+              문의사항
+              </a>
+            </li>
+            <li>
+              About
+              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
     <section class="profile__container">
       <div class="profile__container__info">
         <div class="profile__container__info__img">
@@ -62,7 +162,10 @@
             {% comment %} 프로필수정 {% endcomment %}
             {% if request.user in profiles %}
             <a href="{% url 'accounts:profile_update' %}" class="text-dark fs-3">
-              <i class="bi bi-gear-fill"></i>
+              {% comment %} <i class="bi bi-gear-fill"></i> {% endcomment %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill mb-3" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+              </svg>
             </a>
             {% endif %}
             {% comment %}  {% endcomment %}
@@ -108,7 +211,10 @@
           <p>소셜계정
             {% if request.user in profiles %}
             <a href="{% url 'accounts:social' %}" class="text-dark fs-3">
-              <i class="bi bi-gear-fill"></i>
+              {% comment %} <i class="bi bi-gear-fill"></i> {% endcomment %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-gear-fill mb-3" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+              </svg>
             </a>
             {% endif %}
           </p>
@@ -253,7 +359,7 @@
                     {{ art_like.title }}
                   </p>
                   <p class="profile__container__tabs__box__grid__card__main_price">
-                    {{ art_like.price | intcomma }}
+                    ₩ {{ art_like.price | intcomma }}
                   </p>
                 </div>
               </a>
@@ -321,16 +427,16 @@
                     <img src="{% static 'images/art1_n4hYkfD.jpg' %}" alt="">
                   {% endif %}
                   {% comment %}  {% endcomment %}
-                  <svg class="profile__container__tabs__box__grid__card__imgbox__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+                  {% comment %} <svg class="profile__container__tabs__box__grid__card__imgbox__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                  </svg>
+                  </svg> {% endcomment %}
                 </div>
                 <div class="profile__container__tabs__box__grid__card__main">
                   <p class="profile__container__tabs__box__grid__card__main_title">
                     {{ purchase.title }}
                   </p>
                   <p class="profile__container__tabs__box__grid__card__main_price">
-                    {{ purchase.price | intcomma }}
+                    ₩ {{ purchase.price | intcomma }}
                   </p>
                 </div>
               </a>
@@ -406,7 +512,7 @@
                     {{ soldout.title }}
                   </p>
                   <p class="profile__container__tabs__box__grid__card__main_price">
-                    {{ soldout.price | intcomma }}
+                    ₩ {{ soldout.price | intcomma }}
                   </p>
                 </div>
               </a>
@@ -482,7 +588,7 @@
                     {{ user_cart.art.title }}
                   </p>
                   <p class="profile__container__tabs__box__grid__card__main_price">
-                    {{ user_cart.art.price | intcomma }}
+                    ₩ {{ user_cart.art.price | intcomma }}
                   </p>
                 </div>
               </a>
