@@ -149,20 +149,33 @@
                 <h5 class="receipt__artist-name">{{ item.nickname }}</h5>
                 <div class="receipt__picture-link">
                   {% comment %} <img class="receipt__artist-picture" src="{% static 'artists/Emily DP.png' %}" alt="사진"> {% endcomment %}
+                  {% if item.artist.profileimage %}
                   <img class="receipt__artist-picture" src="{{item.artist.profileimage.url}}" alt="사진">
-                  <a class="receipt__dm-link" href="">
+                  {% else %}
+                  <img class="receipt__artist-picture" src="{% static 'img/logo-blue.png' %}" alt="사진">
+                  {% endif %}
+                  <a class="receipt__dm-link" href="{% url 'notes:send' item.artist.pk %}">
                     <div class="receipt__gray-circle">
                       <img class="receipt__dm-img" src="{% static 'img/vector.png' %}">
                     </div>
                   </a>
                 </div>
                 <div class="complete__icon">
-                  <a class="complete__insta" href="">
+                  {% if item.artist.instagram %}
+                  <a class="complete__insta" href="{{item.artist.instagram}}">
                     <i class="bi bi-instagram"></i>
                   </a>
-                  <a class="complete__link" href="">
-                    <i class="bi bi-link-45deg"></i>
+                  {% endif %}
+                  {% if item.artist.github %}
+                  <a class="complete__link" href="{{item.artist.github}}">
+                    <i class="bi bi-github"></i>                  
                   </a>
+                  {% endif %}
+                  {% if item.artist.facebook %}
+                  <a class="complete__link" href="{{item.artist.facebook}}">
+                    <i class="bi bi-facebook"></i>
+                  </a>
+                  {% endif %}
                 </div>
               </div>
               <hr>
@@ -176,7 +189,7 @@
               </div>
             </div>
             <div class="receipt__btn">
-              <a href="" class="receipt__goto--home">
+              <a href="{% url 'articles:main' %}" class="receipt__goto--home">
                 <i class="bi bi-house"></i>
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-right-short" viewbox="0 0 18 18">
                   <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>

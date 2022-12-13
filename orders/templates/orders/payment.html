@@ -41,7 +41,7 @@
           </div>
           <div class="payment__question__form">
             <label class="payment__question__form__label" for="id_requests">기타 사항</label>
-            <textarea name="requests" cols="10" rows="2" placeholder="요청사항을 적어주세요." maxlength="100" class="payment__question__form__input" required id="id_requests"></textarea>
+            <textarea name="requests" cols="10" rows="2" placeholder="요청사항을 적어주세요." maxlength="100" class="payment__question__form__input" id="id_requests"></textarea>
           </div>
           <div class="payment__request__form">
             <label class="payment__request__form__label" for="id_delivery_option">요청 사항</label>
@@ -162,7 +162,7 @@
     </div>
   </div>
   <div class="payment__execute">
-    <input id="order_btn" type="submit" class="payment__execute__btn btn btn-lg"></input>
+    <input id="order_btn" type="submit" value="결제" class="payment__execute__btn btn btn-lg"></input>
   </div>
 </section>
 
@@ -178,7 +178,12 @@
   const orderBtn = document.getElementById('order_btn')
   orderBtn.addEventListener('click', function (event) {
     event.preventDefault();
-
+    const phoneNumber = document.querySelector("#id_contact_number");
+    if (phoneNumber.value == "") {
+      phoneNumber.focus();
+      alert("연락처를 입력해주세요.");
+    }
+    else{
     var IMP = window.IMP;
     IMP.init('imp12672042'); // 가맹점 식별코드
     console.log(IMP)
@@ -206,6 +211,7 @@
       }
       // alert(msg);
     });
+  }
   });
 </script>
 <script>
