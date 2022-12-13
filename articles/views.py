@@ -176,9 +176,8 @@ def comment_create(request, pk):
         }
         return JsonResponse(context)
     else:
-        print("로그인 해주세요!")
         context = {
-            "errorMsg": "로그인 해주세요!",
+            "errorMsg": "로그인이 필요합니다.",
         }
         return JsonResponse(context)
 

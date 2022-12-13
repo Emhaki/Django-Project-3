@@ -93,7 +93,14 @@ commentForm.addEventListener("submit", function (event) {
         };
         commentForm.reset();
       } else if (auth === "False") {
-        alert(response.data.errorMsg);
+        swal.fire({
+          backdrop: "rgba(255,255,255,0.5)",
+          confirmButtonColor: '#203e96',
+          confirmButtonText: '닫기',
+          title: '로그인이 필요합니다.',
+          text: response.data.errorMsg,
+          icon: "warning",
+        });
       };
     });
 });
