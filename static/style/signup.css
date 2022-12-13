@@ -138,6 +138,7 @@
     width: 10rem;
     height: 3.5rem;
     color:white;
+    border: none;
     top: 50%;
     transform: translate(10%,-50%);
     background-color: var(--main);
@@ -283,6 +284,7 @@
     width: 10rem;
     height: 3.5rem;
     color:white;
+    border:none;
     top: 50%;
     transform: translate(10%,-50%);
     background-color: var(--main);
@@ -464,6 +466,7 @@
         width: 7rem;
         height: 3.5rem;
         color:white;
+        border: none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
@@ -608,6 +611,7 @@
         width: 7rem;
         height: 3.5rem;
         color:white;
+        border: none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
@@ -755,6 +759,7 @@
         width: 5rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
@@ -900,6 +905,7 @@
         width: 6rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
@@ -1037,6 +1043,7 @@
         width: 9rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -1182,6 +1189,7 @@
         width: 9rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -1424,6 +1432,7 @@
         width: 7rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -1569,6 +1578,7 @@
         width: 7rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -1710,6 +1720,7 @@
         width: 7rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -1855,6 +1866,7 @@
         width: 7rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         transform: translate(10%,-50%);
         background-color: var(--main);
@@ -2221,6 +2233,7 @@
         width: 5rem;
         height: 2.5rem;
         color:white;
+        border: none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
@@ -2366,6 +2379,7 @@
         width: 6rem;
         height: 2.5rem;
         color:white;
+        border:none;
         top: 50%;
         background-color: var(--main);
         border-radius: .7rem;
