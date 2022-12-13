@@ -9,7 +9,7 @@
 <section class="post_back">
   <nav class="articles__nav">
     <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-      <img class="nav__logo" src="../../../static/images/nes_blue.png" alt="logo"/>
+      <img class="nav__logo" src="../../../static/images/nes_orange.png" alt="logo"/>
     </button>
     <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
       <div class="offcanvas-header pb-0">
@@ -173,8 +173,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                {{ note.title }}
-                {{ note.content }}
+                <div class="fw-bold fs-5 mb-1">{{ note.title }}</div>
+                <div>{{ note.content }}</div>
               </div>
               <div class="modal-footer">
                 <a href="{% url 'notes:send' note.from_user.pk %}">
@@ -243,12 +243,12 @@
         <div class="post__cover__main__box__list">
         <button type="button" class="btn modal-btn" data-bs-toggle="modal" data-bs-target="#modal{{to_note.text}}">
           <div class="post__cover__main__box__modal" data-note-id="{{note.pk}}" value="{{note.pk}}" onclick="read(event)">
-            {% if to_note.from_user.test %}
-            <div style="width:80px;">{{ to_note.from_user.creater_name }}</div>
-            {% elif to_note.from_user.creater_name %}
-            <div style="width:80px;">{{ to_note.from_user.creater_name }}</div>
+            {% if to_note.to_user.test %}
+            <div style="width:80px;">{{ to_note.to_user.creater_name }}</div>
+            {% elif to_note.to_user.creater_name %}
+            <div style="width:80px;">{{ to_note.to_user.creater_name }}</div>
             {% else %}
-            <div style="width:80px;">{{ to_note.from_user.username }}</div>
+            <div style="width:80px;">{{ to_note.to_user.username }}</div>
             {% endif %}
             <div style="width:120px;">{{ to_note.title }}</div>
             <div style="width:150px;">{{ to_note.created_at|date:'o.m.d' }}</div>
@@ -269,12 +269,12 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  {% if to_note.from_user.test %}
-                    {{ to_note.from_user.creater_name }}
-                  {% elif to_note.from_user.creater_name %}
-                    {{ to_note.from_user.creater_name }}
+                  {% if to_note.to_user.test %}
+                    {{ to_note.to_user.creater_name }}
+                  {% elif to_note.to_user.creater_name %}
+                    {{ to_note.to_user.creater_name }}
                   {% else %}
-                    {{ to_note.from_user.username }}
+                    {{ to_note.to_user.username }}
                   {% endif %}
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
