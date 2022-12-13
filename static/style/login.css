@@ -103,6 +103,8 @@
     color: white;
 }
 
+
+
 .login-frame__form__detail__signup {
     margin-left: 1rem;
     font-size: 1.3rem;
@@ -113,9 +115,19 @@
     color: white;
 }
 
+.login-frame_-form__detail__find a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 .login-frame__form__detail__signup a {
     text-decoration: none;
     color: white;
+}
+
+.login-frame__form__detail__signup a:hover {
+  text-decoration: none;
+  color: white;
 }
 
 @media (max-width: 1550px) {
