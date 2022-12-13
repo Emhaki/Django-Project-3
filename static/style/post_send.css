@@ -23,7 +23,7 @@ textarea:focus {
   background-color: rgba(217, 217, 217, 0.43);
   border: none;
   font-size: 1rem;
-  padding-left: 1rem;
+  padding: 0 1rem;
   color: black;
   transition: all 0.3s;
 }
@@ -44,8 +44,7 @@ textarea:focus {
   background-color: rgba(217, 217, 217, 0.43);
   border: none;
   font-size: 1rem;
-  padding-top: 0.7rem;
-  padding-left: 1rem;
+  padding: 0.7rem 1rem;
   color: black;
   transition: all 0.3s;
 }

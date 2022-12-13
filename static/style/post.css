@@ -1,127 +1,23 @@
 /* 배경화면 CSS */
-
-.post_back {
-    width: 100%;
-    height: 100vh;
-    background-image: url(../images/back_post_3.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-}
-
-/* 전체 영역 넓이 CSS */
-
-.post__cover__main__box {
-    width: 35%;
-    height: 80%;
-    /* background-color: rgba(32, 62, 150, .7); */
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* 전체 영역설정 CSS */
-
-.post__cover {
-    width: 80%;
-    height: 100%;
-}
-
-/* 제목 CSS */
-
-.post__cover__h1 {
-    margin-top: 3rem;
-    height: 10%;
-    color: white;
-}
-
-/* 받은 편지함 보낸 편지함 감싸는 CSS */
-
-.post__cover__main {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    justify-content: space-between;
-}
-
-/* main box CSS */
-
-.post__cover__main__box__header {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-/* main box header */
-
-.post__cover__main__box__header h1 {
-    font-weight: bold;
-}
-
-/* 박스내 내용물 CSS */
-
-.post__cover__main__box__list {
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-/* 내용물 게시글 클릭버튼 CSS */
-
-.post__cover__main__box .modal-btn {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: .5rem 0;
-}
-
-/* 게시글의 쓰레기통 CSS */
-
-.post__cover__main__box__list a {
-    width: 10%;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    justify-content: center;
-    margin: .5rem 0;
-}
-
-.post__cover__main__box__list a:hover {
-    color: white
-}
-
-.post__cover__main__box__list a svg {
-    width: 45%;
-    height: 45%;
-}
-
-.post__cover__main__box__modal {
-    display: flex;
-}
-
-.post__cover__main__box__modal p {
-    margin: 0;
-}
-
-/* navbar */
-.articles__nav {
-  position: absolute;
-  top: 16px;
-  left: 13px;
-  z-index: 200;
-}
-
-.custom-btn {
-  color: #010200;
-  background-color: #fff;
-  border: none;
-  padding: 0px;
-}
-
 a {
   text-decoration: none;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.post_back {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../images/back_post_3.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+}
+
 /* off canvas */
 .offcanvas__btn {
   background-color: transparent;
@@ -157,7 +53,7 @@ a {
   text-align: right;
 }
 
-.offcanvas__ul>li {
+.offcanvas__ul > li {
   margin-bottom: 1rem;
 }
 
@@ -189,4 +85,179 @@ a {
 .nav__logo:hover {
   transform: rotate(90deg) scale(1.2);
   transition: all 200ms ease;
+}
+
+/* 전체 영역 넓이 CSS */
+
+.post__cover__main__box {
+  width: 35%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+}
+
+/* 전체 영역설정 */
+.post__cover {
+  width: 80%;
+  height: 100%;
+}
+
+/* 제목 */
+.post__cover__h1 {
+  margin-top: 3rem;
+  height: 10%;
+  color: white;
+}
+
+/* 받은 편지함 보낸 편지함 감싸는 CSS */
+.post__cover__main {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* main box */
+.post__cover__main__box__header {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.post__title {
+  font-weight: 600;
+}
+
+/* main box header */
+.post__cover__main__box__header h1 {
+  font-weight: bold;
+}
+
+/* 박스내 내용물 */
+.dm__content {
+  width: 100%;
+  min-height: 60%;
+  white-space: nowrap;
+}
+
+.post__cover__main__box__list {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 내용물 게시글 클릭버튼*/
+.post__cover__main__box .modal-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 게시글의 쓰레기통 CSS */
+.note__delete {
+  transform: translateY(-5px);
+}
+
+.note__delete:hover {
+  transform: translateY(-5px) scale(1.1);
+  transition: all 200ms ease;
+}
+
+.post__cover__main__box__list a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.post__cover__main__box__list a:hover {
+  color: white;
+}
+
+.post__cover__main__box__list a svg {
+  width: 45%;
+  height: 45%;
+}
+
+.post__cover__main__box__modal {
+  width: 90%;
+  display: flex;
+  margin-bottom: 0.8rem;
+}
+
+.post__cover__main__box__modal p {
+  margin: 0;
+}
+
+.note__username {
+  width: 18%;
+}
+
+.note__title--btn {
+  width: 40%;
+  margin: 0 3%;
+  text-align: left;
+}
+
+.note__title {
+  width: 100%;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.note__date {
+  width: 30%;
+}
+
+.note__read {
+  width: 5%;
+}
+
+/* pagination */
+.page-item {
+  margin: 0.1rem;
+}
+
+/* 받은 편지함 모달 */
+.modal-content {
+  height: 100%;
+  background-color: var(--high-sub);
+}
+
+.modal-body {
+  min-height: 10rem;
+}
+
+.send__btn {
+  background-color: var(--main);
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}
+
+@media (max-width: 1000px) {
+  .post_back {
+    background-repeat: repeat-y;
+  }
+
+  .post__cover__h1 {
+    height: 5%;
+  }
+
+  .post__cover__main {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post__cover__main__box {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .dm__content {
+    min-height: auto;
+  }
 }
