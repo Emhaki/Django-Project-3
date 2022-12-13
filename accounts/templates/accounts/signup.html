@@ -172,13 +172,16 @@
     const success = document.querySelector("#sendEmail")
     const validNumber = document.querySelector('#valid-number')
     if (userEmail.length == 0) {
-      Swal.fire({
-        icon: 'warning',
+      swal.fire({
+        backdrop: "rgba(255,255,255,0.5)",
+        confirmButtonColor: '#203e96',
+        confirmButtonText: '닫기',
         title: '이메일 인증 오류',
         text: '이메일을 입력해주세요!',
-      })
+        icon: "warning",
+      });
       return
-    }
+    };
     check1.classList.add('d-none')
     check2.classList.remove('d-none')
     success.innerText = "인증번호 전송완료"
@@ -234,12 +237,15 @@
     if (emailChecked === 1) {
       formSignup.submit();
     } else if (emailChecked === 0) {
-      Swal.fire({
-        icon: 'warning',
+      swal.fire({
+        backdrop: "rgba(255,255,255,0.5)",
+        confirmButtonColor: '#203e96',
+        confirmButtonText: '닫기',
         title: '이메일 인증 오류',
         text: '이메일 인증을 완료해주세요!',
-      })
-    }
-  }
+        icon: "warning",
+      });
+    };
+  };
 </script>
 {% endblock content %}
