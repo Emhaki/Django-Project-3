@@ -11,6 +11,13 @@
   overflow: auto;
 }
 
+.custom-btn {
+  color: #010200;
+  background-color: #fff;
+  border: none;
+  padding: 0px;
+}
+
 .profile__container {
   width: 80%;
   height: 80%;

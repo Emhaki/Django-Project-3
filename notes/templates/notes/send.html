@@ -7,6 +7,115 @@
 {% block content %}
 
 <section class="post_back">
+  <nav class="articles__nav">
+    <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+      <img class="nav__logo" src="../../../static/images/nes_blue.png" alt="logo"/>
+    </button>
+    <div style="width: 17rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header pb-0">
+        <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo"/>
+        <div>
+          <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewbox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="offcanvas__ul">
+          <!-- 로그인 유저 -->
+          {% if request.user.is_authenticated %}
+          <li>
+            <a href="{% url 'accounts:logout' %}">
+              <button class="custom-btn offcanvas__header--btn p-0">
+                {% if request.user.creater_name %}
+                  {{request.user.creater_name}}
+                {% elif request.user.username %}
+                  {{ request.user.username }}
+                {% endif %}
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
+            프로필
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+              최근 본 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orders:offer' %}" class="text-dark">
+              가격 문의
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'notes:index' %}" class="text-dark">
+            편지함
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+            문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+          </li>
+          <!-- 비로그인 유저 -->
+          {% else %}
+          <li>
+            <a href="{% url 'accounts:login' %}">
+              <button class="custom-btn offcanvas__header--btn">
+                로그인 해주세요!
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+            문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
   <section class="post__cover">
     <h1 class="post__cover__h1"></h1>
     <div class="post__cover__main">
