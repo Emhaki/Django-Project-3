@@ -75,8 +75,8 @@
 
 .signup-frame__form__img {
     position: absolute;
-    width: 16rem;
-    height: 9rem;
+    width: 12rem;
+    height: 6rem;
     margin-top: 1.5rem;
     margin-left: 3rem;
     left: 0;
@@ -1278,8 +1278,8 @@
 
 @media (max-height:650px) {
     .signup-frame__form__img {
-        width: 14rem;
-        height: 7rem;
+        width: 12rem;
+        height: 6rem;
         transition: all .3s;
     }
     .signup-frame__form__container__login p {
@@ -1956,8 +1956,8 @@
 
 @media (max-height:650px) and (max-width:1400px) {
     .signup-frame__form__img {
-        width: 14rem;
-        height: 7rem;
+        width: 12rem;
+        height: 6rem;
         transition: all .3s;
     }
     .signup-frame__form__container__login p {
