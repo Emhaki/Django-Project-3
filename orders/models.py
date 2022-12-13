@@ -48,8 +48,8 @@ class Order(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=250)
     address_detail = models.CharField(max_length=250)
-    contact_number = models.CharField(max_length=250, null=True)
-    requests = models.TextField(max_length=100, null=True)
+    contact_number = models.CharField(max_length=250)
+    requests = models.TextField(max_length=100, null=True, blank=True)
     delivery_option = models.CharField(
         max_length=50, choices=delivery_choices, default="부재시 문 앞에 놓아주세요."
     )

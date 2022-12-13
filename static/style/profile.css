@@ -11,6 +11,13 @@
   overflow: auto;
 }
 
+.custom-btn {
+  color: #010200;
+  background-color: #fff;
+  border: none;
+  padding: 0px;
+}
+
 .profile__container {
   width: 80%;
   height: 80%;
@@ -106,6 +113,7 @@
   height: 7%;
   margin-top: 1rem;
   border-radius: 1rem;
+  border: none;
   background-color: var(--main);
   font-size: 1.2vw;
   color: var(--white);
@@ -262,8 +270,8 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  width: 3vw;
-  height: 3vh;
+  width: 2vw;
+  height: 2vh;
   right: 1%;
   top: 5%;
   color: #d00000;
@@ -295,7 +303,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 109%;
+  width: 85%;
   background-color: var(--main);
   color: var(--highlight);
   font-size: 1.5vw;
@@ -704,4 +712,73 @@
     text-decoration: none;
     font-size: 2rem;
 }
+}
+
+/* off canvas */
+.offcanvas__btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__btn:hover {
+  background-color: transparent;
+}
+
+.offcanvas__logo {
+  width: 6em;
+  height: 3em;
+}
+
+.offcanvas__header--btn {
+  padding: 0.1rem;
+}
+
+.bi-person-x,
+.bi-person {
+  cursor: pointer;
+}
+
+.offcanvas__close--btn {
+  background-color: transparent;
+  border: none;
+}
+
+.offcanvas__ul {
+  list-style: none;
+  float: right;
+  text-align: right;
+}
+
+.offcanvas__ul>li {
+  margin-bottom: 1rem;
+}
+
+.offcanvas__logout,
+.offcanvas__profile {
+  padding: 0.1rem;
+}
+
+.offcanvas__about--logo {
+  width: 3rem;
+  height: 1.5rem;
+}
+
+/* nav */
+.articles__nav {
+  position: absolute;
+  top: 16px;
+  left: 13px;
+  z-index: 200;
+}
+
+.nav__logo {
+  margin-top: 2rem;
+  width: 5rem;
+  height: 3rem;
+  transform: rotate(90deg);
+}
+
+.nav__logo:hover {
+  transform: rotate(90deg) scale(1.2);
+  transition: all 200ms ease;
 }

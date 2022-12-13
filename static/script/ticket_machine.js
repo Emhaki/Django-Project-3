@@ -5,11 +5,11 @@ btn.onclick = function () {
   if (tick.style.top == '200px') {
     tick.style.display = 'none';
     tick.style.top = '-730px';
-    btn.style.animationPlayState = 'running';
+    btn.style.animation = 'running';
     btn.innerHTML = 'PRINT TICKET';
   } else {
     tick.style.display = 'block';
-    setTimeout(continueFunction, 100);
+    setTimeout(continueFunction, 10);
   }
 };
 
@@ -17,7 +17,7 @@ function continueFunction() {
   tick.style.top = '200px';
   btn.style.animationPlayState = 'paused';
   btn.innerHTML = 'WAIT...';
-  setTimeout(restartAnimation, 5000);
+  setTimeout(restartAnimation, 2000);
 
   btn.onclick = function () {
     takeTicket();
@@ -26,7 +26,7 @@ function continueFunction() {
 
 function restartAnimation() {
   btn.style.animationPlayState = 'running';
-  btn.innerHTML = 'TAKE TICKET';
+  btn.innerHTML = 'TAKE A TICKET';
 }
 
 function takeTicket() {

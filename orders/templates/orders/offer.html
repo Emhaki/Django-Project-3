@@ -28,8 +28,12 @@
           <li>
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}">
-              <button class="btn offcanvas__header--btn p-0">
-                {{ request.user.username }}
+              <button class="custom-btn offcanvas__header--btn p-0">
+                {% if request.user.creater_name %}
+                  {{request.user.creater_name}}
+                {% elif request.user.username %}
+                  {{ request.user.username }}
+                {% endif %}
                 <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
                   <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                   <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
@@ -38,7 +42,7 @@
             </a>
             {% else %}
             <a href="{% url 'accounts:login' %}">
-              <button class="btn offcanvas__header--btn">
+              <button class="custom-btn offcanvas__header--btn">
                 <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                 </svg>
@@ -66,7 +70,17 @@
             <a href="{% url 'articles:main' %}" class="text-dark">
             전체 작품
             </a>
-          </li>          <li>최근 본 작품</li>
+          </li>
+          <li>
+            <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+              최근 본 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orders:offer' %}" class="text-dark">
+              가격 문의
+            </a>
+          </li>
           <li>
             <a href="{% url 'notes:index' %}" class="text-dark">
             편지함
@@ -126,7 +140,7 @@
           <p><span class="category-text">작품</span> {{ offer.art.title }}</p>
         </div>
         <div>
-          <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form ">
+          <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form" onclick="accept(event)">
             {% csrf_token %}
             <button type="submit" name="수락" value="수락" class="offer-outline-btn">수락</button>
           </form>
@@ -151,18 +165,48 @@
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     function accept(event) {
       var delete_warngin = confirm("제안을 수락하시겠습니까?")
-      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-      if (delete_warngin == true) {
-        axios({
-          method: 'post',
-          url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
-          headers: {'X-CSRFToken': csrftoken},
-          data: {'note_pk': event.target.dataset.offerId},
-        })
-        .then(response => {
 
-        })
-      }
-    }
+      Swal.fire({
+        title: "작품 가격 조정",
+        text: "구매자의 제안을 수락하시겠습니까?",
+        icon: "question",
+        backdrop: "rgba(255,255,255,0.5)",
+        showCancelButton: true,
+        confirmButtonColor: '#f3672a',
+        cancelButtonColor: '#203e96',
+        confirmButtonText: "수락합니다.",
+        cancelButtonText: "거절합니다."
+      })
+      .then((result) => {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        if (result.isConfirmed) {
+          axios({
+            method: 'post',
+            url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
+            headers: {'X-CSRFToken': csrftoken},
+            data: {'note_pk': event.target.dataset.offerId},
+          })
+          .then(response => {
+            Swal.fire({
+              backdrop: "rgba(255,255,255,0.5)",
+              title: '수락되었습니다.',
+              text: "작품의 가격이 조정되었습니다.",
+              icon: "success",
+              confirmButtonColor: '#203e96',
+              confirmButtonText: '닫기',
+            });
+          });
+        } else {
+          Swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            title: '거절되었습니다.',
+            text: "제안이 거절되었습니다.",
+            icon: "success",
+            confirmButtonColor: '#203e96',
+            confirmButtonText: '닫기',
+          });
+        };
+      });
+    };
 </script>
 {% endblock content %}

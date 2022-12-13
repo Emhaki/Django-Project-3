@@ -46,7 +46,7 @@
                     </div>
                     <div class="upload__date">
                         <p>제작 년도</p>
-                        <input type="text" name="painted_year" maxlength="4" placeholder="ex) 2022"
+                        <input type="number" name="painted_year" maxlength="4" oninput="maxLengthCheck(this)" placeholder="ex) 2022"
                             value="{{art.painted_year}}">
                     </div>
                     <div class="upload__date">
@@ -71,6 +71,13 @@
         </form>
     </div>
 </div>
+<script>
+    function maxLengthCheck(object){
+        if (object.value.length > object.maxLength){
+            object.value = object.value.slice(0, object.maxLength);
+        }    
+    }    
+</script>
 <script>
     const fileUp = document.querySelector("#choosefile");
     fileUp.addEventListener("change", () => {

@@ -5,229 +5,158 @@
 <link rel="stylesheet" href="{% static 'style/main.css' %}">
 {% endblock css %}
 {% block content %}
-<section class="main__bg">
-    <nav class="articles__nav">
-      <button
-        class="offcanvas__btn"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling"
-        aria-controls="offcanvasScrolling"
-      >
-        <img
-          class="nav__logo"
-          src="../../../static/img/logo-orange.png"
-          alt="logo"
-        />
-      </button>
-      <div
-        style="width: 16rem"
-        class="offcanvas offcanvas-start"
-        data-bs-scroll="true"
-        data-bs-backdrop="false"
-        tabindex="-1"
-        id="offcanvasScrolling"
-        aria-labelledby="offcanvasScrollingLabel"
-      >
-        <div class="offcanvas-header">
-          <img
-            class="offcanvas__logo offcanvas-title"
-            src="../../../static/img/logo-op-blue.png"
-            alt="logo"
-          />
-          <div>
-            <button class="btn offcanvas__header--btn">
-              <svg
-                style="width: 1.5rem; height: 1.5rem"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-person-x"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"
-                />
-              </svg>
-            </button>
-            <button class="btn offcanvas__header--btn">
-              <svg
-                style="width: 1.5rem; height: 1.5rem"
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-person"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"
-                />
-              </svg>
-            </button>
-            <button
-              class="offcanvas__close--btn"
-              type="button"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-x-lg"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="offcanvas__ul">
-            <!-- 로그인 유저 -->
-            {% if request.user.is_authenticated %}
-            <li>
-              <a href="{% url 'accounts:logout' %}">
-                <button class="btn offcanvas__header--btn p-0">
-                  {{ request.user.username }}
-                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
-                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                    <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
-                  </svg>
-                </button>
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'articles:main' %}" class="text-dark">
-              홈
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
-              프로필
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'articles:main' %}" class="text-dark">
-              전체 작품
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
-                최근 본 작품
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'notes:index' %}" class="text-dark">
-              편지함
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'questions:index' %}" class="text-dark">
-              문의사항
-              </a>
-            </li>
-            <li>
-              About
-              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
-            </li>
-            <!-- 비로그인 유저 -->
-            {% else %}
-            <li>
-              <a href="{% url 'accounts:login' %}">
-                <button class="btn offcanvas__header--btn">
-                  로그인 해주세요!
-                  <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
-                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                  </svg>
-                </button>
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'articles:main' %}" class="text-dark">
-              홈
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'articles:main' %}" class="text-dark">
-              전체 작품
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'questions:index' %}" class="text-dark">
-              문의사항
-              </a>
-            </li>
-            <li>
-              About
-              <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
-            </li>
-            {% endif %}
-          </ul>
+<section class="main__bg" style="display:block">
+  <nav class="articles__nav">
+    <button class="offcanvas__btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+      aria-controls="offcanvasScrolling">
+      <img class="nav__logo" src="../../../static/img/logo-orange.png" alt="logo" />
+    </button>
+    <div style="width: 16rem" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false"
+      tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+      <div class="offcanvas-header">
+        <img class="offcanvas__logo offcanvas-title" src="../../../static/img/logo-op-blue.png" alt="logo" />
+        <div>
+          <button class="offcanvas__close--btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+              viewBox="0 0 16 16">
+              <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+            </svg>
+          </button>
         </div>
       </div>
-    </nav>
-    <section class="main__container">
-      <!-- menu -->
-      <div class="menu">
-        <div class="menu__wrap">
-          <p class="menu__title">SHOP</p>
-          <hr class="menu__hr" />
-          <!-- 검색 -->
-          <form class="menu__form" action="{% url 'articles:search' %}">
-            <div>
-                <input
-                  class="menu__search"
-                  type="search"
-                  name="search"
-                  value="{{search}}"
-                  placeholder="작가 및 제목 검색"
-                  aria-label="Search"
-                />
-                <button class="btn" type="submit">
-                  <svg
-                    class="search__icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-search"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                    />
-                  </svg>
-                </button>
-              </form>
-            </div>
-          
-          <ul class="menu__lists">
-          {% for type in category %}
-            <li>
-              <form action="{% url 'articles:main' %}">
-              <button class="search__menu"type="submit" name="type" value="{{type}}">{{ type }}</button>      
-              </form>        
-            </li>
-          {% endfor %}
+      <div class="offcanvas-body">
+        <ul class="offcanvas__ul">
+          <!-- 로그인 유저 -->
+          {% if request.user.is_authenticated %}
+          <li>
+            <a href="{% url 'accounts:logout' %}">
+              <button class="custom-btn offcanvas__header--btn p-0">
+                {% if request.user.creater_name %}
+                  {{request.user.creater_name}}
+                {% elif request.user.username %}
+                  {{ request.user.username }}
+                {% endif %}
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-x" viewbox="0 0 16 16">
+                  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+                </svg>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:profile' request.user.pk %}" class="text-dark">
+            프로필
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'accounts:recently' request.user.pk %}" class="text-dark">
+              최근 본 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orders:offer' %}" class="text-dark">
+              가격 문의
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'notes:index' %}" class="text-dark">
+            편지함
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+            문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+          </li>
+          <!-- 비로그인 유저 -->
+          {% else %}
+          <li>
+            <a href="{% url 'accounts:login' %}">
+              <button class="custom-btn offcanvas__header--btn">
+                로그인 해주세요!
+                <svg style="width: 1.5rem; height: 1.5rem" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewbox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                </svg>
+              </button>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            홈
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'articles:main' %}" class="text-dark">
+            전체 작품
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'questions:index' %}" class="text-dark">
+            문의사항
+            </a>
+          </li>
+          <li>
+            About
+            <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+          </li>
+          {% endif %}
         </ul>
-        </div>
+      </div>
+    </div>
+  </nav>
+  <section class="main__container">
+    <!-- menu -->
+    <div class="menu">
+      <div class="menu__wrap">
+        <p class="menu__title">SHOP</p>
+        <hr class="menu__hr" />
+        <!-- 검색 -->
+        <form class="menu__form" action="{% url 'articles:search' %}">
+          <div>
+            <input class="menu__search" type="search" name="search" value="{{search}}" placeholder="작가 및 제목 검색"
+              aria-label="Search" />
+            <button type="submit" class="search__btn">
+              <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+              </svg>
+            </button>
+        </form>
       </div>
 
-      <!-- 검색결과 -->
-      <div class="main__view">
-        <header>
-        {% if not question_list  %}
-        <p class="view__title">{{ search }}에 대한 검색 결과가 없습니다.</p>
-        {% else %}
+      <ul class="menu__lists">
+        {% for type in category %}
+        <li>
+          <form action="{% url 'articles:main' %}">
+            <button class="search__menu" type="submit" name="type" value="{{type}}">{{ type }}</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    </div>
+
+    <!-- 검색결과 -->
+    <div class="main__view">
+      <header>
+        {% if not question_list %}
+          <p class="view__title">{{ search }}에 대한 검색 결과가 없습니다.</p>
+          {% else %}
           {% if search == None %}
           <p class="view__title">검색 결과가 없습니다.</p>
           {% else %}
@@ -235,73 +164,78 @@
           <p class="view__subtitle"></p>
           {% endif %}
         {% endif %}
-        </header>
-        <!-- image -->
-        {% for art in question_list %}        
-        <div class="view__images">
-          <a href={% url 'articles:detail' art.pk %}>
+      </header>
+      <!-- image -->
+      <div class="view__images">
+      {% for art in question_list %}
+        <a href={% url 'articles:detail' art.pk %}>
           <img src="{{ art.image.url }}" alt="{{ art.image }}" class="">
-          </a>
-        </div>
+        </a>
         {% endfor %}
-        
-        <!--페이지네이션-->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-            <!-- 이전페이지 -->
-            {% if question_list.has_previous %}
-            <li class="page-item">
-              <a class="page-link" style="background-color: transparent; border:1px solid white; border-radius: 0; color:white" href="?search ={{search }}&page={{ question_list.previous_page_number }}"><</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#"><</a>
-            </li>
-            {% endif %}
-
-            <!-- 현재페이지 -->
-            {% for page_number  in question_list.paginator.page_range %}
-              {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
-                {% if page_number == question_list.number %}
-                  <li class="page-item active" aria-current="page">
-                    <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
-                  </li>
-                {% else %}
-                <li class="page-item">
-                  <a class="page-link" style="background-color: transparent; border:1px solid white; color:white" href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
-                </li> 
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-
-            <!-- 다음페이지 -->
-            {% if question_list.has_next %}
-            <li class="page-item">
-              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" href="?search={{search}}&page={{ question_list.next_page_number }}">></a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#">></a>
-            </li>
-            {% endif %}
-          </ul>
-        </nav>
       </div>
-    </section>
+
+      <!--페이지네이션-->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <!-- 이전페이지 -->
+          {% if question_list.has_previous %}
+          <li class="page-item">
+            <a class="page-link" style="background-color: transparent; border:1px solid white; border-radius: 0; color:white" href="?search ={{search }}&page={{ question_list.previous_page_number }}"><</a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link" style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;" tabindex="-1" aria-disabled="true" href="#"><</a>
+          </li>
+          {% endif %}
+          <!-- 현재페이지 -->
+          {% for page_number in question_list.paginator.page_range %}
+          {% if page_number >= question_list.number|add:-5 and page_number <= question_list.number|add:5 %}
+          {% if page_number == question_list.number %} 
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" style="background-color: transparent; border:1px solid white; color:white"
+              href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" style="background-color: transparent; border:1px solid white; color:white"
+                href="?search={{search}}&page={{ page_number }}">{{ page_number }}</a>
+            </li>
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+          <!-- 다음페이지 -->
+          {% if question_list.has_next %}
+          <li class="page-item">
+            <a class="page-link"
+              style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;"
+              href="?search={{search}}&page={{ question_list.next_page_number }}">></a>
+          </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a class="page-link"
+              style="background-color: transparent; border:1px solid white; color:white; border-radius: 0;"
+              tabindex="-1" aria-disabled="true" href="#">></a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
   </section>
-  {% comment %} <script type='text/javascript'>
-    const page_elements = document.getElementsByClassName("page-link");
-    Array.from(page_elements).forEach(function(element) {
-        element.addEventListener('click', function() {
-            document.getElementById('page').value = this.dataset.page;
-            document.getElementById('searchForm').submit();
-        });
+</section>
+{% comment %}
+<script type='text/javascript'>
+  const page_elements = document.getElementsByClassName("page-link");
+  Array.from(page_elements).forEach(function (element) {
+    element.addEventListener('click', function () {
+      document.getElementById('page').value = this.dataset.page;
+      document.getElementById('searchForm').submit();
     });
-    const btn_search = document.getElementById("btn_search");
-    btn_search.addEventListener('click', function() {
-        document.getElementById('q').value = document.getElementById('q').value;
-        document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
-        document.getElementById('searchForm').submit();
-    });
-  </script> {% endcomment %}
+  });
+  const btn_search = document.getElementById("btn_search");
+  btn_search.addEventListener('click', function () {
+    document.getElementById('q').value = document.getElementById('q').value;
+    document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+    document.getElementById('searchForm').submit();
+  });
+</script> {% endcomment %}
 {% endblock content %}

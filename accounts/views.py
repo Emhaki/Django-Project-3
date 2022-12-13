@@ -18,6 +18,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import artist_required
 
 # Create your views here.
 
@@ -92,18 +93,18 @@ def kakao_callback(request):
 
     if get_user_model().objects.filter(test=kakao_id).exists():
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        kakao_user.profileimage = kakao_profile_image
+        # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
-        return redirect("accounts:profile", request.user.pk)
+        return redirect("articles:ticket_machine")
     else:
         kakao_login_user = get_user_model().objects.create(
             test=kakao_id,
             nickname=kakao_nickname,
-            profileimage=kakao_profile_image,
+            # profileimage=kakao_profile_image,
             email=kakao_email,
             refresh_token=refresh_token,
         )
@@ -122,7 +123,7 @@ def kakao_signup(request):
         form = UpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("accounts:profile", request.user.pk)
+            return redirect("articles:ticket_machine")
     else:
         if request.GET:
             names = get_user_model().objects.filter(
@@ -194,7 +195,7 @@ def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
 
-
+@login_required
 # 소셜업데이트
 def social(request):
     instagram = request.user.instagram
@@ -219,6 +220,7 @@ def social(request):
 
 
 # 프로필페이지
+@login_required
 def profile(request, user_pk):
     profiles = get_user_model().objects.filter(pk=user_pk)
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
@@ -282,6 +284,7 @@ def profile(request, user_pk):
 
 
 # 프로필 업데이트
+@login_required
 def profile_update(request):
     creater_name = request.user.creater_name
     introduce = request.user.introduce
@@ -358,6 +361,7 @@ def check_valid_number(request):
 
 
 # 작가 인증
+@login_required
 def check_artist(request):
     validnumber = round(random() * 10000)
     print(f"{validnumber} 유효성 번호")
