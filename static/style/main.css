@@ -277,3 +277,24 @@ input[type='search']::-webkit-search-cancel-button {
     display: none;
   }
 }
+
+@media (max-height: 1300px) {
+  .menu__lists {
+    line-height: 4;
+    font-size: 2.3vh;
+  }
+}
+
+@media (max-height: 900px) {
+  .menu__lists {
+    line-height: 3;
+    font-size: 3vh;
+  }
+}
+
+@media (max-height: 800px) {
+  .menu__lists {
+    line-height: 2.6;
+    font-size: 3vh;
+  }
+}
