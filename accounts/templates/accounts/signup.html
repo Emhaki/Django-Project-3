@@ -172,7 +172,11 @@
     const success = document.querySelector("#sendEmail")
     const validNumber = document.querySelector('#valid-number')
     if (userEmail.length == 0) {
-      alert("이메일을 입력해주세요!")
+      Swal.fire({
+        icon: 'warning',
+        title: '이메일 인증 오류',
+        text: '이메일을 입력해주세요!',
+      })
       return
     }
     check1.classList.add('d-none')
@@ -230,7 +234,11 @@
     if (emailChecked === 1) {
       formSignup.submit();
     } else if (emailChecked === 0) {
-      alert("이메일 인증을 진행해주세요!")
+      Swal.fire({
+        icon: 'warning',
+        title: '이메일 인증 오류',
+        text: '이메일 인증을 완료해주세요!',
+      })
     }
   }
 </script>
