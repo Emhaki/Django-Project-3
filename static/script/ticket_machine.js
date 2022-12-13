@@ -33,6 +33,6 @@ function takeTicket() {
   tick.style.transform = 'rotate(-90deg) translateY(-25%)';
   ticket.style.cursor = "pointer";
   ticket.addEventListener("click", () => {
-    location.href = location.origin + "/articles/index/";
+    setTimeout(location.href = location.origin + "/articles/index/", 1000)
   })
 }
