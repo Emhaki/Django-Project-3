@@ -210,8 +210,9 @@
         confirmButtonColor: '#f3672a',
         cancelButtonColor: '#203e96',
         confirmButtonText: '삭제하기',
-        cancelButtonText: '놔두기'
-      }).then((result) => {
+        cancelButtonText: '돌아가기'
+      })
+      .then((result) => {
         if (result.isConfirmed) {
           axios({
             method: 'post',
@@ -219,7 +220,8 @@
             headers: {
               'X-CSRFToken': csrftoken
             }
-          }).then(response => {
+          })
+          .then(response => {
             Swal.fire({
               backdrop: "rgba(255,255,255,0.5)",
               title: '삭제완료',
