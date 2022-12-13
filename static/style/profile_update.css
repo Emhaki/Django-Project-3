@@ -1,179 +1,512 @@
 @import url('./base.css');
 
 .signup-frame .toast_1 {
-    --bs-toast-padding-x: 0.75rem;
-    --bs-toast-padding-y: 0.5rem;
-    --bs-toast-spacing: 1.5rem;
-    --bs-toast-max-width: 350px;
-    --bs-toast-font-size: 0.875rem;
-    --bs-toast-color: ;
-    --bs-toast-bg: rgba(255, 255, 255, 0.85);
-    --bs-toast-border-width: 1px;
-    --bs-toast-border-color: var(--bs-border-color-translucent);
-    --bs-toast-border-radius: 0.375rem;
-    --bs-toast-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    --bs-toast-header-color: #6c757d;
-    --bs-toast-header-bg: rgba(255, 255, 255, 0.85);
-    --bs-toast-header-border-color: rgba(0, 0, 0, 0.05);
-    width: var(--bs-toast-max-width);
-    max-width: 100%;
-    font-size: var(--bs-toast-font-size);
-    color: var(--bs-toast-color);
-    pointer-events: auto;
-    background-color: var(--bs-toast-bg);
-    background-clip: padding-box;
-    border: var(--bs-toast-border-width) solid var(--bs-toast-border-color);
-    box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
-    border-radius: var(--bs-toast-border-radius);
-    position: absolute;
-    left: 50%;
-    top: 8%;
-    transform: translateX(-50%);
-    z-index: 3;
-    width: auto;
-    height: 5rem;
-    display: none;
-    align-items: center;
-    object-fit: cover;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  --bs-toast-padding-x: 0.75rem;
+  --bs-toast-padding-y: 0.5rem;
+  --bs-toast-spacing: 1.5rem;
+  --bs-toast-max-width: 350px;
+  --bs-toast-font-size: 0.875rem;
+  --bs-toast-color: ;
+  --bs-toast-bg: rgba(255, 255, 255, 0.85);
+  --bs-toast-border-width: 1px;
+  --bs-toast-border-color: var(--bs-border-color-translucent);
+  --bs-toast-border-radius: 0.375rem;
+  --bs-toast-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --bs-toast-header-color: #6c757d;
+  --bs-toast-header-bg: rgba(255, 255, 255, 0.85);
+  --bs-toast-header-border-color: rgba(0, 0, 0, 0.05);
+  width: var(--bs-toast-max-width);
+  max-width: 100%;
+  font-size: var(--bs-toast-font-size);
+  color: var(--bs-toast-color);
+  pointer-events: auto;
+  background-color: var(--bs-toast-bg);
+  background-clip: padding-box;
+  border: var(--bs-toast-border-width) solid var(--bs-toast-border-color);
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+  border-radius: var(--bs-toast-border-radius);
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: auto;
+  height: 5rem;
+  display: none;
+  align-items: center;
+  object-fit: cover;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-
 .signup-frame .toast_1 .toast-body {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
 }
 
 .signup-frame .toast_1 .toast-body p {
-    margin: 0 3em 0 0;
-    font-size: 1.5rem;
+  margin: 0 3em 0 0;
+  font-size: 1.5rem;
 }
 
 .signup-frame {
-    background-color: var(--high-sub);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: var(--high-sub);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-frame__form {
-    width: 80%;
-    height: 80%;
-    border-radius: 1rem;
-    background-color: #FFFFFF;
-    position: relative;
-    transition: all .3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.signup-frame__form__img {
-    position: absolute;
-    width: 16rem;
-    height: 9rem;
-    margin-top: 1.5rem;
-    margin-left: 3rem;
-    left: 0;
-    top: 0;
-    transition: all .3s;
+  width: 80%;
+  height: 80%;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .signup-frame__form__container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: 90%;
-    justify-content: space-between;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 90%;
+  justify-content: space-between;
 }
 
 /* ID 관련 CSS */
 
 .signup-frame__form__container__login {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    transition: all .3s;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__login p {
-    margin: 0;
-    width: 30%;
-    font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__login__check {
-    width: 75%;
-    position: relative;
-    transition: all .3s;
+  width: 75%;
+  position: relative;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__login__check__input {
-    width: 100%;
-    height: 4.5rem;
-    border-radius: 6px;
-    background-color: rgba(217, 217, 217, 0.43);
-    border: none;
-    font-size: 1.7rem;
-    padding-left: 1.5rem;
-    color: black;
-    transition: all .3s;
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
 }
 
 .signup-frame__form__container__login__check__button {
-    position: absolute;
-    width: 10rem;
-    height: 3.5rem;
-    color: white;
-    top: 50%;
-    transform: translate(10%, -50%);
-    background-color: var(--main);
-    border-radius: .7rem;
-    font-weight: bold;
-    font-size: 1.4rem;
-    transition: all .3s;
+  position: absolute;
+  width: 10rem;
+  height: 3.5rem;
+  color: white;
+  top: 50%;
+  transform: translate(10%, -50%);
+  background-color: var(--main);
+  border-radius: 0.7rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: all 0.3s;
 }
 
 /* 프로필 이미지 선택 */
 
 .signup-frame__form__container__image {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__image p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__image__form {
+  width: 75%;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__image__form__images {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__image__form__choose {
+  position: absolute;
+  width: 10rem;
+  height: 3.5rem;
+  color: white;
+  top: 50%;
+  transform: translate(10%, -50%);
+  background-color: var(--main);
+  border-radius: 0.7rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__image__form__choose p {
+  width: auto;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  padding: 11px 0;
+}
+
+#choosefile {
+  display: none;
+}
+
+/* 비밀번호 CSS */
+
+.signup-frame__form__container__password {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__password p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__password input {
+  width: 75%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+/* 비밀번호 확인 CSS */
+
+.signup-frame__form__container__check {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__check p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__check input {
+  width: 75%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+/* 이름관련 CSS */
+
+.signup-frame__form__container__name {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__name p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__name input {
+  width: 75%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+/* email 관련 CSS*/
+
+.signup-frame__form__container__email {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__email p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__email__check {
+  width: 75%;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__email__check input {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__email__check button {
+  position: absolute;
+  width: 10rem;
+  height: 3.5rem;
+  color: white;
+  top: 50%;
+  transform: translate(10%, -50%);
+  background-color: var(--main);
+  border-radius: 0.7rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  transition: all 0.3s;
+}
+
+/* address 관련 CSS */
+
+.signup-frame__form__container__address {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__address p {
+  margin: 0;
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.7rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__address__search {
+  width: 75%;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__address__search input {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 6px;
+  background-color: rgba(217, 217, 217, 0.43);
+  border: none;
+  font-size: 1.7rem;
+  padding-left: 1.5rem;
+  color: black;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__address__search a {
+  display: block;
+}
+
+.signup-frame__form__container__address__search a svg {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 22%;
+  right: 3%;
+  color: black;
+  transition: all 0.3s;
+}
+
+/* 가입하기, 뒤로가기 버튼 */
+
+.signup-frame__form__container__submit {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 4rem;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__submit__back {
+  width: 15rem;
+  height: 4.5rem;
+  color: white;
+  background-color: var(--line);
+  border-radius: 0.7rem;
+  font-weight: bold;
+  font-size: 1.7rem;
+  border: none;
+  transition: all 0.3s;
+}
+
+.signup-frame__form__container__submit__go {
+  width: 15rem;
+  height: 4.5rem;
+  color: white;
+  background-color: var(--main);
+  border-radius: 0.7rem;
+  font-weight: bold;
+  font-size: 1.7rem;
+  border: none;
+  transition: all 0.3s;
+}
+
+/* 창 크기 조절 (1600) */
+
+@media (max-width: 1600px) {
+  /* ID 관련 CSS */
+
+  .signup-frame__form__container__login {
     display: flex;
     width: 100%;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__image p {
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__login__check {
+    width: 70%;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 7rem;
+    height: 3.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__image p {
     margin: 0;
     width: 30%;
     font-weight: bold;
     font-size: 1.7rem;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__image__form {
+  .signup-frame__form__container__image__form {
     width: 75%;
     position: relative;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__image__form__images {
+  .signup-frame__form__container__image__form__images {
     width: 100%;
     height: 4.5rem;
     border-radius: 6px;
@@ -182,10 +515,10 @@
     font-size: 1.7rem;
     padding-left: 1.5rem;
     color: black;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__image__form__choose {
+  .signup-frame__form__container__image__form__choose {
     position: absolute;
     width: 10rem;
     height: 3.5rem;
@@ -195,2920 +528,2525 @@
     background-color: var(--main);
     border-radius: 0.7rem;
     cursor: pointer;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__image__form__choose p {
+  .signup-frame__form__container__image__form__choose p {
     width: auto;
     font-size: 1.4rem;
     font-weight: bold;
     text-align: center;
     vertical-align: middle;
-    padding: 11px 0;
-}
+    padding: 20px 0;
+  }
 
-#choosefile {
-    display: none;
-}
+  /* 프로필 이미지 선택 */
 
-/* 비밀번호 CSS */
-
-.signup-frame__form__container__password {
+  .signup-frame__form__container__image {
     display: flex;
     width: 100%;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__password p {
+  .signup-frame__form__container__image p {
     margin: 0;
     width: 30%;
     font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
-}
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__password input {
-    width: 75%;
-    height: 4.5rem;
-    border-radius: 6px;
-    background-color: rgba(217, 217, 217, 0.43);
-    border: none;
-    font-size: 1.7rem;
-    padding-left: 1.5rem;
-    color: black;
-    transition: all .3s;
-}
-
-/* 비밀번호 확인 CSS */
-
-.signup-frame__form__container__check {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__check p {
-    margin: 0;
-    width: 30%;
-    font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__check input {
-    width: 75%;
-    height: 4.5rem;
-    border-radius: 6px;
-    background-color: rgba(217, 217, 217, 0.43);
-    border: none;
-    font-size: 1.7rem;
-    padding-left: 1.5rem;
-    color: black;
-    transition: all .3s;
-}
-
-/* 이름관련 CSS */
-
-.signup-frame__form__container__name {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__name p {
-    margin: 0;
-    width: 30%;
-    font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__name input {
-    width: 75%;
-    height: 4.5rem;
-    border-radius: 6px;
-    background-color: rgba(217, 217, 217, 0.43);
-    border: none;
-    font-size: 1.7rem;
-    padding-left: 1.5rem;
-    color: black;
-    transition: all .3s;
-}
-
-/* email 관련 CSS*/
-
-.signup-frame__form__container__email {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__email p {
-    margin: 0;
-    width: 30%;
-    font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__email__check {
+  .signup-frame__form__container__image__form {
     width: 75%;
     position: relative;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__email__check input {
+  .signup-frame__form__container__image__form__images {
     width: 100%;
-    height: 4.5rem;
+    height: 3rem;
     border-radius: 6px;
     background-color: rgba(217, 217, 217, 0.43);
     border: none;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     padding-left: 1.5rem;
     color: black;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__email__check button {
+  .signup-frame__form__container__image__form__choose {
     position: absolute;
-    width: 10rem;
-    height: 3.5rem;
+    width: 7rem;
+    height: 2.5rem;
     color: white;
     top: 50%;
     transform: translate(10%, -50%);
     background-color: var(--main);
-    border-radius: .7rem;
+    border-radius: 0.7rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1.1rem;
     font-weight: bold;
-    font-size: 1.4rem;
-    transition: all .3s;
-}
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0;
+  }
 
-/* address 관련 CSS */
+  /* 비밀번호 CSS */
 
-.signup-frame__form__container__address {
+  .signup-frame__form__container__password {
     display: flex;
     width: 100%;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__address p {
+  .signup-frame__form__container__password p {
     margin: 0;
     width: 30%;
     font-weight: bold;
-    font-size: 1.7rem;
-    transition: all .3s;
-}
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__address__search {
-    width: 75%;
-    position: relative;
-    transition: all .3s;
-}
-
-.signup-frame__form__container__address__search input {
-    width: 100%;
-    height: 4.5rem;
+  .signup-frame__form__container__password input {
+    width: 70%;
+    height: 3.5rem;
     border-radius: 6px;
     background-color: rgba(217, 217, 217, 0.43);
     border: none;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     padding-left: 1.5rem;
     color: black;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__address__search a {
-    display: block;
-}
+  /* 비밀번호 확인 CSS */
 
-.signup-frame__form__container__address__search a svg {
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__check input {
+    width: 70%;
+    height: 3.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  /* 이름관련 CSS */
+
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__name input {
+    width: 70%;
+    height: 3.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  /* email 관련 CSS*/
+
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__email__check {
+    width: 70%;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 7rem;
+    height: 3.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
+
+  /* address 관련 CSS */
+
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__address__search {
+    width: 70%;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .signup-frame__form__container__address__search a svg {
     position: absolute;
     width: 40px;
     height: 40px;
     top: 22%;
     right: 3%;
     color: black;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-/* 가입하기, 뒤로가기 버튼 */
+  /* 가입하기, 뒤로가기 버튼 */
 
-.signup-frame__form__container__submit {
+  .signup-frame__form__container__submit {
     display: flex;
     width: 100%;
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
     margin-top: 4rem;
-    transition: all .3s;
-}
+  }
 
-.signup-frame__form__container__submit__back {
-    width: 15rem;
-    height: 4.5rem;
+  .signup-frame__form__container__submit__back {
+    width: 13rem;
+    height: 3.5rem;
     color: white;
     background-color: var(--line);
-    border-radius: .7rem;
+    border-radius: 0.7rem;
     font-weight: bold;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     border: none;
-    transition: all .3s;
-}
+    transition: all 0.3s;
+  }
 
-.signup-frame__form__container__submit__go {
-    width: 15rem;
-    height: 4.5rem;
+  .signup-frame__form__container__submit__go {
+    width: 13rem;
+    height: 3.5rem;
     color: white;
     background-color: var(--main);
-    border-radius: .7rem;
+    border-radius: 0.7rem;
     font-weight: bold;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     border: none;
-    transition: all .3s;
+    transition: all 0.3s;
+  }
 }
-
-/* 창 크기 조절 (1600) */
-
-@media (max-width:1600px) {
-    /* ID 관련 CSS */
-
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__login__check {
-        width: 70%;
-        position: relative;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 7rem;
-        height: 3.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-
-
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.7rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 4.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.7rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 10rem;
-        height: 3.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        cursor: pointer;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1.4rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 20px 0;
-    }
-
-    /* 프로필 이미지 선택 */
-
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.4rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 7px 0;
-    }
-
-    /* 비밀번호 CSS */
-
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__password input {
-        width: 70%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    /* 비밀번호 확인 CSS */
-
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__check input {
-        width: 70%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    /* 이름관련 CSS */
-
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__name input {
-        width: 70%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    /* email 관련 CSS*/
-
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__email__check {
-        width: 70%;
-        position: relative;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 7rem;
-        height: 3.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
-
-    /* address 관련 CSS */
-
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__address__search {
-        width: 70%;
-        position: relative;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 3.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        top: 22%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
-
-    /* 가입하기, 뒤로가기 버튼 */
-
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 4rem;
-    }
-
-    .signup-frame__form__container__submit__back {
-        width: 13rem;
-        height: 3.5rem;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.5rem;
-        border: none;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__submit__go {
-        width: 13rem;
-        height: 3.5rem;
-        color: white;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.5rem;
-        border: none;
-        transition: all .3s;
-    }
-}
-
 
 /* 창 크기 조절 (1400) */
 
-@media (max-width:1400px) {
-    .signup-frame__form__img {
-        position: absolute;
-        width: 12rem;
-        height: 6rem;
-        margin-top: .5rem;
-        margin-left: 1rem;
-        left: 0;
-        top: 0;
-        transition: all .3s;
-    }
+@media (max-width: 1400px) {
+  /* ID 관련 CSS */
 
-    /* ID 관련 CSS */
+  .signup-frame__form__container__login {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 5rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 5rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* 프로필 이미지 선택 */
 
-    /* 프로필 이미지 선택 */
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose {
+    position: absolute;
+    width: 5rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
 
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 5rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        font-weight: bold;
+    transition: all 0.3s;
+  }
 
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 7px 0;
-    }
+  /* 비밀번호 CSS */
 
-    /* 비밀번호 CSS */
+  .signup-frame__form__container__password {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 비밀번호 확인 CSS */
 
-    /* 비밀번호 확인 CSS */
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    align-items: baseline;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: column;
-        align-items: baseline;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 이름관련 CSS */
 
-    /* 이름관련 CSS */
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* email 관련 CSS*/
 
-    /* email 관련 CSS*/
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 6rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 6rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* address 관련 CSS */
 
-    /* address 관련 CSS */
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search a svg {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20%;
+    right: 3%;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        top: 20%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
+  /* 가입하기, 뒤로가기 버튼 */
 
-    /* 가입하기, 뒤로가기 버튼 */
+  .signup-frame__form__container__submit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s;
+    margin-top: 0;
+  }
 
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: column;
-        transition: all .3s;
-        margin-top: 0;
-    }
+  .signup-frame__form__container__submit a {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 
-    .signup-frame__form__container__submit a {
-        width: 100%;
-        margin-bottom: 1rem;
-    }
+  .signup-frame__form__container__submit__back {
+    width: 100%;
+    height: 2.5rem;
+    color: white;
+    background-color: var(--line);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__back {
-        width: 100%;
-        height: 2.5rem;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.2rem;
-        border: none;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__submit__go {
-        width: 100%;
-        height: 2.5rem;
-        color: white;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.2rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__go {
+    width: 100%;
+    height: 2.5rem;
+    color: white;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: none;
+    transition: all 0.3s;
+  }
 }
 
 /* 창 높이 절 (950) */
 
-@media (max-height:950px) {
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+@media (max-height: 950px) {
+  .signup-frame__form__container__login {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 9rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 9rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
 
-    /* 프로필 이미지 */
+  /* 프로필 이미지 */
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 9rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        font-weight: bold;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose {
+    position: absolute;
+    width: 9rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1.4rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 4px 0;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px 0;
+  }
 
-    /* 비밀번호 CSS */
+  /* 비밀번호 CSS */
 
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 비밀번호 확인 CSS */
+  /* 비밀번호 확인 CSS */
 
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 이름관련 CSS */
+  /* 이름관련 CSS */
 
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* email 관련 CSS*/
+  /* email 관련 CSS*/
 
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 9rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 9rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
 
-    /* address 관련 CSS */
+  /* address 관련 CSS */
 
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.4rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.4rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        top: 22%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search a svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 22%;
+    right: 3%;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 가입하기, 뒤로가기 버튼 */
+  /* 가입하기, 뒤로가기 버튼 */
 
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 2rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__back {
-        width: 15rem;
-        height: 3rem;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__back {
+    width: 15rem;
+    height: 3rem;
+    color: white;
+    background-color: var(--line);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__go {
-        width: 15rem;
-        height: 3rem;
-        color: white;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__go {
+    width: 15rem;
+    height: 3rem;
+    color: white;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 }
 
+@media (max-height: 650px) {
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-@media (max-height:650px) {
-    .signup-frame__form__img {
-        width: 14rem;
-        height: 7rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  /* 프로필 이미지 */
 
-    .signup-frame__form__container__login__check__button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    /* 프로필 이미지 */
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose {
+    height: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px 0;
+  }
 
-    .signup-frame__form__container__image__form__choose {
-        height: 2rem;
-        transition: all .3s;
-    }
+  /* 비밀번호 */
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 4px 0;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    /* 비밀번호 */
+  .signup-frame__form__container__password input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__check input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__name input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__back {
+    height: 2rem;
+    font-size: 1rem;
+  }
 
-    .signup-frame__form__container__address__search input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
-
-    .signup-frame__form__container__submit__back {
-        height: 2rem;
-        font-size: 1rem;
-    }
-
-    .signup-frame__form__container__submit__go {
-        height: 2rem;
-        font-size: 1rem;
-    }
+  .signup-frame__form__container__submit__go {
+    height: 2rem;
+    font-size: 1rem;
+  }
 }
 
-@media (max-height:950px) and (max-width:1400px) {
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+@media (max-height: 950px) and (max-width: 1400px) {
+  .signup-frame__form__container__login {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 7rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
 
+  /* 비밀번호 CSS */
 
-    /* 비밀번호 CSS */
+  .signup-frame__form__container__password {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 비밀번호 확인 CSS */
 
-    /* 비밀번호 확인 CSS */
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 이름관련 CSS */
 
-    /* 이름관련 CSS */
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* email 관련 CSS*/
 
-    /* email 관련 CSS*/
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 7rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
+  /* address 관련 CSS */
 
-    /* address 관련 CSS */
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.4rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.4rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search a svg {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20%;
+    right: 3%;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        top: 20%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
+  /* 가입하기, 뒤로가기 버튼 */
 
-    /* 가입하기, 뒤로가기 버튼 */
+  .signup-frame__form__container__submit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 2rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit a {
+    width: 11rem;
+    height: auto;
+    margin: 0;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit a {
-        width: 11rem;
-        height: auto;
-        margin: 0;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__back {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: var(--line);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__back {
-        width: 100%;
-        height: 100%;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__submit__go {
-        width: 11rem;
-        height: 3rem;
-        color: white;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__go {
+    width: 11rem;
+    height: 3rem;
+    color: white;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 }
 
-@media (max-height:950px) and (max-width:1600px) {
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+@media (max-height: 950px) and (max-width: 1600px) {
+  .signup-frame__form__container__login {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 7rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
 
-    /* 프로필 이미지 업데이트 */
+  /* 프로필 이미지 업데이트 */
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.4rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose {
+    position: absolute;
+    width: 7rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 7px 0;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0;
+  }
 
-    /* 비밀번호 CSS */
+  /* 비밀번호 CSS */
 
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 비밀번호 확인 CSS */
+  /* 비밀번호 확인 CSS */
 
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 이름관련 CSS */
+  /* 이름관련 CSS */
 
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        width: 75%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    width: 75%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* email 관련 CSS*/
+  /* email 관련 CSS*/
 
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 7rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        transform: translate(10%, -50%);
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 7rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    transform: translate(10%, -50%);
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+  }
 
-    /* address 관련 CSS */
+  /* address 관련 CSS */
 
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 3rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.4rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 3rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.4rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        top: 20%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search a svg {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20%;
+    right: 3%;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    /* 가입하기, 뒤로가기 버튼 */
+  /* 가입하기, 뒤로가기 버튼 */
 
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 2rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit a {
-        width: 11rem;
-        height: 3rem;
-        margin: 0;
-    }
+  .signup-frame__form__container__submit a {
+    width: 11rem;
+    height: 3rem;
+    margin: 0;
+  }
 
-    .signup-frame__form__container__submit__back {
-        width: 100%;
-        height: 100%;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__back {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: var(--line);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__go {
-        width: 11rem;
-        height: 3rem;
-        color: white;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__go {
+    width: 11rem;
+    height: 3rem;
+    color: white;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 }
 
-@media (max-height:650px) and (max-width:1400px) {
-    .signup-frame__form__img {
-        width: 14rem;
-        height: 7rem;
-        transition: all .3s;
-    }
+@media (max-height: 650px) and (max-width: 1400px) {
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__login__check__button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__password input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__check input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__name input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__email input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email__check button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__address__search input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__submit__back {
+    height: 2rem;
+    font-size: 1rem;
+  }
 
-    .signup-frame__form__container__submit__back {
-        height: 2rem;
-        font-size: 1rem;
-    }
-
-    .signup-frame__form__container__submit__go {
-        height: 2rem;
-        font-size: 1rem;
-    }
+  .signup-frame__form__container__submit__go {
+    height: 2rem;
+    font-size: 1rem;
+  }
 }
 
-@media (max-height:650px) and (max-width:1600px) {
-    .signup-frame__form__img {
-        width: 12rem;
-        height: 6rem;
-        transition: all .3s;
-    }
+@media (max-height: 650px) and (max-width: 1600px) {
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__login__check__button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* 프로필 css */
 
-    /* 프로필 css */
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 75%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 75%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__image__form__choose {
+    height: 2rem;
 
-    .signup-frame__form__container__image__form__choose {
-        height: 2rem;
+    transition: all 0.3s;
+  }
 
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 3px 0;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 3px 0;
-    }
+  /* 비밀번호 css */
 
-    /* 비밀번호 css */
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__password input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__check input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__name input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__email input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email__check button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 30%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 30%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__address__search input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__submit__back {
+    height: 2rem;
+    font-size: 1rem;
+  }
 
-    .signup-frame__form__container__submit__back {
-        height: 2rem;
-        font-size: 1rem;
-    }
-
-    .signup-frame__form__container__submit__go {
-        height: 2rem;
-        font-size: 1rem;
-    }
+  .signup-frame__form__container__submit__go {
+    height: 2rem;
+    font-size: 1rem;
+  }
 }
 
 @media (max-height: 950px) and (max-width: 1250px) {
-    .signup-frame__form__img {
-        position: absolute;
-        width: 12rem;
-        height: 6rem;
-        margin-top: .5rem;
-        margin-left: 1rem;
-        left: 0;
-        top: 0;
-        transition: all .3s;
-    }
+  /* ID 관련 CSS */
 
-    /* ID 관련 CSS */
+  .signup-frame__form__container__login {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__button {
+    position: absolute;
+    width: 5rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        position: absolute;
-        width: 5rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* 프로필 이미지 */
 
-    /* 프로필 이미지 */
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose {
+    position: absolute;
+    width: 5rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose {
-        position: absolute;
-        width: 5rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: 0.7rem;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 0;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 7px 0;
-    }
+  /* 비밀번호 CSS */
 
-    /* 비밀번호 CSS */
+  .signup-frame__form__container__password {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 비밀번호 확인 CSS */
 
-    /* 비밀번호 확인 CSS */
+  .signup-frame__form__container__check {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    align-items: baseline;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: column;
-        align-items: baseline;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* 이름관련 CSS */
 
-    /* 이름관련 CSS */
+  .signup-frame__form__container__name {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  /* email 관련 CSS*/
 
-    /* email 관련 CSS*/
+  .signup-frame__form__container__email {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin-bottom: 5px;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email__check button {
+    position: absolute;
+    width: 6rem;
+    height: 2.5rem;
+    color: white;
+    top: 50%;
+    background-color: var(--main);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        position: absolute;
-        width: 6rem;
-        height: 2.5rem;
-        color: white;
-        top: 50%;
-        background-color: var(--main);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* address 관련 CSS */
 
-    /* address 관련 CSS */
+  .signup-frame__form__container__address {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1.3rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 6px;
+    background-color: rgba(217, 217, 217, 0.43);
+    border: none;
+    font-size: 1.3rem;
+    padding-left: 1.5rem;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search input {
-        width: 100%;
-        height: 2.5rem;
-        border-radius: 6px;
-        background-color: rgba(217, 217, 217, 0.43);
-        border: none;
-        font-size: 1.3rem;
-        padding-left: 1.5rem;
-        color: black;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search a svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20%;
+    right: 3%;
+    color: black;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address__search a svg {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        top: 20%;
-        right: 3%;
-        color: black;
-        transition: all .3s;
-    }
+  /* 가입하기, 뒤로가기 버튼 */
 
-    /* 가입하기, 뒤로가기 버튼 */
+  .signup-frame__form__container__submit {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 2rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit a {
+    width: 11rem;
+    height: auto;
+    margin: 0;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit a {
-        width: 11rem;
-        height: auto;
-        margin: 0;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__back {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: var(--line);
+    border-radius: 0.7rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+    border: none;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__submit__back {
-        width: 100%;
-        height: 100%;
-        color: white;
-        background-color: var(--line);
-        border-radius: .7rem;
-        font-weight: bold;
-        font-size: 1.4rem;
-        border: none;
-        transition: all .3s;
-    }
-
-    .signup-frame__form__container__submit__go {
-        height: auto;
-        font-size: 1.4rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit__go {
+    height: auto;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+  }
 }
 
-@media (max-height:800px) and (max-width:1250px) {
-    .signup-frame__form__img {
-        width: 10rem;
-        height: 5rem;
-        transition: all .3s;
-    }
+@media (max-height: 800px) and (max-width: 1250px) {
+  .signup-frame__form__container__login p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__login__check__input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__login__check__input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__login__check__button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__login__check__button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  /* 프로필 이미지 */
 
-    /* 프로필 이미지 */
+  .signup-frame__form__container__image {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image {
-        display: flex;
-        width: 100%;
-        align-items: baseline;
-        flex-direction: column;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form {
+    width: 100%;
+    position: relative;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form {
-        width: 100%;
-        position: relative;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__images {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__image__form__images {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__image__form__choose {
+    height: 2rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__image__form__choose {
-        height: 2rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__image__form__choose p {
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding: 3px 0;
+  }
 
-    .signup-frame__form__container__image__form__choose p {
-        width: auto;
-        font-size: 1rem;
-        font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        padding: 3px 0;
-    }
+  /* 비밀번호 css */
 
-    /* 비밀번호 css */
+  .signup-frame__form__container__password p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__password p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__password input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__password input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__check p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__check p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__check input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__check input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__name p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__name p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__name input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__name input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__email input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__email input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__email__check button {
+    height: 2rem;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__email__check button {
-        height: 2rem;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address p {
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
 
-    .signup-frame__form__container__address p {
-        margin: 0;
-        width: 100%;
-        font-weight: bold;
-        font-size: 1rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__address__search input {
+    height: 2rem;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+  }
 
-    .signup-frame__form__container__address__search input {
-        height: 2rem;
-        font-size: 1rem;
-        padding-left: 1.5rem;
-    }
+  .signup-frame__form__container__submit__back {
+    height: 2rem;
+    font-size: 1rem;
+  }
 
-    .signup-frame__form__container__submit__back {
-        height: 2rem;
-        font-size: 1rem;
-    }
-
-    .signup-frame__form__container__submit__go {
-        height: 2rem;
-        font-size: 1rem;
-    }
+  .signup-frame__form__container__submit__go {
+    height: 2rem;
+    font-size: 1rem;
+  }
 }
 
 @media (max-height: 650px) and (max-width: 1250px) {
-    .signup-frame__form__container__submit {
-        margin-top: 0.5rem;
-        transition: all .3s;
-    }
+  .signup-frame__form__container__submit {
+    margin-top: 0.5rem;
+    transition: all 0.3s;
+  }
 }
