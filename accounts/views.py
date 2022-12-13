@@ -92,18 +92,18 @@ def kakao_callback(request):
 
     if get_user_model().objects.filter(test=kakao_id).exists():
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        kakao_user.profileimage = kakao_profile_image
+        # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
-        return redirect("accounts:profile", request.user.pk)
+        return redirect("articles:ticket_machine")
     else:
         kakao_login_user = get_user_model().objects.create(
             test=kakao_id,
             nickname=kakao_nickname,
-            profileimage=kakao_profile_image,
+            # profileimage=kakao_profile_image,
             email=kakao_email,
             refresh_token=refresh_token,
         )
@@ -122,7 +122,7 @@ def kakao_signup(request):
         form = UpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect("accounts:profile", request.user.pk)
+            return redirect("articles:ticket_machine")
     else:
         if request.GET:
             names = get_user_model().objects.filter(
