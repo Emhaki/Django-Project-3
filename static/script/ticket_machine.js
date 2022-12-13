@@ -26,7 +26,7 @@ function continueFunction() {
 
 function restartAnimation() {
   btn.style.animationPlayState = 'running';
-  btn.innerHTML = 'TAKE TICKET';
+  btn.innerHTML = 'TAKE A TICKET';
 }
 
 function takeTicket() {
