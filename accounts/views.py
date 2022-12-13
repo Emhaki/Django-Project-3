@@ -195,7 +195,7 @@ def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
 
-
+@login_required
 # 소셜업데이트
 def social(request):
     instagram = request.user.instagram
@@ -220,6 +220,7 @@ def social(request):
 
 
 # 프로필페이지
+@login_required
 def profile(request, user_pk):
     profiles = get_user_model().objects.filter(pk=user_pk)
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
@@ -283,6 +284,7 @@ def profile(request, user_pk):
 
 
 # 프로필 업데이트
+@login_required
 def profile_update(request):
     creater_name = request.user.creater_name
     introduce = request.user.introduce
@@ -359,6 +361,7 @@ def check_valid_number(request):
 
 
 # 작가 인증
+@login_required
 def check_artist(request):
     validnumber = round(random() * 10000)
     print(f"{validnumber} 유효성 번호")

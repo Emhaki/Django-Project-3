@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
 from .models import Art, Comment
 from .forms import ArtForm, CommentForm
 from django.core.paginator import Paginator
@@ -8,6 +7,7 @@ import re
 from django.views.generic import ListView
 from django.db.models import Q
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from accounts.decorators import artist_required
 
 
@@ -59,7 +59,7 @@ def main(request):
         }
     return render(request, "articles/main.html", context)
 
-
+@login_required
 @artist_required
 # 작가만 작품 등록할 수 있도록
 def create(request):
@@ -79,7 +79,7 @@ def create(request):
     }
     return render(request, "articles/create.html", context=context)
 
-
+@login_required
 def detail(request, pk):
     art = Art.objects.get(pk=pk)
     if request.user.is_authenticated:
@@ -116,8 +116,8 @@ def detail(request, pk):
     }
     return render(request, "articles/detail.html", context)
 
-
-# @artist_required
+@login_required
+@artist_required
 def update(request, pk):
     art = Art.objects.get(pk=pk)
     if request.user == art.artist:
@@ -135,8 +135,8 @@ def update(request, pk):
     else:
         return redirect("articles:detail", art.pk)
 
-
-# @artist_required
+@login_required
+@artist_required
 def delete(request, pk):
     if request.user.is_authenticated:
         target_art = Art.objects.get(pk=pk)
@@ -144,7 +144,7 @@ def delete(request, pk):
             target_art.delete()
     return redirect("articles:main")
 
-
+@login_required
 # @artist_required
 def comment_create(request, pk):
     if request.user.is_authenticated:
@@ -182,7 +182,7 @@ def comment_create(request, pk):
         }
         return JsonResponse(context)
 
-
+@login_required
 # @artist_required
 def comment_delete(request, comment_pk):
     if request.user.is_authenticated:
@@ -200,7 +200,7 @@ def comment_delete(request, comment_pk):
         return JsonResponse(context)
 
 
-# @login_required
+@login_required
 def like(request, pk):
     if request.user.is_authenticated:
         art = Art.objects.get(pk=pk)
