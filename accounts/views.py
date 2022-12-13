@@ -18,6 +18,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from accounts.decorators import artist_required
 
 # Create your views here.
 

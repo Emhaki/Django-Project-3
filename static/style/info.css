@@ -1,7 +1,7 @@
 @import url(./base.css);
 
 .info__bg {
-  background-color: var(--highlight);
+  background-color: var(--high-sub);
   width: 100%;
   height: 100vh;
 }

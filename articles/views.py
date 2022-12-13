@@ -8,6 +8,7 @@ import re
 from django.views.generic import ListView
 from django.db.models import Q
 from django.http import JsonResponse
+from accounts.decorators import artist_required
 
 
 def index(request):
@@ -59,7 +60,7 @@ def main(request):
     return render(request, "articles/main.html", context)
 
 
-# @artist_required
+@artist_required
 # 작가만 작품 등록할 수 있도록
 def create(request):
     if request.method == "POST":
