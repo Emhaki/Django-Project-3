@@ -13,11 +13,15 @@
       <div class="post__cover__main__box">
         <div class="post__cover__main__box__header">
           {% if to_user.test %}
-          <img id="profileimage" src="{{to_user.profileimage}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
+            {% if to_user.profileimage %}
+            <img id="profileimage" src="{{to_user.profileimage.url}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
+            {% else %}
+              <img src="{% static 'img/logo-blue.png' %}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
+            {% endif %}
           {% elif to_user.profileimage %}
           <img id="profileimage" src="{{to_user.profileimage.url}}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
           {% else %}
-          <img src="{% static 'img/logo-blue.png' %}" alt="" style="width: 25%; height:25%;" class="rounded-3">
+          <img src="{% static 'img/logo-blue.png' %}" alt="프로필 이미지" style="width: 25%; height:25%;" class="rounded-3">
           {% endif %}
         </div>
         {% comment %} 받은 DM {% endcomment %}
