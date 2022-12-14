@@ -155,8 +155,10 @@
               </a>
             </li>
             <li>
+              <a href="{% url 'articles:about' %}" class="text-dark">
               About
               <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+              </a>
             </li>
             <!-- 비로그인 유저 -->
             {% else %}
@@ -186,8 +188,10 @@
               </a>
             </li>
             <li>
+              <a href="{% url 'articles:about' %}" class="text-dark">
               About
               <img class="offcanvas__about--logo" src="../../../static/img/logo-orange.png"/>
+              </a>
             </li>
             {% endif %}
           </ul>
