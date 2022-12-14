@@ -16,7 +16,7 @@
       <button class="login-frame__form__googlebtn">🍳 CONTINUE WITH KAKAO</button>
     </a>
     <div class="login-frame__form__detail">
-      <div class="login-frame_-form__detail__find">
+      <div id="find-btn" class="login-frame_-form__detail__find">
         <a href="">아이디 찾기</a>
         |
         <a href="">비밀번호 찾기</a>
@@ -68,5 +68,25 @@
         };
       });
   });
+</script>
+<script>
+  const findBtn = document.querySelector("#find-btn");
+  for (i = 0; i < findBtn.childNodes.length; i++) {
+    if (findBtn.childNodes[i].nodeName == "A") {
+      const aTag = findBtn.childNodes[i];
+      aTag.addEventListener("click", function (event) {
+        event.preventDefault();
+        Swal.fire({
+          backdrop: "rgba(255,255,255,0.5)",
+          confirmButtonColor: '#203e96',
+          confirmButtonText: '닫기',
+          icon: 'warning',
+          title: '점검중',
+          text: '현재 점검중인 기능입니다.',
+          footer: `<a href="{% url 'questions:index' %}" style="text-decoration: none;">회원정보 관련 문의는 여기서 해주세요!</a>`,
+        })
+      });
+    };
+  };
 </script>
 {% endblock content %}
