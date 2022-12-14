@@ -169,7 +169,7 @@
             </form>
             {% endif %}
             <!-- 수정 삭제 -->
-            {% if request.user.is_creater %}
+            {% if art.artist == request.user %}
             <div>
               <button class="update__btn" type="button" onclick="location.href='{% url 'articles:update' art.pk %}'">
                 <i class="bi bi-pencil-fill"></i>
