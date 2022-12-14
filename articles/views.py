@@ -25,7 +25,7 @@ def ticket_machine(request):
     return render(request, "articles/ticket_machine.html")
 
 def main(request):
-    arts = Art.objects.order_by("pk")
+    arts = Art.objects.order_by("-pk")
 
     # 작품 카테고리
     category = ["동양화", "서양화", "판화", "일러스트", "조소", "설치미술", "사진"]
@@ -38,7 +38,7 @@ def main(request):
 
     if request.GET.get("type"):
         name = re.sub(r"[0-9]", "", request.GET.get("type"))
-        arts = Art.objects.filter(art_category__contains=name)
+        arts = Art.objects.filter(art_category__contains=name).order_by("-pk")
         paginator = Paginator(arts, 8)
         page_number = re.sub(r"[^0-9]", "", request.GET.get("type"))
         page_obj = paginator.get_page(page_number)
@@ -220,7 +220,7 @@ def like(request, pk):
 def search(request):
     all_data = Art.objects.order_by("-pk")
     search = request.GET.get("search")
-    paginator = Paginator(all_data, 6)
+    paginator = Paginator(all_data, 8)
     page_obj = paginator.get_page(request.GET.get("page"))
     category = ["동양화", "서양화", "판화", "일러스트", "조소", "설치미술", "사진"]
 
