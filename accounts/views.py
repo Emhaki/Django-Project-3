@@ -232,7 +232,7 @@ def profile(request, user_pk):
 
     # 해당 유저가 좋아요를 누른 작품들
     art_likes = Art.objects.filter(likes=user_pk).order_by()
-    like_paginator = Paginator(art_likes, 2)
+    like_paginator = Paginator(art_likes, 6)
     page_number = request.GET.get("like_page")
     like_page_obj = like_paginator.get_page(page_number)
 
