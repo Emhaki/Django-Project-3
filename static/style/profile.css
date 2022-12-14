@@ -527,7 +527,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(1, 100%);
-    grid-auto-rows: 10%;
+    grid-auto-rows: 50%;
     justify-content: center;
     overflow: auto;
   }
