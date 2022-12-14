@@ -28,7 +28,7 @@ def main(request):
     arts = Art.objects.order_by("pk")
 
     # 작품 카테고리
-    category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
+    category = ["동양화", "서양화", "판화", "일러스트", "조소", "설치미술", "사진"]
     art_type_all = "모든 작품"
     # art_type = re.sub(r"[0-9]", "", request.GET.get("type"))
 
@@ -222,7 +222,7 @@ def search(request):
     search = request.GET.get("search")
     paginator = Paginator(all_data, 6)
     page_obj = paginator.get_page(request.GET.get("page"))
-    category = ["동양화", "서양화", "판화", "일러스트", "조각 및 조소", "설치미술", "사진"]
+    category = ["동양화", "서양화", "판화", "일러스트", "조소", "설치미술", "사진"]
 
     if search:
         search_list = all_data.filter(
