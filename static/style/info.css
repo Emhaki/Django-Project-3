@@ -6,6 +6,13 @@
   height: 100vh;
 }
 
+.custom-btn {
+  color: #010200;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+
 /* off canvas */
 .offcanvas__btn {
   background-color: transparent;
@@ -41,7 +48,7 @@
   text-align: right;
 }
 
-.offcanvas__ul>li {
+.offcanvas__ul > li {
   margin-bottom: 1rem;
 }
 
@@ -199,7 +206,6 @@
   }
 }
 
-
 .info__modal {
   display: flex;
   justify-content: center;
@@ -207,12 +213,10 @@
   margin-top: 7rem;
 }
 
-
 .info__modal-content {
   max-width: 60rem;
   max-height: 60rem;
 }
-
 
 .offer_modal {
   display: flex;
@@ -254,5 +258,5 @@
 }
 
 .offer-line {
-  border: 1px solid var(--highlight)
+  border: 1px solid var(--highlight);
 }
