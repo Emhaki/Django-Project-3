@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm
 import requests
 from django.contrib import messages
 from random import random
@@ -195,6 +195,7 @@ def logout(request):
     auth_logout(request)
     return redirect("accounts:login")
 
+
 @login_required
 # 소셜업데이트
 def social(request):
@@ -388,14 +389,14 @@ def check_artist(request):
         email = EmailMessage(mail_subject, message, to=[user_email])
         email.send()
         check = True
-        
+
     elif "ac.kr" in user_email2[:] or "edu" in user_email2[-4:]:
         email = EmailMessage(mail_subject, message, to=[user_email2])
         email.send()
         check = True
     else:
         check = False
-        
+
     return JsonResponse({"validnumber": validnumber, "check": check})
 
 
@@ -421,16 +422,121 @@ def check_artist_number(request):
 def recently(request, user_pk):
     user = get_object_or_404(get_user_model(), pk=user_pk)
     user_recently_view = user.recently_view
-    user_recently_view = user_recently_view.replace("__", ",")
     user_recently_view = user_recently_view.replace("__", ",").replace("_", "")
     user_recently_view_list = user_recently_view.split(",")
     # print(user_recently_view_list)
     art_list = []
-    while user_recently_view_list:
-        target_pk = user_recently_view_list.pop()
-        art = Art.objects.get(id=target_pk)
-        art_list.append(art)
+    try:
+        while user_recently_view_list:
+            target_pk = user_recently_view_list.pop()
+            art = Art.objects.get(id=target_pk)
+            art_list.append(art)
+    except:
+        pass
     context = {
         "art_list": art_list,
     }
     return render(request, "accounts/recently.html", context)
+
+
+def find_id(request):
+    users = get_user_model().objects.filter(email=request.GET["email"])
+    if users.exists():
+        user_list = []
+        for user in users:
+            if user.username == "":
+                user_list.append(
+                    "<span style='color: var(--highlight);'>Kakao acount</span>"
+                )
+            else:
+                user_list.append(user.username)
+        user_count = users.count()
+        context = {
+            "userList": user_list,
+            "userCount": user_count,
+        }
+        return JsonResponse(context)
+    else:
+        context = {
+            "errorMsg": "존재하지 않는 회원입니다.",
+        }
+        return JsonResponse(context)
+
+
+def find_pw(request):
+    if get_user_model().objects.filter(username=request.GET["username"]).exists():
+        user = get_user_model().objects.get(username=request.GET["username"])
+        context = {
+            "userEmail": user.email,
+            "userName": user.username,
+        }
+        return JsonResponse(context)
+    else:
+        context = {
+            "errorMsg": "존재하지 않는 회원입니다.",
+        }
+        return JsonResponse(context)
+
+
+# 비밀번호 찾기 이메일 인증
+def find_pw_email(request):
+    validnumber = round(random() * 10000)
+    current_site = get_current_site(request)
+    message = render_to_string(
+        "accounts/reset_pw.html",
+        {
+            "user": request.user,
+            "domain": current_site.domain,
+            "uid": urlsafe_base64_encode(force_bytes(request.user.pk))
+            .encode()
+            .decode(),
+            "validnumber": validnumber,
+        },
+    )
+
+    mail_subject = "[NES]이메일 인증번호입니다."
+    user_email = request.POST["user_email"]
+    user_name = request.POST["user_name"]
+    email = EmailMessage(mail_subject, message, to=[user_email])
+    email.send()
+
+    context = {
+        "userName": user_name,
+        "validnumber": validnumber,
+    }
+    return JsonResponse(context)
+
+
+def find_pw_email_check(request):
+    input_number = request.POST["inputNum"]
+    valid_number = request.POST["validNum"]
+    if (valid_number and input_number != "") and valid_number == input_number:
+        user = get_user_model().objects.get(username=request.POST["userName"])
+        check = True
+        context = {
+            "userName": user.username,
+            "check": check,
+        }
+    else:
+        check = False
+        context = {
+            "check": check,
+        }
+    return JsonResponse(context)
+
+
+def pw_change(request):
+    user = get_user_model().objects.get(username=request.POST["userName"])
+    if request.method == "POST":
+        if request.POST["pw1"] == request.POST["pw2"] and len(request.POST["pw1"]) >= 8:
+            user.set_password(request.POST["pw1"])
+            user.save()
+            context = {
+                "msg": "변경에 성공하였습니다.",
+            }
+            return JsonResponse(context)
+        else:
+            context = {
+                "msg": "변경에 실패하였습니다.",
+            }
+            return JsonResponse(context)

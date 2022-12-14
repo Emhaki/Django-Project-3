@@ -1,5 +1,9 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    UserChangeForm,
+    PasswordChangeForm,
+)
 from django import forms
 
 
@@ -21,6 +25,7 @@ class SignupForm(UserCreationForm):
             "location_detail": "상세주소",
         }
 
+
 class UpdateForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
@@ -30,6 +35,7 @@ class UpdateForm(UserChangeForm):
             "location",
             "location_detail",
         )
+
 
 class UpdateDetailForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
@@ -42,6 +48,7 @@ class UpdateDetailForm(UserChangeForm):
             "location",
             "location_detail",
         )
+
 
 class UpdateSocialForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):

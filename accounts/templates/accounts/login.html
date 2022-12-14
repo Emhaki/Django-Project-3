@@ -16,10 +16,10 @@
       <button class="login-frame__form__googlebtn">🍳 CONTINUE WITH KAKAO</button>
     </a>
     <div class="login-frame__form__detail">
-      <div id="find-btn" class="login-frame_-form__detail__find">
-        <a href="">아이디 찾기</a>
+      <div class="login-frame_-form__detail__find">
+        <a href="" id="id-find-btn">아이디 찾기</a>
         |
-        <a href="">비밀번호 찾기</a>
+        <a href="" id="pw-find-btn">비밀번호 찾기</a>
       </div>
       <div class="login-frame__form__detail__signup">
         <a href="{% url 'accounts:signup'%}">회원가입</a>
@@ -70,23 +70,237 @@
   });
 </script>
 <script>
-  const findBtn = document.querySelector("#find-btn");
-  for (i = 0; i < findBtn.childNodes.length; i++) {
-    if (findBtn.childNodes[i].nodeName == "A") {
-      const aTag = findBtn.childNodes[i];
-      aTag.addEventListener("click", function (event) {
-        event.preventDefault();
-        Swal.fire({
-          backdrop: "rgba(255,255,255,0.5)",
-          confirmButtonColor: '#203e96',
-          confirmButtonText: '닫기',
-          icon: 'warning',
-          title: '점검중',
-          text: '현재 점검중인 기능입니다.',
-          footer: `<a href="{% url 'questions:index' %}" style="text-decoration: none;">회원정보 관련 문의는 여기서 해주세요!</a>`,
-        })
-      });
-    };
-  };
+  const idFindBtn = document.querySelector("#id-find-btn");
+  const pwFindBtn = document.querySelector("#pw-find-btn");
+
+  idFindBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    Swal.fire({
+      backdrop: "rgba(255,255,255,0.5)",
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      confirmButtonText: '찾기',
+      confirmButtonColor: '#f3672a',
+      cancelButtonText: '닫기',
+      cancelButtonColor: '#203e96',
+      icon: 'info',
+      title: '아이디 찾기',
+      input: 'text',
+      text: '가입시 작성하신 이메일을 입력해주세요.',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      preConfirm: (email) => {
+        if (email === "") {
+          Swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            cancelButtonText: '닫기',
+            cancelButtonColor: '#203e96',
+            icon: 'warning',
+            title: '이메일을 입력하지 않았습니다.',
+            text: '다시 입력해주세요!',
+          });
+        } else {
+          return axios({
+            method: "get",
+            url: `/accounts/find-id/?email=${email}`,
+          }).then(response => {
+            return response.data
+          });
+        };
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed && result.value !== "") {
+        if (result.value.errorMsg !== undefined) {
+          console.log(result.value.errorMsg);
+          swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            confirmButtonColor: '#203e96',
+            confirmButtonText: '닫기',
+            title: "회원 정보를 찾을 수 없습니다.",
+            text: result.value.errorMsg,
+            icon: "question",
+          });
+        } else {
+          const userList = result.value.userList;
+          let res = "";
+          for (let i = 0; i < userList.length; i++) {
+            res += String(userList[i]) + "<br>";
+          };
+          swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            confirmButtonColor: '#203e96',
+            confirmButtonText: '확인',
+            title: "검색 결과",
+            html: `
+            <p style="word-break: keep-all;">검색하신 이메일로 모두 <span style="color: #f3672a;">${result.value.userCount}</span> 개의 아이디가 검색되었습니다.</p>
+            <p>${res}</p>
+            `,
+            icon: "success",
+          });
+        };
+      };
+    });
+  });
+
+  pwFindBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    Swal.fire({
+      backdrop: "rgba(255,255,255,0.5)",
+      showCancelButton: true,
+      confirmButtonText: '찾기',
+      confirmButtonColor: '#f3672a',
+      cancelButtonText: '닫기',
+      cancelButtonColor: '#203e96',
+      icon: 'info',
+      title: '비밀번호 찾기',
+      input: 'text',
+      text: '아이디를 입력해주세요.',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      preConfirm: (username) => {
+        if (username === "") {
+          Swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            cancelButtonText: '닫기',
+            cancelButtonColor: '#203e96',
+            icon: 'warning',
+            title: '아이디를 입력하지 않았습니다.',
+            text: '아이디를 입력해주세요!',
+          });
+        } else {
+          return axios({
+            method: "get",
+            url: `/accounts/find-pw/?username=${username}`,
+          }).then(response => {
+            if (response.data.errorMsg) {
+              swal.fire({
+                backdrop: "rgba(255,255,255,0.5)",
+                confirmButtonColor: '#203e96',
+                confirmButtonText: '닫기',
+                title: "회원 정보를 찾을 수 없습니다.",
+                text: response.data.errorMsg,
+                icon: "question",
+              });
+            } else {
+              Swal.fire({
+                backdrop: "rgba(255,255,255,0.5)",
+                html: `
+                <div class="d-flex justify-content-center align-items-center" style="height: 10rem;">
+                  <div class="spinner-border" role="status" style="width: 6rem; height: 6rem; color: #f3672a;">
+                    <span class="visually-hidden">로딩중</span>
+                  </div>
+                </div>
+                `,
+                showConfirmButton: false,
+              });
+            };
+            return response.data
+          });
+        };
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.isConfirmed && result.value !== "" && result.value.errorMsg === undefined) {
+        let formData = new FormData();
+        formData.append("user_email", result.value.userEmail);
+        formData.append("user_name", result.value.userName);
+        axios({
+          method: 'post',
+          url: `/accounts/find-pw-email/`,
+          headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+          data: formData,
+        }).then(response => {
+          Swal.fire({
+            backdrop: "rgba(255,255,255,0.5)",
+            showCancelButton: true,
+            showLoaderOnConfirm: true,
+            cancelButtonText: '닫기',
+            cancelButtonColor: '#203e96',
+            confirmButtonColor: '#f3672a',
+            confirmButtonText: '확인',
+            html: `
+            <h3 class="mb-3" style="word-break: keep-all; font-weight: bold;">가입시 작성하신 이메일로 인증번호가 전송되었습니다.</h3>
+            <p class="mb-0" style="word-break: keep-all;">인증번호를 입력 후 확인 버튼을 눌러주세요.</p>
+            `,
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off'
+            },
+            preConfirm: (number) => {
+              const validNum = response.data.validnumber;
+              let userName = response.data.userName;
+              let formData = new FormData();
+              formData.append("inputNum", number);
+              formData.append("validNum", validNum);
+              formData.append("userName", userName);
+              return axios({
+                method: "post",
+                url: `/accounts/find-pw-email-check/`,
+                headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+                data: formData,
+              }).then(response => {
+                if (response.data.check === true) {
+                  let userName = response.data.userName;
+                  Swal.fire({
+                    backdrop: "rgba(255,255,255,0.5)",
+                    showCancelButton: true,
+                    showLoaderOnConfirm: true,
+                    title: '새로운 비밀번호를 입력해주세요.',
+                    html: `
+                    <form id="pw-change">
+                      <label for="pw-change-1" class="form-label">새 비밀번호 입력</label>
+                      <input class="form-control" type="password" name="pw1" id="pw-change-1">
+                      <label for="pw-change-2" class="form-label">새 비밀번호 확인</label>
+                      <input class="form-control" type="password" name="pw2" id="pw-change-2">
+                      <input type=hidden value="${userName}" name="userName">
+                    </form>
+                    `,
+                    text: '입력 후 확인 버튼을 눌러주세요.',
+                    cancelButtonText: '닫기',
+                    cancelButtonColor: '#203e96',
+                    confirmButtonColor: '#f3672a',
+                    confirmButtonText: '확인',
+                    preConfirm: (form) => {
+                      const pwChangeForm = document.querySelector("#pw-change");
+                      let formData = new FormData(pwChangeForm);
+                      return axios({
+                        method: "post",
+                        url: `/accounts/pw-change/`,
+                        headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+                        data: formData,
+                      }).then(response => {
+                        if (response.data.msg === "변경에 성공하였습니다.") {
+                          Swal.fire({
+                            backdrop: "rgba(255,255,255,0.5)",
+                            title: '변경 완료',
+                            text: response.data.msg,
+                            icon: "success",
+                            confirmButtonColor: '#203e96',
+                            confirmButtonText: '닫기',
+                          });
+                        } else {
+                          Swal.fire({
+                            backdrop: "rgba(255,255,255,0.5)",
+                            title: '변경 실패',
+                            text: response.data.msg,
+                            icon: "error",
+                            confirmButtonColor: '#203e96',
+                            confirmButtonText: '닫기',
+                          });
+                        };
+                      });
+                    },
+                  });
+                };
+              });
+            },
+          });
+        });
+      };
+    });
+  });
 </script>
 {% endblock content %}
