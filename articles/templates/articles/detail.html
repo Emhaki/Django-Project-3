@@ -141,7 +141,9 @@
         <div class="detail__content">
           <div class="detail__header">
             <p class="detail__title">{{ art.title }}</p>
-            <p class="detail__subtitle">{{ art.artist.nickname }} | {{ art.art_category }} | {{ art.painted_year }}</p>
+            <a href="{% url 'accounts:profile' art.artist.pk %}">
+              <p class="detail__subtitle">{{ art.artist.nickname }} | {{ art.art_category }} | {{ art.painted_year }}</p>
+            </a>
           </div>
           <p class="detail__info">
             {{ art.content }}
