@@ -278,6 +278,7 @@
         </div>
 
         <!--페이지네이션-->
+        {% if page_obj %}
         <nav aria-label="Page navigation example" style="margin-top:1rem;">
           <ul class="pagination justify-content-center">
             <!-- 이전페이지 -->
@@ -317,6 +318,8 @@
             {% endif %}
           </ul>
         </nav>
+        {% else %}
+        {% endif %}
       </div>
     </section>
   </section>
