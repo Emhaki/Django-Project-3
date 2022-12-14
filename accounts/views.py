@@ -226,15 +226,15 @@ def profile(request, user_pk):
     creater = get_user_model().objects.filter(pk=user_pk).filter(is_creater=1)
     # 작가가 등록한 작품들
     arts = Art.objects.filter(artist=user_pk).order_by()
-    paginator = Paginator(arts, 6)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
+    # paginator = Paginator(arts, 6)
+    # page_number = request.GET.get("page")
+    # page_obj = paginator.get_page(page_number)
 
     # 해당 유저가 좋아요를 누른 작품들
     art_likes = Art.objects.filter(likes=user_pk).order_by()
-    like_paginator = Paginator(art_likes, 6)
-    page_number = request.GET.get("like_page")
-    like_page_obj = like_paginator.get_page(page_number)
+    # like_paginator = Paginator(art_likes, 6)
+    # page_number = request.GET.get("like_page")
+    # like_page_obj = like_paginator.get_page(page_number)
 
     # 해당 유저의 카트아이템
     user_carts = CartItem.objects.filter(user=user_pk)
@@ -251,9 +251,9 @@ def profile(request, user_pk):
         for buy in buys:
           list_.append(str(buy.pk))
     purchases = Art.objects.filter(order_id__in=list_)
-    buy_paginator = Paginator(purchases, 6)
-    page_number = request.GET.get("buy_page")
-    buy_page_obj = buy_paginator.get_page(page_number)
+    # buy_paginator = Paginator(purchases, 6)
+    # page_number = request.GET.get("buy_page")
+    # buy_page_obj = buy_paginator.get_page(page_number)
 
     # 판매내역 목록
     soldouts = Art.objects.filter(soldout=True).filter(artist=user_pk)
@@ -266,19 +266,19 @@ def profile(request, user_pk):
         "creater": creater,
         # 등록작품 관련
         "arts": arts,
-        "page_obj": page_obj,
+        # "page_obj": page_obj,
         # 찜한 작품관련
         "art_likes": art_likes,
-        "like_page_obj": like_page_obj,
-        # 카트관련
-        "user_carts": user_carts,
-        "cart_page_obj": cart_page_obj,
+        # "like_page_obj": like_page_obj,
         # 구매관련
         "purchases": purchases,
-        "buy_page_obj": buy_page_obj,
+        # "buy_page_obj": buy_page_obj,
         # 판매관련
         "soldouts": soldouts,
         "soldout_page_obj": soldout_page_obj,
+        # 카트관련
+        "user_carts": user_carts,
+        "cart_page_obj": cart_page_obj,
     }
     return render(request, "accounts/profile.html", context)
 

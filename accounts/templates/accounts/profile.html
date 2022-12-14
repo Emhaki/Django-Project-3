@@ -120,7 +120,7 @@
     <section class="profile__container">
       <div class="profile__container__info">
         <div class="profile__container__info__img">
-           <!-- 프로필 이미지 -->
+          <!-- 프로필 이미지 -->
           <div class="profile__container__info__img__back">
             {% if profile.test %}
               {% if profile.profileimage %}
@@ -173,7 +173,7 @@
               {% endif %}
             {% endif %}
 
-             <!-- 프로필 수정 -->
+            <!-- 프로필 수정 -->
             {% if request.user in profiles %}
             <a href="{% url 'accounts:profile_update' %}" class="text-dark fs-3">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="profile__update--btn bi bi-gear-fill mb-3" viewBox="0 0 16 16">
@@ -182,7 +182,7 @@
             </a>
             {% endif %}
             
-             <!-- 이메일 -->
+            <!-- 이메일 -->
             </p>
             <div class="profile__container__info__text__email">{{ profile.email }}</div>
           </div>
@@ -274,7 +274,7 @@
         <div class="profile__container__tabs__box box1 current">
           <div class="profile__container__tabs__box__grid">
             {% comment %} 작품 탭 {% endcomment %}
-            {% for art in page_obj %}
+            {% for art in arts %}
             <div class="profile__container__tabs__box__grid__card">
               <a href="{% url 'articles:detail' art.pk %}">
                 <div class="profile__container__tabs__box__grid__card__imgbox">
@@ -298,7 +298,8 @@
             </div>
             {% endfor %}
           </div>
-          {% comment %} 작품 페이지네이션 {% endcomment %}
+        </div>
+          {% comment %} 작품 페이지네이션
           <div class="paginagtion pag_box1">
             <hr>
             <!--페이지네이션-->
@@ -343,12 +344,12 @@
             </nav>
           </div>
           {% comment %} 작품 페이지네이션 끝 {% endcomment %}
-        </div>
+        {% comment %} </div> {% endcomment %}
 
         {% comment %} 저장된 작품탭 {% endcomment %}
         <div class="profile__container__tabs__box box2">
           <div class="profile__container__tabs__box__grid">
-            {% for art_like in like_page_obj %}
+            {% for art_like in art_likes %}
             <div class="profile__container__tabs__box__grid__card">
               <a href="{% url 'articles:detail' art_like.pk %}">
                 <div class="profile__container__tabs__box__grid__card__imgbox">
@@ -373,9 +374,11 @@
               </a>
             </div>
             {% endfor %}
+          </div>
+        </div>
             
           <!-- 저장된 작품 페이지네이션-->
-          <div class="paginagtion pag_box1">
+          {% comment %} <div class="paginagtion pag_box1">
             <hr>
             <nav aria-label="Page navigation example" style="margin-top:1rem;">
               <ul class="pagination justify-content-center">
@@ -416,10 +419,9 @@
                 {% endif %}
               </ul>
             </nav>
-          </div>
+          </div> {% endcomment %}
           {% comment %}  {% endcomment %}
-          </div>
-        </div>
+          
         {% comment %} 저장된 작품탭끝 {% endcomment %}
         {% comment %} 구매목록 탭 {% endcomment %}
         <div class="profile__container__tabs__box box3">
@@ -450,9 +452,11 @@
               </a>
             </div>
             {% endfor %}
+          </div>
+        </div>
             
             {% comment %} 판매완료 페이지네이션 {% endcomment %}
-            <div class="paginagtion pag_box1">
+            {% comment %} <div class="paginagtion pag_box1">
             <hr>
             <nav aria-label="Page navigation example" style="margin-top:1rem;">
               <ul class="pagination justify-content-center">
@@ -495,7 +499,7 @@
             </nav>
           </div>
         </div>
-        </div>
+        </div> {% endcomment %}
         {% comment %} 구매완료 탭끝 {% endcomment %}
         {% comment %} 판매목록 탭 {% endcomment %}
         <div class="profile__container__tabs__box box4">
@@ -526,8 +530,9 @@
               </a>
             </div>
             {% endfor %}
-            
-            {% comment %} 판매목록 페이지네이션 {% endcomment %}
+          </div>
+        </div>  
+            {% comment %} 판매목록 페이지네이션
             <div class="paginagtion pag_box1">
             <hr>
             <nav aria-label="Page navigation example" style="margin-top:1rem;">
@@ -571,7 +576,7 @@
             </nav>
           </div>
         </div>
-        </div>
+        </div> {% endcomment %}
 
         {% comment %} 카트 탭 {% endcomment %}
         <div class="profile__container__tabs__box box5">
@@ -602,8 +607,10 @@
               </a>
             </div>
             {% endfor %}
+          </div>
+        </div>
 
-            <div class="paginagtion pag_box1">
+            {% comment %} <div class="paginagtion pag_box1">
             <hr>
             <nav aria-label="Page navigation example" style="margin-top:1rem;">
               <ul class="pagination justify-content-center">
@@ -644,7 +651,7 @@
                 {% endif %}
               </ul>
             </nav>
-            </div>
+            </div> {% endcomment %}
 
           </div>
         </div>
