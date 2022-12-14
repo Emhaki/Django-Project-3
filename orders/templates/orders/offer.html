@@ -142,7 +142,7 @@
         <div>
           <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form" onclick="accept(event)">
             {% csrf_token %}
-            <button type="submit" name="수락" value="수락" class="offer-outline-btn">수락</button>
+            <button type="submit" name="수락" value="수락" class="offer-outline-btn" data-offer-id="{{ offer.pk }}">수락</button>
           </form>
         </div>
       </div>
@@ -164,8 +164,7 @@
     
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
     function accept(event) {
-      var delete_warngin = confirm("제안을 수락하시겠습니까?")
-
+      event.preventDefault();
       Swal.fire({
         title: "작품 가격 조정",
         text: "구매자의 제안을 수락하시겠습니까?",
@@ -180,11 +179,13 @@
       .then((result) => {
         const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
         if (result.isConfirmed) {
+          let formData = new FormData()
+          formData.append('note_pk', event.target.dataset.offerId);
           axios({
             method: 'post',
             url: `/orders/offer_accept/${event.target.dataset.offerId}/`,
             headers: {'X-CSRFToken': csrftoken},
-            data: {'note_pk': event.target.dataset.offerId},
+            data: formData,
           })
           .then(response => {
             Swal.fire({
