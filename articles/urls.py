@@ -20,4 +20,5 @@ urlpatterns = [
     path('<int:pk>/like/', views.like, name='like'),
     # path("search/", views.SearchView.as_view(), name="search"),
     path("search/", views.search, name="search"),
+    path("about/", views.about, name="about"),
 ]

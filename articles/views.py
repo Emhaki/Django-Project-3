@@ -248,3 +248,6 @@ def search(request):
             "category": category,
         }
     return render(request, "articles/search.html", context)
+
+def about(request):
+    return render(request, "articles/about.html")
