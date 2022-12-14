@@ -229,7 +229,7 @@ def search(request):
             Q(title__icontains=search)
             | Q(artist__nickname__icontains=search)
         )
-        paginator = Paginator(search_list, 6)
+        paginator = Paginator(search_list, 8)
         page_obj = paginator.get_page(request.GET.get("page"))
         context = {
             "search": search,
