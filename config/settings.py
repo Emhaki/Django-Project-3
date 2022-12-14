@@ -11,7 +11,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,20 +28,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-l(pzq6uqqe-w!=qu^t4hg)()_#3nr-sdd-datzs4j$2n+*769h"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "Nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
 
-PJT_APPS = ["notes", "orders", "accounts", "articles", "questions", "main"]
+PJT_APPS = [
+    "main",
+    "notes",
+    "orders",
+    "accounts",
+    "articles",
+    "questions",
+]
 
 LIBRARY_APPS = [
+    "storages",
     "imagekit",
     "django_bootstrap5",
     "django_extensions",
-    'django.contrib.humanize',
+    "django.contrib.humanize",
     # 페이지에서 이미지를 삭제했을 때 서버에 남는 파일을 자동으로 지워주는 앱
     # https://pypi.org/project/django-cleanup/
     # "django_cleanup.apps.CleanupConfig",
@@ -88,13 +104,49 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.getenv("DATABASE_NAME"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "USER": "postgres",
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # 데이터베이스 생성 시 작성한 패스워드
+            "HOST": os.getenv("DATABASE_HOST"),  # 코드 블럭 아래 이미지 참고하여 입력
+            "PORT": "5432",
+        }
+    }
+
+"""
+# 기존 db
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+# 아마존 db
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "nes", # 코드 블럭 아래 이미지 참고하여 입력
+#         "USER": "postgres",
+#         "PASSWORD": "gusehd12qw#$ER%^", # 데이터베이스 생성 시 작성한 패스워드
+#         "HOST": "nes.cgstaopcbnae.ap-northeast-2.rds.amazonaws.com", # 코드 블럭 아래 이미지 참고하여 입력
+#         "PORT": "5432",
+#     }
+# }
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -136,6 +188,7 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+STATIC_ROOT = 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -161,3 +214,17 @@ BOOTSTRAP5 = {
     # Field class used for horizontal fields withut a label.
     "horizontal_field_offset_class": "offset-sm-2",
 }
+
+# 아마존 설정
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+AWS_REGION = "ap-northeast-2"
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.%s.amazonaws.com" % (
+    AWS_STORAGE_BUCKET_NAME,
+    AWS_REGION,
+)
