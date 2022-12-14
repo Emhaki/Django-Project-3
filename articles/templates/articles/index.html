@@ -229,27 +229,25 @@
       $('#scrollbar').mousewheel( function (e, d) {
         this.scrollLeft -= ( d * 80);
         e.preventDefault();
-        if ((this.scrollLeft+500 >= abLeft) && (this.scrollLeft+500 <= abRight)) {
-          articlesBg.style.backgroundColor = "white";
+        if ((this.scrollLeft+500 >= abLeft) && (this.scrollLeft+500 <= abLeft2)) {
+          articlesBg.style.backgroundColor = "#D6B687";
         }
-        else if ((this.scrollLeft+500 >= abLeft2) && (this.scrollLeft+500 <= abRight2)) {
-          articlesBg.style.backgroundColor = "yellow";
+        else if ((this.scrollLeft+500 >= abLeft2) && (this.scrollLeft+500 <= abLeft3)) {
+          articlesBg.style.backgroundColor = "#9A8467";
         }
-        else if ((this.scrollLeft+500 >= abLeft3) && (this.scrollLeft+500 <= abRight3)) {
-          articlesBg.style.backgroundColor = "#ced4da";
+        else if ((this.scrollLeft+500 >= abLeft3) && (this.scrollLeft+500 <= abLeft4)) {
+          articlesBg.style.backgroundColor = "#623A31";
         }
-        else if ((this.scrollLeft+500 >= abLeft4) && (this.scrollLeft+500 <= abRight4)) {
-          articlesBg.style.backgroundColor = "#0dcaf0";
+        else if ((this.scrollLeft+500 >= abLeft4) && (this.scrollLeft+500 <= abLeft5)) {
+          articlesBg.style.backgroundColor = "#314F6B";
         }
-        else if ((this.scrollLeft+500 >= abLeft5) && (this.scrollLeft+500 <= abRight5)) {
-          articlesBg.style.backgroundColor = "black";
+        else if ((this.scrollLeft+500 >= abLeft5) && (this.scrollLeft+500 <= abLeft6)) {
+          articlesBg.style.backgroundColor = "#343434";
         }
-        else if ((this.scrollLeft+500 >= abLeft6) && (this.scrollLeft+500 <= abRight6)) {
-          articlesBg.style.backgroundColor = "#c9dfff";
+        else if ((this.scrollLeft+500 >= abLeft6) && (this.scrollLeft+500 <= abLeft7)) {
+          articlesBg.style.backgroundColor = "#6B7D91";
         }
-        else if ((this.scrollLeft+500 >= abLeft7) && (this.scrollLeft+500 <= abRight7)) {
-          console.log(abLeft7);
-          console.log(this.scrollLeft+500);
+        else if (this.scrollLeft+500 >= abLeft7) {
           articlesBg.style.backgroundColor = "gray";
         }
         else {
