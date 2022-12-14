@@ -199,7 +199,7 @@
   height: 1.4vw;
 }
 
-.profile__container__tabs input[type='radio']:checked + label {
+.profile__container__tabs input[type='radio']:checked+label {
   background-color: white;
   color: black;
 }
@@ -224,7 +224,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 33%);
-  grid-template-rows: repeat(2, 50%);
+  grid-auto-rows: 50%;
   justify-content: center;
 }
 
@@ -359,7 +359,6 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(3, 50%);
     justify-content: center;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -528,7 +527,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(1, 100%);
-    grid-template-rows: repeat(6, 16.5%);
+    grid-auto-rows: 50%;
     justify-content: center;
     overflow: auto;
   }
@@ -584,23 +583,28 @@
   .profile__container__tabs__box__grid {
     margin-top: 2rem;
   }
+
   .pag_box1 {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 110%);
   }
+
   .profile__container__info__text__name {
     font-size: 5vh;
     margin: 0;
   }
+
   .profile__container__info__text__name p {
     margin-top: 0;
     margin-bottom: 0;
   }
+
   .profile__container__info__img__back {
     height: 90%;
     transition: all 0.3s;
   }
+
   .profile__container__info__text__email {
     text-decoration: none;
     font-size: 0.7rem;
@@ -634,6 +638,7 @@
     width: 70%;
     height: 80%;
   }
+
   .profile__container__tabs__box__grid__card__main {
     padding: 0.5rem;
   }
@@ -649,6 +654,7 @@
   .profile__container__tabs__box__grid__card__main_title {
     font-size: 5vw;
   }
+
   .profile__container__tabs__box__grid__card__main_price {
     font-size: 4vw;
   }
@@ -701,7 +707,7 @@
   text-align: right;
 }
 
-.offcanvas__ul > li {
+.offcanvas__ul>li {
   margin-bottom: 1rem;
 }
 

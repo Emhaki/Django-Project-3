@@ -35,7 +35,7 @@ client_id = "064334979be24e5b57f6869948851f37"
 
 def kakao_request(request):
     kakao_api = "https://kauth.kakao.com/oauth/authorize?"
-    redirect_uri = "http://localhost:8000/accounts/kakao/login/callback/"
+    redirect_uri = "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback/"
 
     return redirect(
         f"{kakao_api}&client_id={client_id}&redirect_uri={redirect_uri}&response_type=code"
@@ -48,7 +48,7 @@ def kakao_callback(request):
     data = {
         "grant_type": "authorization_code",
         "client_id": client_id,
-        "redirect_uri": "http://localhost:8000/accounts/kakao/login/callback/",
+        "redirect_uri": "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback/",
         "code": auth_code,
         "client_secret": "dnF1rI5CYOJiylg8ZNfguRTyAMurs2gQ",
     }
