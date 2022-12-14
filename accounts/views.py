@@ -249,7 +249,7 @@ def profile(request, user_pk):
     purchases = Art.objects.filter(order_id=999999999)
     if buys:
         for buy in buys:
-          list_.append(str(buy.pk))
+            list_.append(str(buy.pk))
     purchases = Art.objects.filter(order_id__in=list_)
     # buy_paginator = Paginator(purchases, 6)
     # page_number = request.GET.get("buy_page")

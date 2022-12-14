@@ -271,9 +271,8 @@
             </svg>
           </label>
         </div>
-        <div class="profile__container__tabs__box box1 current">
+        <div class="profile__container__tabs__box box1  current">
           <div class="profile__container__tabs__box__grid">
-            {% comment %} 작품 탭 {% endcomment %}
             {% for art in arts %}
             <div class="profile__container__tabs__box__grid__card">
               <a href="{% url 'articles:detail' art.pk %}">
@@ -284,7 +283,9 @@
                   {% else %}
                     <img src="{% static 'images/art1_n4hYkfD.jpg' %}" alt="">
                   {% endif %}
-
+                  {% comment %}  {% endcomment %}
+              
+                  <i class="bi bi-heart-fill profile__container__tabs__box__grid__card__imgbox__icon2"></i>
                 </div>
                 <div class="profile__container__tabs__box__grid__card__main">
                   <p class="profile__container__tabs__box__grid__card__main_title">
