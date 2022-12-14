@@ -35,7 +35,7 @@
           {% if request.user.is_authenticated %}
           <li>
             <a href="{% url 'accounts:logout' %}">
-              <button class="btn offcanvas__header--btn p-0">
+              <button class="custom-btn offcanvas__header--btn p-0">
                 {% if request.user.creater_name %}
                   {{request.user.creater_name}}
                 {% elif request.user.username %}
