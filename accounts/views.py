@@ -132,7 +132,8 @@ def kakao_callback(request):
         #     email=kakao_email,
         #     refresh_token=refresh_token,
         # )
-        kakao_login_user.set_password(str(state_token))
+        # kakao_login_user.set_password(str(state_token))
+        kakao_login_user.set_password(kakao_id)
         kakao_login_user.save()
         print(
             "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
@@ -562,7 +563,7 @@ def pw_change(request):
     user = get_user_model().objects.get(username=request.POST["userName"])
     if request.method == "POST":
         if request.POST["pw1"] == request.POST["pw2"] and len(request.POST["pw1"]) >= 8:
-            # user.set_password(request.POST["pw1"])
+            user.set_password(request.POST["pw1"])
             user.save()
             context = {
                 "msg": "변경에 성공하였습니다.",
