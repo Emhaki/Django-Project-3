@@ -99,9 +99,7 @@ def kakao_callback(request):
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
-        auth_login(
-            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
-        )
+        auth_login(request, kakao_user)
         print(
             3333333333333333333333333333333333333333333333333333333333333333333333333333333333
         )
@@ -120,9 +118,7 @@ def kakao_callback(request):
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        auth_login(
-            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
-        )
+        auth_login(request, kakao_user)
         print(
             3333333333333333333333333333333333333333333333333333333333333333333333333333333333
         )
