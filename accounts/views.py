@@ -125,14 +125,8 @@ def kakao_callback(request):
         kakao_login_user.nickname = kakao_nickname
         kakao_login_user.email = kakao_email
         kakao_login_user.refresh_token = refresh_token
-        # kakao_login_user = get_user_model().objects.create(
-        #     test=kakao_id,
-        #     nickname=kakao_nickname,
-        #     # profileimage=kakao_profile_image,
-        #     email=kakao_email,
-        #     refresh_token=refresh_token,
-        # )
-        # kakao_login_user.set_password(str(state_token))
+        kakao_login_user.set_password(str(state_token))
+        print("kakao complete")
         kakao_login_user.save()
         print(
             "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
