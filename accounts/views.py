@@ -128,6 +128,7 @@ def kakao_callback(request):
         #     refresh_token=refresh_token,
         # )
         kakao_login_user = get_user_model()()
+        kakao_login_user.username = kakao_id
         kakao_login_user.test = kakao_id
         kakao_login_user.nickname = kakao_nickname
         kakao_login_user.email = kakao_email
