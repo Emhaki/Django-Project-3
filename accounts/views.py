@@ -81,23 +81,13 @@ def kakao_callback(request):
     # 'profile': {'nickname': '이명학', 'thumbnail_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_110x110.jpg', 'profile_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_640x640.jpg',
     # 'is_default_image': False}, 'has_email': True, 'email_needs_agreement': False, 'is_email_valid': True, 'is_email_verified': True, 'email': 'mhmh779@naver.com'}
     # }
-    print(user_info_response)
-    print(
-        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-    )
     # 이메일 동의 안할시 공백을 주었음
     kakao_id = user_info_response["id"]
     kakao_nickname = user_info_response["properties"]["nickname"]
-    print(
-        123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123
-    )
     kakao_email = (
         user_info_response["kakao_account"].get("email")
         if "email" in user_info_response["kakao_account"]
         else ""
-    )
-    print(
-        456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456
     )
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
@@ -117,6 +107,9 @@ def kakao_callback(request):
         )
         return redirect("articles:ticket_machine")
     else:
+        print(
+            222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+        )
         kakao_login_user = get_user_model().objects.create(
             test=kakao_id,
             nickname=kakao_nickname,
