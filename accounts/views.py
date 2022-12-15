@@ -88,10 +88,16 @@ def kakao_callback(request):
     # 이메일 동의 안할시 공백을 주었음
     kakao_id = user_info_response["id"]
     kakao_nickname = user_info_response["properties"]["nickname"]
+    print(
+        123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123
+    )
     kakao_email = (
         user_info_response["kakao_account"].get("email")
         if "email" in user_info_response["kakao_account"]
         else ""
+    )
+    print(
+        456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456456
     )
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
