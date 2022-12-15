@@ -64,8 +64,6 @@ def kakao_callback(request):
     # 'refresh_token_expires_in': 5183999
     # }
 
-    print(requests.post(kakao_token_api, data=data).json())
-    
     temp = requests.post(kakao_token_api, data=data).json()
     access_token = temp["access_token"]
     refresh_token = temp["refresh_token"]
@@ -83,8 +81,10 @@ def kakao_callback(request):
     # 'profile': {'nickname': '이명학', 'thumbnail_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_110x110.jpg', 'profile_image_url': 'http://k.kakaocdn.net/dn/sQ8Lg/btrOcfopF8S/39TsSKwP6jBNBEZ5qSikjK/img_640x640.jpg',
     # 'is_default_image': False}, 'has_email': True, 'email_needs_agreement': False, 'is_email_valid': True, 'is_email_verified': True, 'email': 'mhmh779@naver.com'}
     # }
-    
-    print(22222222222222222222222)
+    print(user_info_response)
+    print(
+        1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+    )
     # 이메일 동의 안할시 공백을 주었음
     kakao_id = user_info_response["id"]
     kakao_nickname = user_info_response["properties"]["nickname"]
@@ -96,7 +96,6 @@ def kakao_callback(request):
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(test=kakao_id).exists():
-        print(111111111111111111111111111)
         kakao_user = get_user_model().objects.get(test=kakao_id)
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
