@@ -13,7 +13,7 @@ urlpatterns = [
     path("<int:user_pk>/recently/", views.recently, name="recently"),
     # 카카오 로그인
     path("login/kakao/", views.kakao_request, name="kakao"),
-    path("kakao/login/callback/", views.kakao_callback, name="kakao_callback"),
+    path("kakao/login/callback", views.kakao_callback, name="kakao_callback"),
     path("kakao_signup/", views.kakao_signup, name="kakao_signup"),
     # 유효성 검사
     path("send_valid_number/", views.send_valid_number, name="send_valid_number"),

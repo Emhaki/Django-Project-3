@@ -34,8 +34,8 @@ client_id = "064334979be24e5b57f6869948851f37"
 
 
 def kakao_request(request):
-    kakao_api = "https://kauth.kakao.com/oauth/authorize?"
-    redirect_uri = "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback/"
+    kakao_api = "https://kauth.kakao.com/oauth/authorize"
+    redirect_uri = "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback"
 
     return redirect(
         f"{kakao_api}&client_id={client_id}&redirect_uri={redirect_uri}&response_type=code"
@@ -48,7 +48,7 @@ def kakao_callback(request):
     data = {
         "grant_type": "authorization_code",
         "client_id": client_id,
-        "redirect_uri": "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback/",
+        "redirect_uri": "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback",
         "code": auth_code,
         "client_secret": "dnF1rI5CYOJiylg8ZNfguRTyAMurs2gQ",
     }
@@ -92,6 +92,7 @@ def kakao_callback(request):
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(test=kakao_id).exists():
+        print(1111111111111111111111111111111111111111111111111)
         kakao_user = get_user_model().objects.get(test=kakao_id)
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
