@@ -142,7 +142,7 @@
         <div>
           <form action="{% url 'orders:offer_accept' offer.pk %}" method="POST" class="offer-form" onclick="accept(event)">
             {% csrf_token %}
-            <button type="submit" name="수락" value="수락" class="offer-outline-btn">수락</button>
+            <button type="submit" name="수락" value="수락" class="btn offer-outline-btn">수락</button>
           </form>
         </div>
       </div>
