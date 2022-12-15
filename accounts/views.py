@@ -120,13 +120,18 @@ def kakao_callback(request):
         print(
             "kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new "
         )
-        kakao_login_user = get_user_model().objects.create(
-            test=kakao_id,
-            nickname=kakao_nickname,
-            # profileimage=kakao_profile_image,
-            email=kakao_email,
-            refresh_token=refresh_token,
-        )
+        kakao_login_user = get_user_model()()
+        kakao_login_user.test = kakao_id
+        kakao_login_user.nickname = kakao_nickname
+        kakao_login_user.email = kakao_email
+        kakao_login_user.refresh_token = refresh_token
+        # kakao_login_user = get_user_model().objects.create(
+        #     test=kakao_id,
+        #     nickname=kakao_nickname,
+        #     # profileimage=kakao_profile_image,
+        #     email=kakao_email,
+        #     refresh_token=refresh_token,
+        # )
         print(
             "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
         )
