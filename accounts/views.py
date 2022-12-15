@@ -132,11 +132,11 @@ def kakao_callback(request):
         #     email=kakao_email,
         #     refresh_token=refresh_token,
         # )
+        kakao_login_user.set_password(str(state_token))
+        kakao_login_user.save()
         print(
             "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
         )
-        kakao_login_user.set_password(str(state_token))
-        kakao_login_user.save()
         kakao_user = get_user_model().objects.get(test=kakao_id)
         print(
             33333333333333333333333333333333333333333333333333333333333333333333333333333333333
