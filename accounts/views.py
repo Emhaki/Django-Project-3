@@ -20,6 +20,10 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import artist_required
 
+
+from .models import User
+
+
 # Create your views here.
 
 
@@ -92,35 +96,32 @@ def kakao_callback(request):
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(test=kakao_id).exists():
-        print(
-            222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-        )
         kakao_user = get_user_model().objects.get(test=kakao_id)
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
-        auth_login(request, kakao_user)
-        print(
-            3333333333333333333333333333333333333333333333333333333333333333333333333333333333
+        auth_login(
+            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
         return redirect("articles:ticket_machine")
     else:
-        print(
-            222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-        )
-        kakao_login_user = get_user_model().objects.create(
-            test=kakao_id,
-            nickname=kakao_nickname,
-            # profileimage=kakao_profile_image,
-            email=kakao_email,
-            refresh_token=refresh_token,
-        )
+        # kakao_login_user = get_user_model().objects.create(
+        #     test=kakao_id,
+        #     nickname=kakao_nickname,
+        #     # profileimage=kakao_profile_image,
+        #     email=kakao_email,
+        #     refresh_token=refresh_token,
+        # )
+        kakao_login_user = User()
+        kakao_login_user.test = kakao_id
+        kakao_login_user.nickname = kakao_nickname
+        kakao_login_user.email = kakao_email
+        kakao_login_user.refresh_token = refresh_token
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        auth_login(request, kakao_user)
-        print(
-            3333333333333333333333333333333333333333333333333333333333333333333333333333333333
+        auth_login(
+            request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
         return redirect("accounts:kakao_signup")
 
