@@ -34,7 +34,7 @@ client_id = "064334979be24e5b57f6869948851f37"
 
 
 def kakao_request(request):
-    kakao_api = "https://kauth.kakao.com/oauth/authorize"
+    kakao_api = "https://kauth.kakao.com/oauth/authorize?"
     redirect_uri = "http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/accounts/kakao/login/callback"
 
     return redirect(
