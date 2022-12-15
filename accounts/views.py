@@ -94,10 +94,18 @@ def kakao_callback(request):
         else ""
     )
     kakao_profile_image = user_info_response["properties"]["profile_image"]
-
+    print(
+        "######################################################################################################################################################################################################################################################################################################################################################################################################################"
+    )
     if get_user_model().objects.filter(test=kakao_id).exists():
         kakao_user = get_user_model().objects.get(test=kakao_id)
+        print(
+            "kakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakao"
+        )
         print(kakao_user)
+        print(
+            "kakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakao"
+        )
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
