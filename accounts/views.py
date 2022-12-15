@@ -120,6 +120,9 @@ def kakao_callback(request):
         kakao_login_user.set_password(str(state_token))
         kakao_login_user.save()
         kakao_user = get_user_model().objects.get(test=kakao_id)
+        print(
+            33333333333333333333333333333333333333333333333333333333333333333333333333333333333
+        )
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
