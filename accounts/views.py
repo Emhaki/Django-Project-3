@@ -96,12 +96,18 @@ def kakao_callback(request):
     kakao_profile_image = user_info_response["properties"]["profile_image"]
 
     if get_user_model().objects.filter(test=kakao_id).exists():
+        print(
+            222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+        )
         kakao_user = get_user_model().objects.get(test=kakao_id)
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
+        )
+        print(
+            3333333333333333333333333333333333333333333333333333333333333333333333333333333333
         )
         return redirect("articles:ticket_machine")
     else:
@@ -117,6 +123,9 @@ def kakao_callback(request):
         kakao_user = get_user_model().objects.get(test=kakao_id)
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
+        )
+        print(
+            3333333333333333333333333333333333333333333333333333333333333333333333333333333333
         )
         return redirect("accounts:kakao_signup")
 
