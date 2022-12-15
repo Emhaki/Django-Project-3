@@ -133,7 +133,6 @@ def kakao_callback(request):
         #     refresh_token=refresh_token,
         # )
         # kakao_login_user.set_password(str(state_token))
-        kakao_login_user.set_password(kakao_id)
         kakao_login_user.save()
         print(
             "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
