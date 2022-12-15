@@ -21,4 +21,11 @@ urlpatterns = [
     # 작가인증
     path("check_artist/", views.check_artist, name="check_artist"),
     path("check_artist_number/", views.check_artist_number, name="check_artist_number"),
+    # 아이디/패스워드 찾기
+    path("find-id/", views.find_id, name="find-id"),
+    path("find-pw/", views.find_pw, name="find-pw"),
+    path("find-pw-email/", views.find_pw_email, name="find-pw-email"),
+    path("find-pw-email-check/", views.find_pw_email_check, name="find-pw-email-check"),
+    # 패스워드 변경 폼
+    path("pw-change/", views.pw_change, name="pw-change"),
 ]

@@ -307,8 +307,7 @@ def offer_create(request, art_pk):
 @artist_required
 def offer_accept(request, offer_pk):
     offer_accept = get_object_or_404(Offer, pk=offer_pk)
-    
-    if request.POST["수락"] == "수락":
+    if int(request.POST["note_pk"]) == offer_pk:
         art_price = Art.objects.get(pk=offer_accept.art.pk)
         art_price.price = offer_accept.offer_price
         art_price.save()
