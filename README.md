@@ -57,4 +57,32 @@
 
 ### 3-4. 카테고리
 
+![2022-12-17 00;22;28](https://user-images.githubusercontent.com/105331868/208130991-b13fd60c-823d-45e1-94ac-b41a4836d212.gif)
 
+![2022-12-17 00;26;39](https://user-images.githubusercontent.com/105331868/208131530-7c112c4d-4083-453d-a081-fc15233ff449.gif)
+> 7개 카테고리별로 8개씩 작품을 출력
+
+### 3-5. 작품 디테일
+
+![2022-12-17 00;29;43](https://user-images.githubusercontent.com/105331868/208132553-313b9423-e7cf-4966-a39e-8b99833c1b01.gif)
+> 좋아요, 댓글 작성, 삭제 비동기 처리
+
+### 3-6. 가격 문의
+![2022-12-17 00;32;06](https://user-images.githubusercontent.com/105331868/208133059-8be9cb8f-56a7-466a-9de3-745b32fedb74.gif)
+> 구매자가 구매를 원하는 가격보다 높을 경우 가격을 문의 할 수 있겠끔 기능 추가
+
+### 3-7. 가격 문의 수락
+![2022-12-17 00;34;53](https://user-images.githubusercontent.com/105331868/208133592-de29b0b7-d7ad-427f-b6bb-dfbf4c6fcff9.gif)
+> 판매자는 가격문의 탭에서 가격제안을 수락할 수 있음. 수락시 제안가격으로 변동
+
+### 3-8 작품 구매
+![2022-12-17 00;41;12](https://user-images.githubusercontent.com/105331868/208134960-0b446af8-9d4b-4877-93fa-613e803b7355.gif)
+> 이니시스API를 통해 결제 기능 연결
+
+### 3-9 결제 완료
+![image](https://user-images.githubusercontent.com/105331868/208135499-a8e5cad1-5fd4-4570-bbdb-4fb9a9db8020.png)
+
+### 4-1 프로필
+![2022-12-17 00;48;20](https://user-images.githubusercontent.com/105331868/208136349-59757f3c-4c70-4f3b-968c-9c578fdbf24c.gif)
+
+### 4-2 작가인
