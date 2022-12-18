@@ -110,7 +110,7 @@
 > 문의에 대한 내역은 질문자, 관리자만 볼 수 있음. 관리자로 로그인시에는 유저들이 문의한 모든 내역을 볼 수 있게 설계
 
 ## 4.기여한 부분
-> 유저의 accounts, DM의 notes, 문의의 questions 앱을 담당
+> 유저의 accounts, DM의 notes, 문의의 questions 앱을 전체 로직 및 설계 담당
 
 > accounts에서는 소셜로그인과 이메일 인증 기능 적용
 
@@ -123,3 +123,184 @@
 > questions앱의 CRUD, request user와 admin만 해당문의 페이지에 들어올 수 있게 설계
 
 ## 5.프로젝트 후기
+![image](https://user-images.githubusercontent.com/105331868/208282727-e41a88e4-55c5-4041-9ebb-378c19584445.png)
+- 기획의 중요성을 깨닫게 됐다. 막연하게 이런 앱, 서비스가 아니라 사용자에게 어떤 가치를 제공해주고 싶은지를 먼저 생각해보니 프로젝트의 방향성을 잡기에 더 편했던 것 같다. 피그마를 통해 상세하게 화면설계를 진행해보니 이전 프로젝트보다 훨씬 작업에 속도가 붙었던 것 같다.
+
+- 프론트와 백을 딱 구분지어서 프로젝트를 해 본 경험이 처음이다보니 큰 책임감을 느끼게 됐다. 특히 회원쪽을 맡다보니 서비스의 근간이 되는 회원관리의 중요성을 알게 됐다. 다양한 소셜 로그인과 일반 로그인을 구현할 경우 DB에서 유저 저장값들을 일치시켜주는 것이 중요하다는 것을 깨닫게 됐다.
+
+- 한 페이지에 많은 내용을 담으려고 하다보면 생각치 못한 변수에 부딪히게 된다. 문의 페이지에서 문의 내역과 문의댓글을 연결하려고 하다보니 pk값을 일치시켜야 했고, 여러 댓글 작성폼에서 작성한 value값도 서버로 잘 넘겨줘야 했다. 저장된 댓글 내용도 해당 pk값안에서 보일 수 있게 필터링을 걸어줘야 했다.
+
+- 이번에 Django의 SMTP 이메일 전송기능과 소셜로그인 API, 카카오 지도검색 API를 사용해보면서 새로운 기술을 적용시키는데에 조금이나마 익숙해진 것 같다.
+
+- 문의 views.py 일부분
+```py
+<!-- 내 문의내역 -->
+@login_required
+def myquestion(request):
+
+    # 문의 pk를 추적할 수 있도록, 첫번째 문의는 댓글작성이 되나
+    # 두번째 문의부터 댓글작성이 안되는 현상 발생.
+    my_questions = Question.objects.filter(user_id=request.user.pk)
+    context = {
+      "questions": my_questions,
+    }
+
+    return render(request, "questions/myquestion.html", context)
+```
+```py
+@login_required
+def comment_create(request, question_pk):
+    question_comment = get_object_or_404(Question, pk=question_pk)
+    if request.user.is_authenticated:
+        commentForm = CommentForm(request.POST)
+        if commentForm.is_valid():
+            comment = commentForm.save(commit=False)
+            comment.question = question_comment
+            comment.user = request.user
+            comment.save()
+            if comment.user.test:
+                name = comment.user.creater_name
+            elif comment.user.creater_name:
+                name = comment.user.creater_name
+            elif comment.user.username:
+                name = comment.user.username
+            context = {
+              'content': comment.content,
+              'userName': name,
+              'created_at': comment.created_at
+            }
+            print(context)
+        return JsonResponse(context)
+    else:
+        return redirect("accounts:login")
+```
+
+- 문의 html 일부분
+```html
+{% for question in questions %}
+  <div class="myquestion__list">
+    <div class="myquestion__list__title">
+      <p>Q. {{ question.title }}</p>
+      <button class="myquestion__list__title__button" data-container="myquestion__title__content__{{ question.pk }}">
+        <svg class="myquestion__list__title__button__down bi bi-caret-down-fill" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+          <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+        </svg>
+        <svg class="myquestion__list__title__button__cancle bi bi-x-circle" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg> 
+      </button>
+    </div>
+    <div class="myquestion__title__content" id="myquestion__title__content__{{ question.pk }}">
+      {% if question.image %}
+      <div class="myquestion__title__content__image">
+        <img src="{{ question.image.url }}" alt="">
+      </div>
+      {% else %}
+      <div>
+        
+      </div>
+      {% endif %}
+      <div class="myquestion__title__content__box">
+      <p class="myquestion__title__content__text">{{ question.content }}</p>
+      <div class="myquestion__title__content__comment">
+        {% comment %} 문의 댓글 {% endcomment %}
+        {% if request.user.is_authenticated %}
+          <div id="question-comments" class="mt-3">
+            <form id="question-comment-form" class="d-flex create-form" data-question-id="{{ question.pk }}">
+              {% csrf_token %}
+                <input type="text" name="content" class="form-control" placeholder="댓글을 달아주세요">
+                <input type="submit" class="btn btn-primary mx-1" value="작성">
+            </form>
+          </div>          
+          {% for comment in question.comment_set.all %}
+          {% if comment.question.pk == question.pk %}
+            <div class="fw-bold mt-2">
+              {% if comment.user.test %}
+                {{ comment.user.creater_name }}
+              {% elif comment.user.creater_name %}
+                {{ comment.user.creater_name }}
+              {% elif comment.user.username %}
+                {{ comment.user.username }}
+              {% endif %}
+            </div>
+            <div sytle="width:350px;">
+              <div class="col-10 d-flex align-items-center">
+                {{ comment.content }}
+              </div> 
+            </div>
+            <div style="font-size:12px;" class="text-muted">{{ comment.created_at|date:"o-m-d"}} {{comment.created_at|time:"H:i"}}</div>
+            <hr>
+          {% endif %}
+          {% endfor %}
+          <div id="question-commentss-{{ question.pk }}" class="question-commentss">
+
+          </div>
+        {% endif %}
+        {% comment %} 문의 댓글 끝 {% endcomment %}
+      </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+```
+- ajax 비동기 일부분
+```js
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const commentFormSet = document.querySelectorAll('.create-form')
+    const commentsSet = document.querySelectorAll(".question-commentss")
+      for (j=0; j < commentFormSet.length; j++) {
+      let targetDiv = commentsSet[j]
+      commentFormSet[j].addEventListener('submit', function(event) {
+        event.preventDefault();
+        axios({
+          method: 'post',
+          url: `/questions/${event.target.dataset.questionId}/comment/create/`,
+          headers: {'X-CSRFToken': csrftoken},
+          data: new FormData(event.target)
+        })
+        .then(response => {
+          const div = document.createElement('div')
+          const p = document.createElement('p')
+          const small = document.createElement('small')
+          div.innerText = `${response.data.userName}`
+          div.className = "fw-bold mt-2"
+          p.innerText = `${response.data.content}`
+          p.className = "text-muted"
+          small.innerText = "0분전"
+          small.className = "text-muted fs-7"
+          const hr = document.createElement('hr')
+          targetDiv.append(div, p, small, hr)
+        })
+      })
+    }
+```
+
+## 6.팀원들의 후기
+백솔비😍
+```
+우리도 끝이 아닌 시작 👊
+```
+
+이명학🐻‍❄️
+```
+3~4주 동안 프로젝트를 진행하면서 많은 것들을 배울 수 있었습니다.
+팀원들 모두 책임감 있게 프로젝트를 진행해주어서 잘 마무리 할 수 있었습니다.
+함께 협업해준 팀원들에게 감사합니다 :)
+```
+
+최근영🐶
+```
+벌써 마무리 해야한다는 점이 아쉽고 프론트를 재밌게 만들어 볼 수 있었던 주제였습니다.
+```
+
+김예린🐻
+```
+좋은 팀원들과 끊임없이 소통하며 만족할 수 있는 프로젝트를
+경험할 수 있어서 감사하고 뿌듯합니다 :)
+⭐️NES 뽀에버⭐️
+```
+문현동🦔
+```
+4주동안 마주쳤던 다양한 도전들을 통해 개발자로서 많은 성장을 할 수 있어서 좋았습니다.
+```
