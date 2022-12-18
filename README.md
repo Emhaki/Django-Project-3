@@ -108,3 +108,13 @@
 ![2022-12-18 11;56;36](https://user-images.githubusercontent.com/105331868/208279191-bb2e86ff-1c60-4f7c-b1df-dff8484c9370.gif)
 ![2022-12-18 11;58;37](https://user-images.githubusercontent.com/105331868/208279195-13cc02ff-41a5-4196-9039-582c24357e32.gif)
 > 문의에 대한 내역은 질문자, 관리자만 볼 수 있음. 관리자로 로그인시에는 유저들이 문의한 모든 내역을 볼 수 있게 설계
+
+## 4.기여한 부분
+> 유저의 accounts, DM의 notes, 문의의 questions 앱을 담당
+> accounts에서는 소셜로그인과 이메일 인증 기능 적용
+> 모든 DB내역을 끌고와 프로필에서 작가의 작품, 좋아요한 작품, 구매내역, 판매내역, 장바구니 목록을 볼 수 있게 연결
+> 작가 인증 이메일을 통해 대학생인지 여부 판별 로직설계
+> notes앱의 DB로직 설계
+> questions앱의 CRUD, request user와 admin만 해당문의 페이지에 들어올 수 있게 설계
+
+## 5.프로젝트 후기
