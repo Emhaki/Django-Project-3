@@ -63,7 +63,7 @@
 
 ### 3-4-1. 작품검색
 ![2022-12-18 14;43;35](https://user-images.githubusercontent.com/105331868/208283411-b8a8f02e-7723-4814-a7fa-332efac88e6c.gif)
-> 작가 이름이나 작품 이름으로 검색 
+> 작가 이름이나 작품 이름으로 검색 가능
 
 ### 3-5. 작품 디테일
 ![2022-12-17 00;29;43](https://user-images.githubusercontent.com/105331868/208132553-313b9423-e7cf-4966-a39e-8b99833c1b01.gif)
@@ -75,7 +75,7 @@
 
 ### 3-7. 가격 문의
 ![2022-12-17 00;32;06](https://user-images.githubusercontent.com/105331868/208133059-8be9cb8f-56a7-466a-9de3-745b32fedb74.gif)
-> 구매자가 구매를 원하는 가격보다 높을 경우 가격을 문의 할 수 있겠끔 기능 추가
+> 구매자가 구매를 원하는 가격보다 높을 경우 가격을 문의 할 수 있겠끔 기능추가
 
 ### 3-8. 가격 문의 수락
 ![2022-12-17 00;34;53](https://user-images.githubusercontent.com/105331868/208133592-de29b0b7-d7ad-427f-b6bb-dfbf4c6fcff9.gif)
