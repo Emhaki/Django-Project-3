@@ -40,7 +40,6 @@
 
 ### 3-1. 로그인 페이지
 ![image](https://user-images.githubusercontent.com/105331868/208125670-fd573a76-5a3a-4f60-ad5f-21b350d6354e.png)
-![image](https://user-images.githubusercontent.com/105331868/208126653-1ccf821c-39b4-4327-9928-5dfb697c13dd.png)
 
 
 > 회원가입은 일반 로그인과 카카오 소셜로그인 두 개로 분류
