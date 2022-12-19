@@ -40,6 +40,12 @@
 
 > `NES(Never Ending Story)`는 젊은 예술가들이 직면할 수 밖에 없는 작품의 전시와 그에 따른 비용에 관한 문제를 어떻게 해소시켜 줄 수 있을까?를 고민했습니다. `끝나지 않는 이야기`라는 뜻을 담고 있는 NES는 젊은 예술가들의 어려움에 공감하며 그들의 꿈을 이루는 것을 돕고자 졸업 작품 중개 서비스를 기획하였습니다.
 
+### 2-1. ERD 설계
+![ERD](https://user-images.githubusercontent.com/105331868/208328063-be0fa7e1-74a3-4dd7-9e4b-ecef6c09cf84.png)
+
+### 2-2. 화면 설계
+![화면설계](https://user-images.githubusercontent.com/105331868/208328074-ac81de2c-3aa6-40e5-adac-ac3b9f2f1c27.png)
+
 ## 3.주요 기능
 
 ### 3-1. 로그인 페이지
