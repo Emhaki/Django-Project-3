@@ -85,7 +85,7 @@
 
 ### 3-7. 가격 문의
 ![2022-12-17 00;32;06](https://user-images.githubusercontent.com/105331868/208133059-8be9cb8f-56a7-466a-9de3-745b32fedb74.gif)
-> 구매자가 구매를 원하는 가격보다 높을 경우 가격을 문의 할 수 있겠끔 기능추가
+> 구매자가 구매를 원하는 가격보다 높을 경우 가격을 문의 할 수 게게끔 기능추가
 
 ### 3-8. 가격 문의 수락
 ![2022-12-17 00;34;53](https://user-images.githubusercontent.com/105331868/208133592-de29b0b7-d7ad-427f-b6bb-dfbf4c6fcff9.gif)
