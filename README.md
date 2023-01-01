@@ -127,13 +127,17 @@
 
 > accounts에서는 소셜로그인과 이메일 인증 기능 적용
 
+> 회원가입시 카카오 지도 API를 활용해 주소 검색이 가능하게끔 구현
+
+> 이메일 인증 기능은 Django의 SMTP기능을 활용
+
 > 모든 DB내역을 끌고와 프로필에서 작가의 작품, 좋아요한 작품, 구매내역, 판매내역, 장바구니 목록을 볼 수 있게 연결
 
-> 작가 인증 이메일을 통해 대학생인지 여부 판별 로직설계
+> 작가 인증 이메일을 통해 대학생인지 여부 판별 로직 설계
 
 > notes앱의 DB로직 설계
 
-> questions앱의 CRUD, request user와 admin만 해당문의 페이지에 들어올 수 있게 설계
+> questions앱의 CRUD, request user와 admin만 해당되는 문의 페이지에 들어올 수 있게 설계
 
 ## 5.프로젝트 후기
 ![image](https://user-images.githubusercontent.com/105331868/208282727-e41a88e4-55c5-4041-9ebb-378c19584445.png)
