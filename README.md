@@ -1,8 +1,9 @@
 # 예술대학 작품 중개 서비스(NES)
 
-![IMG_2017](https://user-images.githubusercontent.com/105331868/208124555-953e4216-3825-4456-b9dd-dd6ba9a2a3c5.jpg)
+<img src="https://user-images.githubusercontent.com/105331868/217434711-3b8bc932-41cc-4c6d-b554-0ee5089a85f5.jpg" width="500" height="650"/>
 
 배포 주소: http://nes-env.eba-9ycvw3yi.ap-northeast-2.elasticbeanstalk.com/
+
 
 # 목차
 
