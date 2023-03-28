@@ -91,35 +91,22 @@ def kakao_callback(request):
         else ""
     )
     kakao_profile_image = user_info_response["properties"]["profile_image"]
-    print(
-        "######################################################################################################################################################################################################################################################################################################################################################################################################################"
-    )
+
     if get_user_model().objects.filter(test=kakao_id).exists():
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        print(
-            "kakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakao"
-        )
         print(kakao_user)
-        print(
-            "kakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakaokakao"
-        )
+        
         # kakao_user.profileimage = kakao_profile_image
         kakao_user.refresh_token = refresh_token
         kakao_user.save()
-        print(
-            33333333333333333333333333333333333333333333333333333333333333333333333333333333333
-        )
+
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
         )
-        print(
-            44444444444444444444444444444444444444444444444444444444444444444444444444444444444
-        )
+
         return redirect("articles:ticket_machine")
     else:
-        print(
-            "kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new kakao new "
-        )
+
         # kakao_login_user = get_user_model().objects.create(
         #     test=kakao_id,
         #     nickname=kakao_nickname,
@@ -134,24 +121,16 @@ def kakao_callback(request):
         kakao_login_user.email = kakao_email
         kakao_login_user.refresh_token = refresh_token
         kakao_login_user.set_password(str(state_token))
-        print("kakao complete")
         try:
             kakao_login_user.save()
         except Exception as e:
             print(e)
-        print(
-            "kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete kakao complete "
-        )
+
         kakao_user = get_user_model().objects.get(test=kakao_id)
-        print(
-            33333333333333333333333333333333333333333333333333333333333333333333333333333333333
-        )
+
         auth_login(
             request, kakao_user, backend="django.contrib.auth.backends.ModelBackend"
-        )
-        print(
-            44444444444444444444444444444444444444444444444444444444444444444444444444444444444
-        )
+
         return redirect("accounts:kakao_signup")
 
 
